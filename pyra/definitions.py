@@ -22,6 +22,8 @@ class Platform:
         node (str): Machine name
         release (str): Operating system release. e.g. 10
         version (str): Operating system version. e.g. 10.0.22000
+        edition (str): Windows edition. e.g. Core, None for non Windows platforms.
+        iot (bool): True if Windows IOT, otherwise False
     """
 
     def __init__(self):
@@ -34,9 +36,9 @@ class Platform:
         self.release = platform.release()
         self.version = platform.version()
 
-        if self.platform == 'win32':
-            self.win32_edition = platform.win32_edition()
-            self.win32_iot = platform.win32_is_iot()
+        # Windows only
+        self.edition = platform.win32_edition() if self.platform == 'win32' else None
+        self.iot = platform.win32_is_iot() if self.platform == 'win32' else False
 
 
 class Files:
