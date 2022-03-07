@@ -4,10 +4,39 @@ Contains classes with attributes to common definitions (paths and filenames).
 """
 # standard imports
 import os
+import platform
 import sys
 
 # local imports
 import pyra
+
+
+class Platform:
+    """This is a class representing the machine platform.
+
+    Attributes:
+        bits (str): Operating system name. e.g. Windows
+        operating_system (str): Operating system name. e.g. Windows
+        platform (str): Operating system platform. e.g. win32, darwin, linux
+        machine (str): Machine architecture. e.g. AMD64
+        node (str): Machine name
+        release (str): Operating system release. e.g. 10
+        version (str): Operating system version. e.g. 10.0.22000
+    """
+
+    def __init__(self):
+        self.bits = 64 if sys.maxsize > 2**32 else 32
+        self.operating_system = platform.system()
+        self.platform = sys.platform.lower()
+        self.processor = platform.processor()
+        self.machine = platform.machine()
+        self.node = platform.node()
+        self.release = platform.release()
+        self.version = platform.version()
+
+        if self.platform == 'win32':
+            self.win32_edition = platform.win32_edition()
+            self.win32_iot = platform.win32_is_iot()
 
 
 class Files:
