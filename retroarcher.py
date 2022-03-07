@@ -59,11 +59,15 @@ def main():
     Parses arguments and initializes the application.
     """
     # Fixed paths to RetroArcher
-    if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):
+    if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):  # only when using the pyinstaller build
         pyra.FROZEN = True
 
-        import pyi_splash  # module cannot be installed and is only available when using the pyinstaller build
-        pyi_splash.update_text("Attempting to start RetroArcher")
+        if definitions.Platform().platform != 'darwin':  # pyi_splash is not available on macos
+            pyra.SPLASH = True
+
+        if pyra.SPLASH:
+            import pyi_splash  # module cannot be installed outside of pyinstaller builds
+            pyi_splash.update_text("Attempting to start RetroArcher")
 
     # Set up and gather command line arguments
     parser = argparse.ArgumentParser(description='RetroArcher is a Python based game streaming server.\n'
@@ -119,7 +123,7 @@ def main():
         config.CONFIG.write()
 
     # start the webapp
-    if pyra.FROZEN:  # pyinstaller build only
+    if pyra.SPLASH:  # pyinstaller build only, not darwin platforms
         pyi_splash.update_text("Starting the webapp")
         time.sleep(3)  # show splash screen for a min of 3 seconds
         pyi_splash.close()  # close the splash screen

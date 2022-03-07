@@ -23,6 +23,7 @@ DEBUG = False
 DEV = False
 DOCKER = False  # True if running in docker container (#todo)
 FROZEN = False  # True if running pyinstaller package
+SPLASH = False  # True if Frozen is True and platform is not darwin
 INIT_LOCK = threading.Lock()
 QUIET = False
 
