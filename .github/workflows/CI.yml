@@ -52,6 +52,10 @@ jobs:
           python -m pip install --upgrade pip setuptools
           python -m pip install -r requirements-dev.txt --no-warn-script-location
 
+      - name: Compile Locale Translations
+        run: |
+          python ./scripts/_locale.py --compile
+
       - name: Build pyinstaller package
         run: |
           python ./scripts/build.py

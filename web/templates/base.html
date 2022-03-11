@@ -42,38 +42,38 @@
                     <div class="collapse navbar-collapse" id="navbarToggle">
                         <ul class="navbar-nav ms-auto">
                             <li><a class="nav-item nav-link" href="/login"><i class="fa fa-fw fa-right-to-bracket"></i>
-                                Login</a></li>
+                                {{ _('Login') }}</a></li>
                             <li><a class="nav-item nav-link" href="/donate"><i class="fa fa-fw fa-donate"></i>
-                                Donate</a></li>
+                                {{ _('Donate') }}</a></li>
                             <li><a class="nav-item nav-link" href="/support"><i class="fa fa-fw fa-exclamation-triangle"></i>
-                                Support</a></li>
+                                {{ _('Support') }}</a></li>
                             {% if title.lower() == 'home' %}
                                 <li><a class="nav-item nav-link active" href="/"><i class="fa fa-fw fa-house"></i>
-                                    Home</a></li>
+                                    {{ _('Home') }}</a></li>
                             {% else %}
                                 <li><a class="nav-item nav-link" href="/"><i class="fa fa-fw fa-house"></i>
-                                    Home</a></li>
+                                    {{ _('Home') }}</a></li>
                             {% endif %}
                             {% if title.lower() == 'plugins' %}
                                 <li><a class="nav-item nav-link active" href="/plugins"><i class="fa fa-fw fa-project-diagram"></i>
-                                    Plugins</a></li>
+                                    {{ _('Plugins') }}</a></li>
                             {% else %}
                                 <li><a class="nav-item nav-link" href="/plugins"><i class="fa fa-fw fa-project-diagram"></i>
-                                    Plugins</a></li>
+                                    {{ _('Plugins') }}</a></li>
                             {% endif %}
                             {% if title.lower() == 'config' %}
                                 <li><a class="nav-item nav-link active" href="/config"><i class="fa fa-fw fa-cog"></i>
-                                    Config</a></li>
+                                    {{ _('Config') }}</a></li>
                             {% else %}
                                 <li><a class="nav-item nav-link" href="/config"><i class="fa fa-fw fa-cog"></i>
-                                    Config</a></li>
+                                    {{ _('Config') }}</a></li>
                             {% endif %}
                             {% if title.lower() == 'users' %}
                                 <li><a class="nav-item nav-link active" href="/users"><i class="fa fa-fw fa-users"></i>
-                                    Users</a></li>
+                                    {{ _('Users') }}</a></li>
                             {% else %}
                                 <li><a class="nav-item nav-link" href="/users"><i class="fa fa-fw fa-users"></i>
-                                    Users</a></li>
+                                    {{ _('Users') }}</a></li>
                             {% endif %}
                         </ul>
                     </div>

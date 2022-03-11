@@ -1,0 +1,49 @@
+# French translations for RetroArcher.
+# Copyright (C) 2022 RetroArcher
+# This file is distributed under the same license as the RetroArcher
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: RetroArcher v0\n"
+"Report-Msgid-Bugs-To: github.com/retroarcher\n"
+"POT-Creation-Date: 2022-03-11 13:26-0500\n"
+"PO-Revision-Date: 2022-03-08 18:59-0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: web/templates/base.html:45
+msgid "Login"
+msgstr ""
+
+#: web/templates/base.html:47
+msgid "Donate"
+msgstr ""
+
+#: web/templates/base.html:49
+msgid "Support"
+msgstr ""
+
+#: web/templates/base.html:52 web/templates/base.html:55
+msgid "Home"
+msgstr ""
+
+#: web/templates/base.html:59 web/templates/base.html:62
+msgid "Plugins"
+msgstr ""
+
+#: web/templates/base.html:66 web/templates/base.html:69
+msgid "Config"
+msgstr ""
+
+#: web/templates/base.html:73 web/templates/base.html:76
+msgid "Users"
+msgstr ""
+
