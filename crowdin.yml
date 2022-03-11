@@ -5,9 +5,9 @@
 "files" : [
   {
     "source" : "/locale/en/**/*.po",
-    "translation" : "/locale/%pybabel_code%/LC_MESSAGES/%original_file_name%",
+    "translation" : "/locale/%two_letters_code%/LC_MESSAGES/%original_file_name%",
     "languages_mapping" : {
-      "pybabel_code" : {
+      "two_letters_code: " : {
         "de" : "de",
         "en" : "en",
         "en_GB": "en-GB",
