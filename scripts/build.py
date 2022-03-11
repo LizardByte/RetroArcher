@@ -1,8 +1,16 @@
+"""build.py
+
+Creates spec and builds binaries for RetroArcher.
+"""
+# standard imports
 import sys
+
+# lib imports
 import PyInstaller.__main__
 
 
 def build():
+    """Sets arguments for pyinstaller, creates spec, and builds binaries."""
     pyinstaller_args = [
         'retroarcher.py',
         '--onefile',
