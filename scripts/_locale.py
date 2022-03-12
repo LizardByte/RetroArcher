@@ -32,7 +32,7 @@ def babel_extract():
         'pybabel',
         'extract',
         '-F', os.path.join(script_dir, 'babel.cfg'),
-        '-o', os.path.join(locale_dir, f'{project_name.lower()}.pot'),
+        '-o', os.path.join(locale_dir, f'{project_name.lower()}.po'),
         '--sort-by-file',
         f'--msgid-bugs-address=github.com/{project_name.lower()}',
         f'--copyright-holder={project_name}',
