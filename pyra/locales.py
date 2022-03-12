@@ -1,5 +1,10 @@
+"""locales.py
+
+Functions related to localization.
+"""
 # lib imports
 import babel
+from babel import localedata
 
 # local imports
 from pyra import logger
@@ -26,7 +31,7 @@ def get_all_locales() -> dict:
     :return: dict
     """
     log.debug(msg='Getting locale dictionary.')
-    locale_ids = babel.localedata.locale_identifiers()
+    locale_ids = localedata.locale_identifiers()
 
     locales = {}
 
@@ -35,8 +40,3 @@ def get_all_locales() -> dict:
         locales[locale_id] = locale.get_display_name()
 
     return locales
-
-
-if __name__ == '__main__':
-    all_locales = get_all_locales()
-    print(all_locales)
