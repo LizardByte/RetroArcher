@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: retroarcher\n"
+"Report-Msgid-Bugs-To: github.com/retroarcher\n"
+"POT-Creation-Date: 2022-03-11 20:16-0500\n"
+"PO-Revision-Date: 2022-03-12 01:34\n"
+"Last-Translator: \n"
+"Language-Team: Italian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: retroarcher\n"
+"X-Crowdin-Project-ID: 503340\n"
+"X-Crowdin-Language: it\n"
+"X-Crowdin-File: /nightly/retroarcher.po\n"
+"X-Crowdin-File-ID: 12\n"
+"Language: it_IT\n"
+
+#: web/templates/base.html:45
+msgid "Login"
+msgstr ""
+
+#: web/templates/base.html:47
+msgid "Donate"
+msgstr ""
+
+#: web/templates/base.html:49
+msgid "Support"
+msgstr ""
+
+#: web/templates/base.html:52 web/templates/base.html:55
+msgid "Home"
+msgstr ""
+
+#: web/templates/base.html:59 web/templates/base.html:62
+msgid "Plugins"
+msgstr ""
+
+#: web/templates/base.html:66 web/templates/base.html:69
+msgid "Config"
+msgstr ""
+
+#: web/templates/base.html:73 web/templates/base.html:76
+msgid "Users"
+msgstr ""
+
