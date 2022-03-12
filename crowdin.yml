@@ -5,6 +5,13 @@
 "files" : [
   {
     "source" : "/locale/*.po",
-    "translation" : "/locale/%locale_with_underscore%/LC_MESSAGES/%original_file_name%",
+    "translation" : "/locale/%two_letters_code%/LC_MESSAGES/%original_file_name%",
+    "languages_mapping": {
+      "two_letters_code": {
+        # map non-two letter codes here, left side is crowdin designation, right side is babel designation
+        "en-GB": "en_GB",
+        "en-US": "en_US"
+      }
+    }
   }
 ]
