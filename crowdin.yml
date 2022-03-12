@@ -5,18 +5,6 @@
 "files" : [
   {
     "source" : "/locale/*.po",
-    "translation" : "/locale/%two_letters_code%/LC_MESSAGES/%original_file_name%",
-    "languages_mapping" : {
-      "two_letters_code: " : {
-        "de" : "de",
-        "en" : "en",
-        "en_GB": "en-GB",
-        "en_US": "en-US",
-        "es": "es-ES",
-        "fr": "fr",
-        "it": "it",
-        "ru": "ru",
-      }
-    }
+    "translation" : "/locale/%locale_with_underscore%/LC_MESSAGES/%original_file_name%",
   }
 ]
