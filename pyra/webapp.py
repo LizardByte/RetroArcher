@@ -8,10 +8,15 @@ import os
 # lib imports
 from flask import Flask
 from flask import render_template, send_from_directory
+from flask_babel import Babel
 
 # local imports
+from pyra import config
 from pyra.definitions import Paths
 from pyra import logger
+
+default_locale = 'en'
+default_timezone = 'UTC'
 
 # setup flask app
 app = Flask(
@@ -26,11 +31,37 @@ app = Flask(
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
 
+# localization
+babel = Babel(
+    app=app,
+    default_locale=default_locale,
+    default_timezone=default_timezone,
+    default_domain='retroarcher',
+    configure_jinja=True,
+)
+# app.translation_directories(Paths().LOCALE_DIR)
+app.config['BABEL_TRANSLATION_DIRECTORIES'] = Paths().LOCALE_DIR
+
 # setup logging for flask
 log_handlers = logger.get_logger(name=__name__).handlers
 
 for handler in log_handlers:
     app.logger.addHandler(handler)
+
+
+@babel.localeselector
+def get_locale() -> str:
+    """Verifies the locale from the config against supported locales and returns appropriate locale.
+
+    :return: str
+    """
+    supported_locales = ['en', 'es']
+    config_locale = config.CONFIG['General']['LOCALE']
+
+    if config_locale in supported_locales:
+        return config_locale
+    else:
+        return default_locale
 
 
 @app.route('/')

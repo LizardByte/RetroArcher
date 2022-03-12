@@ -29,6 +29,8 @@ _CONFIG_SPEC = [
     '[Hidden]',
     'CONFIG_VERSION = integer(min=0, default=0)',
     'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo
+    '[General]',
+    'LOCALE = option("en", "es", default="en")',
     '[Logging]',
     'LOG_DIR = string',
     'DEBUG_LOGGING = boolean(default=True)',

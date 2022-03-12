@@ -59,6 +59,7 @@ class Paths:
         PYRA_DIR (str): The directory containing the retroarcher python files.
         ROOT_DIR (str): The root directory of the application. This is where the source files exist.
         DATA_DIR (str): The data directory of the application.
+        LOCALE_DIR (str): The directory containing localization files.
         LOG_DIR (str): The directory containing log files.
     """
 
@@ -71,4 +72,5 @@ class Paths:
         else:
             self.DATA_DIR = self.ROOT_DIR
 
+        self.LOCALE_DIR = os.path.join(self.ROOT_DIR, 'locale')
         self.LOG_DIR = os.path.join(self.DATA_DIR, 'logs')
