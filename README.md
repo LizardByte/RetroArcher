@@ -3,6 +3,8 @@ RetroArcher is a game streaming server application. This project is under develo
 
 Contributions would be very welcome! Please discuss with us on our Discord server.
 
+[![Crowdin](https://badges.crowdin.net/retroarcher/localized.svg)](https://crowdin.com/project/retroarcher)
+
 ## Usage
  - Create and activate a venv
      ```bash
