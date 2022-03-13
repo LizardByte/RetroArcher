@@ -56,7 +56,10 @@ def get_locale() -> str:
     :return: str
     """
     supported_locales = ['en', 'es']
-    config_locale = config.CONFIG['General']['LOCALE']
+    try:
+        config_locale = config.CONFIG['General']['LOCALE']
+    except TypeError:
+        config_locale = None
 
     if config_locale in supported_locales:
         return config_locale
@@ -84,7 +87,7 @@ def favicon() -> send_from_directory:
     :return send_from_directory
     """
     return send_from_directory(directory=os.path.join(app.static_folder, 'images'),
-                               path='retroarcher.ico', filename='favicon.ico', mimetype='image/vnd.microsoft.icon')
+                               path='retroarcher.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/test_logger')
