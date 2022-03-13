@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2022-03-11 20:16-0500\n"
-"PO-Revision-Date: 2022-03-12 02:07\n"
+"PO-Revision-Date: 2022-03-13 16:47\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -36,11 +36,11 @@ msgstr "Inicio"
 
 #: web/templates/base.html:59 web/templates/base.html:62
 msgid "Plugins"
-msgstr ""
+msgstr "Extensiones"
 
 #: web/templates/base.html:66 web/templates/base.html:69
 msgid "Config"
-msgstr ""
+msgstr "Configuración"
 
 #: web/templates/base.html:73 web/templates/base.html:76
 msgid "Users"
