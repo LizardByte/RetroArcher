@@ -1,4 +1,4 @@
-name: pytest
+name: Python Tests
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize, edited, reopened]
 
 jobs:
-  pytest:
+  test:
     strategy:
       fail-fast: false
       matrix:
