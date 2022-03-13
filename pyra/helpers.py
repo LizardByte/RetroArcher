@@ -131,8 +131,8 @@ def timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:
     """
     dt = timestamp_to_datetime(ts=ts)
     if separate:
-        return dt.strftime(fmt="%Y-%m-%d %H:%M:%S")
-    return dt.strftime(fmt="%Y%m%d%H%M%S")
+        return dt.strftime("%Y-%m-%d %H:%M:%S")
+    return dt.strftime("%Y%m%d%H%M%S")
 
 
 def timestamp_to_datetime(ts: float) -> datetime.datetime:
