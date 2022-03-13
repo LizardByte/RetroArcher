@@ -1,23 +1,22 @@
-# Spanish translations for RetroArcher.
-# Copyright (C) 2022 RetroArcher
-# This file is distributed under the same license as the RetroArcher
-# project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: RetroArcher v0\n"
+"Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-03-11 13:26-0500\n"
-"PO-Revision-Date: 2022-03-07 20:13-0500\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: es\n"
-"Language-Team: es <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2022-03-11 20:16-0500\n"
+"PO-Revision-Date: 2022-03-13 16:47\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: retroarcher\n"
+"X-Crowdin-Project-ID: 503340\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /nightly/retroarcher.po\n"
+"X-Crowdin-File-ID: 16\n"
+"Language: es_ES\n"
 
 #: web/templates/base.html:45
 msgid "Login"
@@ -37,11 +36,11 @@ msgstr "Inicio"
 
 #: web/templates/base.html:59 web/templates/base.html:62
 msgid "Plugins"
-msgstr "Plugins"
+msgstr "Extensiones"
 
 #: web/templates/base.html:66 web/templates/base.html:69
 msgid "Config"
-msgstr "Config"
+msgstr "Configuración"
 
 #: web/templates/base.html:73 web/templates/base.html:76
 msgid "Users"
