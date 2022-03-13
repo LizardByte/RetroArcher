@@ -10,8 +10,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        test: [ "" ]
-        args: [ "" ]
         include: # setup matrix args for each test
         - test: pytest
           args: '-v'
