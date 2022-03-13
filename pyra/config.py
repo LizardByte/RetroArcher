@@ -49,7 +49,7 @@ _WHITELIST_KEYS = ['HTTPS_KEY']
 LOG_BLACKLIST = []
 
 
-def create_config(config_file: str, config_spec: list=_CONFIG_SPEC) -> ConfigObj:
+def create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:
     """Create a config file and ConfigObj using a config spec.
 
     The created config is validated against a Validator object. This function will remove keys from the user's

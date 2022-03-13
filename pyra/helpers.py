@@ -84,7 +84,7 @@ def get_ip(host: str) -> str:
     elif not re.match(pattern=r'^[0-9]+(?:\.[0-9]+){3}(?!\d*-[a-z0-9]{6})$', string=host):
         try:
             ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]
-        except:
+        except Exception:
             log.error(f"IP Checker :: Bad IP or hostname provided: {host}.")
         else:
             log.debug(f"IP Checker :: Resolved {host} to {ip_address}.")
