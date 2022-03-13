@@ -7,7 +7,17 @@ on:
 
 jobs:
   pytest:
-    name: pytest
+    strategy:
+      fail-fast: false
+      matrix:
+        test: [ "" ]
+        args: [ "" ]
+        include: # setup matrix args for each test
+        - test: pytest
+          args: '-v'
+        - test: flake8
+          args: 'pyra/ scripts/ tests/ --max-line-length 120'
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,6 +33,6 @@ jobs:
           python -m pip install --upgrade pip setuptools
           python -m pip install -r requirements-dev.txt
 
-      - name: Test with pytest
+      - name: Test with ${{ matrix.test }}
         run: |
-          python -m pytest -v
+          python -m ${{ matrix.test }} ${{ matrix.args }}

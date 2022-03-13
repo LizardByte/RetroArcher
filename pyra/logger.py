@@ -95,11 +95,11 @@ class BlacklistFilter(logging.Filter):
                         if item in arg_str:
                             arg_str = arg_str.replace(item, 16 * '*')
                             arg = arg_str
-                    except:
+                    except Exception:
                         pass
                     args.append(arg)
                 record.args = tuple(args)
-            except:
+            except Exception:
                 pass
 
         return True
@@ -131,11 +131,11 @@ class RegexFilter(logging.Filter):
                         for match in matches:
                             arg_str = self.replace(arg_str, match)
                         arg = arg_str
-                except:
+                except Exception:
                     pass
                 args.append(arg)
             record.args = tuple(args)
-        except:
+        except Exception:
             pass
 
         return True
@@ -365,7 +365,7 @@ def _init_hooks(logger: logging.Logger, global_exceptions: bool = True, thread_e
         try:
             message = "".join(traceback.format_exception(*exception_info))
             logger.error("Uncaught exception: %s", message)
-        except:
+        except Exception:
             pass
 
         # Original excepthook
@@ -389,7 +389,7 @@ def _init_hooks(logger: logging.Logger, global_exceptions: bool = True, thread_e
                     old_run(*args, **kwargs)
                 except (KeyboardInterrupt, SystemExit):
                     raise
-                except:
+                except Exception:
                     excepthook(*sys.exc_info())
 
             self.run = new_run

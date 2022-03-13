@@ -14,7 +14,7 @@ root_dir = os.path.dirname(script_dir)
 locale_dir = os.path.join(root_dir, 'locale')
 
 # retroarcher target locales
-target_locales =[
+target_locales = [
     'de',  # Deutsch
     'en',  # English
     'en_GB',  # English (United Kingdom)
@@ -43,7 +43,7 @@ def babel_extract():
     ]
 
     print(commands)
-    proc = subprocess.run(args=commands, cwd=root_dir)
+    subprocess.run(args=commands, cwd=root_dir)
 
 
 def babel_init(locale_code: str):
@@ -61,7 +61,7 @@ def babel_init(locale_code: str):
     ]
 
     print(commands)
-    proc = subprocess.run(args=commands, cwd=root_dir)
+    subprocess.run(args=commands, cwd=root_dir)
 
 
 def babel_update():
@@ -76,7 +76,7 @@ def babel_update():
     ]
 
     print(commands)
-    proc = subprocess.run(args=commands, cwd=root_dir)
+    subprocess.run(args=commands, cwd=root_dir)
 
 
 def babel_compile():
@@ -89,7 +89,7 @@ def babel_compile():
     ]
 
     print(commands)
-    proc = subprocess.run(args=commands, cwd=root_dir)
+    subprocess.run(args=commands, cwd=root_dir)
 
 
 if __name__ == '__main__':
