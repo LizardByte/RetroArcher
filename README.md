@@ -18,7 +18,7 @@ Contributions would be very welcome! Please discuss with us on our Discord serve
 
 ## Build
 RetroArcher binaries are built using [pyinstaller](https://pypi.org/project/pyinstaller/). Cross compilation is not
-supported. That means the binaries must be built on the target architecture.
+supported. That means the binaries must be built on the target operating system and architecture.
 
 ### Building locally
 ```bash
@@ -32,7 +32,7 @@ python ./scripts/build.py
 - Trigger the `CI` workflow manually
 - Download the artifacts/binaries from the workflow run summary
 
-## Goals or RetroArcher
+## Goals of RetroArcher
  - Develop a framework friendly to plugins that allows easy expansion of the application.
  - Plugin types may be:
    - Game Stream Hosts ([Sunshine](https://sunshinestream.github.io/),
