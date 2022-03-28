@@ -11,7 +11,6 @@ import sys
 import threading
 
 # local imports
-import pyra.definitions
 from pyra import config
 from pyra import definitions
 from pyra import helpers
