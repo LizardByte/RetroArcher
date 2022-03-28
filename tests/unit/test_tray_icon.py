@@ -15,8 +15,11 @@ def test_tray_initialize():
     tray = tray_icon.tray_initialize()
     assert isinstance(tray, pystray.Icon)
 
-    assert tray.HAS_DEFAULT_ACTION
+    # these test whether the OS supports the feature, not if the menu has the feature
     assert tray.HAS_MENU
+    # assert tray.HAS_DEFAULT_ACTION  # does not work on macOS
+    # assert tray.HAS_MENU_RADIO  # does not work on macOS
+    # assert tray.HAS_NOTIFICATION  # does not work on macOS or xorg
 
 
 def test_tray_browser(test_config_object):
