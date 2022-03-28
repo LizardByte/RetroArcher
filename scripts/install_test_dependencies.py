@@ -28,7 +28,8 @@ def main():
         pass
 
     elif platform == 'linux':
-        cmd = ['sudo', 'apt-get', 'install', '-y']
+        cmd = ['sudo', 'apt-get', 'update', '&&',
+               'sudo', 'apt-get', 'install', '-y']
 
         packages = ['xorg']
 
