@@ -31,6 +31,8 @@ _CONFIG_SPEC = [
     'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo
     '[General]',
     'LOCALE = option("en", "es", default="en")',
+    'LAUNCH_BROWSER = boolean(default=True)',
+    'SYSTEM_TRAY = boolean(default=True)',
     '[Logging]',
     'LOG_DIR = string',
     'DEBUG_LOGGING = boolean(default=True)',
@@ -116,6 +118,20 @@ def create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigO
         CONFIG = config
 
     return config
+
+
+def save_config(config: ConfigObj = CONFIG) -> bool:
+    """Saves the config to file.
+
+    :param config: ConfigObj - Config to save
+    :return: bool - True if save successful, otherwise False
+    """
+    try:
+        config.write()
+    except Exception:
+        return False
+    else:
+        return True
 
 
 def validate_config(config: ConfigObj) -> bool:

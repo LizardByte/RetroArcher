@@ -86,6 +86,12 @@ def test_now():
     assert '-' in now  # ensure separator is in now
 
 
+def test_open_url_in_browser():
+    """Tests if open_url_in_browser function completes without error"""
+    result = helpers.open_url_in_browser(url='https://www.google.com')
+    assert result
+
+
 def test_timestamp():
     """Tests if timestamp is returned as an integer"""
     timestamp = helpers.timestamp()

@@ -6,6 +6,13 @@ unit tests for pyra.definitions.py
 from pyra import definitions
 
 
+def test_names():
+    """Tests Names class"""
+    names = definitions.Names()
+
+    assert names.name == 'RetroArcher'
+
+
 def test_platform():
     """Tests Platform class"""
     platform = definitions.Platform()

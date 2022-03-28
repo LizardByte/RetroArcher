@@ -18,10 +18,14 @@ def test_create_config(test_config_file):
     assert isinstance(test_config, ConfigObj)  # test if test_config is a ConfigObj
 
 
-def test_validate_config(test_config_file):
+def test_save_config(test_config_object):
+    saved = config.save_config(config=test_config_object)
+    assert saved
+
+
+def test_validate_config(test_config_object):
     """Creates a new config file using default config spec, and validates it"""
-    test_config = config.create_config(config_file=test_config_file)
-    config_valid = config.validate_config(config=test_config)
+    config_valid = config.validate_config(config=test_config_object)
     assert config_valid
 
     # todo test invalid config
