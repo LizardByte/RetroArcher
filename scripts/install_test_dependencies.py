@@ -33,7 +33,7 @@ def main():
 
         cmd = ['sudo', 'apt-get', 'install', '-y']
 
-        packages = ['xorg']
+        packages = ['ubuntu-desktop']
 
         for package in packages:
             cmd.append(package)
