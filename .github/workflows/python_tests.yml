@@ -22,11 +22,18 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install dependencies
+      - name: Install python dependencies
         run: |
           python -m pip install --upgrade pip setuptools
           python -m pip install -r requirements-dev.txt
+
+      - name: Install OS dependencies
+        run: |
           python ./scripts/install_test_dependencies.py
+
+      - name: Compile translations
+        run: |
+          python ./scripts/_locale.py --compile
 
       - name: Test with pytest
         run: |
