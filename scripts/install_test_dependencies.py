@@ -30,7 +30,7 @@ def main():
     elif platform == 'linux':
         cmd = ['sudo', 'apt-get', 'install', '-y']
 
-        packages = ['libappindicator1']
+        packages = ['xorg']
 
         for package in packages:
             cmd.append(package)
