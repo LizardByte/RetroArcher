@@ -28,7 +28,7 @@ def main():
         pass
 
     elif platform == 'linux':
-        cmd = ['apt-get', 'install', '-y']
+        cmd = ['sudo', 'apt-get', 'install', '-y']
 
         packages = ['libappindicator1']
 
