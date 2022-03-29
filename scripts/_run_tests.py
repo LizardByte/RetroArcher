@@ -7,16 +7,17 @@ import os
 import subprocess
 import sys
 import time
+import threading
 
 platform = sys.platform.lower()
 
 
-def cmd_popen(cmd: list):
+def cmd_daemon(cmd: list):
     """Popen cmd in subprocess and continue
 
     :param cmd list - list of arguments for the command
     """
-    subprocess.Popen(args=cmd)
+    threading.Thread(target=subprocess.Popen, kwargs={'args': cmd}, daemon=True)
 
 
 def cmd_popen_print(cmd: list):
@@ -130,7 +131,7 @@ EndSection
         pass
 
     try:
-        cmd_popen(cmd=cmd)
+        cmd_daemon(cmd=cmd)
     except NameError:
         pass
 
