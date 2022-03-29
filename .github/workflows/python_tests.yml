@@ -27,17 +27,9 @@ jobs:
           python -m pip install --upgrade pip setuptools
           python -m pip install -r requirements-dev.txt
 
-      - name: Install OS dependencies
-        run: |
-          python ./scripts/install_test_dependencies.py
-
-      - name: Compile translations
-        run: |
-          python ./scripts/_locale.py --compile
-
       - name: Test with pytest
         run: |
-          python -m pytest -v
+          python ./scripts/_run_tests.py
 
   flake8:
     runs-on: ubuntu-latest
