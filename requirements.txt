@@ -1,5 +1,5 @@
 Babel==2.9.1
 configobj==5.0.6
-Flask==2.0.3
+Flask==2.1.0
 Flask-Babel==2.0.0
 IPy==1.01
