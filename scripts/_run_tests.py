@@ -3,8 +3,10 @@
 This is not intended to be run by the end user, but only to supplement the `python_tests.yml` github action.
 """
 # standard imports
+import os
 import subprocess
 import sys
+import time
 
 platform = sys.platform.lower()
 
@@ -122,6 +124,8 @@ EndSection
 
         cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']
 
+        os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable
+
     elif platform == 'win32':
         pass
 
@@ -130,11 +134,13 @@ EndSection
     except NameError:
         pass
 
+    time.sleep(30)  # wait 30 seconds
+
 
 def pytest_command():
     """Run the pytest command"""
     cmd = [sys.executable, '-m', 'pytest', '-v']
-    cmd_run(cmd=cmd)
+    cmd_popen_print(cmd=cmd)
 
 
 if __name__ == '__main__':
