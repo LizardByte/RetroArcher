@@ -118,7 +118,7 @@ EndSection
         """
 
         with open(file='dummy-1920x1080.conf', mode='w') as f:
-            f.write(s=dummy_conf)
+            f.write(dummy_conf)
 
         cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']
 
