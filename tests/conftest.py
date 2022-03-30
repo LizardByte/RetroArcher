@@ -54,12 +54,11 @@ def test_config_object(test_config_file):
 @pytest.fixture(scope='module')
 def test_tray_icon():
     """Initialize and run a test tray icon"""
-    if sys.platform.lower() != 'linux':  # don't test on linux for now
-        test_tray_icon = tray_icon.tray_initialize()
+    test_tray_icon = tray_icon.tray_initialize()
 
+    try:
         tray_icon.tray_run()
-
-        yield test_tray_icon
+    except Exception:
+        pass
     else:
-        test_tray_icon = False
         yield test_tray_icon
