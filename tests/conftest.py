@@ -4,6 +4,7 @@ fixtures for pytest
 """
 # standard imports
 import os
+import sys
 
 # lib imports
 import pytest
@@ -21,6 +22,11 @@ def test_client():
 
     app = webapp.app
     app.testing = True
+
+    # disable flask warning banner - https://stackoverflow.com/a/57989189/11214013
+    cli = sys.modules['flask.cli']
+    cli.show_server_banner = lambda *x: None
+
     client = app.test_client()
 
     # Create a test client using the Flask application configured for testing

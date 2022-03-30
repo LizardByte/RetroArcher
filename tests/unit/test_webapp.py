@@ -16,9 +16,8 @@ def test_start_webapp():
     app.testing = True
 
     # disable flask warning banner - https://stackoverflow.com/a/57989189/11214013
-    # temporary re-enable
-    # cli = sys.modules['flask.cli']
-    # cli.show_server_banner = lambda *x: None
+    cli = sys.modules['flask.cli']
+    cli.show_server_banner = lambda *x: None
 
     client = app.test_client()
 
