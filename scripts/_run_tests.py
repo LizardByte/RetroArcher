@@ -131,9 +131,8 @@ EndSection
         pass
 
     # run pytest
-    # temporarily disable
-    # cmd = [sys.executable, '-m', 'pytest', '-v']
-    # cmd_checkcall(cmd=cmd)
+    cmd = [sys.executable, '-m', 'pytest', '-v']
+    cmd_checkcall(cmd=cmd)
 
     # outs, errs = None, None
     #
