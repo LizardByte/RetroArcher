@@ -7,9 +7,10 @@ import os
 import subprocess
 import sys
 import time
-import threading
 
 platform = sys.platform.lower()
+
+running_processes = []
 
 
 def cmd_daemon(cmd: list):
@@ -17,7 +18,9 @@ def cmd_daemon(cmd: list):
 
     :param cmd list - list of arguments for the command
     """
-    threading.Thread(target=subprocess.Popen, kwargs={'args': cmd}, daemon=True)
+    proc = subprocess.Popen(args=cmd)
+
+    running_processes.append(proc)
 
 
 def cmd_popen_print(cmd: list):
@@ -51,6 +54,9 @@ def main():
     daemon_commands()
 
     pytest_command()
+
+    for proc in running_processes:  # terminate still running processes
+        proc.terminate()
 
 
 def pre_commands():
@@ -136,7 +142,7 @@ EndSection
     except NameError:
         pass
 
-    time.sleep(30)  # wait 30 seconds
+    time.sleep(5)  # wait 5 seconds
 
 
 def pytest_command():
