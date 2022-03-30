@@ -127,13 +127,18 @@ EndSection
     cmd_popen_print(cmd=cmd)
 
     try:
-        proc.communicate()
+        outs, errs = proc.communicate(timeout=5)
     except NameError:
-        pass
-    else:
-        proc.terminate()  # ask nicely
-        time.sleep(5)  # wait
-        proc.kill()  # don't ask
+        return
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        outs, errs = proc.communicate()
+    finally:
+        # proc.terminate()  # ask nicely
+        # time.sleep(5)  # wait
+        # proc.kill()  # don't ask
+        print(f'proc stdout: {outs}')
+        print(f'proc stderr: {errs}')
 
 
 def main():
