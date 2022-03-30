@@ -33,6 +33,8 @@ def cmd_popen_print(cmd: list):
     time.sleep(5)  # wait
     proc.kill()  # don't ask
 
+    print(f'Command finished with args: {cmd}')
+
 
 def pre_commands():
     """Run pre commands
@@ -129,13 +131,18 @@ EndSection
     outs, errs = None, None
 
     try:
+        print('Try proc.communicate start')
         outs, errs = proc.communicate(timeout=5)
+        print('Try proc.communicate finish')
     except NameError:
-        return
+        pass  # don't do anything if not running subprocess
     except subprocess.TimeoutExpired:
+        print('Except subprocess.TimeoutExpired start')
         proc.kill()
         outs, errs = proc.communicate()
+        print('Except subprocess.TimeoutExpired finish')
     finally:
+        print('Finally start')
         # proc.terminate()  # ask nicely
         # time.sleep(5)  # wait
         # proc.kill()  # don't ask
@@ -143,6 +150,7 @@ EndSection
             print(f'proc stdout: {outs}')
         if errs:
             print(f'proc stderr: {errs}')
+        print('Finally finish')
 
 
 def main():
