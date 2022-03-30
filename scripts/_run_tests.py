@@ -20,6 +20,7 @@ def cmd_daemon(cmd: list):
     """
     proc = subprocess.Popen(args=cmd)
 
+    global running_processes
     running_processes.append(proc)
 
 
@@ -61,6 +62,7 @@ def main():
     pytest_command()
 
     for proc in running_processes:  # terminate still running processes
+        print(proc)
         proc.terminate()
 
 
