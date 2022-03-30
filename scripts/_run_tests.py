@@ -30,13 +30,15 @@ def cmd_popen_print(cmd: list):
     """
     proc = subprocess.Popen(args=cmd, stdout=sys.stdout, stderr=sys.stderr, text=True)
 
+    proc.communicate()
+
     if proc.returncode != 0:
         global exit_code
         exit_code = proc.returncode
 
         raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)
 
-    proc.terminate()
+    proc.kill()
 
 
 def cmd_check(cmd: list):
