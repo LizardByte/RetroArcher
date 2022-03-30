@@ -24,8 +24,9 @@ def test_client():
     app.testing = True
 
     # disable flask warning banner - https://stackoverflow.com/a/57989189/11214013
-    cli = sys.modules['flask.cli']
-    cli.show_server_banner = lambda *x: None
+    # potential issues doing this on github runner
+    # cli = sys.modules['flask.cli']
+    # cli.show_server_banner = lambda *x: None
 
     client = app.test_client()
 
