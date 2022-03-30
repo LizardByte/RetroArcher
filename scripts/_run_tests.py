@@ -38,7 +38,7 @@ def cmd_popen_print(cmd: list):
 
         raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)
 
-    proc.kill()
+    proc.terminate()
 
 
 def cmd_check(cmd: list):
@@ -58,7 +58,7 @@ def main():
     pytest_command()
 
     try:
-        proc.kill()  # kill the running process
+        proc.terminate()  # kill the running process
     except Exception:
         pass
 
@@ -76,12 +76,11 @@ def pre_commands():
     elif platform == 'linux':
         update_cmd = ['sudo', 'apt-get', 'update']
         cmd_popen_print(cmd=update_cmd)
-        # cmd_check(cmd=update_cmd)
 
         cmd = ['sudo', 'apt-get', 'install', '-y']
 
         packages = [
-            'ubuntu-desktop',
+            # 'ubuntu-desktop',  # pystray appears to still be using xorg backend
             'xserver-xorg-video-dummy'
         ]
 
@@ -93,12 +92,11 @@ def pre_commands():
 
     try:
         cmd_popen_print(cmd=cmd)
-        # cmd_check(cmd=cmd)
     except NameError:
         pass
 
     compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']
-    cmd_check(cmd=compile_cmd)
+    cmd_popen_print(cmd=compile_cmd)
 
 
 def daemon_commands():
@@ -159,7 +157,6 @@ def pytest_command():
     """Run the pytest command"""
     cmd = [sys.executable, '-m', 'pytest', '-v']
     cmd_popen_print(cmd=cmd)
-    # cmd_check(cmd=cmd)
 
 
 if __name__ == '__main__':
