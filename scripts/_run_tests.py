@@ -126,6 +126,8 @@ EndSection
     cmd = [sys.executable, '-m', 'pytest', '-v']
     cmd_popen_print(cmd=cmd)
 
+    outs, errs = None, None
+
     try:
         outs, errs = proc.communicate(timeout=5)
     except NameError:
@@ -137,8 +139,10 @@ EndSection
         # proc.terminate()  # ask nicely
         # time.sleep(5)  # wait
         # proc.kill()  # don't ask
-        print(f'proc stdout: {outs}')
-        print(f'proc stderr: {errs}')
+        if outs:
+            print(f'proc stdout: {outs}')
+        if errs:
+            print(f'proc stderr: {errs}')
 
 
 def main():
