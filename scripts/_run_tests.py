@@ -48,17 +48,6 @@ def cmd_check(cmd: list):
     subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)
 
 
-def main():
-    """main function"""
-    pre_commands()
-
-    daemon_commands()
-
-    pytest_command()
-
-    sys.exit(exit_code)
-
-
 def pre_commands():
     """Run pre commands
 
@@ -152,6 +141,18 @@ def pytest_command():
     """Run the pytest command"""
     cmd = [sys.executable, '-m', 'pytest', '-v']
     cmd_popen_print(cmd=cmd)
+
+
+def main():
+    """main function"""
+    pre_commands()
+
+    # temporary disable
+    # daemon_commands()
+
+    pytest_command()
+
+    sys.exit(exit_code)
 
 
 if __name__ == '__main__':
