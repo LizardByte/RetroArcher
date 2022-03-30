@@ -132,7 +132,7 @@ EndSection
         with open(file='dummy-1920x1080.conf', mode='w') as f:
             f.write(dummy_conf)
 
-        cmd = ['sudo', 'X', '-terminate', '-config', 'dummy-1920x1080.conf']
+        cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']
 
         os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable
 
