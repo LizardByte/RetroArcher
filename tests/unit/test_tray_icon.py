@@ -2,6 +2,9 @@
 
 unit tests for pyra.tray_icon
 """
+# standard imports
+import sys
+
 # lib imports
 import pystray
 
@@ -12,14 +15,15 @@ from pyra import tray_icon
 
 def test_tray_initialize():
     """Test tray initialization"""
-    tray = tray_icon.tray_initialize()
-    assert isinstance(tray, pystray.Icon)
+    if sys.platform.lower() != 'linux':  # don't test on linux for now
+        tray = tray_icon.tray_initialize()
+        assert isinstance(tray, pystray.Icon)
 
-    # these test whether the OS supports the feature, not if the menu has the feature
-    assert tray.HAS_MENU
-    # assert tray.HAS_DEFAULT_ACTION  # does not work on macOS
-    # assert tray.HAS_MENU_RADIO  # does not work on macOS
-    # assert tray.HAS_NOTIFICATION  # does not work on macOS or xorg
+        # these test whether the OS supports the feature, not if the menu has the feature
+        assert tray.HAS_MENU
+        # assert tray.HAS_DEFAULT_ACTION  # does not work on macOS
+        # assert tray.HAS_MENU_RADIO  # does not work on macOS
+        # assert tray.HAS_NOTIFICATION  # does not work on macOS or xorg
 
 
 def test_tray_browser(test_config_object):
@@ -34,18 +38,20 @@ def test_tray_browser(test_config_object):
 
 def test_tray_disable(test_config_object, test_tray_icon):
     """Test tray_disable function"""
-    tray_icon.tray_disable()
-    new_value = test_config_object['General']['SYSTEM_TRAY']
+    if sys.platform.lower() != 'linux':  # don't test on linux for now
+        tray_icon.tray_disable()
+        new_value = test_config_object['General']['SYSTEM_TRAY']
 
-    assert new_value is False
+        assert new_value is False
 
 
 def test_tray_end(test_config_object, test_tray_icon):
     """Test tray_end function"""
-    tray_icon.tray_disable()
-    new_value = test_config_object['General']['SYSTEM_TRAY']
+    if sys.platform.lower() != 'linux':  # don't test on linux for now
+        tray_icon.tray_disable()
+        new_value = test_config_object['General']['SYSTEM_TRAY']
 
-    assert new_value is False
+        assert new_value is False
 
 
 def test_tray_quit():
@@ -68,7 +74,8 @@ def test_tray_restart():
 
 def test_tray_run(test_tray_icon):
     """Test tray_run function"""
-    assert test_tray_icon
+    if sys.platform.lower() != 'linux':  # don't test on linux for now
+        assert test_tray_icon
 
 
 def test_tray_open_browser_functions():
