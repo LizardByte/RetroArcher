@@ -12,7 +12,6 @@ import pytest
 # local imports
 from pyra import config
 from pyra import definitions
-from pyra import tray_icon
 from pyra import webapp
 
 
@@ -49,16 +48,3 @@ def test_config_object(test_config_file):
     test_config_object = config.create_config(config_file=test_config_file)
 
     yield test_config_object
-
-
-@pytest.fixture(scope='module')
-def test_tray_icon():
-    """Initialize and run a test tray icon"""
-    test_tray_icon = tray_icon.tray_initialize()
-
-    tray_icon.tray_run()
-
-    yield test_tray_icon
-
-    # teardown
-    test_tray_icon.stop()

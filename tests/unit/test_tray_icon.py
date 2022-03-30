@@ -4,25 +4,37 @@ unit tests for pyra.tray_icon
 """
 # lib imports
 import pystray
+import pytest
 
 # local imports
 import pyra
 from pyra import tray_icon
 
 
-def test_tray_initialize():
+@pytest.fixture(scope='module')
+def test_tray_icon():
+    """Initialize and run a test tray icon"""
+    test_tray_icon = tray_icon.tray_initialize()
+
+    tray_icon.tray_run()
+
+    yield test_tray_icon
+
+
+def test_tray_initialize(test_tray_icon):
     """Test tray initialization"""
-    tray = tray_icon.tray_initialize()
-    assert isinstance(tray, pystray.Icon)
+    assert isinstance(test_tray_icon, pystray.Icon)
 
     # these test whether the OS supports the feature, not if the menu has the feature
-    assert tray.HAS_MENU
-    # assert tray.HAS_DEFAULT_ACTION  # does not work on macOS
-    # assert tray.HAS_MENU_RADIO  # does not work on macOS
-    # assert tray.HAS_NOTIFICATION  # does not work on macOS or xorg
+    assert test_tray_icon.HAS_MENU
+    # assert test_tray_icon.HAS_DEFAULT_ACTION  # does not work on macOS
+    # assert test_tray_icon.HAS_MENU_RADIO  # does not work on macOS
+    # assert test_tray_icon.HAS_NOTIFICATION  # does not work on macOS or xorg
 
-    # teardown
-    tray.stop()
+
+def test_tray_run(test_tray_icon):
+    """Test tray_run function"""
+    assert test_tray_icon
 
 
 def test_tray_browser(test_config_object):
@@ -45,7 +57,7 @@ def test_tray_disable(test_config_object, test_tray_icon):
 
 def test_tray_end(test_config_object, test_tray_icon):
     """Test tray_end function"""
-    tray_icon.tray_disable()
+    tray_icon.tray_end()
     new_value = test_config_object['General']['SYSTEM_TRAY']
 
     assert new_value is False
@@ -67,11 +79,6 @@ def test_tray_restart():
     signal = pyra.SIGNAL
 
     assert signal == 'restart'
-
-
-def test_tray_run(test_tray_icon):
-    """Test tray_run function"""
-    assert test_tray_icon
 
 
 def test_tray_open_browser_functions():
