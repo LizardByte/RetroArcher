@@ -73,7 +73,7 @@ def pre_commands():
 
         cmd = ['sudo', 'apt-get', 'install', '-y']
 
-        packages = ['xserver-xorg-video-dummy']
+        packages = ['libappindicator', 'xserver-xorg-video-dummy']
 
         for package in packages:
             cmd.append(package)
