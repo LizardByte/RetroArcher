@@ -81,7 +81,7 @@ def pre_commands():
         cmd = ['sudo', 'apt-get', 'install', '-y']
 
         packages = [
-            'libappindicator1',
+            'ubuntu-desktop',
             'xserver-xorg-video-dummy'
         ]
 
