@@ -18,7 +18,7 @@ def cmd_daemon(cmd: list):
 
     :param cmd list - list of arguments for the command
     """
-    subprocess.Popen(args=cmd, shell=True)
+    subprocess.Popen(args=cmd)
 
 
 def cmd_popen_print(cmd: list):
@@ -132,7 +132,7 @@ EndSection
         with open(file='dummy-1920x1080.conf', mode='w') as f:
             f.write(dummy_conf)
 
-        cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']
+        cmd = ['sudo', 'X', '-terminate', '-config', 'dummy-1920x1080.conf']
 
         os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable
 
