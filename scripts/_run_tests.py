@@ -29,12 +29,17 @@ def cmd_popen_print(cmd: list):
     :param cmd list - list of arguments for the command
     :raises subprocess.CalledProcessError
     """
-    with subprocess.Popen(args=cmd, stdout=subprocess.PIPE, text=True) as proc:
+    with subprocess.Popen(args=cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) as proc:
         for line in proc.stdout:
+            print(line, end='')  # process line here
+
+        for line in proc.stderr:
             print(line, end='')  # process line here
 
     if proc.returncode != 0:
         raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)
+
+    proc.terminate()
 
 
 def cmd_run(cmd: list):
@@ -75,7 +80,6 @@ def pre_commands():
 
         packages = [
             'libappindicator1',
-            'libappindicator3-1',
             'xserver-xorg-video-dummy'
         ]
 
