@@ -126,6 +126,7 @@ EndSection
         cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']
 
         os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable
+        os.environ['XAUTHORITY'] = '~/.Xauthority'  # https://unix.stackexchange.com/a/118826/397626
 
     elif platform == 'win32':
         pass
