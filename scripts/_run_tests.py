@@ -13,12 +13,13 @@ platform = sys.platform.lower()
 exit_code = 0
 
 
-def cmd_daemon(cmd: list):
+def cmd_daemon(cmd: list) -> subprocess.Popen:
     """Popen cmd in subprocess and continue
 
     :param cmd list - list of arguments for the command
     """
-    subprocess.Popen(args=cmd)
+    proc = subprocess.Popen(args=cmd)
+    return proc
 
 
 def cmd_popen_print(cmd: list):
@@ -50,9 +51,14 @@ def main():
     """main function"""
     pre_commands()
 
-    daemon_commands()
+    proc = daemon_commands()
 
     pytest_command()
+
+    try:
+        proc.kill()  # kill the running process
+    except Exception:
+        pass
 
     sys.exit(exit_code)
 
@@ -67,8 +73,8 @@ def pre_commands():
 
     elif platform == 'linux':
         update_cmd = ['sudo', 'apt-get', 'update']
-        # cmd_popen_print(cmd=update_cmd)
-        cmd_check(cmd=update_cmd)
+        cmd_popen_print(cmd=update_cmd)
+        # cmd_check(cmd=update_cmd)
 
         cmd = ['sudo', 'apt-get', 'install', '-y']
 
@@ -84,8 +90,8 @@ def pre_commands():
         pass
 
     try:
-        # cmd_popen_print(cmd=cmd)
-        cmd_check(cmd=cmd)
+        cmd_popen_print(cmd=cmd)
+        # cmd_check(cmd=cmd)
     except NameError:
         pass
 
@@ -135,24 +141,23 @@ EndSection
         cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']
 
         os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable
-        os.environ['XAUTHORITY'] = '~/.Xauthority'  # https://unix.stackexchange.com/a/118826/397626
 
     elif platform == 'win32':
         pass
 
-    try:
-        cmd_daemon(cmd=cmd)
-    except NameError:
-        pass
-
     time.sleep(5)  # wait 5 seconds
+
+    try:
+        return cmd_daemon(cmd=cmd)
+    except NameError:
+        return False
 
 
 def pytest_command():
     """Run the pytest command"""
     cmd = [sys.executable, '-m', 'pytest', '-v']
-    # cmd_popen_print(cmd=cmd)
-    cmd_check(cmd=cmd)
+    cmd_popen_print(cmd=cmd)
+    # cmd_check(cmd=cmd)
 
 
 if __name__ == '__main__':
