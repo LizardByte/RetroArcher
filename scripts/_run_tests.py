@@ -43,14 +43,12 @@ def cmd_popen_print(cmd: list):
     proc.terminate()
 
 
-def cmd_run(cmd: list):
-    """Run cmd in subprocess and continue
+def cmd_check(cmd: list):
+    """Check_call cmd in subprocess and continue
 
     :param cmd list - list of arguments for the command
     """
-    result = subprocess.run(args=cmd, capture_output=True, text=True)
-    print(result.stdout)
-    print(result.stderr)
+    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)
 
 
 def main():
@@ -62,7 +60,6 @@ def main():
     pytest_command()
 
     for proc in running_processes:  # terminate still running processes
-        print(proc)
         proc.terminate()
 
 
@@ -76,7 +73,8 @@ def pre_commands():
 
     elif platform == 'linux':
         update_cmd = ['sudo', 'apt-get', 'update']
-        cmd_popen_print(cmd=update_cmd)
+        # cmd_popen_print(cmd=update_cmd)
+        cmd_check(cmd=update_cmd)
 
         cmd = ['sudo', 'apt-get', 'install', '-y']
 
@@ -92,12 +90,13 @@ def pre_commands():
         pass
 
     try:
-        cmd_popen_print(cmd=cmd)
+        # cmd_popen_print(cmd=cmd)
+        cmd_check(cmd=cmd)
     except NameError:
         pass
 
     compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']
-    cmd_popen_print(cmd=compile_cmd)
+    cmd_check(cmd=compile_cmd)
 
 
 def daemon_commands():
@@ -158,7 +157,8 @@ EndSection
 def pytest_command():
     """Run the pytest command"""
     cmd = [sys.executable, '-m', 'pytest', '-v']
-    cmd_popen_print(cmd=cmd)
+    # cmd_popen_print(cmd=cmd)
+    cmd_check(cmd=cmd)
 
 
 if __name__ == '__main__':
