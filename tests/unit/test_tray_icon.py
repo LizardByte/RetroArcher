@@ -21,6 +21,9 @@ def test_tray_initialize():
     # assert tray.HAS_MENU_RADIO  # does not work on macOS
     # assert tray.HAS_NOTIFICATION  # does not work on macOS or xorg
 
+    # teardown
+    tray.stop()
+
 
 def test_tray_browser(test_config_object):
     """Test tray_browser function"""

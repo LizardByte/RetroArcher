@@ -56,9 +56,9 @@ def test_tray_icon():
     """Initialize and run a test tray icon"""
     test_tray_icon = tray_icon.tray_initialize()
 
-    try:
-        tray_icon.tray_run()
-    except Exception:
-        pass
-    else:
-        yield test_tray_icon
+    tray_icon.tray_run()
+
+    yield test_tray_icon
+
+    # teardown
+    test_tray_icon.stop()
