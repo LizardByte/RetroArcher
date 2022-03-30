@@ -13,13 +13,12 @@ platform = sys.platform.lower()
 exit_code = 0
 
 
-def cmd_daemon(cmd: list) -> subprocess.Popen:
+def cmd_daemon(cmd: list):
     """Popen cmd in subprocess and continue
 
     :param cmd list - list of arguments for the command
     """
-    proc = subprocess.Popen(args=cmd)
-    return proc
+    proc = subprocess.Popen(args=cmd, creationflags=subprocess.DETACHED_PROCESS)
 
 
 def cmd_popen_print(cmd: list):
@@ -53,14 +52,9 @@ def main():
     """main function"""
     pre_commands()
 
-    proc = daemon_commands()
+    daemon_commands()
 
     pytest_command()
-
-    try:
-        proc.terminate()  # kill the running process
-    except Exception:
-        pass
 
     sys.exit(exit_code)
 
@@ -148,9 +142,9 @@ EndSection
     time.sleep(5)  # wait 5 seconds
 
     try:
-        return cmd_daemon(cmd=cmd)
+        cmd_daemon(cmd=cmd)
     except NameError:
-        return False
+        pass
 
 
 def pytest_command():
