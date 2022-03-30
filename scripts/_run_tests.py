@@ -10,7 +10,7 @@ import time
 
 platform = sys.platform.lower()
 
-running_processes = []
+exit_code = 0
 
 
 def cmd_daemon(cmd: list):
@@ -18,10 +18,7 @@ def cmd_daemon(cmd: list):
 
     :param cmd list - list of arguments for the command
     """
-    proc = subprocess.Popen(args=cmd)
-
-    global running_processes
-    running_processes.append(proc)
+    subprocess.Popen(args=cmd)
 
 
 def cmd_popen_print(cmd: list):
@@ -30,14 +27,12 @@ def cmd_popen_print(cmd: list):
     :param cmd list - list of arguments for the command
     :raises subprocess.CalledProcessError
     """
-    with subprocess.Popen(args=cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) as proc:
-        for line in proc.stdout:
-            print(line, end='')  # process line here
-
-        for line in proc.stderr:
-            print(line, end='')  # process line here
+    proc = subprocess.Popen(args=cmd, stdout=sys.stdout, stderr=sys.stderr, text=True)
 
     if proc.returncode != 0:
+        global exit_code
+        exit_code = proc.returncode
+
         raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)
 
     proc.terminate()
@@ -59,8 +54,7 @@ def main():
 
     pytest_command()
 
-    for proc in running_processes:  # terminate still running processes
-        proc.terminate()
+    sys.exit(exit_code)
 
 
 def pre_commands():
