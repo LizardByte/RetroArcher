@@ -33,7 +33,13 @@ def cmd_popen_print(cmd: list):
     time.sleep(5)  # wait
     proc.kill()  # don't ask
 
-    print(f'Command finished with args: {cmd}')
+    print(f'Command finished with args: {cmd}', flush=True)
+
+
+def cmd_checkcall(cmd: list):
+    """check_call cmd in subprocess"""
+
+    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)
 
 
 def pre_commands():
@@ -46,7 +52,7 @@ def pre_commands():
 
     elif platform == 'linux':
         update_cmd = ['sudo', 'apt-get', 'update']
-        cmd_popen_print(cmd=update_cmd)
+        cmd_checkcall(cmd=update_cmd)
 
         cmd = ['sudo', 'apt-get', 'install', '-y']
 
@@ -63,12 +69,12 @@ def pre_commands():
         pass
 
     try:
-        cmd_popen_print(cmd=cmd)
+        cmd_checkcall(cmd=cmd)
     except NameError:
         pass
 
     compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']
-    cmd_popen_print(cmd=compile_cmd)
+    cmd_checkcall(cmd=compile_cmd)
 
 
 def run_commands():
@@ -126,31 +132,31 @@ EndSection
 
     # run pytest
     cmd = [sys.executable, '-m', 'pytest', '-v']
-    cmd_popen_print(cmd=cmd)
+    cmd_checkcall(cmd=cmd)
 
     outs, errs = None, None
 
     try:
-        print('Try proc.communicate start')
+        print('Try proc.communicate start', flush=True)
         outs, errs = proc.communicate(timeout=5)
-        print('Try proc.communicate finish')
+        print('Try proc.communicate finish', flush=True)
     except NameError:
         pass  # don't do anything if not running subprocess
     except subprocess.TimeoutExpired:
-        print('Except subprocess.TimeoutExpired start')
+        print('Except subprocess.TimeoutExpired start', flush=True)
         proc.kill()
         outs, errs = proc.communicate()
-        print('Except subprocess.TimeoutExpired finish')
+        print('Except subprocess.TimeoutExpired finish', flush=True)
     finally:
-        print('Finally start')
+        print('Finally start', flush=True)
         # proc.terminate()  # ask nicely
         # time.sleep(5)  # wait
         # proc.kill()  # don't ask
         if outs:
-            print(f'proc stdout: {outs}')
+            print(f'proc stdout: {outs}', flush=True)
         if errs:
-            print(f'proc stderr: {errs}')
-        print('Finally finish')
+            print(f'proc stderr: {errs}', flush=True)
+        print('Finally finish', flush=True)
 
 
 def main():
