@@ -19,24 +19,20 @@ from pyra import webapp
 @pytest.fixture(scope='module')
 def test_client():
     """Create a test client for testing webapp endpoints"""
-    if sys.platform.lower() != 'linux':  # temporarily disable test for linux
-        app = webapp.app
-        app.testing = True
+    app = webapp.app
+    app.testing = True
 
-        # disable flask warning banner - https://stackoverflow.com/a/57989189/11214013
-        cli = sys.modules['flask.cli']
-        cli.show_server_banner = lambda *x: None
+    # disable flask warning banner - https://stackoverflow.com/a/57989189/11214013
+    cli = sys.modules['flask.cli']
+    cli.show_server_banner = lambda *x: None
 
-        client = app.test_client()
+    client = app.test_client()
 
-        # Create a test client using the Flask application configured for testing
-        with client as test_client:
-            # Establish an application context
-            with app.app_context():
-                yield test_client  # this is where the testing happens!
-    else:
-        test_client = False
-        yield test_client
+    # Create a test client using the Flask application configured for testing
+    with client as test_client:
+        # Establish an application context
+        with app.app_context():
+            yield test_client  # this is where the testing happens!
 
 
 @pytest.fixture(scope='module')
@@ -58,8 +54,12 @@ def test_config_object(test_config_file):
 @pytest.fixture(scope='module')
 def test_tray_icon():
     """Initialize and run a test tray icon"""
-    test_tray_icon = tray_icon.tray_initialize()
+    if sys.platform.lower() != 'linux':  # don't test on linux for now
+        test_tray_icon = tray_icon.tray_initialize()
 
-    tray_icon.tray_run()
+        tray_icon.tray_run()
 
-    yield test_tray_icon
+        yield test_tray_icon
+    else:
+        test_tray_icon = False
+        yield test_tray_icon
