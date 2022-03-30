@@ -13,14 +13,6 @@ platform = sys.platform.lower()
 exit_code = 0
 
 
-def cmd_daemon(cmd: list):
-    """Popen cmd in subprocess and continue
-
-    :param cmd list - list of arguments for the command
-    """
-    subprocess.Popen(args=cmd)
-
-
 def cmd_popen_print(cmd: list):
     """Popen cmd in subprocess and print the output, line by line.
 
@@ -37,15 +29,9 @@ def cmd_popen_print(cmd: list):
 
         raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)
 
-    proc.terminate()
-
-
-def cmd_check(cmd: list):
-    """Check_call cmd in subprocess and continue
-
-    :param cmd list - list of arguments for the command
-    """
-    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)
+    proc.terminate()  # ask nicely
+    time.sleep(5)  # wait
+    proc.kill()  # don't ask
 
 
 def pre_commands():
@@ -83,10 +69,10 @@ def pre_commands():
     cmd_popen_print(cmd=compile_cmd)
 
 
-def daemon_commands():
-    """Run daemon commands
+def run_commands():
+    """Run commands
 
-    This will run after pre_commands and is intended to run anything that will continue running during pytest.
+    This will run after pre_commands.
     """
     if platform == 'darwin':
         pass
@@ -132,25 +118,29 @@ EndSection
     time.sleep(5)  # wait 5 seconds
 
     try:
-        cmd_daemon(cmd=cmd)
+        proc = subprocess.Popen(args=cmd)
     except NameError:
         pass
 
-
-def pytest_command():
-    """Run the pytest command"""
+    # run pytest
     cmd = [sys.executable, '-m', 'pytest', '-v']
     cmd_popen_print(cmd=cmd)
+
+    try:
+        proc.communicate()
+    except NameError:
+        pass
+    else:
+        proc.terminate()  # ask nicely
+        time.sleep(5)  # wait
+        proc.kill()  # don't ask
 
 
 def main():
     """main function"""
     pre_commands()
 
-    # temporary disable
-    # daemon_commands()
-
-    pytest_command()
+    run_commands()
 
     sys.exit(exit_code)
 
