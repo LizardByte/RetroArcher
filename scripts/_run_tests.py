@@ -8,6 +8,8 @@ import subprocess
 import sys
 import time
 
+from subprocess import DETACHED_PROCESS
+
 platform = sys.platform.lower()
 
 exit_code = 0
@@ -18,7 +20,7 @@ def cmd_daemon(cmd: list):
 
     :param cmd list - list of arguments for the command
     """
-    proc = subprocess.Popen(args=cmd, creationflags=subprocess.DETACHED_PROCESS)
+    subprocess.Popen(args=cmd, creationflags=DETACHED_PROCESS)
 
 
 def cmd_popen_print(cmd: list):
