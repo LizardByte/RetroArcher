@@ -12,13 +12,14 @@ import re
 import os
 import socket
 import time
+from typing import Union
 import webbrowser
 
 # lib imports
 from IPy import IP
 
 
-def check_folder_writable(folder: str | None, fallback: str, name: str) -> tuple[str, bool | None]:
+def check_folder_writable(folder: str | None, fallback: str, name: str) -> tuple[str, Union[bool, None]]:
     """Checks if folder or fallback folder is writeable.
 
     :param folder: str - Primary folder to check.
