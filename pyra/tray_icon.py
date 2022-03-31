@@ -4,10 +4,10 @@ Responsible for system tray icon and related functions.
 """
 # standard imports
 import os
+from typing import Union
 
 # lib imports
 from PIL import Image
-from pystray import Icon, MenuItem, Menu
 
 # local imports
 import pyra
@@ -17,17 +17,34 @@ from pyra import helpers
 from pyra import locales
 from pyra import logger
 
+# setup
 _ = locales.get_text()
+icon_running = False
+icon_supported = False
 log = logger.get_logger(name=__name__)
 
-icon_running = False
+# conditional imports
+if definitions.Platform().platform == 'linux':
+    try:
+        import Xlib
+    except Exception:
+        pass
+try:
+    from pystray import Icon, MenuItem, Menu
+except Xlib.error.DisplayNameError:
+    pass
+else:
+    icon_class = Icon  # avoids a messy import for pytest
+    icon_supported = True
 
 
-def tray_initialize() -> Icon:
+def tray_initialize() -> Union[Icon, None]:
     """Initializes the system tray icon.
 
     :return pystray.Icon
     """
+    if not icon_supported:
+        return None
     tray_icon = Icon(name='retroarcher')
     tray_icon.title = definitions.Names().name
 
@@ -93,10 +110,15 @@ def tray_disable():
 
 def tray_end():
     """Hide the system tray icon, then stop the system tray icon."""
-    icon.visible = False
+    try:  # this shouldn't be possible to call, other than through pytest
+        icon.visible = False
+    except AttributeError:
+        pass
 
     try:
         icon.stop()
+    except AttributeError:
+        pass
     except Exception as e:
         log.error(f'Exception when stopping system tray icon: {e}')
     else:
@@ -120,6 +142,8 @@ def tray_run():
 
     try:
         icon.run_detached()
+    except AttributeError:
+        pass
     except NotImplementedError as e:
         log.error(f'Error running system tray icon: {e}')
     else:

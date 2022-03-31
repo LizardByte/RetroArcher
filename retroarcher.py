@@ -131,7 +131,8 @@ def main():
 
     if config.CONFIG['General']['SYSTEM_TRAY']:
         from pyra import tray_icon
-        threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()  # may be a problem on mac
+        if tray_icon.icon_supported:
+            threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()
 
     if config.CONFIG['General']['LAUNCH_BROWSER'] and not args.nolaunch:
         url = f"http://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}"

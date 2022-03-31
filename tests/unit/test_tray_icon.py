@@ -3,7 +3,6 @@
 unit tests for pyra.tray_icon
 """
 # lib imports
-from pystray import Icon
 import pytest
 
 # local imports
@@ -29,20 +28,22 @@ def test_tray_icon(tray_icon):
     yield test_tray_icon
 
 
-def test_tray_initialize(test_tray_icon):
+def test_tray_initialize(tray_icon, test_tray_icon):
     """Test tray initialization"""
-    assert isinstance(test_tray_icon, Icon)
+    if test_tray_icon is not None:  # may be None for linux
+        assert isinstance(test_tray_icon, tray_icon.icon_class)
 
-    # these test whether the OS supports the feature, not if the menu has the feature
-    assert test_tray_icon.HAS_MENU
-    # assert test_tray_icon.HAS_DEFAULT_ACTION  # does not work on macOS
-    # assert test_tray_icon.HAS_MENU_RADIO  # does not work on macOS
-    # assert test_tray_icon.HAS_NOTIFICATION  # does not work on macOS or xorg
+        # these test whether the OS supports the feature, not if the menu has the feature
+        assert test_tray_icon.HAS_MENU
+        # assert test_tray_icon.HAS_DEFAULT_ACTION  # does not work on macOS
+        # assert test_tray_icon.HAS_MENU_RADIO  # does not work on macOS
+        # assert test_tray_icon.HAS_NOTIFICATION  # does not work on macOS or xorg
 
 
 def test_tray_run(test_tray_icon):
     """Test tray_run function"""
-    assert test_tray_icon
+    if test_tray_icon is not None:  # may be None for linux
+        assert test_tray_icon
 
 
 def test_tray_browser(test_config_object, tray_icon):
