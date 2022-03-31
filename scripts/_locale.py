@@ -38,6 +38,7 @@ def babel_extract():
         f'--copyright-holder={project_name}',
         f'--project={project_name}',
         '--version=v0',
+        '--add-comments=NOTE',
         './pyra',
         './web'
     ]

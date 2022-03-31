@@ -11,12 +11,11 @@ from flask import render_template, send_from_directory
 from flask_babel import Babel
 
 # local imports
+import pyra
 from pyra import config
 from pyra.definitions import Paths
+from pyra import locales
 from pyra import logger
-
-default_locale = 'en'
-default_timezone = 'UTC'
 
 # setup flask app
 app = Flask(
@@ -34,9 +33,9 @@ app.jinja_env.lstrip_blocks = True
 # localization
 babel = Babel(
     app=app,
-    default_locale=default_locale,
-    default_timezone=default_timezone,
-    default_domain='retroarcher',
+    default_locale=locales.default_locale,
+    default_timezone=locales.default_timezone,
+    default_domain=locales.default_domain,
     configure_jinja=True,
 )
 # app.translation_directories(Paths().LOCALE_DIR)
@@ -51,20 +50,12 @@ for handler in log_handlers:
 
 @babel.localeselector
 def get_locale() -> str:
-    """Verifies the locale from the config against supported locales and returns appropriate locale.
+    """Get the locale from the config and return it.
 
     :return: str
     """
-    supported_locales = ['en', 'es']
-    try:
-        config_locale = config.CONFIG['General']['LOCALE']
-    except TypeError:
-        config_locale = None
-
-    if config_locale in supported_locales:
-        return config_locale
-    else:
-        return default_locale
+    locale = locales.get_locale()
+    return locale
 
 
 @app.route('/')
@@ -104,3 +95,13 @@ def test_logger() -> str:
     app.logger.critical('testing from app.logger')
     app.logger.debug('testing from app.logger')
     return f'Testing complete, check "logs/{__name__}.log" for output.'
+
+
+def start_webapp():
+    """Start the webapp"""
+    app.run(
+        host=config.CONFIG['Network']['HTTP_HOST'],
+        port=config.CONFIG['Network']['HTTP_PORT'],
+        debug=pyra.DEV,
+        use_reloader=False  # reloader doesn't work when running in a separate thread
+    )

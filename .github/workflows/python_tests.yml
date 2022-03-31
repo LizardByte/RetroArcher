@@ -6,16 +6,32 @@ on:
     types: [opened, synchronize, edited, reopened]
 
 jobs:
-  test:
+  pytest:
     strategy:
       fail-fast: false
       matrix:
-        include: # setup matrix args for each test
-        - test: pytest
-          args: '-v'
-        - test: flake8
-          args: 'pyra/ scripts/ tests/ --max-line-length 120'
+        os: [windows-2019, ubuntu-18.04, macos-10.15]
 
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v3  # https://github.com/actions/setup-python
+        with:
+          python-version: '3.9'
+
+      - name: Install python dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools
+          python -m pip install -r requirements-dev.txt
+
+      - name: Test with pytest
+        run: |
+          python -m pytest -v
+
+  flake8:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,6 +47,6 @@ jobs:
           python -m pip install --upgrade pip setuptools
           python -m pip install -r requirements-dev.txt
 
-      - name: Test with ${{ matrix.test }}
+      - name: Test with flake8
         run: |
-          python -m ${{ matrix.test }} ${{ matrix.args }}
+          python -m flake8 pyra/ scripts/ tests/ --max-line-length 120
