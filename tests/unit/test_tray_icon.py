@@ -3,7 +3,7 @@
 unit tests for pyra.tray_icon
 """
 # lib imports
-import pystray
+from pystray import Icon
 import pytest
 
 # local imports
@@ -31,7 +31,7 @@ def test_tray_icon(tray_icon):
 
 def test_tray_initialize(test_tray_icon):
     """Test tray initialization"""
-    assert isinstance(test_tray_icon, pystray.Icon)
+    assert isinstance(test_tray_icon, Icon)
 
     # these test whether the OS supports the feature, not if the menu has the feature
     assert test_tray_icon.HAS_MENU

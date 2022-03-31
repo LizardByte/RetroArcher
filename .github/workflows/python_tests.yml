@@ -27,6 +27,10 @@ jobs:
           python -m pip install --upgrade pip setuptools
           python -m pip install -r requirements-dev.txt
 
+      - name: Compile Locale Translations
+        run: |
+          python ./scripts/_locale.py --compile
+
       - name: Test with pytest
         run: |
           python -m pytest -v

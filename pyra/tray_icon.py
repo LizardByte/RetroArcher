@@ -6,9 +6,8 @@ Responsible for system tray icon and related functions.
 import os
 
 # lib imports
-import pystray
 from PIL import Image
-from pystray import MenuItem, Menu
+from pystray import Icon, MenuItem, Menu
 
 # local imports
 import pyra
@@ -24,12 +23,12 @@ log = logger.get_logger(name=__name__)
 icon_running = False
 
 
-def tray_initialize() -> pystray.Icon:
+def tray_initialize() -> Icon:
     """Initializes the system tray icon.
 
     :return pystray.Icon
     """
-    tray_icon = pystray.Icon(name='retroarcher')
+    tray_icon = Icon(name='retroarcher')
     tray_icon.title = definitions.Names().name
 
     image = Image.open(os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'retroarcher.ico'))
@@ -47,7 +46,7 @@ def tray_initialize() -> pystray.Icon:
             MenuItem(text=_('%(github)s Releases') % {'github': 'GitHub'}, action=github_releases),
             MenuItem(
                 # NOTE: Donate to RetroArcher.
-                text=_('Donate'), action=pystray.Menu(
+                text=_('Donate'), action=Menu(
                     MenuItem(text='GitHub Sponsors', action=donate_github),
                     MenuItem(text='MEE6', action=donate_mee6),
                     MenuItem(text='Patreon', action=donate_patreon),
