@@ -4,7 +4,6 @@ Responsible for system tray icon and related functions.
 """
 # standard imports
 import os
-from typing import Union
 
 # lib imports
 from PIL import Image
@@ -32,13 +31,13 @@ if definitions.Platform().platform == 'linux':
 try:
     from pystray import Icon, MenuItem, Menu
 except Xlib.error.DisplayNameError:
-    pass
+    Icon = None
 else:
     icon_class = Icon  # avoids a messy import for pytest
     icon_supported = True
 
 
-def tray_initialize() -> Union[Icon, None]:
+def tray_initialize() -> Icon:
     """Initializes the system tray icon.
 
     :return pystray.Icon
