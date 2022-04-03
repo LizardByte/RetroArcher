@@ -12,12 +12,14 @@ import re
 import os
 import socket
 import time
+from typing import Union
+import webbrowser
 
 # lib imports
 from IPy import IP
 
 
-def check_folder_writable(folder: str | None, fallback: str, name: str) -> tuple[str, bool | None]:
+def check_folder_writable(folder: str | None, fallback: str, name: str) -> tuple[str, Union[bool, None]]:
     """Checks if folder or fallback folder is writeable.
 
     :param folder: str - Primary folder to check.
@@ -112,6 +114,20 @@ def now(separate: bool = False) -> str:
     :return: str - The current time formatted as YMDHMS
     """
     return timestamp_to_YMDHMS(ts=timestamp(), separate=separate)
+
+
+def open_url_in_browser(url: str) -> bool:
+    """Open a given url in the default browser.
+
+    :param url: str - The url to open
+    :return bool - True if no error, otherwise False
+    """
+    try:
+        webbrowser.open(url=url, new=2)
+    except webbrowser.Error:
+        return False
+    else:
+        return True
 
 
 def timestamp() -> int:

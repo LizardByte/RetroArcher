@@ -11,6 +11,16 @@ import sys
 import pyra
 
 
+class Names:
+    """This is a class representing common names.
+
+    Attributes:
+        name (str): Application Name
+    """
+    def __init__(self):
+        self.name = 'RetroArcher'
+
+
 class Platform:
     """This is a class representing the machine platform.
 
@@ -69,8 +79,10 @@ class Paths:
 
         if pyra.FROZEN:  # pyinstaller build
             self.DATA_DIR = os.path.dirname(sys.executable)
+            self.BINARY_PATH = os.path.abspath(sys.executable)
         else:
             self.DATA_DIR = self.ROOT_DIR
+            self.BINARY_PATH = os.path.abspath(os.path.join(self.DATA_DIR, 'retroarcher.py'))
 
         self.LOCALE_DIR = os.path.join(self.ROOT_DIR, 'locale')
         self.LOG_DIR = os.path.join(self.DATA_DIR, 'logs')
