@@ -30,20 +30,25 @@ def test_tray_icon(tray_icon):
 
 def test_tray_initialize(tray_icon, test_tray_icon):
     """Test tray initialization"""
-    if test_tray_icon is not None:  # may be None for linux
+    if test_tray_icon is not False:  # may be False for linux
         assert isinstance(test_tray_icon, tray_icon.icon_class)
 
         # these test whether the OS supports the feature, not if the menu has the feature
-        assert test_tray_icon.HAS_MENU
+        # assert test_tray_icon.HAS_MENU  # on linux this may be False in some cases
         # assert test_tray_icon.HAS_DEFAULT_ACTION  # does not work on macOS
         # assert test_tray_icon.HAS_MENU_RADIO  # does not work on macOS
         # assert test_tray_icon.HAS_NOTIFICATION  # does not work on macOS or xorg
 
 
-def test_tray_run(test_tray_icon):
+def test_tray_run(tray_icon, test_tray_icon):
     """Test tray_run function"""
-    if test_tray_icon is not None:  # may be None for linux
-        assert test_tray_icon
+    try:
+        tray_icon.icon_class
+    except AttributeError:
+        pass
+    else:
+        if isinstance(test_tray_icon, tray_icon.icon_class):  # may be False for linux
+            assert test_tray_icon
 
 
 def test_tray_browser(test_config_object, tray_icon):

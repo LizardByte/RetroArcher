@@ -4,6 +4,7 @@ Responsible for system tray icon and related functions.
 """
 # standard imports
 import os
+from typing import Union
 
 # lib imports
 from PIL import Image
@@ -37,13 +38,13 @@ else:
     icon_supported = True
 
 
-def tray_initialize() -> Icon:
+def tray_initialize() -> Union[Icon, bool]:
     """Initializes the system tray icon.
 
-    :return pystray.Icon
+    :return Instance of pystray.Icon if icon is supported, otherwise False
     """
     if not icon_supported:
-        return None
+        return False
     tray_icon = Icon(name='retroarcher')
     tray_icon.title = definitions.Names().name
 
@@ -109,20 +110,26 @@ def tray_disable():
 
 def tray_end():
     """Hide the system tray icon, then stop the system tray icon."""
-    try:  # this shouldn't be possible to call, other than through pytest
-        icon.visible = False
-    except AttributeError:
-        pass
-
     try:
-        icon.stop()
-    except AttributeError:
+        icon_class
+    except NameError:
         pass
-    except Exception as e:
-        log.error(f'Exception when stopping system tray icon: {e}')
     else:
-        global icon_running
-        icon_running = False
+        if isinstance(icon, icon_class):
+            try:  # this shouldn't be possible to call, other than through pytest
+                icon.visible = False
+            except AttributeError:
+                pass
+
+            try:
+                icon.stop()
+            except AttributeError:
+                pass
+            except Exception as e:
+                log.error(f'Exception when stopping system tray icon: {e}')
+            else:
+                global icon_running
+                icon_running = False
 
 
 def tray_quit():
@@ -137,16 +144,22 @@ def tray_restart():
 
 def tray_run():
     """Run the system tray icon in detached mode."""
-    global icon_running
-
     try:
-        icon.run_detached()
-    except AttributeError:
+        icon_class
+    except NameError:
         pass
-    except NotImplementedError as e:
-        log.error(f'Error running system tray icon: {e}')
     else:
-        icon_running = True
+        global icon_running
+
+        if isinstance(icon, icon_class):
+            try:
+                icon.run_detached()
+            except AttributeError:
+                pass
+            except NotImplementedError as e:
+                log.error(f'Error running system tray icon: {e}')
+            else:
+                icon_running = True
 
 
 def open_webapp():
@@ -185,4 +198,4 @@ def donate_paypal():
     return helpers.open_url_in_browser(url=url)
 
 
-icon = tray_initialize()
+icon: Union[Icon, bool] = tray_initialize()
