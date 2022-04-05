@@ -3,8 +3,10 @@ name: localize
 on:
   push:
     branches: [nightly]
-    paths:  # prevents workflow from running unless files in these directories change
-      - 'web/templates/**'  # only localizing files inside web/templates for now
+    paths:  # prevents workflow from running unless these files change
+      - 'retroarcher.py'
+      - 'pyra/**.py'
+      - 'web/templates/**'
   workflow_dispatch:
 
 jobs:
