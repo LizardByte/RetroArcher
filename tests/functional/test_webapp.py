@@ -29,6 +29,15 @@ def test_favicon(test_client):
     assert response.content_type == 'image/vnd.microsoft.icon'
 
 
+def test_docs(test_client):
+    """
+    WHEN the '/docs/' page is requested (GET)
+    THEN check that the response is valid
+    """
+    response = test_client.get('/docs/')
+    assert response.status_code == 200
+
+
 def test_logger(test_client):
     """
     WHEN the '/test_logger' route is requested (GET)

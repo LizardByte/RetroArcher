@@ -23,22 +23,34 @@ log = logger.get_logger(__name__)
 
 
 def get_all_locales() -> dict:
-    """Function to get a dictionary of all possible locales for use with babel.
+    """
+    Get a dictionary of all possible locales for use with babel.
 
     Dictionary keys will be `locale_id` and value with be `locale_display_name`.
-    This example is shortened.
-    e.g.: {
-              'de': 'Deutsch',
-              'en': 'English',
-              'en_GB': 'English (United Kingdom)',
-              'en_US': 'English (United States)',
-              'es': 'español',
-              'fr': 'français',
-              'it': 'italiano'
-              'ru': 'русский'
-          }
+    This is a shortened example of the returned value.
 
-    :return: dict
+    .. code-block:: python
+
+        {
+          'de': 'Deutsch',
+          'en': 'English',
+          'en_GB': 'English (United Kingdom)',
+          'en_US': 'English (United States)',
+          'es': 'español',
+          'fr': 'français',
+          'it': 'italiano',
+          'ru': 'русский'
+        }
+
+    Returns
+    -------
+    dict
+        Dictionary of all possible locales.
+
+    Examples
+    --------
+    >>> get_all_locales()
+    {... 'en': 'English', ... 'en_GB': 'English (United Kingdom)', ... 'es': 'español', ... 'fr': 'français', ...}
     """
     log.debug(msg='Getting locale dictionary.')
     locale_ids = localedata.locale_identifiers()
@@ -53,9 +65,20 @@ def get_all_locales() -> dict:
 
 
 def get_locale() -> str:
-    """Verifies the locale from the config against supported locales and returns appropriate locale.
+    """
+    Verify the locale.
 
-    :return: str
+    Verify the locale from the config against supported locales and returns appropriate locale.
+
+    Returns
+    -------
+    str
+        The locale set in the config if it is valid, otherwise the default locale (en).
+
+    Examples
+    --------
+    >>> get_locale()
+    'en'
     """
     try:
         config_locale = config.CONFIG['General']['LOCALE']
@@ -69,9 +92,20 @@ def get_locale() -> str:
 
 
 def get_text() -> gettext.gettext:
-    """Install the language defined in the conifg.
+    """
+    Install the language defined in the conifg.
 
-    :return gettext.gettext
+    This function installs the language defined in the config and allows translations in python code.
+
+    Returns
+    -------
+    gettext.gettext
+        The `gettext.gettext` method.
+
+    Examples
+    --------
+    >>> get_text()
+    <bound method GNUTranslations.gettext of <gettext.GNUTranslations object at 0x...>>
     """
     language = gettext.translation(
         domain=default_domain,

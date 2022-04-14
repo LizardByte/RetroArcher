@@ -7,19 +7,11 @@ import pytest
 
 # local imports
 import pyra
+from pyra import tray_icon
 
 
 @pytest.fixture(scope='module')
-def tray_icon():  # this is a hack to allow tray_icon to import properly
-    from pyra import config  # tray_icon won't import properly without this
-    config.CONFIG = config.create_config('test_config.ini')
-    from pyra import tray_icon  # import tray_icon after setting config.CONFIG
-
-    yield tray_icon
-
-
-@pytest.fixture(scope='module')
-def test_tray_icon(tray_icon):
+def test_tray_icon():
     """Initialize and run a test tray icon"""
     test_tray_icon = tray_icon.tray_initialize()
 
@@ -28,7 +20,7 @@ def test_tray_icon(tray_icon):
     yield test_tray_icon
 
 
-def test_tray_initialize(tray_icon, test_tray_icon):
+def test_tray_initialize(test_tray_icon):
     """Test tray initialization"""
     if test_tray_icon is not False:  # may be False for linux
         assert isinstance(test_tray_icon, tray_icon.icon_class)
@@ -40,7 +32,7 @@ def test_tray_initialize(tray_icon, test_tray_icon):
         # assert test_tray_icon.HAS_NOTIFICATION  # does not work on macOS or xorg
 
 
-def test_tray_run(tray_icon, test_tray_icon):
+def test_tray_run(test_tray_icon):
     """Test tray_run function"""
     try:
         tray_icon.icon_class
@@ -51,7 +43,7 @@ def test_tray_run(tray_icon, test_tray_icon):
             assert test_tray_icon
 
 
-def test_tray_browser(test_config_object, tray_icon):
+def test_tray_browser(test_config_object):
     """Test tray_browser function"""
     original_value = test_config_object['General']['LAUNCH_BROWSER']
 
@@ -61,7 +53,7 @@ def test_tray_browser(test_config_object, tray_icon):
     assert new_value is not original_value
 
 
-def test_tray_disable(test_config_object, tray_icon):
+def test_tray_disable(test_config_object):
     """Test tray_disable function"""
     tray_icon.tray_disable()
     new_value = test_config_object['General']['SYSTEM_TRAY']
@@ -69,7 +61,7 @@ def test_tray_disable(test_config_object, tray_icon):
     assert new_value is False
 
 
-def test_tray_end(test_config_object, tray_icon):
+def test_tray_end(test_config_object):
     """Test tray_end function"""
     tray_icon.tray_end()
     new_value = test_config_object['General']['SYSTEM_TRAY']
@@ -77,7 +69,7 @@ def test_tray_end(test_config_object, tray_icon):
     assert new_value is False
 
 
-def test_tray_quit(tray_icon):
+def test_tray_quit():
     """Test tray_quit function"""
     tray_icon.tray_quit()
 
@@ -86,7 +78,7 @@ def test_tray_quit(tray_icon):
     assert signal == 'shutdown'
 
 
-def test_tray_restart(tray_icon):
+def test_tray_restart():
     """Test tray_restart function"""
     tray_icon.tray_restart()
 
@@ -95,7 +87,7 @@ def test_tray_restart(tray_icon):
     assert signal == 'restart'
 
 
-def test_tray_open_browser_functions(tray_icon):
+def test_tray_open_browser_functions():
     """Test all tray functions that open a page in a browser"""
     assert tray_icon.open_webapp()
     assert tray_icon.github_releases()

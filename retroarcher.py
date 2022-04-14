@@ -11,6 +11,7 @@ import argparse
 import os
 import sys
 import time
+from typing import Union
 
 # local imports
 import pyra
@@ -32,29 +33,68 @@ log = logger.get_logger(name=py_name)
 
 
 class IntRange(object):
-    """Custom IntRange class for argparse.
+    """
+    Custom IntRange class for argparse.
 
     Prevents printing out large list of possible choices for integer ranges.
 
-    Raises argparse.ArgumentTypeError if provided value is outside the accepted range.
+    Parameters
+    ----------
+    stop : int
+        Range maximum value.
+    start : int, default = 0
+        Range minimum value.
+
+    Methods
+    -------
+    __call__:
+        Validate that value is within accepted range.
+
+    Examples
+    --------
+    >>> IntRange(0, 10)
+    <retroarcher.IntRange object at 0x...>
     """
     def __init__(self, stop: int, start: int = 0,):
-        """Initialize the IntRange class object.
+        """
+        Initialize the IntRange class object.
 
         If stop is less than start, the values will be corrected automatically.
-
-        :param stop: int - Range maximum value (required)
-        :param start: int - Range minimum value (optional). Default = 0
         """
         if stop < start:
             stop, start = start, stop
         self.start, self.stop = start, stop
 
-    def __call__(self, value: int | str) -> int:
-        """Validates value is within accepted range.
+    def __call__(self, value: Union[int, str]) -> int:
+        """
+        Validate that value is within accepted range.
 
-        :param value: int | str - The value to validate.
-        :return: int - Returned if value is valid, otherwise argparse.ArgumentTypeError is raised.
+        Validate the provided value is within the range of the `IntRange()` object.
+
+        Parameters
+        ----------
+        value : Union[int, str]
+            The value to validate.
+
+        Returns
+        -------
+        int
+            The original value.
+
+        Raises
+        ------
+        argparse.ArgumentTypeError
+            If provided value is outside the accepted range.
+
+        Examples
+        --------
+        >>> IntRange(0, 10).__call__(5)
+        5
+
+        >>> IntRange(0, 10).__call__(15)
+        Traceback (most recent call last):
+            ...
+        argparse.ArgumentTypeError: Value outside of range: (0, 10)
         """
         value = int(value)
         if value < self.start or value >= self.stop:
@@ -63,9 +103,15 @@ class IntRange(object):
 
 
 def main():
-    """Application entry point.
+    """
+    Application entry point.
 
     Parses arguments and initializes the application.
+
+    Examples
+    --------
+    >>> if __name__ == "__main__":
+    ...     main()
     """
     # Fixed paths to RetroArcher
     if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):  # only when using the pyinstaller build
@@ -132,6 +178,7 @@ def main():
     if config.CONFIG['General']['SYSTEM_TRAY']:
         from pyra import tray_icon
         if tray_icon.icon_supported:
+            tray_icon.icon = tray_icon.tray_initialize()
             threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()
 
     if config.CONFIG['General']['LAUNCH_BROWSER'] and not args.nolaunch:
@@ -149,11 +196,16 @@ def main():
 
 
 def wait():
-    """Waits for signal.
+    """
+    Wait for signal.
 
     Endlessly loop while `pyra.SIGNAL = None`.
     If `pyra.SIGNAL` is changed to `shutdown` or `restart` `pyra.stop()` will be executed.
     If KeyboardInterrupt signal is detected `pyra.stop()` will be executed.
+
+    Examples
+    --------
+    >>> wait()
     """
     log.info("RetroArcher is ready!")
 

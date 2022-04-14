@@ -6,6 +6,7 @@ Responsible for serving the webapp.
 import os
 
 # lib imports
+import flask
 from flask import Flask
 from flask import render_template, send_from_directory
 from flask_babel import Babel
@@ -50,9 +51,24 @@ for handler in log_handlers:
 
 @babel.localeselector
 def get_locale() -> str:
-    """Get the locale from the config and return it.
+    """
+    Get the locale from the config.
 
-    :return: str
+    Get the locale specified in the config. This does not need to be called as it is done so automatically by `babel`.
+
+    Returns
+    -------
+    str
+        The locale.
+
+    See Also
+    --------
+    pyra.locales.get_locale : Use this function instead.
+
+    Examples
+    --------
+    >>> get_locale()
+    en
     """
     locale = locales.get_locale()
     return locale
@@ -61,21 +77,84 @@ def get_locale() -> str:
 @app.route('/')
 @app.route('/home')
 def home() -> render_template:
-    """Serves the webapp home page
+    """
+    Serve the webapp home page.
 
-    :route '/'
-    :route '/home'
-    :return render_template
+    .. todo:: This documentation needs to be improved.
+
+    Returns
+    -------
+    render_template
+        The rendered page.
+
+    Notes
+    -----
+    The following routes trigger this function.
+
+        `/`
+        `/home`
+
+    Examples
+    --------
+    >>> home()
     """
     return render_template('home.html', title='Home')
 
 
-@app.route('/favicon.ico')
-def favicon() -> send_from_directory:
-    """Serves the webapp favicon.ico file.
+@app.route('/docs/', defaults={'filename': 'index.html'})
+@app.route('/docs/<path:filename>')
+def docs(filename) -> flask.send_from_directory:
+    """
+    Serve the Sphinx html documentation.
 
-    :route '/favicon.ico'
-    :return send_from_directory
+    .. todo:: This documentation needs to be improved.
+
+    Parameters
+    ----------
+    filename : str
+        The html filename to return.
+
+    Returns
+    -------
+    flask.send_from_directory
+        The requested documentation page.
+
+    Notes
+    -----
+    The following routes trigger this function.
+
+        `/docs/`
+        `/docs/<page.html>`
+
+    Examples
+    --------
+    >>> docs(filename='index.html')
+    """
+
+    return send_from_directory(directory=os.path.join(Paths().DOCS_DIR), path=filename)
+
+
+@app.route('/favicon.ico')
+def favicon() -> flask.send_from_directory:
+    """
+    Serve the favicon.ico file.
+
+    .. todo:: This documentation needs to be improved.
+
+    Returns
+    -------
+    flask.send_from_directory
+        The ico file.
+
+    Notes
+    -----
+    The following routes trigger this function.
+
+        `/favicon.ico`
+
+    Examples
+    --------
+    >>> favicon()
     """
     return send_from_directory(directory=os.path.join(app.static_folder, 'images'),
                                path='retroarcher.ico', mimetype='image/vnd.microsoft.icon')
@@ -83,11 +162,25 @@ def favicon() -> send_from_directory:
 
 @app.route('/test_logger')
 def test_logger() -> str:
-    """Test logging functions.
+    """
+    Test logging functions.
 
     Check `./logs/pyra.webapp.log` for output.
 
-    :return str
+    Returns
+    -------
+    str
+        A message telling the user to check the logs.
+
+    Notes
+    -----
+    The following routes trigger this function.
+
+        `/test_logger`
+
+    Examples
+    --------
+    >>> test_logger()
     """
     app.logger.info('testing from app.logger')
     app.logger.warn('testing from app.logger')
@@ -98,7 +191,25 @@ def test_logger() -> str:
 
 
 def start_webapp():
-    """Start the webapp"""
+    """
+    Start the webapp.
+
+    Start the flask webapp. This is placed in it's own function to allow the ability to start the webapp within a
+    thread in a simple way.
+
+    Examples
+    --------
+    >>> start_webapp()
+     * Serving Flask app 'pyra.webapp' (lazy loading)
+    ...
+     * Running on http://.../ (Press CTRL+C to quit)
+
+    >>> from pyra import threads
+    >>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()
+     * Serving Flask app 'pyra.webapp' (lazy loading)
+    ...
+     * Running on http://.../ (Press CTRL+C to quit)
+    """
     app.run(
         host=config.CONFIG['Network']['HTTP_HOST'],
         port=config.CONFIG['Network']['HTTP_PORT'],

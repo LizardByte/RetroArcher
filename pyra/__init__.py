@@ -9,6 +9,7 @@ from __future__ import annotations
 import os
 import sys
 import threading
+from typing import Union
 
 # local imports
 from pyra import config
@@ -33,11 +34,30 @@ QUIET = False
 
 
 def initialize(config_file: str) -> bool:
-    """Initialize RetroArcher.
+    """
+    Initialize RetroArcher.
 
-    :param config_file: str - Full filepath to config.ini file.
-    :return: bool - True if initialize succeeds, otherwise False.
-    :raise SystemExit: exception - If unable to correct possible issues with config file.
+    Sets up config, loggers, and http port.
+
+    Parameters
+    ----------
+    config_file : str
+        The path to the config file.
+
+    Returns
+    -------
+    bool
+        True if initialize succeeds, otherwise False.
+
+    Raises
+    ------
+    SystemExit
+        If unable to correct possible issues with config file.
+
+    Examples
+    --------
+    >>> initialize(config_file='config.ini')
+    True
     """
     with INIT_LOCK:
 
@@ -82,11 +102,23 @@ def initialize(config_file: str) -> bool:
         return True
 
 
-def stop(exit_code: int | str = 0, restart: bool = False):
-    """Function to stop RetroArcher.
+def stop(exit_code: Union[int, str] = 0, restart: bool = False):
+    """
+    Stop RetroArcher.
 
-    :param exit_code int | str - The exit code to send. Does not apply if `restart = True`. Default = 0
-    :param restart bool - Set to True to restart RetroArcher. Default = False
+    This function ends the tray icon if it's running. Then restarts or shutdowns RetroArcher depending on the value of
+    the `restart` parameter.
+
+    Parameters
+    ----------
+    exit_code : Union[int, str], default = 0
+        The exit code to send. Does not apply if `restart = True`.
+    restart : bool, default = False
+        Set to True to restart RetroArcher.
+
+    Examples
+    --------
+    >>> stop(exit_code=0, restart=False)
     """
     # stop the tray icon
     from pyra.tray_icon import tray_end

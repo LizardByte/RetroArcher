@@ -16,6 +16,7 @@ def build():
         '--onefile',
         '--noconfirm',
         '--paths=./',
+        '--add-data=docs:docs',
         '--add-data=web:web',
         '--add-data=locale:locale',
         '--icon=./web/images/retroarcher.ico'
