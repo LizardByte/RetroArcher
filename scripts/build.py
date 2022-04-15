@@ -1,4 +1,6 @@
-"""build.py
+"""
+..
+   build.py
 
 Creates spec and builds binaries for RetroArcher.
 """

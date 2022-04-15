@@ -1,6 +1,8 @@
-"""conftest.py
+"""
+..
+   conftest.py
 
-fixtures for pytest
+Fixtures for pytest.
 """
 # standard imports
 import os

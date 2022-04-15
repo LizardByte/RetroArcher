@@ -1,4 +1,6 @@
-"""tray_icon.py
+"""
+..
+   tray_icon.py
 
 Responsible for system tray icon and related functions.
 """

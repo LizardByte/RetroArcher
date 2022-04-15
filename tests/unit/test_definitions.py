@@ -1,6 +1,8 @@
-"""test_definitions.py
+"""
+..
+   test_definitions.py
 
-unit tests for pyra.definitions.py
+Unit tests for pyra.definitions.py.
 """
 # local imports
 from pyra import definitions

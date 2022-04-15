@@ -1,6 +1,8 @@
-"""helpers.py
+"""
+..
+   helpers.py
 
-Lots of helper functions.
+Many reusable helper functions.
 """
 # future imports
 from __future__ import annotations

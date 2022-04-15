@@ -1,6 +1,8 @@
-"""test_helpers.py
+"""
+..
+   test_helpers.py
 
-unit tests for pyra.helpers.py
+Unit tests for pyra.helpers.py.
 """
 # standard imports
 import datetime

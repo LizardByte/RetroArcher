@@ -1,6 +1,8 @@
-"""test_webapp.py
+"""
+..
+   test_webapp.py
 
-functional tests for pyra.webapp
+Functional tests for pyra.webapp.
 """
 
 

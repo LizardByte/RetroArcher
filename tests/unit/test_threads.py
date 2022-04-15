@@ -1,6 +1,8 @@
-"""test_threads.py
+"""
+..
+   test_threads.py
 
-unit tests for pyra.threads
+Unit tests for pyra.threads.
 """
 # local imports
 from pyra import threads

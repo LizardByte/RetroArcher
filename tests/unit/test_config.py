@@ -1,6 +1,8 @@
-"""test_config.py
+"""
+..
+   test_config.py
 
-unit tests for pyra.config
+Unit tests for pyra.config.
 """
 # lib imports
 from configobj import ConfigObj

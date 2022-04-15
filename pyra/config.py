@@ -1,4 +1,6 @@
-"""config.py
+"""
+..
+   config.py
 
 Responsible for config related functions.
 """

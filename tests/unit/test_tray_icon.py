@@ -1,6 +1,8 @@
-"""test_tray_icon.py
+"""
+..
+   test_tray_icon.py
 
-unit tests for pyra.tray_icon
+Unit tests for pyra.tray_icon.
 """
 # lib imports
 import pytest

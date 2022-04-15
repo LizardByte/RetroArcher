@@ -1,6 +1,8 @@
-"""__init__.py
+"""
+..
+   __init__.py
 
-Responsible for initializing RetroArcher.
+Responsible for initialization of RetroArcher.
 """
 # future imports
 from __future__ import annotations

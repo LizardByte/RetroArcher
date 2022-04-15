@@ -1,4 +1,6 @@
-"""locales.py
+"""
+..
+   locales.py
 
 Functions related to localization.
 """

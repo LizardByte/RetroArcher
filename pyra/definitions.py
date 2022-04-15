@@ -1,4 +1,6 @@
-"""definitions.py
+"""
+..
+   definitions.py
 
 Contains classes with attributes to common definitions (paths and filenames).
 """
