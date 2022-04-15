@@ -10,6 +10,14 @@ RetroArcher is a game streaming server application. This project is under develo
 Integrations
 ------------
 
+.. image:: https://img.shields.io/github/workflow/status/retroarcher/retroarcher/CI/master?label=CI%20build&logo=github&style=for-the-badge
+   :alt: GitHub Workflow Status (CI)
+   :target: https://github.com/RetroArcher/RetroArcher/actions/workflows/CI.yml?query=branch%3Amaster
+
+.. image:: https://img.shields.io/github/workflow/status/retroarcher/retroarcher/localize/nightly?label=localize%20build&logo=github&style=for-the-badge
+   :alt: GitHub Workflow Status (localize)
+   :target: https://github.com/RetroArcher/RetroArcher/actions/workflows/localize.yml?query=branch%3Anightly
+
 .. image:: https://img.shields.io/readthedocs/retroarcher?label=Docs&style=for-the-badge&logo=readthedocs
    :alt: Read the Docs
    :target: http://retroarcher.readthedocs.io/
