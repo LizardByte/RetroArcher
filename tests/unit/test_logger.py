@@ -1,6 +1,8 @@
-"""test_logger.py
+"""
+..
+   test_logger.py
 
-unit tests for pyra.logger.py
+Unit tests for pyra.logger.py.
 """
 # standard imports
 import logging

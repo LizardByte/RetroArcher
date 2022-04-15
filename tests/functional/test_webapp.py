@@ -1,6 +1,8 @@
-"""test_webapp.py
+"""
+..
+   test_webapp.py
 
-functional tests for pyra.webapp
+Functional tests for pyra.webapp.
 """
 
 
@@ -27,6 +29,15 @@ def test_favicon(test_client):
     response = test_client.get('/favicon.ico')
     assert response.status_code == 200
     assert response.content_type == 'image/vnd.microsoft.icon'
+
+
+def test_docs(test_client):
+    """
+    WHEN the '/docs/' page is requested (GET)
+    THEN check that the response is valid
+    """
+    response = test_client.get('/docs/')
+    assert response.status_code == 200
 
 
 def test_logger(test_client):

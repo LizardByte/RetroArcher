@@ -3,5 +3,8 @@ configobj==5.0.6
 Flask==2.1.1
 Flask-Babel==2.0.0
 IPy==1.01
+numpydoc==1.2.1
 Pillow==9.1.0
 pystray==0.19.3
+Sphinx==4.5.0
+sphinx-rtd-theme==1.0.0

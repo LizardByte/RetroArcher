@@ -1,6 +1,8 @@
-"""test_init.py
+"""
+..
+   test_init.py
 
-unit tests for pyra.__init__.py
+Unit tests for pyra.__init__.py.
 """
 
 

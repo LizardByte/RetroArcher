@@ -1,4 +1,6 @@
-"""_locale.py
+"""
+..
+   _locale.py
 
 Functions related to building, initializing, updating, and compiling localization translations.
 """

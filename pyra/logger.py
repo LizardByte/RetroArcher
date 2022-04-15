@@ -1,4 +1,6 @@
-"""logger.py
+"""
+..
+   logger.py
 
 Responsible for logging related functions.
 """
@@ -41,11 +43,28 @@ queue = None
 
 
 def blacklist_config(config: ConfigObj):
-    """Update blacklist words.
+    """
+    Update blacklist words.
 
     In order to filter words out of the logs, it is required to call this function.
 
-    :param config: ConfigObj - Config to parse.
+    Values in the config for keys containing the following terms will be removed.
+
+    - HOOK
+    - APIKEY
+    - KEY
+    - PASSWORD
+    - TOKEN
+
+    Parameters
+    ----------
+    config : ConfigObj
+        Config to parse.
+
+    Examples
+    --------
+    >>> config_object = pyra.config.create_config(config_file='config.ini')
+    >>> blacklist_config(config=config_object)
     """
     blacklist = set()
     blacklist_keys = ['HOOK', 'APIKEY', 'KEY', 'PASSWORD', 'TOKEN']
@@ -61,25 +80,101 @@ def blacklist_config(config: ConfigObj):
 
 
 class NoThreadFilter(logging.Filter):
-    """Log filter for the current thread."""
+    """
+    Log filter for the current thread.
+
+    .. todo:: This documentation needs to be improved.
+
+    Parameters
+    ----------
+    threadName : str
+        The name of the thread.
+
+    Methods
+    -------
+    filter:
+        Filter the given record.
+
+    Examples
+    --------
+    >>> NoThreadFilter('main')
+    <pyra.logger.NoThreadFilter object at 0x...>
+    """
 
     def __init__(self, threadName):
         super(NoThreadFilter, self).__init__()
 
         self.threadName = threadName
 
-    def filter(self, record):
+    def filter(self, record) -> bool:
+        """
+        Filter the given record.
+
+        .. todo:: This documentation needs to be improved.
+
+        Parameters
+        ----------
+        record : NoThreadFilter
+            The record to filter.
+
+        Returns
+        -------
+        bool
+            True if record.threadName is not equal to self.threadName, otherwise False.
+
+        Examples
+        --------
+        >>> NoThreadFilter('main').filter(record=NoThreadFilter('test'))
+        True
+
+        >>> NoThreadFilter('main').filter(record=NoThreadFilter('main'))
+        False
+        """
         return not record.threadName == self.threadName
 
 
 # Taken from Hellowlol/HTPC-Manager
 class BlacklistFilter(logging.Filter):
-    """Log filter for blacklisted tokens and passwords."""
+    """
+    Filter logs for blacklisted words.
+
+    Log filter for blacklisted tokens and passwords.
+
+    Methods
+    -------
+    filter:
+        Filter the given record.
+
+    Examples
+    --------
+    >>> BlacklistFilter()
+    <pyra.logger.BlacklistFilter object at 0x...>
+    """
 
     def __init__(self):
         super(BlacklistFilter, self).__init__()
 
-    def filter(self, record):
+    def filter(self, record) -> bool:
+        """
+        Filter the given record.
+
+        .. todo:: This documentation needs to be improved.
+
+        Parameters
+        ----------
+        record : BlacklistFilter
+            The record to filter.
+
+        Returns
+        -------
+        bool
+            True in all cases.
+
+        Examples
+        --------
+        >>> BlacklistFilter().filter(record=BlacklistFilter())
+        True
+        """
         if not pyra.config.LOG_BLACKLIST:
             return True
 
@@ -106,14 +201,53 @@ class BlacklistFilter(logging.Filter):
 
 
 class RegexFilter(logging.Filter):
-    """Base class for regex log filter."""
+    """
+    Base class for regex log filter.
+
+    Log filter for regex.
+
+    Attributes
+    ----------
+    regex : re.compile
+        The compiled regex pattern.
+
+    Methods
+    -------
+    filter:
+        Filter the given record.
+
+    Examples
+    --------
+    >>> RegexFilter()
+    <pyra.logger.RegexFilter object at 0x...>
+    """
 
     def __init__(self):
         super(RegexFilter, self).__init__()
 
-        self.regex = re.compile(r'')
+        self.regex = re.compile(pattern=r'')
 
-    def filter(self, record):
+    def filter(self, record) -> bool:
+        """
+        Filter the given record.
+
+        .. todo:: This documentation needs to be improved.
+
+        Parameters
+        ----------
+        record : RegexFilter
+            The record to filter.
+
+        Returns
+        -------
+        bool
+            True in all cases.
+
+        Examples
+        --------
+        >>> RegexFilter().filter(record=RegexFilter())
+        True
+        """
         if not pyra.config.LOG_BLACKLIST:
             return True
 
@@ -145,7 +279,26 @@ class RegexFilter(logging.Filter):
 
 
 class PublicIPFilter(RegexFilter):
-    """Log filter for public IP addresses."""
+    """
+    Log filter for public IP addresses.
+
+    Class responsible for filtering public IP addresses.
+
+    Attributes
+    ----------
+    regex : re.compile
+        The compiled regex pattern.
+
+    Methods
+    -------
+    replace:
+        Filter that replaces a string within another string.
+
+    Examples
+    --------
+    >>> PublicIPFilter()
+    <pyra.logger.PublicIPFilter object at 0x...>
+    """
 
     def __init__(self):
         super(PublicIPFilter, self).__init__()
@@ -153,7 +306,29 @@ class PublicIPFilter(RegexFilter):
         # Currently only checking for ipv4 addresses
         self.regex = re.compile(pattern=r'[0-9]+(?:[.-][0-9]+){3}(?!\d*-[a-z0-9]{6})')
 
-    def replace(self, text, ip):
+    def replace(self, text: str, ip: str) -> str:
+        """
+        Filter a public address.
+
+        Filter the given ip address out of the given text. The ip address will only be filter if it is public.
+
+        Parameters
+        ----------
+        text : str
+            The text to replace the ip address within.
+        ip : str
+            The ip address to replace with asterisks.
+
+        Returns
+        -------
+        str
+            The original text with the ip address replaced.
+
+        Examples
+        --------
+        >>> PublicIPFilter().replace(text='Testing 172.1.7.5', ip='172.1.7.5')
+        'Testing ***.***.***.***'
+        """
         if helpers.is_public_ip(ip.replace('-', '.')):
             partition = '-' if '-' in ip else '.'
             return text.replace(ip, partition.join(['***'] * 4))
@@ -161,7 +336,26 @@ class PublicIPFilter(RegexFilter):
 
 
 class EmailFilter(RegexFilter):
-    """Log filter for email addresses."""
+    """
+    Log filter for email addresses.
+
+    Class responsible for filtering email addresses.
+
+    Attributes
+    ----------
+    regex : re.compile
+        The compiled regex pattern.
+
+    Methods
+    -------
+    replace:
+        Filter that replaces a string within another string.
+
+    Examples
+    --------
+    >>> EmailFilter()
+    <pyra.logger.EmailFilter object at 0x...>
+    """
 
     def __init__(self):
         super(EmailFilter, self).__init__()
@@ -170,14 +364,53 @@ class EmailFilter(RegexFilter):
                                 r'(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)',
                                 flags=re.IGNORECASE)
 
-    def replace(self, text, email):
+    def replace(self, text: str, email: str) -> str:
+        """
+        Filter an email address.
+
+        Filter the given email address out of the given text.
+
+        Parameters
+        ----------
+        text : str
+            The text to replace the email address within.
+        email : str
+            The email address to replace with asterisks.
+
+        Returns
+        -------
+        str
+            The original text with the email address replaced.
+
+        Examples
+        --------
+        >>> EmailFilter().replace(text='Testing example@example.com', email='example@example.com')
+        'Testing ****************@********'
+        """
         email_parts = email.partition('@')
         return text.replace(email, 16 * '*' + email_parts[1] + 8 * '*')
 
 
 class PlexTokenFilter(RegexFilter):
     """
-    Log filter for X-Plex-Token
+    Log filter for X-Plex-Token.
+
+    Class responsible for filtering Plex tokens.
+
+    Attributes
+    ----------
+    regex : re.compile
+        The compiled regex pattern.
+
+    Methods
+    -------
+    replace:
+        Filter that replaces a string within another string.
+
+    Examples
+    --------
+    >>> PlexTokenFilter()
+    <pyra.logger.PlexTokenFilter object at 0x...>
     """
 
     def __init__(self):
@@ -185,15 +418,49 @@ class PlexTokenFilter(RegexFilter):
 
         self.regex = re.compile(pattern=r'X-Plex-Token(?:=|%3D)([a-zA-Z0-9]+)')
 
-    def replace(self, text, token):
+    def replace(self, text: str, token: str) -> str:
+        """
+        Filter a token.
+
+        Filter the given token out of the given text.
+
+        Parameters
+        ----------
+        text : str
+            The text to replace the token within.
+        token : str
+            The token to replace with asterisks.
+
+        Returns
+        -------
+        str
+            The original text with the token replaced.
+
+        Examples
+        --------
+        >>> PlexTokenFilter().replace(text='x-plex-token=5FBCvHo9vFf9erz8ssLQ', token='5FBCvHo9vFf9erz8ssLQ')
+        'x-plex-token=****************'
+        """
         return text.replace(token, 16 * '*')
 
 
 @contextlib.contextmanager
-def listener(logger):
+def listener(logger: logging.Logger):
     """
+    Create a QueueListener.
+
     Wrapper that create a QueueListener, starts it and automatically stops it.
     To be used in a with statement in the main process, for multiprocessing.
+
+    Parameters
+    ----------
+    logger : logging.Logger
+        The logger object.
+
+    Examples
+    --------
+    >>> logger = get_logger(name='retroarcher')
+    >>> listener(logger=logger)
     """
 
     global queue
@@ -225,11 +492,20 @@ def listener(logger):
 
 
 def init_multiprocessing(logger: logging.Logger):
-    """Remove all handlers and add QueueHandler on top.
+    """
+    Remove all handlers and add QueueHandler on top.
 
     This should only be called inside a multiprocessing worker process, since it changes the logger completely.
 
-    :param logger: Logger - The logger to initialize for multiprocessing.
+    Parameters
+    ----------
+    logger : logging.Logger
+        The logger to initialize for multiprocessing.
+
+    Examples
+    --------
+    >>> logger = get_logger(name='retroarcher')
+    >>> init_multiprocessing(logger=logger)
     """
 
     # Multiprocess logging may be disabled.
@@ -250,12 +526,25 @@ def init_multiprocessing(logger: logging.Logger):
 
 
 def get_logger(name: str) -> logging.Logger:  # this also exists in helpers.py to prevent circular imports
-    """Return the logger for the given name.
+    """
+    Get a logger.
 
-    Additionally, will replace logger.warn with logger.warning.
+    Return the logging.Logger object for a given name. Additionally, replaces logger.warn with logger.warning.
 
-    :param name: str - The name of the logger to get.
-    :return Logger object
+    Parameters
+    ----------
+    name : str
+        The name of the logger to get.
+
+    Returns
+    -------
+    logging.Logger
+        The logging.Logger object.
+
+    Examples
+    --------
+    >>> get_logger(name='retroarcher')
+    <Logger retroarcher (WARNING)>
     """
     logger = logging.getLogger(name)
     logger.warn = logger.warning  # replace warn with warning
@@ -264,7 +553,15 @@ def get_logger(name: str) -> logging.Logger:  # this also exists in helpers.py t
 
 
 def setup_loggers():
-    """Setup all loggers"""
+    """
+    Setup all loggers.
+
+    Setup all the available loggers.
+
+    Examples
+    --------
+    >>> setup_loggers()
+    """
     loggers_list = [py_name, 'werkzeug']
 
     submodules = pkgutil.iter_modules(pyra.__path__)
@@ -276,14 +573,27 @@ def setup_loggers():
         init_logger(log_name=logger_name)
 
 
-def init_logger(log_name: str | None) -> logging.Logger | bool:
-    """Create and return a logger from the given log name.
-
-    :param log_name: The name of the log to create.
-    :return: Logger object - False if log_name not supplied.
+def init_logger(log_name: str) -> logging.Logger:
     """
-    if not log_name:
-        return False
+    Create a logger.
+
+    Creates a logging.Logger object from the given log name.
+
+    Parameters
+    ----------
+    log_name : str
+        The name of the log to create.
+
+    Returns
+    -------
+    logging.Logger
+        The logging.Logger object.
+
+    Examples
+    --------
+    >>> init_logger(log_name='retroarcher')
+    <Logger retroarcher (INFO)>
+    """
     logger = logging.getLogger(name=log_name)
 
     # Close and remove old handlers. This is required to reinitialize the loggers at runtime
@@ -344,8 +654,7 @@ def init_logger(log_name: str | None) -> logging.Logger | bool:
     # replace warn
     # logger.warn = logger.warning
 
-    if log_name:
-        return logger
+    return logger
 
 
 def _init_hooks(logger: logging.Logger, global_exceptions: bool = True, thread_exceptions: bool = True,
@@ -399,7 +708,15 @@ def _init_hooks(logger: logging.Logger, global_exceptions: bool = True, thread_e
 
 
 def shutdown():
-    """Stops logging."""
+    """
+    Stop logging.
+
+    Shutdown logging.
+
+    Examples
+    --------
+    >>> shutdown()
+    """
     logging.shutdown()
 
 

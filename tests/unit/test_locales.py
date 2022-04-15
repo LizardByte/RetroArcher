@@ -1,6 +1,8 @@
-"""test_locales.py
+"""
+..
+   test_locales.py
 
-unit tests for pyra.locales.py
+Unit tests for pyra.locales.py.
 """
 # standard imports
 import inspect

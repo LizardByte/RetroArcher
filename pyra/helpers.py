@@ -1,6 +1,8 @@
-"""helpers.py
+"""
+..
+   helpers.py
 
-Lots of helper functions.
+Many reusable helper functions.
 """
 # future imports
 from __future__ import annotations
@@ -12,27 +14,54 @@ import re
 import os
 import socket
 import time
-from typing import Union
+from typing import Optional, Union
 import webbrowser
 
 # lib imports
 from IPy import IP
 
 
-def check_folder_writable(folder: str | None, fallback: str, name: str) -> tuple[str, Union[bool, None]]:
-    """Checks if folder or fallback folder is writeable.
+def check_folder_writable(fallback: str, name: str, folder: Optional[str] = None) -> tuple[str, Optional[bool]]:
+    """
+    Check if folder or fallback folder is writeable.
 
-    :param folder: str - Primary folder to check.
-    :param fallback: str - Secondary folder to check.
-    :param name: str - Short name of folder.
-    :return bool - True if writeable, otherwise False.
+    This function ensures that the folder can be created, if it doesn't exist. It also ensures there are sufficient
+    permissions to write to the folder. If the primary `folder` fails, it falls back to the `fallback` folder.
+
+    Parameters
+    ----------
+    fallback : str
+        Secondary folder to check, if the primary folder fails.
+    name : str
+        Short name of folder.
+    folder : str, optional
+        Primary folder to check.
+
+    Returns
+    -------
+    tuple[str, Optional[bool]]
+        A tuple containing:
+            folder : str
+                The original or fallback folder.
+            Optional[bool]
+                True if writeable, otherwise False. Nothing is returned if there is an error attempting to create the
+                directory.
+
+    Examples
+    --------
+    >>> check_folder_writable(
+    ...     folder='logs',
+    ...     fallback='backup_logs',
+    ...     name='logs'
+    ...     )
+    ('logs', True)
     """
     if not folder:
         folder = fallback
 
-    if not os.path.isdir(s=folder):
+    if not os.path.isdir(s=folder):  # if directory doesn't exist
         try:
-            os.makedirs(name=folder)
+            os.makedirs(name=folder)  # try to make the directory
         except OSError as e:
             log.error(msg=f"Could not create {name} dir '{folder}': {e}")
             if fallback and folder != fallback:
@@ -53,21 +82,52 @@ def check_folder_writable(folder: str | None, fallback: str, name: str) -> tuple
 
 
 def get_logger(name: str) -> logging.Logger:
-    """Return the logger for the given name.
+    """
+    Get the logger for the given name.
 
     This function also exists in `logger.py` to prevent circular imports.
 
-    :param name: str - name of logger
-    :return: Logger object
+    Parameters
+    ----------
+    name : str
+        Name of logger.
+
+    Returns
+    -------
+    logging.Logger
+        The logging.Logger object.
+
+    Examples
+    --------
+    >>> get_logger(name='my_log')
+    <Logger my_log (WARNING)>
     """
     return logging.getLogger(name=name)
 
 
 def is_public_ip(host: str) -> bool:
-    """Check if ip address is public or not.
+    """
+    Check if ip address is public or not.
 
-    :param host: str - IP address
-    :return: bool - True if ip address is public
+    This function is used to determine if the given host address is a public ip address or not.
+
+    Parameters
+    ----------
+    host : str
+        IP address to check.
+
+    Returns
+    -------
+    bool
+        True if ip address is public, otherwise False.
+
+    Examples
+    --------
+    >>> is_public_ip(host='www.google.com')
+    True
+
+    >>> is_public_ip(host='192.168.1.1')
+    False
     """
     ip = is_valid_ip(address=get_ip(host=host))
     if ip and ip.iptype() == 'PUBLIC':
@@ -76,10 +136,28 @@ def is_public_ip(host: str) -> bool:
 
 
 def get_ip(host: str) -> str:
-    """Get ip address from host name.
+    """
+    Get IP address from host name.
 
-    :param host: str - Host name
-    :return: str - IP address of host name
+    This function is used to get the IP address of a given host name.
+
+    Parameters
+    ----------
+    host : str
+        Host name to get ip address of.
+
+    Returns
+    -------
+    str
+        IP address of host name.
+
+    Examples
+    --------
+    >>> get_ip(host='192.168.1.1')
+    '192.168.1.1'
+
+    >>> get_ip(host='www.google.com')
+    '172.253.63.147'
     """
     if is_valid_ip(address=host):
         return host
@@ -93,11 +171,29 @@ def get_ip(host: str) -> str:
             return ip_address
 
 
-def is_valid_ip(address: str) -> IP | bool:
-    """Check if address is a valid ip address.
+def is_valid_ip(address: str) -> Union[IP, bool]:
+    """
+    Check if address is an ip address.
 
-    :param address: str - Address to check.
-    :return: IP object | bool - IP object if address is an ip address, otherwise False.
+    This function is used to determine if the given address is an ip address or not.
+
+    Parameters
+    ----------
+    address : str
+        Address to check.
+
+    Returns
+    -------
+    Union[IP, bool]
+        IP object if address is an ip address, otherwise False.
+
+    Examples
+    --------
+    >>> is_valid_ip(address='192.168.1.1')
+    True
+
+    >>> is_valid_ip(address='0.0.0.0.0')
+    False
     """
     try:
         return IP(address)
@@ -108,19 +204,52 @@ def is_valid_ip(address: str) -> IP | bool:
 
 
 def now(separate: bool = False) -> str:
-    """Function to get the current time, formatted.
+    """
+    Function to get the current time, formatted.
 
-    :param separate: bool - True to separate time with a combination of dashes (`-`) and colons (`:`). Default = False
-    :return: str - The current time formatted as YMDHMS
+    This function will return the current time formatted as YMDHMS
+
+    Parameters
+    ----------
+    separate : bool, default = False
+        True to separate time with a combination of dashes (`-`) and colons (`:`).
+
+    Returns
+    -------
+    str
+        The current time formatted as YMDHMS.
+
+    Examples
+    --------
+    >>> now()
+    '20220410184531'
+
+    >>> now(separate=True)
+    '2022-04-10 18:46:12'
     """
     return timestamp_to_YMDHMS(ts=timestamp(), separate=separate)
 
 
 def open_url_in_browser(url: str) -> bool:
-    """Open a given url in the default browser.
+    """
+    Open a given url in the default browser.
 
-    :param url: str - The url to open
-    :return bool - True if no error, otherwise False
+    Attempt to open the given url in the default web browser, in a new tab.
+
+    Parameters
+    ----------
+    url : str
+        The url to open.
+
+    Returns
+    -------
+    bool
+        True if no error, otherwise False.
+
+    Examples
+    --------
+    >>> open_url_in_browser(url='https://www.google.com')
+    True
     """
     try:
         webbrowser.open(url=url, new=2)
@@ -131,19 +260,49 @@ def open_url_in_browser(url: str) -> bool:
 
 
 def timestamp() -> int:
-    """Function to get the current time.
+    """
+    Function to get the current time.
 
-    :return: int - The current time as a timestamp integer.
+    This function uses time.time() to get the current time.
+
+    Returns
+    -------
+    int
+        The current time as a timestamp integer.
+
+    Examples
+    --------
+    >>> timestamp()
+    1649631005
     """
     return int(time.time())
 
 
 def timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:
-    """Function to convert timestamp to YMDHMS format.
+    """
+    Convert timestamp to YMDHMS format.
 
-    :param ts: int - The timestamp to convert.
-    :param separate: bool - True to separate time with a combination of dashes (`-`) and colons (`:`). Default = False
-    :return: str - The current time formatted as YMDHMS
+    Convert a given timestamp to YMDHMS format.
+
+    Parameters
+    ----------
+    ts : int
+        The timestamp to convert.
+    separate : bool, default = False
+        True to separate time with a combination of dashes (`-`) and colons (`:`).
+
+    Returns
+    -------
+    str
+        The timestamp formatted as YMDHMS.
+
+    Examples
+    --------
+    >>> timestamp_to_YMDHMS(ts=timestamp(), separate=False)
+    '20220410185142'
+
+    >>> timestamp_to_YMDHMS(ts=timestamp(), separate=True)
+    '2022-04-10 18:52:09'
     """
     dt = timestamp_to_datetime(ts=ts)
     if separate:
@@ -152,10 +311,25 @@ def timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:
 
 
 def timestamp_to_datetime(ts: float) -> datetime.datetime:
-    """Function to convert timestamp to datetime object.
+    """
+    Convert timestamp to datetime object.
 
-    :param ts: float - The timestamp to convert.
-    :return: datetime object
+    This function returns the result of `datetime.datetime.fromtimestamp()`.
+
+    Parameters
+    ----------
+    ts : float
+        The timestamp to convert.
+
+    Returns
+    -------
+    datetime.datetime
+        Object `datetime.datetime`.
+
+    Examples
+    --------
+    >>> timestamp_to_datetime(ts=timestamp())
+    datetime.datetime(20..., ..., ..., ..., ..., ...)
     """
     return datetime.datetime.fromtimestamp(ts)
 

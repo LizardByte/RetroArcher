@@ -56,6 +56,11 @@ jobs:
         run: |
           python ./scripts/_locale.py --compile
 
+      - name: Compile Docs
+        run: |
+          cd docs
+          make html
+
       - name: Build pyinstaller package
         run: |
           python ./scripts/build.py

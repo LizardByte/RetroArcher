@@ -31,6 +31,11 @@ jobs:
         run: |
           python ./scripts/_locale.py --compile
 
+      - name: Compile Docs
+        run: |
+          cd docs
+          make html
+
       - name: Test with pytest
         run: |
           python -m pytest -v
@@ -53,4 +58,4 @@ jobs:
 
       - name: Test with flake8
         run: |
-          python -m flake8 pyra/ scripts/ tests/ --max-line-length 120
+          python -m flake8 --verbose

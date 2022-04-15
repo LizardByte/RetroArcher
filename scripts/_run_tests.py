@@ -1,7 +1,11 @@
-"""_run_tests.py
+"""
+..
+   _run_tests.py
 
 This is not intended to be run by the end user, but only to supplement the `python_tests.yml` github action.
 
+Notes
+-----
 Not currently used, but may be useful for further testing of tray_icon or other features.
 """
 # standard imports
