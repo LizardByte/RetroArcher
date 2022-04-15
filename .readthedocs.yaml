@@ -21,8 +21,12 @@ sphinx:
 formats: all
 
 python:
-   install:
-      - requirements: requirements-dev.txt
-      - method: pip
-        path: .
-   system_packages: true
+  install:
+    - requirements: requirements.txt
+    - method: pip
+      path: .
+      
+    - requirements: requirements-dev.txt
+    - method: pip
+      path: .
+  system_packages: true
