@@ -28,8 +28,8 @@ Contributing
 
          .. Tip:: Look at examples of existing code in the project!
 
-      - Is the code is well commented?
-      - Were docstrings updated for new methods or modified methods?
+      - Is the code well commented?
+      - Were docstrings updated for new or modified methods?
       - Were tests added for new methods?
       - Were tests adjusted for modified methods?
 
