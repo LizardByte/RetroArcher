@@ -8,7 +8,6 @@ Functions related to building, initializing, updating, and compiling localizatio
 import argparse
 import os
 import subprocess
-import sys
 
 project_name = 'RetroArcher'
 
