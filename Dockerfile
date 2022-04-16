@@ -11,14 +11,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # setup app directory
 WORKDIR /app
-COPY docs /app
-COPY locale /app
-COPY pyra /app
-COPY scripts /app
-COPY web /app
+COPY . /app
 
 # compile locales
-RUN python ./scripts/_locale.py --compile
+RUN python scripts/_locale.py --compile
 
 # compile docs
 RUN cd docs && make html
