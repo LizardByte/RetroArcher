@@ -19,7 +19,7 @@ RUN python scripts/_locale.py --compile
 # compile docs
 RUN \
   cd docs && \
-  sphinx-build -b html source build
+  sphinx-build -M html source build
 
 # setup user
 RUN \
