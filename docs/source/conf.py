@@ -24,6 +24,7 @@ root_dir = os.path.dirname(source_dir)  # the root folder directory
 try:
     sys.path.insert(0, root_dir)
     from pyra import definitions  # put this in a try/except to prevent flake8 warning
+    from pyra.version import version
 except Exception:
     pass
 
@@ -35,7 +36,7 @@ author = 'ReenigneArcher'
 # The full version, including alpha/beta/rc tags
 # todo get version automatically
 # release = '0.0.0'
-version = '0.0.0'
+# version = '0.0.0'
 
 
 # -- General configuration ---------------------------------------------------

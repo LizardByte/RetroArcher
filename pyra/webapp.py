@@ -162,6 +162,27 @@ def favicon() -> flask.send_from_directory:
                                path='retroarcher.ico', mimetype='image/vnd.microsoft.icon')
 
 
+@app.route('/status')
+def status() -> dict:
+    """
+    Check the status of RetroArcher.
+
+    This is useful for a healthcheck from Docker, and may have many other uses in the future for third party
+    applications.
+
+    Returns
+    -------
+    dict
+        A dictionary of the status.
+
+    Examples
+    --------
+    >>> status()
+    """
+    web_status = {'result': 'success', 'message': 'Ok'}
+    return web_status
+
+
 @app.route('/test_logger')
 def test_logger() -> str:
     """
