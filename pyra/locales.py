@@ -3,6 +3,18 @@
    locales.py
 
 Functions related to localization.
+
+Localization (also referred to as l10n) is the process of adapting a product or service to a specific locale.
+Translation is only one of several elements in the localization process. In addition to translation, the localization
+process may also include:
+- Adapting design and layout to properly display translated text in the language of the locale
+- Adapting sorting functions to the alphabetical order of a specific locale
+- Changing formats for date and time, addresses, numbers, currencies, etc. for specific target locales
+- Adapting graphics to suit the expectations and tastes of a target locale
+- Modifying content to suit the tastes and consumption habits of a target locale
+
+The aim of localization is to give a product or service the look and feel of having been created specifically for a
+target market, no matter their language, cultural preferences, or location.
 """
 # standard imports
 import gettext
