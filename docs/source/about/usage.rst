@@ -2,27 +2,10 @@
 
 Usage
 =====
-The recommended method for running RetroArcher is to use the `binaries`_ bundled with the `latest release`_.
 
-Binaries
---------
-Binaries of RetroArcher are created for each release. They are available for Linux, MacOS, and Windows.
-Binaries can be found in the `latest release`_.
-
-Docker
-------
-.. todo:: Docker images will be available on `Dockerhub.io`_ and `ghcr.io`_
-
-Source
-------
-.. Caution:: Installing from source is not recommended most users.
-
-#. Follow the steps in :ref:`Build <about/build:build>` except for :ref:`Compile Binary <about/build:compile binary>`.
-#. Run the following within your activated venv.
-
-   .. code-block:: bash
-
-      python retroarcher.py
+Network
+-------
+RetroArcher will be available on port 9696 by default.
 
 Arguments
 ---------
@@ -37,7 +20,3 @@ To get a list of available arguments run the following:
       .. code-block:: bash
 
          python retroarcher.py --help
-
-.. _latest release: https://github.com/RetroArcher/RetroArcher/releases/latest
-.. _Dockerhub.io: https://hub.docker.com/repository/docker/retroarcher/retroarcher
-.. _ghcr.io: https://github.com/orgs/RetroArcher/packages?repo_name=retroarcher

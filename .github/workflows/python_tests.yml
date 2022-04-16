@@ -3,7 +3,7 @@ name: Python Tests
 on:
   pull_request:
     branches: [master, nightly]
-    types: [opened, synchronize, edited, reopened]
+    types: [opened, synchronize, reopened]
 
 jobs:
   pytest:

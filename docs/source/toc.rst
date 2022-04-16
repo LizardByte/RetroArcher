@@ -3,7 +3,9 @@
    :caption: About
 
    about/overview
+   about/installation
    about/usage
+   about/docker
    about/build
 
 .. toctree::
@@ -28,4 +30,5 @@
    pyra_docs/logger
    pyra_docs/threads
    pyra_docs/tray_icon
+   pyra_docs/version
    pyra_docs/webapp

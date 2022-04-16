@@ -23,6 +23,7 @@ from pyra import helpers
 from pyra import locales
 from pyra import logger
 from pyra import threads
+from pyra import version
 from pyra import webapp
 
 py_name = 'pyra'
@@ -147,8 +148,8 @@ def main():
     args = parser.parse_args()
 
     if args.version:
-        print('todo_v')  # todo
-        SystemExit()
+        print(f'v{version.version}')
+        sys.exit()
 
     if args.config:
         config_file = args.config

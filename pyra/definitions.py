@@ -149,6 +149,9 @@ class Paths:
             self.DATA_DIR = self.ROOT_DIR
             self.BINARY_PATH = os.path.abspath(os.path.join(self.DATA_DIR, 'retroarcher.py'))
 
+        if pyra.DOCKER:  # docker install
+            self.DATA_DIR = '/config'  # overwrite the value that was already set
+
         self.DOCS_DIR = os.path.join(self.ROOT_DIR, 'docs', 'build', 'html')
         self.LOCALE_DIR = os.path.join(self.ROOT_DIR, 'locale')
         self.LOG_DIR = os.path.join(self.DATA_DIR, 'logs')

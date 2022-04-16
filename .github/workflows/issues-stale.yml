@@ -13,10 +13,10 @@ jobs:
         uses: actions/stale@v5
         with:
           stale-issue-message: >
-            This issue is stale because it has been open for 30 days with no activity.
-            Remove the stale label or comment, otherwise this will be closed in 5 days.
+            This issue is stale because it has been open for 90 days with no activity.
+            Remove the stale label or comment, otherwise this will be closed in 10 days.
           close-issue-message: >
-            This issue was closed because it has been stalled for 5 days with no activity.
+            This issue was closed because it has been stalled for 10 days with no activity.
           stale-issue-label: 'stale'
           exempt-issue-labels: 'added,fixed,type:enhancement,status:awaiting-triage,status:in-progress'
           stale-pr-message: >
@@ -25,7 +25,7 @@ jobs:
           close-pr-message: >
             This PR was closed because it has been stalled for 10 days with no activity.
           stale-pr-label: 'stale'
-          exempt-pr-labels: 'status:in-progress'
+          exempt-pr-labels: 'dependencies,status:in-progress'
           days-before-stale: 90
           days-before-close: 10
 

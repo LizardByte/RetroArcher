@@ -66,7 +66,11 @@ def initialize(config_file: str) -> bool:
         global CONFIG
         global CONFIG_FILE
         global DEBUG
+        global DOCKER
         global _INITIALIZED
+
+        if os.getenv('RETROARCHER_DOCKER', False):  # the environment variable is set in the Dockerfile
+            DOCKER = True
 
         try:
             CONFIG = config.create_config(config_file=config_file)

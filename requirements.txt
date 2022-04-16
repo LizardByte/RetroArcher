@@ -3,6 +3,7 @@ configobj==5.0.6
 Flask==2.1.1
 Flask-Babel==2.0.0
 IPy==1.01
+m2r2==0.3.2
 numpydoc==1.2.1
 Pillow==9.1.0
 pystray==0.19.3
