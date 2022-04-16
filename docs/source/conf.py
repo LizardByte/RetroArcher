@@ -13,7 +13,6 @@ from datetime import datetime
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#
 import os
 import sys
 
@@ -24,9 +23,9 @@ root_dir = os.path.dirname(source_dir)  # the root folder directory
 try:
     sys.path.insert(0, root_dir)
     from pyra import definitions  # put this in a try/except to prevent flake8 warning
-    from pyra.version import version
+    from pyra import version
 except Exception:
-    pass
+    sys.exit(1)
 
 # -- Project information -----------------------------------------------------
 project = definitions.Names().name
@@ -34,9 +33,7 @@ copyright = f'{datetime.now ().year}, {project}'
 author = 'ReenigneArcher'
 
 # The full version, including alpha/beta/rc tags
-# todo get version automatically
-# release = '0.0.0'
-# version = '0.0.0'
+version = version.version
 
 
 # -- General configuration ---------------------------------------------------
@@ -72,7 +69,6 @@ html_logo = os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'logo-ci
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
 html_theme = 'sphinx_rtd_theme'
 
 html_theme_options = {
