@@ -12,6 +12,7 @@ import datetime
 import logging
 import re
 import os
+import requests
 import socket
 import time
 from typing import Optional, Union
@@ -79,6 +80,40 @@ def check_folder_writable(fallback: str, name: str, folder: Optional[str] = None
             return folder, False
 
     return folder, True
+
+
+def docker_healthcheck() -> bool:
+    """
+    Check the health of the docker container.
+
+    .. Warning:: This is only meant to be called by `retroarcher.py`, and the interpreter should be immediate exited
+       following the result.
+
+    The default port is used considering that the container will use the default port internally.
+    The external port should not make any difference.
+
+    Returns
+    -------
+    bool
+        True if status okay, otherwise False.
+
+    Examples
+    --------
+    >>> docker_healthcheck()
+    True
+    """
+    protocols = ['http', 'https']
+
+    for p in protocols:
+        try:
+            response = requests.get(url=f'{p}://localhost:9696/status')
+        except requests.exceptions.ConnectionError:
+            pass
+        else:
+            if response.status_code == 200:
+                return True
+
+    return False  # did not get a valid response, so return False
 
 
 def get_logger(name: str) -> logging.Logger:
