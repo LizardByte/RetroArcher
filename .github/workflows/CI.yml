@@ -162,12 +162,12 @@ jobs:
           context: ./
           file: ./Dockerfile
           load: true
-          tags: ghcr.io/${{ env.BASE_TAG }}:${{ github.ref_name }}:test
+          tags: ghcr.io/${{ env.BASE_TAG }}:test
 
       - name: Test Image
         run: |
           docker run -d \
-          ghcr.io/${{ env.BASE_TAG }}:${{ github.ref_name }}:test
+          ghcr.io/${{ env.BASE_TAG }}:test
 
       - name: Build and push (non master)
         if: ${{ github.event_name == 'push' && github.ref != 'refs/heads/master' }}
