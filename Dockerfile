@@ -35,4 +35,4 @@ VOLUME /config
 CMD ["python", "retroarcher.py"]
 
 EXPOSE 9696
-HEALTHCHECK --start-period=90s CMD curl -ILfSs http://localhost:9696/status > /dev/null || curl -ILfkSs https://localhost:9696/status > /dev/null || exit 1
+HEALTHCHECK --start-period=90s CMD python retroarcher.py --docker_healthcheck || exit 1

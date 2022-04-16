@@ -134,6 +134,7 @@ def main():
     parser.add_argument('--config', help=_('Specify a config file to use'))
     parser.add_argument('--debug', action='store_true', help=_('Use debug logging level'))
     parser.add_argument('--dev', action='store_true', help=_('Start RetroArcher in the development environment'))
+    parser.add_argument('--docker_healthcheck', action='store_true', help=_('Health check the container and exit.'))
     parser.add_argument('--nolaunch', action='store_true', help=_('Do not open RetroArcher in browser'))
     parser.add_argument(
         '-p', '--port', default=9696, type=IntRange(21, 65535),
@@ -146,6 +147,11 @@ def main():
     )
 
     args = parser.parse_args()
+
+    if args.docker_healthcheck:
+        status = helpers.docker_healthcheck()
+        exit_code = int(not status)
+        sys.exit(exit_code)
 
     if args.version:
         print(f'v{version.version}')
