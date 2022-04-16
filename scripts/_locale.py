@@ -8,6 +8,7 @@ Functions related to building, initializing, updating, and compiling localizatio
 import argparse
 import os
 import subprocess
+import sys
 
 project_name = 'RetroArcher'
 
@@ -46,7 +47,7 @@ def babel_extract():
     ]
 
     print(commands)
-    subprocess.run(args=commands, cwd=root_dir)
+    subprocess.check_output(args=commands, cwd=root_dir)
 
 
 def babel_init(locale_code: str):
@@ -64,7 +65,7 @@ def babel_init(locale_code: str):
     ]
 
     print(commands)
-    subprocess.run(args=commands, cwd=root_dir)
+    subprocess.check_output(args=commands, cwd=root_dir)
 
 
 def babel_update():
@@ -79,7 +80,7 @@ def babel_update():
     ]
 
     print(commands)
-    subprocess.run(args=commands, cwd=root_dir)
+    subprocess.check_output(args=commands, cwd=root_dir)
 
 
 def babel_compile():
@@ -92,7 +93,7 @@ def babel_compile():
     ]
 
     print(commands)
-    subprocess.run(args=commands, cwd=root_dir)
+    subprocess.check_output(args=commands, cwd=root_dir)
 
 
 if __name__ == '__main__':
