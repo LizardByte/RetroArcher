@@ -42,6 +42,7 @@ version = version.version
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'm2r2',  # enable markdown files
     'numpydoc',  # this automatically loads `sphinx.ext.autosummary` as well
     'sphinx.ext.autodoc',  # autodocument modules
     'sphinx.ext.autosectionlabel',
@@ -56,6 +57,9 @@ extensions = [
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['toc.rst']
+
+# Extensions to include.
+source_suffix = ['.rst', '.md']
 
 
 # -- Options for HTML output -------------------------------------------------

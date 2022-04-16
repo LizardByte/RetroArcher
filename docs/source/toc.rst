@@ -5,6 +5,7 @@
    about/overview
    about/installation
    about/usage
+   about/docker
    about/build
 
 .. toctree::

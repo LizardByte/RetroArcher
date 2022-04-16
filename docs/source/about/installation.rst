@@ -11,7 +11,9 @@ Binaries can be found in the `latest release`_.
 
 Docker
 ------
-Docker images are available on `Dockerhub.io`_ and `ghcr.io`_
+Docker images are available on `Dockerhub.io`_ and `ghcr.io`_.
+
+See :ref:`Docker <about/docker:docker>` for additional information.
 
 Source
 ------

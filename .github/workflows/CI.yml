@@ -192,3 +192,13 @@ jobs:
             ghcr.io/${{ env.BASE_TAG }}:latest
             ${{ env.BASE_TAG }}:${{ needs.check_changelog.outputs.next_version }}
             ghcr.io/${{ env.BASE_TAG }}:${{ needs.check_changelog.outputs.next_version }}
+
+      - name: Update Docker Hub Description
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}  # token is not currently supported
+          repository: ${{ env.BASE_TAG }}
+          short-description: ${{ github.event.repository.description }}
+          readme-filepath: ./DOCKER_README.md

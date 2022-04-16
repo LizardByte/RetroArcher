@@ -69,11 +69,7 @@ def initialize(config_file: str) -> bool:
         global DOCKER
         global _INITIALIZED
 
-        try:
-            os.environ['RETROARCHER_DOCKER']  # the environment variable is set in the Dockerfile
-        except KeyError:
-            pass
-        else:
+        if os.getenv('RETROARCHER_DOCKER', False):  # the environment variable is set in the Dockerfile
             DOCKER = True
 
         try:

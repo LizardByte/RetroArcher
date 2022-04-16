@@ -3,14 +3,36 @@ FROM python:3.9.12-slim-bullseye
 LABEL maintainer="RetroArcher"
 
 ENV RETROARCHER_DOCKER=True
+ENV TZ=UTC
 
+# setup python requirements
 COPY requirements.txt .
-COPY docs .
-COPY locale .
-COPY pyra .
-COPY scripts .
-COPY web .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# setup app directory
+WORKDIR /app
+COPY docs /app
+COPY locale /app
+COPY pyra /app
+COPY scripts /app
+COPY web /app
+
+# compile locales
+RUN python ./scripts/_locale.py --compile
+
+# compile docs
+RUN cd docs && make html
+
+# setup user
+RUN \
+  groupadd -g 1000 retroarcher && \
+  useradd -u 1000 -g 1000 retroarcher
+
+# create config directory
+RUN \
+  mkdir /config && \
+  touch /config/DOCKER
+VOLUME /config
 
 CMD ["python", "retroarcher.py"]
 
