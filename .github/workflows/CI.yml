@@ -176,7 +176,7 @@ jobs:
           echo ::set-output name=branch::${GITHUB_REF#refs/heads/}
           echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           echo ::set-output name=commit::${GITHUB_SHA}
-          echo ::set-output name=platforms::linux/386,linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64/v8,linux/mips64le,linux/ppc64le,linux/s390x
+          echo ::set-output name=platforms::linux/386,linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
           echo ::set-output name=push::${PUSH}
           echo ::set-output name=tags::${TAGS}
 
