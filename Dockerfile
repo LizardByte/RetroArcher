@@ -1,4 +1,4 @@
-FROM python:3.9.12-slim-bullseye
+FROM python:3.9.6-slim-bullseye
 
 LABEL maintainer="RetroArcher"
 
@@ -7,7 +7,9 @@ ENV TZ=UTC
 
 # setup python requirements
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN \
+  python -m pip install --upgrade pip && \
+  python -m pip install --no-cache-dir -r requirements.txt
 
 # setup app directory
 WORKDIR /app
