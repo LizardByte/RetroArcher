@@ -8,7 +8,7 @@ ENV TZ=UTC
 # setup python requirements
 COPY requirements.txt .
 RUN \
-  python -m pip install --upgrade pip \
+  python -m pip install --upgrade pip && \
   python -m pip install --no-cache-dir -r requirements.txt
 
 # setup app directory
