@@ -68,7 +68,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-2019, ubuntu-18.04, macos-10.15]
-        architecture: [x64, x86]
+        architecture: [x64]
+        include: # additional runs
+        - os: windows-2019
+          architecture: x86
 
     runs-on: ${{ matrix.os }}
     needs: [check_changelog, version_check]
@@ -106,7 +109,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v3  # https://github.com/actions/upload-artifact
         with:
-          name: RetroArcher-${{ runner.os }}
+          name: RetroArcher_${{ runner.os }}_${{ matrix.architecture }}
           if-no-files-found: error  # 'warn' or 'ignore' are also available, defaults to `warn`
           path: |
             ${{ github.workspace }}/dist
@@ -155,10 +158,15 @@ jobs:
           fi
 
           # setup the tags
-          TAGS="${BASE_TAG}:${GITHUB_REF#refs/heads/},ghcr.io/${BASE_TAG}:${GITHUB_REF#refs/heads/}"
+          TAGS=""
 
           if [[ $GITHUB_REF == refs/heads/master ]]; then
             TAGS="${TAGS},${BASE_TAG}:latest,ghcr.io/${BASE_TAG}:latest"
+            TAGS="${TAGS},${BASE_TAG}:master,ghcr.io/${BASE_TAG}:master"
+          elif [[ $GITHUB_REF == refs/heads/nightly ]]; then
+            TAGS="${TAGS},${BASE_TAG}:nightly,ghcr.io/${BASE_TAG}:nightly"
+          else
+            TAGS="${TAGS},${BASE_TAG}:test,ghcr.io/${BASE_TAG}:test"
           fi
 
           if [[ ${NEXT_VERSION} != "" ]]; then
