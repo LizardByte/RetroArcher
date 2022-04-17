@@ -5,6 +5,7 @@ on:
     branches: [nightly]
     paths:  # prevents workflow from running unless these files change
       - 'retroarcher.py'
+      - 'locale/retroarcher.po'
       - 'pyra/**.py'
       - 'web/templates/**'
   workflow_dispatch:
@@ -31,6 +32,20 @@ jobs:
     - name: Update Strings
       run: |
         python ./scripts/_locale.py --extract
+
+    - name: git diff
+      run: |
+        # print the git diff
+        git diff --exit-code locale/retroarcher.po
+
+        # set the variable with minimal output
+        OUTPUT=$(git diff --exit-code --numstat locale/retroarcher.po)
+        echo "git_diff=${OUTPUT}" >> $GITHUB_ENV
+
+    - name: git reset
+      if: ${{ env.git_diff != '1	1	locale/retroarcher.po' }}  # only run if more than 1 line changed
+      run: |
+        git reset --hard
 
     - name: Create/Update Pull Request
       uses: peter-evans/create-pull-request@v4
