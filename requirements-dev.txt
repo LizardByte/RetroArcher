@@ -1,4 +1,4 @@
 -r requirements.txt
 flake8==4.0.1
-pyinstaller==4.10
+pyinstaller==5.0
 pytest==7.1.1
