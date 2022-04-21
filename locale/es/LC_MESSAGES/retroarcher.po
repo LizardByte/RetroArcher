@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2022-04-16 17:30+0000\n"
-"PO-Revision-Date: 2022-04-16 17:37\n"
+"PO-Revision-Date: 2022-04-21 04:38\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -23,14 +23,14 @@ msgstr ""
 #: pyra/tray_icon.py:74
 #, python-format
 msgid "Open %(app_name)s"
-msgstr ""
+msgstr "Abrir %(app_name)s"
 
 #. NOTE: Open Github Releases. "%(github)s" = "GitHUB". Do not translate
 #. "%(github)s".
 #: pyra/tray_icon.py:82
 #, python-format
 msgid "%(github)s Releases"
-msgstr ""
+msgstr "%(github)s Lanzamientos"
 
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:85 web/templates/base.html:49
@@ -42,22 +42,22 @@ msgstr "Donar"
 #: pyra/tray_icon.py:94
 #, python-format
 msgid "Open browser when %(app_name)s starts"
-msgstr ""
+msgstr "Abrir navegador cuando %(app_name)s inicie"
 
 #. NOTE: Disable or turn off icon.
 #: pyra/tray_icon.py:97
 msgid "Disable Icon"
-msgstr ""
+msgstr "Deshabilitar Icono"
 
 #. NOTE: Restart the program.
 #: pyra/tray_icon.py:100
 msgid "Restart"
-msgstr ""
+msgstr "Reiniciar"
 
 #. NOTE: Quit, Stop, End, or Shutdown the program.
 #: pyra/tray_icon.py:102
 msgid "Quit"
-msgstr ""
+msgstr "Salir"
 
 #: web/templates/base.html:45
 msgid "Login"
@@ -65,19 +65,19 @@ msgstr "Iniciar sesión"
 
 #: web/templates/base.html:54
 msgid "Sponsors"
-msgstr ""
+msgstr "Patrocinadores"
 
 #: web/templates/base.html:70
 msgid "Social"
-msgstr ""
+msgstr "Social"
 
 #: web/templates/base.html:75
 msgid "Page"
-msgstr ""
+msgstr "Página"
 
 #: web/templates/base.html:78
 msgid "Group"
-msgstr ""
+msgstr "Grupo"
 
 #: web/templates/base.html:93
 msgid "Support"
@@ -85,19 +85,19 @@ msgstr "Soporte"
 
 #: web/templates/base.html:98
 msgid "Docs"
-msgstr ""
+msgstr "Documentos"
 
 #: web/templates/base.html:102
 msgid "Widget"
-msgstr ""
+msgstr "Widget"
 
 #: web/templates/base.html:105
 msgid "Join"
-msgstr ""
+msgstr "Unirse"
 
 #: web/templates/base.html:109
 msgid "Discussions"
-msgstr ""
+msgstr "Discusiones"
 
 #: web/templates/base.html:114 web/templates/base.html:117
 msgid "Home"
