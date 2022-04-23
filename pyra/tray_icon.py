@@ -78,7 +78,7 @@ def tray_initialize() -> Union[Icon, bool]:
         menu = (
             first_menu_entry,
             Menu.SEPARATOR,
-            # NOTE: Open Github Releases. "%(github)s" = "GitHUB". Do not translate "%(github)s".
+            # NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate "%(github)s".
             MenuItem(text=_('%(github)s Releases') % {'github': 'GitHub'}, action=github_releases),
             MenuItem(
                 # NOTE: Donate to RetroArcher.
@@ -94,7 +94,7 @@ def tray_initialize() -> Union[Icon, bool]:
             MenuItem(text=_('Open browser when %(app_name)s starts') % {'app_name': definitions.Names().name},
                      action=tray_browser, checked=lambda item: config.CONFIG['General']['LAUNCH_BROWSER']),
             # NOTE: Disable or turn off icon.
-            MenuItem(text=_('Disable Icon'), action=tray_disable),
+            MenuItem(text=_('Disable icon'), action=tray_disable),
             Menu.SEPARATOR,
             # NOTE: Restart the program.
             MenuItem(text=_('Restart'), action=tray_restart),
