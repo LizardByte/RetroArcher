@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2022-04-16 17:30+0000\n"
-"PO-Revision-Date: 2022-04-21 04:38\n"
+"PO-Revision-Date: 2022-04-23 21:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Abrir %(app_name)s"
 #: pyra/tray_icon.py:82
 #, python-format
 msgid "%(github)s Releases"
-msgstr "%(github)s Lanzamientos"
+msgstr "Lanzamientos de %(github)s"
 
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:85 web/templates/base.html:49
