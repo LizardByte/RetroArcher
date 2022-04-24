@@ -47,7 +47,7 @@ jobs:
         echo "git_diff=${OUTPUT}" >> $GITHUB_ENV
 
     - name: git reset
-      if: ${{ env.git_diff != '1	1	locale/retroarcher.po' }}  # only run if more than 1 line changed
+      if: ${{ env.git_diff == '1	1	locale/retroarcher.po' }}  # only run if more than 1 line changed
       run: |
         git reset --hard
 
