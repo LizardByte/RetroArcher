@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2022-04-24 00:21+0000\n"
-"PO-Revision-Date: 2022-04-24 00:31\n"
+"PO-Revision-Date: 2022-04-24 01:25\n"
 "Last-Translator: \n"
 "Language-Team: English, United States\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "Open browser when %(app_name)s starts"
 #. NOTE: Disable or turn off icon.
 #: pyra/tray_icon.py:97
 msgid "Disable icon"
-msgstr ""
+msgstr "Disable icon"
 
 #. NOTE: Restart the program.
 #: pyra/tray_icon.py:100
@@ -65,7 +65,7 @@ msgstr "Login"
 
 #: web/templates/base.html:54
 msgid "GitHub Sponsors"
-msgstr ""
+msgstr "GitHub Sponsors"
 
 #: web/templates/base.html:70
 msgid "Social"
@@ -73,11 +73,11 @@ msgstr "Social"
 
 #: web/templates/base.html:75
 msgid "Facebook Page"
-msgstr ""
+msgstr "Facebook Page"
 
 #: web/templates/base.html:78
 msgid "Facebook Group"
-msgstr ""
+msgstr "Facebook Group"
 
 #: web/templates/base.html:93
 msgid "Support"
