@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-04-16 17:30+0000\n"
-"PO-Revision-Date: 2022-04-21 04:38\n"
+"POT-Creation-Date: 2022-04-24 00:21+0000\n"
+"PO-Revision-Date: 2022-04-24 00:31\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Open %(app_name)s"
 msgstr "Open %(app_name)s"
 
-#. NOTE: Open Github Releases. "%(github)s" = "GitHUB". Do not translate
+#. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
 #. "%(github)s".
 #: pyra/tray_icon.py:82
 #, python-format
@@ -46,8 +46,8 @@ msgstr "Open browser when %(app_name)s starts"
 
 #. NOTE: Disable or turn off icon.
 #: pyra/tray_icon.py:97
-msgid "Disable Icon"
-msgstr "Disable Icon"
+msgid "Disable icon"
+msgstr ""
 
 #. NOTE: Restart the program.
 #: pyra/tray_icon.py:100
@@ -64,20 +64,20 @@ msgid "Login"
 msgstr "Login"
 
 #: web/templates/base.html:54
-msgid "Sponsors"
-msgstr "Sponsors"
+msgid "GitHub Sponsors"
+msgstr ""
 
 #: web/templates/base.html:70
 msgid "Social"
 msgstr "Social"
 
 #: web/templates/base.html:75
-msgid "Page"
-msgstr "Page"
+msgid "Facebook Page"
+msgstr ""
 
 #: web/templates/base.html:78
-msgid "Group"
-msgstr "Group"
+msgid "Facebook Group"
+msgstr ""
 
 #: web/templates/base.html:93
 msgid "Support"
