@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-03-11 20:16-0500\n"
-"PO-Revision-Date: 2022-03-12 02:07\n"
+"POT-Creation-Date: 2022-04-24 00:21+0000\n"
+"PO-Revision-Date: 2022-04-24 00:31\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -18,31 +18,100 @@ msgstr ""
 "X-Crowdin-File-ID: 16\n"
 "Language: fr_FR\n"
 
+#. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:74
+#, python-format
+msgid "Open %(app_name)s"
+msgstr ""
+
+#. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
+#. "%(github)s".
+#: pyra/tray_icon.py:82
+#, python-format
+msgid "%(github)s Releases"
+msgstr ""
+
+#. NOTE: Donate to RetroArcher.
+#: pyra/tray_icon.py:85 web/templates/base.html:49
+msgid "Donate"
+msgstr ""
+
+#. NOTE: Open web browser when application starts. Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:94
+#, python-format
+msgid "Open browser when %(app_name)s starts"
+msgstr ""
+
+#. NOTE: Disable or turn off icon.
+#: pyra/tray_icon.py:97
+msgid "Disable icon"
+msgstr ""
+
+#. NOTE: Restart the program.
+#: pyra/tray_icon.py:100
+msgid "Restart"
+msgstr ""
+
+#. NOTE: Quit, Stop, End, or Shutdown the program.
+#: pyra/tray_icon.py:102
+msgid "Quit"
+msgstr ""
+
 #: web/templates/base.html:45
 msgid "Login"
 msgstr ""
 
-#: web/templates/base.html:47
-msgid "Donate"
+#: web/templates/base.html:54
+msgid "GitHub Sponsors"
 msgstr ""
 
-#: web/templates/base.html:49
+#: web/templates/base.html:70
+msgid "Social"
+msgstr ""
+
+#: web/templates/base.html:75
+msgid "Facebook Page"
+msgstr ""
+
+#: web/templates/base.html:78
+msgid "Facebook Group"
+msgstr ""
+
+#: web/templates/base.html:93
 msgid "Support"
 msgstr ""
 
-#: web/templates/base.html:52 web/templates/base.html:55
+#: web/templates/base.html:98
+msgid "Docs"
+msgstr ""
+
+#: web/templates/base.html:102
+msgid "Widget"
+msgstr ""
+
+#: web/templates/base.html:105
+msgid "Join"
+msgstr ""
+
+#: web/templates/base.html:109
+msgid "Discussions"
+msgstr ""
+
+#: web/templates/base.html:114 web/templates/base.html:117
 msgid "Home"
 msgstr ""
 
-#: web/templates/base.html:59 web/templates/base.html:62
+#: web/templates/base.html:121 web/templates/base.html:124
 msgid "Plugins"
 msgstr ""
 
-#: web/templates/base.html:66 web/templates/base.html:69
+#: web/templates/base.html:128 web/templates/base.html:131
 msgid "Config"
 msgstr ""
 
-#: web/templates/base.html:73 web/templates/base.html:76
+#: web/templates/base.html:135 web/templates/base.html:138
 msgid "Users"
 msgstr ""
 
