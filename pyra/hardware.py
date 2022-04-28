@@ -88,7 +88,7 @@ def update_cpu() -> float:
     --------
     >>> update_cpu()
     """
-    cpu_percent = psutil.cpu_percent(interval=None, percpu=False)
+    cpu_percent = min(100, psutil.cpu_percent(interval=None, percpu=False))  # max of 100
 
     if initialized:
         dash_stats['cpu_system'].append(cpu_percent)
@@ -121,13 +121,12 @@ def update_gpu():
             except KeyError:
                 dash_stats[f'gpu_{name}'] = []
             finally:
-                gpu_load = 100 if gpu.load > 1 else gpu.load * 100  # convert decimal to percentage, max of 100
+                gpu_load = min(100, gpu.load * 100)  # convert decimal to percentage, max of 100
                 dash_stats[f'gpu_{name}'].append(gpu_load)
 
     # this is untested
-    amd_counter = 0
-    while amd_counter < amd_gpus:
-        gpu = pyamdgpuinfo.get_gpu(amd_counter)
+    for amd_index in range(amd_gpus):
+        gpu = pyamdgpuinfo.get_gpu(amd_index)
 
         name = f'{gpu.name}-{gpu.gpu_id}'
 
@@ -137,10 +136,8 @@ def update_gpu():
             except KeyError:
                 dash_stats[f'gpu_{name}'] = []
             finally:
-                gpu_load = 100 if gpu.query_load() > 100 else gpu.query_load()  # max of 100
+                gpu_load = min(100, gpu.query_load())  # max of 100
                 dash_stats[f'gpu_{name}'].append(gpu_load)
-
-        amd_counter += 1
 
 
 def update_memory():
@@ -158,7 +155,7 @@ def update_memory():
     --------
     >>> update_memory()
     """
-    memory_percent = psutil.virtual_memory().percent
+    memory_percent = min(100, psutil.virtual_memory().percent)  # max of 100
 
     if initialized:
         dash_stats['memory_system'].append(memory_percent)
@@ -240,7 +237,7 @@ def update():
         # cpu stats per process
         proc_cpu_percent = None
         try:
-            proc_cpu_percent = p.cpu_percent()  # get current value
+            proc_cpu_percent = min(100, p.cpu_percent())  # get current value, max of 100
         except psutil.NoSuchProcess:
             pass
         finally:
@@ -255,7 +252,7 @@ def update():
         # memory stats per process
         proc_memory_percent = None
         try:
-            proc_memory_percent = p.memory_percent(memtype='rss')  # get current value
+            proc_memory_percent = min(100, p.memory_percent(memtype='rss'))  # get current value, max of 100
         except psutil.NoSuchProcess:
             pass
         finally:
