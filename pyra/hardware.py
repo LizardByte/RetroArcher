@@ -249,8 +249,8 @@ def update():
                     dash_stats[f'cpu_{proc_name}']
                 except KeyError:
                     dash_stats[f'cpu_{proc_name}'] = []
-                finally:
-                    dash_stats[f'cpu_{proc_name}'].append(proc_cpu_percent)  # append the current value to the list
+                finally:  # append the current value to the list
+                    dash_stats[f'cpu_{proc_name}'].append(proc_cpu_percent)
 
         # memory stats per process
         proc_memory_percent = None
@@ -264,8 +264,8 @@ def update():
                     dash_stats[f'memory_{proc_name}']
                 except KeyError:
                     dash_stats[f'memory_{proc_name}'] = []
-                finally:
-                    dash_stats[f'memory_{proc_name}'].append(proc_memory_percent)  # append the current value to the list
+                finally:  # append the current value to the list
+                    dash_stats[f'memory_{proc_name}'].append(proc_memory_percent)
 
     update_cpu()  # todo, need to investigate why this is sometimes lower than the individual process
     update_gpu()  # todo... AMD GPUs on non Linux... integrated GPUs... GPU stats for processes
