@@ -16,6 +16,7 @@ from flask_babel import Babel
 # local imports
 import pyra
 from pyra import config
+from pyra import hardware
 from pyra.definitions import Paths
 from pyra import locales
 from pyra import logger
@@ -100,7 +101,37 @@ def home() -> render_template:
     --------
     >>> home()
     """
-    return render_template('home.html', title='Home')
+    chart_types = hardware.chart_types()
+    chart_translations = hardware.chart_translations
+
+    return render_template('home.html', title='Home', chart_types=chart_types, translations=chart_translations)
+
+
+@app.route('/callback/dashboard', methods=['GET'])
+def callback_dashboard() -> str:
+    """
+    Get dashboard data.
+
+    This should be used in a callback in order to update charts in the web app.
+
+    Returns
+    -------
+    str
+        A list, formatted as a string, containing dictionaries.
+        Each dictionary is a chart ready to use with ``plotly``.
+
+    See Also
+    --------
+    pyra.hardware.chart_data : Returns the same data as this function.
+
+    Examples
+    --------
+    >>> callback_dashboard()
+    '[{"data": [...], "layout": ..., "config": ..., {"data": ...]'
+    """
+    data = hardware.chart_data()
+
+    return data
 
 
 @app.route('/docs/', defaults={'filename': 'index.html'})

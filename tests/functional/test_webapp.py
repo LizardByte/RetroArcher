@@ -31,6 +31,17 @@ def test_favicon(test_client):
     assert response.content_type == 'image/vnd.microsoft.icon'
 
 
+def test_callback_dashboard(test_client):
+    """
+    WHEN the '/callback/dashboard' page is requested (GET)
+    THEN check that the response is valid
+    """
+    response = test_client.get('/callback/dashboard')
+    assert response.status_code == 200
+    assert response.data.startswith(b'[{"data": [')
+    assert response.data.endswith(b'}]')
+
+
 def test_docs(test_client):
     """
     WHEN the '/docs/' page is requested (GET)

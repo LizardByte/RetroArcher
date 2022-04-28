@@ -1,6 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
-    Test
-</div>
+        <div class="container">
+
+            {% for chart in chart_types %}
+                <div class="card bg-dark" style="min-width: 75vw;">
+                    <div class="card-header">{{ _(translations[chart]['bare']) }}</div>
+                    <div class="card-body">
+                        <div class="chart-plotly" id="chart-{{chart}}"></div>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+
+        <script>
+            // this will run every second to update the charts
+            var update_charts = () => {
+                // user interaction will mutate layout and set autorange to false, so we need to reset it to true
+
+                $.ajax({
+                    url: "/callback/dashboard",
+                    type: "GET",
+                    contentType: 'application/json;charset=UTF-8',
+                    data: {
+                    },
+                    dataType:"json",
+                    success: function (data) {
+                        for(var i in data) {
+                            Plotly.react(data[i].layout.meta.id, data[i].data, data[i].layout, data[i].config).then(function(chart) {
+                                resizeObserver.observe(chart);
+                            });
+                        }
+                    }
+                });
+            };
+
+            // setup update timer
+            var timer = setInterval(update_charts, 2000);
+            // TO STOP - clearInterval(timer);
+
+            // resize charts if browser size changed between updates
+            const resizeObserver = new ResizeObserver(entries => {
+              for (let entry of entries) {
+                Plotly.Plots.resize(entry.target);
+              }
+            });
+
+        </script>
 {% endblock content %}

@@ -83,7 +83,7 @@ def tray_initialize() -> Union[Icon, bool]:
             MenuItem(
                 # NOTE: Donate to RetroArcher.
                 text=_('Donate'), action=Menu(
-                    MenuItem(text='GitHub Sponsors', action=donate_github),
+                    MenuItem(text=_('GitHub Sponsors'), action=donate_github),
                     MenuItem(text='MEE6', action=donate_mee6),
                     MenuItem(text='Patreon', action=donate_patreon),
                     MenuItem(text='PayPal', action=donate_paypal),
