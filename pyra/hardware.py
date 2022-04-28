@@ -183,20 +183,25 @@ def update_network():
     global network_recv_last
     global network_sent_last
 
-    net_recv_current = psutil.net_io_counters().bytes_recv / 1000000  # convert bytes to mb
-    net_sent_current = psutil.net_io_counters().bytes_sent / 1000000  # convert bytes to mb
+    network_stats = psutil.net_io_counters()
 
-    net_recv_diff = net_recv_current - network_recv_last
-    net_sent_diff = net_sent_current - network_sent_last
+    # get the current values in mb
+    network_received_current = network_stats.bytes_recv / 1000000  # convert bytes to mb
+    network_sent_current = network_stats.bytes_sent / 1000000  # convert bytes to mb
 
-    network_recv_last = net_recv_current
-    network_sent_last = net_sent_current
+    # compare the current values to the last values, as current values increase incrementally
+    network_received_diff = network_received_current - network_recv_last
+    network_sent_diff = network_sent_current - network_sent_last
+
+    # rewrite the last value
+    network_recv_last = network_received_current
+    network_sent_last = network_sent_current
 
     if initialized:
-        dash_stats['network_received'].append(net_recv_diff)
-        dash_stats['network_sent'].append(net_sent_diff)
+        dash_stats['network_received'].append(network_received_diff)
+        dash_stats['network_sent'].append(network_sent_diff)
 
-    return net_recv_diff, net_sent_diff
+    return network_received_diff, network_sent_diff
 
 
 def update():
