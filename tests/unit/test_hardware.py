@@ -11,7 +11,8 @@ from pyra import hardware
 def test_update_cpu():
     """Tests if update_cpu returns a float value"""
     test_cpu_percent = hardware.update_cpu()
-    assert isinstance(test_cpu_percent, float)  # test if value is float
+    assert test_cpu_percent <= 100  # test if value is number with a max value of 100
+    assert test_cpu_percent >= 0  # test if value is number with a min value of 0
 
 
 def test_update_gpu():
@@ -24,15 +25,16 @@ def test_update_gpu():
 def test_update_memory():
     """Tests if update_memory returns a float value"""
     test_memory_percent = hardware.update_memory()
-    assert isinstance(test_memory_percent, float)  # test if value is float
+    assert test_memory_percent <= 100  # test if value is number with a max value of 100
+    assert test_memory_percent >= 0  # test if value is number with a min value of 0
 
 
 def test_update_network():
     """Tests if update_network returns a tuple containing two float values"""
     test_network_usage = hardware.update_network()
     assert isinstance(test_network_usage, tuple)  # test if value is tuple
-    assert isinstance(test_network_usage[0], float)
-    assert isinstance(test_network_usage[1], float)
+    for value in test_network_usage:
+        assert value >= 0  # test if value is number with a min value of 0
 
 
 def test_update():
