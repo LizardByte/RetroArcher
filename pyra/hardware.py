@@ -5,11 +5,9 @@
 Functions related to the dashboard viewer.
 """
 # standard imports
-import json
 
 # lib imports
 import GPUtil
-import plotly
 import psutil
 
 # local imports
@@ -55,19 +53,28 @@ processes = [proc]
 nvidia_gpus = GPUtil.getGPUs()
 
 try:
-    import pyamdgpuinfo
+    import pyamdgpuinfo  # linux only
 except ModuleNotFoundError:
     amd_gpus = 0
 else:
     amd_gpus = pyamdgpuinfo.detect_gpus()  # this will be an integer representing the count of amd gpus
 
 dash_stats = dict(
-    timestamp=[],
-    relative_time=[],
-    cpu_system=[],
-    memory_system=[],
-    network_sent=[],
-    network_received=[]
+    time=dict(
+        timestamp=[],
+        relative_time=[]
+    ),
+    cpu=dict(
+        system=[]
+    ),
+    gpu=dict(),
+    memory=dict(
+        system=[]
+    ),
+    network=dict(
+        sent=[],
+        received=[]
+    )
 )
 
 history_length = 120
@@ -77,7 +84,7 @@ def update_cpu() -> float:
     """
     Update dashboard stats for system CPU usage.
 
-    This will append a new value to the ``dash_stats['cpu_system']`` list.
+    This will append a new value to the ``dash_stats['cpu'][system']`` list.
 
     Returns
     -------
@@ -91,7 +98,7 @@ def update_cpu() -> float:
     cpu_percent = min(100, psutil.cpu_percent(interval=None, percpu=False))  # max of 100
 
     if initialized:
-        dash_stats['cpu_system'].append(cpu_percent)
+        dash_stats['cpu']['system'].append(cpu_percent)
 
     return cpu_percent
 
@@ -112,39 +119,37 @@ def update_gpu():
     global nvidia_gpus
     nvidia_gpus = GPUtil.getGPUs()  # need to get the GPUs again otherwise the load does not update
 
-    for gpu in nvidia_gpus:
-        name = f'{gpu.name}-{gpu.id}'
+    gpu_loop = dict(
+        nvidia=nvidia_gpus,
+        amd=range(amd_gpus)  # amd is untested
+    )
 
-        if initialized:
-            try:
-                dash_stats[f'gpu_{name}']
-            except KeyError:
-                dash_stats[f'gpu_{name}'] = []
-            finally:
+    for gpu_type in gpu_loop:
+        for gpu in gpu_loop[gpu_type]:
+            name = None
+            gpu_load = None
+            if gpu_type == 'nvidia':
+                name = f'{gpu.name}-{gpu.id}'
                 gpu_load = min(100, gpu.load * 100)  # convert decimal to percentage, max of 100
-                dash_stats[f'gpu_{name}'].append(gpu_load)
-
-    # this is untested
-    for amd_index in range(amd_gpus):
-        gpu = pyamdgpuinfo.get_gpu(amd_index)
-
-        name = f'{gpu.name}-{gpu.gpu_id}'
-
-        if initialized:
-            try:
-                dash_stats[f'gpu_{name}']
-            except KeyError:
-                dash_stats[f'gpu_{name}'] = []
-            finally:
+            elif gpu_type == 'amd':
+                amd_gpu = pyamdgpuinfo.get_gpu(gpu)
+                name = f'{amd_gpu.name}-{amd_gpu.gpu_id}'
                 gpu_load = min(100, gpu.query_load())  # max of 100
-                dash_stats[f'gpu_{name}'].append(gpu_load)
+
+            if initialized and name:
+                try:
+                    dash_stats['gpu'][name]
+                except KeyError:
+                    dash_stats['gpu'][name] = []
+                finally:
+                    dash_stats['gpu'][name].append(gpu_load)
 
 
 def update_memory():
     """
     Update dashboard stats for system memory usage.
 
-    This will append a new value to the ``dash_stats['memory_system']`` list.
+    This will append a new value to the ``dash_stats['memory']['system']`` list.
 
     Returns
     -------
@@ -158,7 +163,7 @@ def update_memory():
     memory_percent = min(100, psutil.virtual_memory().percent)  # max of 100
 
     if initialized:
-        dash_stats['memory_system'].append(memory_percent)
+        dash_stats['memory']['system'].append(memory_percent)
 
     return memory_percent
 
@@ -167,7 +172,7 @@ def update_network():
     """
     Update dashboard stats for system network usage.
 
-    This will append a new values to the ``dash_stats['network_received']`` and ``dash_stats['network_sent']``
+    This will append a new values to the ``dash_stats['network']['received']`` and ``dash_stats['network']['sent']``
     lists.
 
     Returns
@@ -179,15 +184,14 @@ def update_network():
     --------
     >>> update_network()
     """
-    global initialized
     global network_recv_last
     global network_sent_last
 
     network_stats = psutil.net_io_counters()
 
     # get the current values in mb
-    network_received_current = network_stats.bytes_recv / 1000000  # convert bytes to mb
-    network_sent_current = network_stats.bytes_sent / 1000000  # convert bytes to mb
+    network_received_current = network_stats.bytes_recv / 1e6  # convert bytes to mb
+    network_sent_current = network_stats.bytes_sent / 1e6  # convert bytes to mb
 
     # compare the current values to the last values, as current values increase incrementally
     network_received_diff = network_received_current - network_recv_last
@@ -198,8 +202,8 @@ def update_network():
     network_sent_last = network_sent_current
 
     if initialized:
-        dash_stats['network_received'].append(network_received_diff)
-        dash_stats['network_sent'].append(network_sent_diff)
+        dash_stats['network']['received'].append(network_received_diff)
+        dash_stats['network']['sent'].append(network_sent_diff)
 
     return network_received_diff, network_sent_diff
 
@@ -222,12 +226,12 @@ def update():
     current_timestamp = helpers.timestamp()
 
     if initialized:
-        dash_stats['timestamp'].append(helpers.timestamp())
+        dash_stats['time']['timestamp'].append(helpers.timestamp())
 
-        dash_stats['relative_time'] = []
-        for x in dash_stats['timestamp']:
+        dash_stats['time']['relative_time'] = []
+        for x in dash_stats['time']['timestamp']:
             seconds_ago = current_timestamp - x
-            dash_stats['relative_time'].append(seconds_ago)
+            dash_stats['time']['relative_time'].append(seconds_ago)
 
         child_processes = proc.children(recursive=False)  # list all children processes
 
@@ -248,11 +252,11 @@ def update():
         finally:
             if initialized:
                 try:
-                    dash_stats[f'cpu_{proc_name}']
+                    dash_stats['cpu'][proc_name]
                 except KeyError:
-                    dash_stats[f'cpu_{proc_name}'] = []
+                    dash_stats['cpu'][proc_name] = []
                 finally:  # append the current value to the list
-                    dash_stats[f'cpu_{proc_name}'].append(proc_cpu_percent)
+                    dash_stats['cpu'][proc_name].append(proc_cpu_percent)
 
         # memory stats per process
         proc_memory_percent = None
@@ -263,25 +267,26 @@ def update():
         finally:
             if initialized:
                 try:
-                    dash_stats[f'memory_{proc_name}']
+                    dash_stats['memory'][proc_name]
                 except KeyError:
-                    dash_stats[f'memory_{proc_name}'] = []
+                    dash_stats['memory'][proc_name] = []
                 finally:  # append the current value to the list
-                    dash_stats[f'memory_{proc_name}'].append(proc_memory_percent)
+                    dash_stats['memory'][proc_name].append(proc_memory_percent)
 
     update_cpu()  # todo, need to investigate why this is sometimes lower than the individual process
     update_gpu()  # todo... AMD GPUs on non Linux... integrated GPUs... GPU stats for processes
     update_memory()
     update_network()  # todo... network stats for processes
 
-    for key in dash_stats:
-        dash_stats[key] = dash_stats[key][-history_length:]  # keep the first 2 minutes
+    for stat_type, data in dash_stats.items():
+        for key in data:
+            data[key] = data[key][-history_length:]  # keep the first 2 minutes
 
     if not initialized:
         initialized = True
 
 
-def chart_data() -> str:
+def chart_data() -> list:
     """
     Get chart data.
 
@@ -289,8 +294,8 @@ def chart_data() -> str:
 
     Returns
     -------
-    str
-        A list, formatted as a string, containing dictionaries.
+    list
+        A list containing dictionaries.
         Each dictionary is a chart ready to use with ``plotly``.
 
     See Also
@@ -300,9 +305,9 @@ def chart_data() -> str:
     Examples
     --------
     >>> chart_data()
-    '[{"data": [...], "layout": ..., "config": ..., {"data": ...]'
+    [{"data": [...], "layout": ..., "config": ..., {"data": ...]
     """
-    x = dash_stats['relative_time']
+    x = dash_stats['time']['relative_time']
 
     graphs = []
 
@@ -311,35 +316,33 @@ def chart_data() -> str:
     for chart in accepted_chart_types:
 
         data = []
-        for key, value in dash_stats.items():
-            if key.startswith(chart):
-                y = value
-                split_name = key.split(f'{chart}_', 1)[-1]
+        for key, value in dash_stats[chart].items():
+            y = value
 
-                try:  # try to get the name from the translation dictionary
-                    name = chart_translations['general'][split_name]
-                except KeyError:
-                    name = split_name
+            try:  # try to get the name from the translation dictionary
+                name = chart_translations['general'][key]
+            except KeyError:
+                name = key
 
-                data.append(
-                    dict(  # https://plotly.com/javascript/reference/scatter/
-                        cliponaxis=False,
-                        hoverinfo='y',
-                        line=dict(
-                            shape='spline',
-                            smoothing=0.5,  # 0.75 is nice, but sometimes drops below the axis line
-                            width=3.5,
-                        ),
-                        mode='lines+markers',
-                        name=name,
-                        textfont=dict(
-                            family='Open Sans',
-                        ),
-                        type='scatter',
-                        x=x,
-                        y=y,
-                    )
+            data.append(
+                dict(  # https://plotly.com/javascript/reference/scatter/
+                    cliponaxis=False,
+                    hoverinfo='y',
+                    line=dict(
+                        shape='spline',
+                        smoothing=0.5,  # 0.75 is nice, but sometimes drops below the axis line
+                        width=3.5,
+                    ),
+                    mode='lines+markers',
+                    name=name,
+                    textfont=dict(
+                        family='Open Sans',
+                    ),
+                    type='scatter',
+                    x=x,
+                    y=y,
                 )
+            )
 
         if data:
             graphs.append(
@@ -388,9 +391,7 @@ def chart_data() -> str:
                 )
             )
 
-    graphs_json = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return graphs_json
+    return graphs
 
 
 def chart_types():

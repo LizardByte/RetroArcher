@@ -5,6 +5,7 @@
 Responsible for serving the webapp.
 """
 # standard imports
+import json
 import os
 
 # lib imports
@@ -12,6 +13,7 @@ import flask
 from flask import Flask
 from flask import render_template, send_from_directory
 from flask_babel import Babel
+import plotly
 
 # local imports
 import pyra
@@ -129,7 +131,9 @@ def callback_dashboard() -> str:
     >>> callback_dashboard()
     '[{"data": [...], "layout": ..., "config": ..., {"data": ...]'
     """
-    data = hardware.chart_data()
+    graphs = hardware.chart_data()
+
+    data = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
 
     return data
 
