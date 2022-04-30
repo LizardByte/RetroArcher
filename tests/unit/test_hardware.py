@@ -39,17 +39,35 @@ def test_update_network():
 
 def test_update():
     """
-    # todo... this test needs to be defined
+    Tests the update function.
+
+    Ensures the initialized variable is updated.
     """
-    pass
+    assert not hardware.initialized  # make sure initialized is False
+
+    count = 0
+    while count < 2:
+        hardware.update()  # first run just initializes
+
+        assert hardware.initialized  # make sure initialized is True
+
+        for stat_type, data in hardware.dash_stats.items():
+            for key in data:
+                assert len(data[key]) == count  # make sure no length of each list is the same as number of updates
+
+        count += 1
 
 
 def test_chart_data():
     """Tests the chart_data function."""
     chart_data = hardware.chart_data()
-    assert isinstance(chart_data, str)  # test if value is string
-    assert chart_data.startswith('[{"data": [')
-    assert chart_data.endswith('}]')
+    assert isinstance(chart_data, list)  # test if value is string
+
+    for x in chart_data:
+        assert isinstance(x, dict)  # test if each item is a dictionary
+        assert x['data']
+        assert x['layout']
+        assert x['config']
 
 
 def test_chart_types():

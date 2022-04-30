@@ -4,6 +4,8 @@
 
 Functional tests for pyra.webapp.
 """
+# standard imports
+import json
 
 
 def test_home(test_client):
@@ -38,8 +40,13 @@ def test_callback_dashboard(test_client):
     """
     response = test_client.get('/callback/dashboard')
     assert response.status_code == 200
-    assert response.data.startswith(b'[{"data": [')
-    assert response.data.endswith(b'}]')
+    data = json.loads(response.data)
+
+    assert isinstance(data, list)  # ensure the data is a list
+    for x in data:
+        assert x['data']
+        assert x['layout']
+        assert x['config']
 
 
 def test_docs(test_client):
