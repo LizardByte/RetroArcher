@@ -55,9 +55,9 @@ nvidia_gpus = GPUtil.getGPUs()
 try:
     import pyamdgpuinfo  # linux only
 except ModuleNotFoundError:
-    amd_gpus = 0
+    amd_gpus = range(0)
 else:
-    amd_gpus = pyamdgpuinfo.detect_gpus()  # this will be an integer representing the count of amd gpus
+    amd_gpus = range(pyamdgpuinfo.detect_gpus())  # this will be an integer representing the count of amd gpus
 
 dash_stats = dict(
     time=dict(
@@ -119,19 +119,16 @@ def update_gpu():
     global nvidia_gpus
     nvidia_gpus = GPUtil.getGPUs()  # need to get the GPUs again otherwise the load does not update
 
-    gpu_loop = dict(
-        nvidia=nvidia_gpus,
-        amd=range(amd_gpus)  # amd is untested
-    )
+    gpu_types = [nvidia_gpus, amd_gpus]
 
-    for gpu_type in gpu_loop:
-        for gpu in gpu_loop[gpu_type]:
+    for gpu_type in gpu_types:  # loop through gpu types
+        for gpu in gpu_type:  # loop through found gpus
             name = None
             gpu_load = None
-            if gpu_type == 'nvidia':
+            if gpu_type == nvidia_gpus:
                 name = f'{gpu.name}-{gpu.id}'
                 gpu_load = min(100, gpu.load * 100)  # convert decimal to percentage, max of 100
-            elif gpu_type == 'amd':
+            elif gpu_type == amd_gpus:
                 amd_gpu = pyamdgpuinfo.get_gpu(gpu)
                 name = f'{amd_gpu.name}-{amd_gpu.gpu_id}'
                 gpu_load = min(100, gpu.query_load())  # max of 100
