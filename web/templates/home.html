@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+        <!-- Plotly JavaScript -->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/plotly-2.11.1.min.js') }}"></script>
+
         <div class="container">
 
             {% for chart in chart_types %}

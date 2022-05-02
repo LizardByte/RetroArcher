@@ -327,10 +327,10 @@ def chart_data() -> list:
                     hoverinfo='y',
                     line=dict(
                         shape='spline',
-                        smoothing=0.5,  # 0.75 is nice, but sometimes drops below the axis line
+                        smoothing=0.8,  # 0.75 is nice, but sometimes drops below the axis line
                         width=3.5,
                     ),
-                    mode='lines+markers',
+                    mode='lines+markers' if len(x) < 30 else 'lines',
                     name=name,
                     textfont=dict(
                         family='Open Sans',
@@ -377,7 +377,7 @@ def chart_data() -> list:
                                 standoff=10,  # separation between title and axis lables
                                 text=_('mb') if chart == 'network' else _('%'),
                             ),
-                            rangemode='tozero',  # axis does not drop below zero
+                            # rangemode='tozero',  # axis does not drop below 0; however the line does not show below 0
                             layer='below traces'
                         ),
                     ),
