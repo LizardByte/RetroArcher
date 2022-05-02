@@ -83,34 +83,27 @@
                                         <i class="fa-brands fa-fw fa-github"></i> {{ _('Discussions') }}</a></li>
                                 </ul>
                             </li>
-                            {% if title.lower() == 'home' %}
-                                <li><a class="nav-item nav-link active" href="/">
-                                    <i class="fa-solid fa-fw fa-house"></i> {{ _('Home') }}</a></li>
-                            {% else %}
-                                <li><a class="nav-item nav-link" href="/">
-                                    <i class="fa-solid fa-fw fa-house"></i> {{ _('Home') }}</a></li>
-                            {% endif %}
-                            {% if title.lower() == 'plugins' %}
-                                <li><a class="nav-item nav-link active" href="/plugins">
-                                    <i class="fa-solid fa-fw fa-project-diagram"></i> {{ _('Plugins') }}</a></li>
-                            {% else %}
-                                <li><a class="nav-item nav-link" href="/plugins">
-                                    <i class="fa-solid fa-fw fa-project-diagram"></i> {{ _('Plugins') }}</a></li>
-                            {% endif %}
-                            {% if title.lower() == 'config' %}
-                                <li><a class="nav-item nav-link active" href="/config">
-                                    <i class="fa-solid fa-fw fa-cog"></i> {{ _('Config') }}</a></li>
-                            {% else %}
-                                <li><a class="nav-item nav-link" href="/config">
-                                    <i class="fa-solid fa-fw fa-cog"></i> {{ _('Config') }}</a></li>
-                            {% endif %}
-                            {% if title.lower() == 'users' %}
-                                <li><a class="nav-item nav-link active" href="/users">
-                                    <i class="fa-solid fa-fw fa-users"></i> {{ _('Users') }}</a></li>
-                            {% else %}
-                                <li><a class="nav-item nav-link" href="/users">
-                                    <i class="fa-solid fa-fw fa-users"></i> {{ _('Users') }}</a></li>
-                            {% endif %}
+
+                            <li><a class="nav-item nav-link {% if title.lower() == 'home' %}active{% endif %}"
+                                   href="/">
+                                <i class="fa-solid fa-fw fa-house"></i> {{ _('Home') }}
+                            </a></li>
+
+                            <li><a class="nav-item nav-link {% if title.lower() == 'plugins' %}active{% endif %}"
+                                   href="/plugins">
+                                <i class="fa-solid fa-fw fa-project-diagram"></i> {{ _('Plugins') }}
+                            </a></li>
+
+                            <li><a class="nav-item nav-link {% if title.lower() == 'config' %}active{% endif %}"
+                                   href="/config">
+                                <i class="fa-solid fa-fw fa-cog"></i> {{ _('Config') }}
+                            </a></li>
+
+                            <li><a class="nav-item nav-link {% if title.lower() == 'users' %}active{% endif %}"
+                                   href="/users">
+                                <i class="fa-solid fa-fw fa-users"></i> {{ _('Users') }}
+                            </a></li>
+
                         </ul>
                     </div>
                 </div>
