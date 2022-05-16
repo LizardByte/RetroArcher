@@ -95,7 +95,7 @@ def update_cpu() -> float:
     --------
     >>> update_cpu()
     """
-    cpu_percent = min(100, psutil.cpu_percent(interval=None, percpu=False))  # max of 100
+    cpu_percent = min(float(100), psutil.cpu_percent(interval=None, percpu=False))  # max of 100
 
     if initialized:
         dash_stats['cpu']['system'].append(cpu_percent)
@@ -210,8 +210,8 @@ def update():
     Update all dashboard stats.
 
     This function updates the cpu and memory usage of this python process as well as subprocesses. Following that the
-    system functions are called to update system cpu, gpu, memory, and network usage. Finally the keys in the
-    ``dash_stats`` dictionary are cleaned up to only hold 120 values. This function is called once per second, so
+    system functions are called to update system cpu, gpu, memory, and network usage. Finally, the keys in the
+    ``dash_stats`` dictionary are cleaned up to only hold 120 values. This function is called once per second,
     therefore there are 2 minutes worth of values in the dictionary.
 
     Examples
@@ -236,6 +236,25 @@ def update():
             if child not in processes:
                 processes.append(child)
 
+    # find the indexes to remove from the lists
+    time_index = 0
+    last_tstamp = None
+    for tstamp in dash_stats['time']['relative_time']:
+        if tstamp <= history_length:
+            if last_tstamp is not None:
+                # ensures upper X axis label does not fall
+                if tstamp < history_length < last_tstamp and time_index > 0:
+                    time_index += -1
+            break
+        else:
+            last_tstamp = tstamp
+            time_index += 1
+
+    # remove oldest list entries
+    for stat_type, data in dash_stats.items():
+        for key in data:
+            data[key] = data[key][time_index:]  # keep the first 2 minutes
+
     for p in processes:
         # set the name
         proc_name = definitions.Names().name if p.pid == proc_id else p.name()
@@ -243,7 +262,7 @@ def update():
         # cpu stats per process
         proc_cpu_percent = None
         try:
-            proc_cpu_percent = min(100, p.cpu_percent())  # get current value, max of 100
+            proc_cpu_percent = min(float(100), p.cpu_percent())  # get current value, max of 100
         except psutil.NoSuchProcess:
             pass
         finally:
@@ -258,7 +277,7 @@ def update():
         # memory stats per process
         proc_memory_percent = None
         try:
-            proc_memory_percent = min(100, p.memory_percent(memtype='rss'))  # get current value, max of 100
+            proc_memory_percent = min(float(100), p.memory_percent(memtype='rss'))  # get current value, max of 100
         except psutil.NoSuchProcess:
             pass
         finally:
@@ -274,10 +293,6 @@ def update():
     update_gpu()  # todo... AMD GPUs on non Linux... integrated GPUs... GPU stats for processes
     update_memory()
     update_network()  # todo... network stats for processes
-
-    for stat_type, data in dash_stats.items():
-        for key in data:
-            data[key] = data[key][-history_length:]  # keep the first 2 minutes
 
     if not initialized:
         initialized = True
@@ -310,7 +325,18 @@ def chart_data() -> list:
 
     accepted_chart_types = chart_types()
 
+    # todo
+    # currently disabled: https://github.com/plotly/plotly.js/issues/6012
+    # x_ticks = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
+
     for chart in accepted_chart_types:
+
+        if chart == 'network':
+            # NOTE: Mbps = megabytes per second
+            hover_template = _('%(numeric_value)s Mbps') % {'numeric_value': '%{y:.3f}'}
+        else:
+            # NOTE: the double percent symbols is rendered as one in this case
+            hover_template = _('%(numeric_value)s %%') % {'numeric_value': '%{y:.2f}'}
 
         data = []
         for key, value in dash_stats[chart].items():
@@ -324,7 +350,7 @@ def chart_data() -> list:
             data.append(
                 dict(  # https://plotly.com/javascript/reference/scatter/
                     cliponaxis=False,
-                    hoverinfo='y',
+                    hovertemplate=hover_template,
                     line=dict(
                         shape='spline',
                         smoothing=0.8,  # 0.75 is nice, but sometimes drops below the axis line
@@ -344,13 +370,17 @@ def chart_data() -> list:
         if data:
             graphs.append(
                 dict(
-                    data=data,
+                    data=data,  # this is a list
                     layout=dict(  # https://plotly.com/javascript/reference/layout/
                         autosize=True,  # makes chart responsive, works better than the responsive config option
                         font=dict(
                             color='FFF',
                             family='Open Sans',
                         ),
+                        hoverlabel=dict(
+                            bgcolor='252525',
+                        ),
+                        hovermode='x unified',  # show all Y values on hover
                         legend=dict(
                             orientation='h',
                         ),
@@ -370,20 +400,35 @@ def chart_data() -> list:
                         uirevision=True,
                         xaxis=dict(
                             autorange='reversed',  # smaller number, right side
-                            layer='below traces'
+                            fixedrange=True,  # disable zoom of axis
+                            layer='below traces',
+                            showspikes=False,
+                            # todo
+                            # currently disabled: https://github.com/plotly/plotly.js/issues/6012
+                            # does not display how I would like
+                            # would like to show "x s ago" (localizable) on the hover label, but not in the axis
+                            # tickmode='array',
+                            # # NOTE: this exact moment in time
+                            # ticktext=[_('NOW') if value == 0 else
+                            #           # NOTE: s = seconds, i.e. "5 s"... do not change "%(numeric_value)s"
+                            #           _('%(numeric_value)s s') % {'numeric_value': value} for value in x_ticks],
+                            # tickvals=x_ticks
                         ),
                         yaxis=dict(
+                            fixedrange=True,  # disable zoom of axis
+                            layer='below traces',
+                            # rangemode='tozero',  # axis does not drop below 0; however the line gets cut below 0
                             title=dict(
-                                standoff=10,  # separation between title and axis lables
-                                text=_('mb') if chart == 'network' else _('%'),
+                                standoff=10,  # separation between title and axis labels
+                                text=_('Mbps') if chart == 'network' else _('%'),
                             ),
-                            # rangemode='tozero',  # axis does not drop below 0; however the line does not show below 0
-                            layer='below traces'
                         ),
                     ),
                     config=dict(
-                        displayModeBar=False,
+                        displayModeBar=False,  # disable the modebar
+                        editable=False,  # explicitly disable editing
                         responsive=False,  # keep False, does not work properly when True with ajax calls
+                        scrollZoom=False  # explicitly disable mouse scroll zoom
                     )
                 )
             )
