@@ -1,6 +1,6 @@
 Babel==2.9.1
 configobj==5.0.6
-Flask==2.1.1
+Flask==2.1.2
 Flask-Babel==2.0.0
 GPUtil==1.4.0
 IPy==1.01
