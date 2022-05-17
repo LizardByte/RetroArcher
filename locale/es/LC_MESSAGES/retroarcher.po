@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2022-05-17 02:31+0000\n"
-"PO-Revision-Date: 2022-05-17 23:18\n"
+"PO-Revision-Date: 2022-05-17 23:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -20,67 +20,67 @@ msgstr ""
 
 #: pyra/hardware.py:22
 msgid "cpu"
-msgstr ""
+msgstr "ucp"
 
 #: pyra/hardware.py:23
 msgid "cpu usage"
-msgstr ""
+msgstr "uso de ucp"
 
 #: pyra/hardware.py:26
 msgid "gpu"
-msgstr ""
+msgstr "upg"
 
 #: pyra/hardware.py:27
 msgid "gpu usage"
-msgstr ""
+msgstr "uso de upg"
 
 #: pyra/hardware.py:30
 msgid "memory"
-msgstr ""
+msgstr "memoria"
 
 #: pyra/hardware.py:31
 msgid "memory usage"
-msgstr ""
+msgstr "uso de memoria"
 
 #: pyra/hardware.py:34
 msgid "network"
-msgstr ""
+msgstr "red"
 
 #: pyra/hardware.py:35
 msgid "network usage"
-msgstr ""
+msgstr "uso de la red"
 
 #: pyra/hardware.py:38
 msgid "received"
-msgstr ""
+msgstr "recibido"
 
 #: pyra/hardware.py:39
 msgid "sent"
-msgstr ""
+msgstr "enviado"
 
 #: pyra/hardware.py:40
 msgid "system"
-msgstr ""
+msgstr "sistema"
 
 #. NOTE: Mbps = megabytes per second
 #: pyra/hardware.py:336
 #, python-format
 msgid "%(numeric_value)s Mbps"
-msgstr ""
+msgstr "Mbps de %(numeric_value)s"
 
 #. NOTE: the double percent symbols is rendered as one in this case
 #: pyra/hardware.py:339
 #, python-format
 msgid "%(numeric_value)s %%"
-msgstr ""
+msgstr "%% de %(numeric_value)s"
 
 #: pyra/hardware.py:423
 msgid "Mbps"
-msgstr ""
+msgstr "Mbps"
 
 #: pyra/hardware.py:423
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
 #. "%(app_name)s".
@@ -130,19 +130,20 @@ msgstr "Salir"
 #: retroarcher.py:131
 msgid "RetroArcher is a Python based game streaming server.\n"
 "Arguments supplied here are meant to be temporary."
-msgstr ""
+msgstr "RetroArcher es un servidor de transmisión de juegos basado en Python.\n"
+"Los argumentos proporcionados aquí están destinados a ser temporales."
 
 #: retroarcher.py:134
 msgid "Specify a config file to use"
-msgstr ""
+msgstr "Especifique un archivo de configuración a usar"
 
 #: retroarcher.py:135
 msgid "Use debug logging level"
-msgstr ""
+msgstr "Usar el nivel de registro de depuración"
 
 #: retroarcher.py:136
 msgid "Start RetroArcher in the development environment"
-msgstr ""
+msgstr "Iniciar RetroArcher en el entorno de desarrollo"
 
 #: retroarcher.py:137
 msgid "Health check the container and exit"
@@ -150,7 +151,7 @@ msgstr ""
 
 #: retroarcher.py:138
 msgid "Do not open RetroArcher in browser"
-msgstr ""
+msgstr "No abrir RetroArcher en el navegador"
 
 #: retroarcher.py:140
 msgid "Force RetroArcher to run on a specified port, default=9696"
