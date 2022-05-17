@@ -18,9 +18,7 @@
 
         <script>
             // this will run every second to update the charts
-            var update_charts = () => {
-                // user interaction will mutate layout and set autorange to false, so we need to reset it to true
-
+            update_charts = () => {
                 $.ajax({
                     url: "/callback/dashboard",
                     type: "GET",
@@ -29,9 +27,14 @@
                     },
                     dataType:"json",
                     success: function (data) {
-                        for(var i in data) {
-                            Plotly.react(data[i].layout.meta.id, data[i].data, data[i].layout, data[i].config).then(function(chart) {
-                                resizeObserver.observe(chart);
+                        for(let i in data['graphs']) {
+                            Plotly.react(
+                                data['graphs'][i].layout.meta.id,
+                                data['graphs'][i].data,
+                                data['graphs'][i].layout,
+                                data['graphs'][i].config
+                            ).then(function(value) {
+                                resizeObserver.observe(value);
                             });
                         }
                     }
@@ -39,11 +42,15 @@
             };
 
             // setup update timer
-            var timer = setInterval(update_charts, 2000);
-            // TO STOP - clearInterval(timer);
+            setInterval(update_charts, 1000);
+            // to make timer dynamic set it as a variable
+            // var timer = setInterval(update_charts, 1000);
+            // to stop use the following
+            // clearInterval(timer);
 
             // resize charts if browser size changed between updates
             const resizeObserver = new ResizeObserver(entries => {
+                alert(entries)
               for (let entry of entries) {
                 Plotly.Plots.resize(entry.target);
               }

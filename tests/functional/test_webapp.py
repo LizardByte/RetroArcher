@@ -42,8 +42,9 @@ def test_callback_dashboard(test_client):
     assert response.status_code == 200
     data = json.loads(response.data)
 
-    assert isinstance(data, list)  # ensure the data is a list
-    for x in data:
+    assert isinstance(data, dict)  # ensure the data is a dict
+    assert isinstance(data['graphs'], list)  # ensure the data is a list
+    for x in data['graphs']:
         assert x['data']
         assert x['layout']
         assert x['config']

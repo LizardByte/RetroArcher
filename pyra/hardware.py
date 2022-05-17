@@ -298,7 +298,7 @@ def update():
         initialized = True
 
 
-def chart_data() -> list:
+def chart_data() -> dict:
     """
     Get chart data.
 
@@ -306,9 +306,9 @@ def chart_data() -> list:
 
     Returns
     -------
-    list
-        A list containing dictionaries.
-        Each dictionary is a chart ready to use with ``plotly``.
+    dict
+        A single key named 'graphs' contains a list of graphs. Each graph is formatted as a dictionary and ready to use
+        with ``plotly``.
 
     See Also
     --------
@@ -317,11 +317,11 @@ def chart_data() -> list:
     Examples
     --------
     >>> chart_data()
-    [{"data": [...], "layout": ..., "config": ..., {"data": ...]
+    {'graphs': [{"data": [...], "layout": ..., "config": ..., {"data": ...]}
     """
     x = dash_stats['time']['relative_time']
 
-    graphs = []
+    graphs = dict(graphs=[])
 
     accepted_chart_types = chart_types()
 
@@ -368,7 +368,7 @@ def chart_data() -> list:
             )
 
         if data:
-            graphs.append(
+            graphs['graphs'].append(
                 dict(
                     data=data,  # this is a list
                     layout=dict(  # https://plotly.com/javascript/reference/layout/

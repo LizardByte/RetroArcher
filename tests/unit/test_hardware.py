@@ -104,12 +104,13 @@ def test_chart_data():
     """
     Test the chart_data function.
 
-    Validates that the returned list contains dictionaries with the keys: ``data``, ``layout``, ``config``.
+    Validates that the returned dictionary is properly formed.
     """
     chart_data = hardware.chart_data()
-    assert isinstance(chart_data, list)  # test if value is string
+    assert isinstance(chart_data, dict)  # test if value is dict
+    assert isinstance(chart_data['graphs'], list)  # test if value is list
 
-    for x in chart_data:
+    for x in chart_data['graphs']:
         assert isinstance(x, dict)  # test if each item is a dictionary
         assert x['data']
         assert x['layout']

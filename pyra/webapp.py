@@ -5,15 +5,13 @@
 Responsible for serving the webapp.
 """
 # standard imports
-import json
 import os
 
 # lib imports
 import flask
-from flask import Flask
-from flask import render_template, send_from_directory
+from flask import Flask, Response
+from flask import jsonify, render_template, send_from_directory
 from flask_babel import Babel
-import plotly
 
 # local imports
 import pyra
@@ -110,7 +108,7 @@ def home() -> render_template:
 
 
 @app.route('/callback/dashboard', methods=['GET'])
-def callback_dashboard() -> str:
+def callback_dashboard() -> Response:
     """
     Get dashboard data.
 
@@ -118,22 +116,21 @@ def callback_dashboard() -> str:
 
     Returns
     -------
-    str
-        A list, formatted as a string, containing dictionaries.
-        Each dictionary is a chart ready to use with ``plotly``.
+    Response
+        A response formatted as ``flask.jsonify``.
 
     See Also
     --------
-    pyra.hardware.chart_data : Returns the same data as this function.
+    pyra.hardware.chart_data : This function sets up the data in the proper format.
 
     Examples
     --------
     >>> callback_dashboard()
-    '[{"data": [...], "layout": ..., "config": ..., {"data": ...]'
+    <Response ... bytes [200 OK]>
     """
     graphs = hardware.chart_data()
 
-    data = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
+    data = jsonify(graphs)
 
     return data
 
