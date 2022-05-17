@@ -158,7 +158,7 @@ jobs:
           fi
 
           # setup the tags
-          TAGS=""
+          TAGS="${BASE_TAG}:${GITHUB_SHA:0:7},ghcr.io/${BASE_TAG}:${GITHUB_SHA:0:7}"
 
           if [[ $GITHUB_REF == refs/heads/master ]]; then
             TAGS="${TAGS},${BASE_TAG}:latest,ghcr.io/${BASE_TAG}:latest"
