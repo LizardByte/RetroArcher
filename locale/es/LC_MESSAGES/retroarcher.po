@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2022-05-17 02:31+0000\n"
-"PO-Revision-Date: 2022-05-17 23:48\n"
+"PO-Revision-Date: 2022-05-17 23:56\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +147,7 @@ msgstr "Iniciar RetroArcher en el entorno de desarrollo"
 
 #: retroarcher.py:137
 msgid "Health check the container and exit"
-msgstr ""
+msgstr "Verificar el contenedor y salir"
 
 #: retroarcher.py:138
 msgid "Do not open RetroArcher in browser"
@@ -155,15 +155,15 @@ msgstr "No abrir RetroArcher en el navegador"
 
 #: retroarcher.py:140
 msgid "Force RetroArcher to run on a specified port, default=9696"
-msgstr ""
+msgstr "Forzar a RetroArcher a ejecutarse en un puerto especificado, por defecto = 9696"
 
 #: retroarcher.py:142
 msgid "Turn off console logging"
-msgstr ""
+msgstr "Desactivar el registro de la consola"
 
 #: retroarcher.py:143
 msgid "Print the version details and exit"
-msgstr ""
+msgstr "Imprimir los detalles de la versión y salir"
 
 #: web/templates/navbar.html:19
 msgid "Login"
