@@ -4,6 +4,8 @@
 
 Functional tests for pyra.webapp.
 """
+# standard imports
+import json
 
 
 def test_home(test_client):
@@ -29,6 +31,23 @@ def test_favicon(test_client):
     response = test_client.get('/favicon.ico')
     assert response.status_code == 200
     assert response.content_type == 'image/vnd.microsoft.icon'
+
+
+def test_callback_dashboard(test_client):
+    """
+    WHEN the '/callback/dashboard' page is requested (GET)
+    THEN check that the response is valid
+    """
+    response = test_client.get('/callback/dashboard')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+
+    assert isinstance(data, dict)  # ensure the data is a dict
+    assert isinstance(data['graphs'], list)  # ensure the data is a list
+    for x in data['graphs']:
+        assert x['data']
+        assert x['layout']
+        assert x['config']
 
 
 def test_docs(test_client):

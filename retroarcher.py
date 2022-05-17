@@ -24,7 +24,6 @@ from pyra import locales
 from pyra import logger
 from pyra import threads
 from pyra import version
-from pyra import webapp
 
 py_name = 'pyra'
 
@@ -128,23 +127,20 @@ def main():
             pyi_splash.update_text("Attempting to start RetroArcher")
 
     # Set up and gather command line arguments
+    # todo... fix translations for '--help' command
     parser = argparse.ArgumentParser(description=_('RetroArcher is a Python based game streaming server.\n'
                                                    'Arguments supplied here are meant to be temporary.'))
 
     parser.add_argument('--config', help=_('Specify a config file to use'))
     parser.add_argument('--debug', action='store_true', help=_('Use debug logging level'))
     parser.add_argument('--dev', action='store_true', help=_('Start RetroArcher in the development environment'))
-    parser.add_argument('--docker_healthcheck', action='store_true', help=_('Health check the container and exit.'))
+    parser.add_argument('--docker_healthcheck', action='store_true', help=_('Health check the container and exit'))
     parser.add_argument('--nolaunch', action='store_true', help=_('Do not open RetroArcher in browser'))
-    parser.add_argument(
-        '-p', '--port', default=9696, type=IntRange(21, 65535),
-        help=_('Force RetroArcher to run on a specified port, default=9696')
-    )
+    parser.add_argument('-p', '--port', default=9696, type=IntRange(21, 65535),
+                        help=_('Force RetroArcher to run on a specified port, default=9696')
+                        )
     parser.add_argument('-q', '--quiet', action='store_true', help=_('Turn off console logging'))
-    parser.add_argument(
-        '-v', '--version', action='store_true',
-        help=_('Print the version details and exit.')
-    )
+    parser.add_argument('-v', '--version', action='store_true', help=_('Print the version details and exit'))
 
     args = parser.parse_args()
 
@@ -169,7 +165,9 @@ def main():
         pyra.QUIET = True
 
     # initialize retroarcher
-    pyra.initialize(config_file=config_file)  # logging should not occur until after this point
+    # logging should not occur until after initialize
+    # any submodules that require translations need to be imported after config is initialize
+    pyra.initialize(config_file=config_file)
 
     if args.config:
         log.info(msg=f"RetroArcher is using custom config file: {config_file}.")
@@ -185,7 +183,9 @@ def main():
         config.CONFIG.write()
 
     if config.CONFIG['General']['SYSTEM_TRAY']:
-        from pyra import tray_icon
+        from pyra import tray_icon  # submodule requires translations so importing after initialization
+        # also do not import if not required by config options
+
         if tray_icon.icon_supported:
             tray_icon.icon = tray_icon.tray_initialize()
             threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()
@@ -199,6 +199,7 @@ def main():
         pyi_splash.update_text("Starting the webapp")
         time.sleep(3)  # show splash screen for a min of 3 seconds
         pyi_splash.close()  # close the splash screen
+    from pyra import webapp  # import at use due to translations
     threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()
 
     wait()  # wait for signal
@@ -216,11 +217,13 @@ def wait():
     --------
     >>> wait()
     """
+    from pyra import hardware  # submodule requires translations so importing after initialization
+
     log.info("RetroArcher is ready!")
 
-    # Wait endlessly for a signal
-    while True:
+    while True:  # wait endlessly for a signal
         if not pyra.SIGNAL:
+            hardware.update()  # update dashboard resource values
             try:
                 time.sleep(1)
             except KeyboardInterrupt:

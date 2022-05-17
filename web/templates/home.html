@@ -1,6 +1,60 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
-    Test
-</div>
+        <!-- Plotly JavaScript -->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/plotly-2.11.1.min.js') }}"></script>
+
+        <div class="container">
+
+            {% for chart in chart_types %}
+                <div class="card bg-dark" style="min-width: 75vw;">
+                    <div class="card-header">{{ _(translations[chart]['bare']) }}</div>
+                    <div class="card-body">
+                        <div class="chart-plotly" id="chart-{{chart}}"></div>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+
+        <script>
+            // this will run every second to update the charts
+            update_charts = () => {
+                $.ajax({
+                    url: "/callback/dashboard",
+                    type: "GET",
+                    contentType: 'application/json;charset=UTF-8',
+                    data: {
+                    },
+                    dataType:"json",
+                    success: function (data) {
+                        for(let i in data['graphs']) {
+                            Plotly.react(
+                                data['graphs'][i].layout.meta.id,
+                                data['graphs'][i].data,
+                                data['graphs'][i].layout,
+                                data['graphs'][i].config
+                            ).then(function(value) {
+                                resizeObserver.observe(value);
+                            });
+                        }
+                    }
+                });
+            };
+
+            // setup update timer
+            setInterval(update_charts, 1000);
+            // to make timer dynamic set it as a variable
+            // var timer = setInterval(update_charts, 1000);
+            // to stop use the following
+            // clearInterval(timer);
+
+            // resize charts if browser size changed between updates
+            const resizeObserver = new ResizeObserver(entries => {
+                alert(entries)
+              for (let entry of entries) {
+                Plotly.Plots.resize(entry.target);
+              }
+            });
+
+        </script>
 {% endblock content %}

@@ -41,6 +41,7 @@ def babel_extract():
         f'--project={project_name}',
         '--version=v0',
         '--add-comments=NOTE',
+        './retroarcher.py',
         './pyra',
         './web'
     ]

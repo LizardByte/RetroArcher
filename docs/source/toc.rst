@@ -25,6 +25,7 @@
    pyra_docs/pyra
    pyra_docs/config
    pyra_docs/definitions
+   pyra_docs/hardware
    pyra_docs/helpers
    pyra_docs/locales
    pyra_docs/logger

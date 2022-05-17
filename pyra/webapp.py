@@ -9,13 +9,14 @@ import os
 
 # lib imports
 import flask
-from flask import Flask
-from flask import render_template, send_from_directory
+from flask import Flask, Response
+from flask import jsonify, render_template, send_from_directory
 from flask_babel import Babel
 
 # local imports
 import pyra
 from pyra import config
+from pyra import hardware
 from pyra.definitions import Paths
 from pyra import locales
 from pyra import logger
@@ -100,7 +101,38 @@ def home() -> render_template:
     --------
     >>> home()
     """
-    return render_template('home.html', title='Home')
+    chart_types = hardware.chart_types()
+    chart_translations = hardware.chart_translations
+
+    return render_template('home.html', title='Home', chart_types=chart_types, translations=chart_translations)
+
+
+@app.route('/callback/dashboard', methods=['GET'])
+def callback_dashboard() -> Response:
+    """
+    Get dashboard data.
+
+    This should be used in a callback in order to update charts in the web app.
+
+    Returns
+    -------
+    Response
+        A response formatted as ``flask.jsonify``.
+
+    See Also
+    --------
+    pyra.hardware.chart_data : This function sets up the data in the proper format.
+
+    Examples
+    --------
+    >>> callback_dashboard()
+    <Response ... bytes [200 OK]>
+    """
+    graphs = hardware.chart_data()
+
+    data = jsonify(graphs)
+
+    return data
 
 
 @app.route('/docs/', defaults={'filename': 'index.html'})
