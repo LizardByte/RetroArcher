@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-04-24 00:21+0000\n"
-"PO-Revision-Date: 2022-04-24 00:45\n"
+"POT-Creation-Date: 2022-05-17 02:31+0000\n"
+"PO-Revision-Date: 2022-05-17 23:48\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,70 @@ msgstr ""
 "X-Crowdin-File: /nightly/retroarcher.po\n"
 "X-Crowdin-File-ID: 16\n"
 "Language: en_US\n"
+
+#: pyra/hardware.py:22
+msgid "cpu"
+msgstr "cpu"
+
+#: pyra/hardware.py:23
+msgid "cpu usage"
+msgstr "cpu usage"
+
+#: pyra/hardware.py:26
+msgid "gpu"
+msgstr "gpu"
+
+#: pyra/hardware.py:27
+msgid "gpu usage"
+msgstr "gpu usage"
+
+#: pyra/hardware.py:30
+msgid "memory"
+msgstr "memory"
+
+#: pyra/hardware.py:31
+msgid "memory usage"
+msgstr "memory usage"
+
+#: pyra/hardware.py:34
+msgid "network"
+msgstr "network"
+
+#: pyra/hardware.py:35
+msgid "network usage"
+msgstr "network usage"
+
+#: pyra/hardware.py:38
+msgid "received"
+msgstr "received"
+
+#: pyra/hardware.py:39
+msgid "sent"
+msgstr "sent"
+
+#: pyra/hardware.py:40
+msgid "system"
+msgstr "system"
+
+#. NOTE: Mbps = megabytes per second
+#: pyra/hardware.py:336
+#, python-format
+msgid "%(numeric_value)s Mbps"
+msgstr "%(numeric_value)s Mbps"
+
+#. NOTE: the double percent symbols is rendered as one in this case
+#: pyra/hardware.py:339
+#, python-format
+msgid "%(numeric_value)s %%"
+msgstr "%(numeric_value)s %%"
+
+#: pyra/hardware.py:423
+msgid "Mbps"
+msgstr "Mbps"
+
+#: pyra/hardware.py:423
+msgid "%"
+msgstr "%"
 
 #. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
 #. "%(app_name)s".
@@ -33,9 +97,13 @@ msgid "%(github)s Releases"
 msgstr "%(github)s Releases"
 
 #. NOTE: Donate to RetroArcher.
-#: pyra/tray_icon.py:85 web/templates/base.html:49
+#: pyra/tray_icon.py:85 web/templates/navbar.html:23
 msgid "Donate"
 msgstr "Donate"
+
+#: pyra/tray_icon.py:86 web/templates/navbar.html:28
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
 
 #. NOTE: Open web browser when application starts. Do not translate
 #. "%(app_name)s".
@@ -59,59 +127,93 @@ msgstr "Restart"
 msgid "Quit"
 msgstr "Quit"
 
-#: web/templates/base.html:45
+#: retroarcher.py:131
+msgid "RetroArcher is a Python based game streaming server.\n"
+"Arguments supplied here are meant to be temporary."
+msgstr "RetroArcher is a Python based game streaming server.\n"
+"Arguments supplied here are meant to be temporary."
+
+#: retroarcher.py:134
+msgid "Specify a config file to use"
+msgstr "Specify a config file to use"
+
+#: retroarcher.py:135
+msgid "Use debug logging level"
+msgstr "Use debug logging level"
+
+#: retroarcher.py:136
+msgid "Start RetroArcher in the development environment"
+msgstr "Start RetroArcher in the development environment"
+
+#: retroarcher.py:137
+msgid "Health check the container and exit"
+msgstr "Health check the container and exit"
+
+#: retroarcher.py:138
+msgid "Do not open RetroArcher in browser"
+msgstr "Do not open RetroArcher in browser"
+
+#: retroarcher.py:140
+msgid "Force RetroArcher to run on a specified port, default=9696"
+msgstr "Force RetroArcher to run on a specified port, default=9696"
+
+#: retroarcher.py:142
+msgid "Turn off console logging"
+msgstr "Turn off console logging"
+
+#: retroarcher.py:143
+msgid "Print the version details and exit"
+msgstr "Print the version details and exit"
+
+#: web/templates/navbar.html:19
 msgid "Login"
 msgstr "Login"
 
-#: web/templates/base.html:54
-msgid "GitHub Sponsors"
-msgstr "GitHub Sponsors"
-
-#: web/templates/base.html:70
+#: web/templates/navbar.html:44
 msgid "Social"
 msgstr "Social"
 
-#: web/templates/base.html:75
+#: web/templates/navbar.html:49
 msgid "Facebook Page"
 msgstr "Facebook Page"
 
-#: web/templates/base.html:78
+#: web/templates/navbar.html:52
 msgid "Facebook Group"
 msgstr "Facebook Group"
 
-#: web/templates/base.html:93
+#: web/templates/navbar.html:67
 msgid "Support"
 msgstr "Support"
 
-#: web/templates/base.html:98
+#: web/templates/navbar.html:72
 msgid "Docs"
 msgstr "Docs"
 
-#: web/templates/base.html:102
+#: web/templates/navbar.html:76
 msgid "Widget"
 msgstr "Widget"
 
-#: web/templates/base.html:105
+#: web/templates/navbar.html:79
 msgid "Join"
 msgstr "Join"
 
-#: web/templates/base.html:109
+#: web/templates/navbar.html:83
 msgid "Discussions"
 msgstr "Discussions"
 
-#: web/templates/base.html:114 web/templates/base.html:117
+#: web/templates/navbar.html:89
 msgid "Home"
 msgstr "Home"
 
-#: web/templates/base.html:121 web/templates/base.html:124
+#: web/templates/navbar.html:94
 msgid "Plugins"
 msgstr "Plugins"
 
-#: web/templates/base.html:128 web/templates/base.html:131
+#: web/templates/navbar.html:99
 msgid "Config"
 msgstr "Config"
 
-#: web/templates/base.html:135 web/templates/base.html:138
+#: web/templates/navbar.html:104
 msgid "Users"
 msgstr "Users"
 

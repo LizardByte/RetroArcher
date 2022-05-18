@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-04-24 00:21+0000\n"
-"PO-Revision-Date: 2022-04-24 00:38\n"
+"POT-Creation-Date: 2022-05-17 02:31+0000\n"
+"PO-Revision-Date: 2022-05-18 00:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,70 @@ msgstr ""
 "X-Crowdin-File: /nightly/retroarcher.po\n"
 "X-Crowdin-File-ID: 16\n"
 "Language: es_ES\n"
+
+#: pyra/hardware.py:22
+msgid "cpu"
+msgstr "ucp"
+
+#: pyra/hardware.py:23
+msgid "cpu usage"
+msgstr "uso de la ucp"
+
+#: pyra/hardware.py:26
+msgid "gpu"
+msgstr "upg"
+
+#: pyra/hardware.py:27
+msgid "gpu usage"
+msgstr "uso de la upg"
+
+#: pyra/hardware.py:30
+msgid "memory"
+msgstr "memoria"
+
+#: pyra/hardware.py:31
+msgid "memory usage"
+msgstr "uso de la memoria"
+
+#: pyra/hardware.py:34
+msgid "network"
+msgstr "red"
+
+#: pyra/hardware.py:35
+msgid "network usage"
+msgstr "uso de la red"
+
+#: pyra/hardware.py:38
+msgid "received"
+msgstr "recibido"
+
+#: pyra/hardware.py:39
+msgid "sent"
+msgstr "enviado"
+
+#: pyra/hardware.py:40
+msgid "system"
+msgstr "sistema"
+
+#. NOTE: Mbps = megabytes per second
+#: pyra/hardware.py:336
+#, python-format
+msgid "%(numeric_value)s Mbps"
+msgstr "%(numeric_value)s Mbps"
+
+#. NOTE: the double percent symbols is rendered as one in this case
+#: pyra/hardware.py:339
+#, python-format
+msgid "%(numeric_value)s %%"
+msgstr "%(numeric_value)s %%"
+
+#: pyra/hardware.py:423
+msgid "Mbps"
+msgstr "Mbps"
+
+#: pyra/hardware.py:423
+msgid "%"
+msgstr "%"
 
 #. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
 #. "%(app_name)s".
@@ -33,9 +97,13 @@ msgid "%(github)s Releases"
 msgstr "Lanzamientos de %(github)s"
 
 #. NOTE: Donate to RetroArcher.
-#: pyra/tray_icon.py:85 web/templates/base.html:49
+#: pyra/tray_icon.py:85 web/templates/navbar.html:23
 msgid "Donate"
 msgstr "Donar"
+
+#: pyra/tray_icon.py:86 web/templates/navbar.html:28
+msgid "GitHub Sponsors"
+msgstr "Patrocinadores de GitHub"
 
 #. NOTE: Open web browser when application starts. Do not translate
 #. "%(app_name)s".
@@ -59,59 +127,93 @@ msgstr "Reiniciar"
 msgid "Quit"
 msgstr "Salir"
 
-#: web/templates/base.html:45
+#: retroarcher.py:131
+msgid "RetroArcher is a Python based game streaming server.\n"
+"Arguments supplied here are meant to be temporary."
+msgstr "RetroArcher es un servidor de transmisión de juegos basado en Python.\n"
+"Los argumentos proporcionados aquí están destinados a ser temporales."
+
+#: retroarcher.py:134
+msgid "Specify a config file to use"
+msgstr "Especificar un archivo de configuración a usar"
+
+#: retroarcher.py:135
+msgid "Use debug logging level"
+msgstr "Usar el nivel de registro de depuración"
+
+#: retroarcher.py:136
+msgid "Start RetroArcher in the development environment"
+msgstr "Iniciar RetroArcher en el entorno de desarrollo"
+
+#: retroarcher.py:137
+msgid "Health check the container and exit"
+msgstr "Verificar el contenedor y salir"
+
+#: retroarcher.py:138
+msgid "Do not open RetroArcher in browser"
+msgstr "No abrir RetroArcher en el navegador"
+
+#: retroarcher.py:140
+msgid "Force RetroArcher to run on a specified port, default=9696"
+msgstr "Forzar RetroArcher a ejecutarse en un puerto especificado, por defecto = 9696"
+
+#: retroarcher.py:142
+msgid "Turn off console logging"
+msgstr "Desactivar el registro de la consola"
+
+#: retroarcher.py:143
+msgid "Print the version details and exit"
+msgstr "Imprimir los detalles de la versión y salir"
+
+#: web/templates/navbar.html:19
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: web/templates/base.html:54
-msgid "GitHub Sponsors"
-msgstr "Patrocinadores de GitHub"
-
-#: web/templates/base.html:70
+#: web/templates/navbar.html:44
 msgid "Social"
 msgstr "Social"
 
-#: web/templates/base.html:75
+#: web/templates/navbar.html:49
 msgid "Facebook Page"
 msgstr "Página de Facebook"
 
-#: web/templates/base.html:78
+#: web/templates/navbar.html:52
 msgid "Facebook Group"
 msgstr "Grupo de Facebook"
 
-#: web/templates/base.html:93
+#: web/templates/navbar.html:67
 msgid "Support"
 msgstr "Soporte"
 
-#: web/templates/base.html:98
+#: web/templates/navbar.html:72
 msgid "Docs"
 msgstr "Documentos"
 
-#: web/templates/base.html:102
+#: web/templates/navbar.html:76
 msgid "Widget"
 msgstr "Widget"
 
-#: web/templates/base.html:105
+#: web/templates/navbar.html:79
 msgid "Join"
 msgstr "Unirse"
 
-#: web/templates/base.html:109
+#: web/templates/navbar.html:83
 msgid "Discussions"
 msgstr "Discusiones"
 
-#: web/templates/base.html:114 web/templates/base.html:117
+#: web/templates/navbar.html:89
 msgid "Home"
 msgstr "Inicio"
 
-#: web/templates/base.html:121 web/templates/base.html:124
+#: web/templates/navbar.html:94
 msgid "Plugins"
 msgstr "Extensiones"
 
-#: web/templates/base.html:128 web/templates/base.html:131
+#: web/templates/navbar.html:99
 msgid "Config"
 msgstr "Configuración"
 
-#: web/templates/base.html:135 web/templates/base.html:138
+#: web/templates/navbar.html:104
 msgid "Users"
 msgstr "Usuarios"
 
