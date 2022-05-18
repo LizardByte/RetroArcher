@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2022-05-17 02:31+0000\n"
-"PO-Revision-Date: 2022-05-17 23:56\n"
+"PO-Revision-Date: 2022-05-18 00:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "ucp"
 
 #: pyra/hardware.py:23
 msgid "cpu usage"
-msgstr "uso de ucp"
+msgstr "uso de la ucp"
 
 #: pyra/hardware.py:26
 msgid "gpu"
@@ -32,7 +32,7 @@ msgstr "upg"
 
 #: pyra/hardware.py:27
 msgid "gpu usage"
-msgstr "uso de upg"
+msgstr "uso de la upg"
 
 #: pyra/hardware.py:30
 msgid "memory"
@@ -40,7 +40,7 @@ msgstr "memoria"
 
 #: pyra/hardware.py:31
 msgid "memory usage"
-msgstr "uso de memoria"
+msgstr "uso de la memoria"
 
 #: pyra/hardware.py:34
 msgid "network"
@@ -66,13 +66,13 @@ msgstr "sistema"
 #: pyra/hardware.py:336
 #, python-format
 msgid "%(numeric_value)s Mbps"
-msgstr "Mbps de %(numeric_value)s"
+msgstr "%(numeric_value)s Mbps"
 
 #. NOTE: the double percent symbols is rendered as one in this case
 #: pyra/hardware.py:339
 #, python-format
 msgid "%(numeric_value)s %%"
-msgstr "%% de %(numeric_value)s"
+msgstr "%(numeric_value)s %%"
 
 #: pyra/hardware.py:423
 msgid "Mbps"
@@ -135,7 +135,7 @@ msgstr "RetroArcher es un servidor de transmisión de juegos basado en Python.\n
 
 #: retroarcher.py:134
 msgid "Specify a config file to use"
-msgstr "Especifique un archivo de configuración a usar"
+msgstr "Especificar un archivo de configuración a usar"
 
 #: retroarcher.py:135
 msgid "Use debug logging level"
@@ -155,7 +155,7 @@ msgstr "No abrir RetroArcher en el navegador"
 
 #: retroarcher.py:140
 msgid "Force RetroArcher to run on a specified port, default=9696"
-msgstr "Forzar a RetroArcher a ejecutarse en un puerto especificado, por defecto = 9696"
+msgstr "Forzar RetroArcher a ejecutarse en un puerto especificado, por defecto = 9696"
 
 #: retroarcher.py:142
 msgid "Turn off console logging"
