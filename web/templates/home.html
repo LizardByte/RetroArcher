@@ -50,7 +50,6 @@
 
             // resize charts if browser size changed between updates
             const resizeObserver = new ResizeObserver(entries => {
-                alert(entries)
               for (let entry of entries) {
                 Plotly.Plots.resize(entry.target);
               }
