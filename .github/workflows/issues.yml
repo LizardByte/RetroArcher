@@ -1,3 +1,7 @@
+# This action is centrally managed in https://github.com/<organization>/.github/
+# Don't make changes to this file in this repo as they will be overwritten with changes made to the same file in
+# the above-mentioned repo.
+
 name: Issues
 
 on:
@@ -8,10 +12,10 @@ on:
 
 jobs:
   label:
-    name: Label Issues
+    name: Label Actions
     runs-on: ubuntu-latest
     steps:
-      - name: Label Issues
+      - name: Label Actions
         uses: dessant/label-actions@v2
         with:
           github-token: ${{ github.token }}
