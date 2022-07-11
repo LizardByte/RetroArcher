@@ -94,7 +94,7 @@ jobs:
           echo ::set-output name=tags::${TAGS}
 
       - name: Set Up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
