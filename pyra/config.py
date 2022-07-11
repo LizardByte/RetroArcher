@@ -1,4 +1,6 @@
-"""config.py
+"""
+..
+   config.py
 
 Responsible for config related functions.
 """
@@ -29,6 +31,10 @@ _CONFIG_SPEC = [
     '[Hidden]',
     'CONFIG_VERSION = integer(min=0, default=0)',
     'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo
+    '[General]',
+    'LOCALE = option("en", "es", default="en")',
+    'LAUNCH_BROWSER = boolean(default=True)',
+    'SYSTEM_TRAY = boolean(default=True)',
     '[Logging]',
     'LOG_DIR = string',
     'DEBUG_LOGGING = boolean(default=True)',
@@ -47,16 +53,34 @@ _WHITELIST_KEYS = ['HTTPS_KEY']
 LOG_BLACKLIST = []
 
 
-def create_config(config_file: str, config_spec: list=_CONFIG_SPEC) -> ConfigObj:
-    """Create a config file and ConfigObj using a config spec.
+def create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:
+    """
+    Create a config file and `ConfigObj` using a config spec.
 
     The created config is validated against a Validator object. This function will remove keys from the user's
     config.ini if they no longer exist in the config spec.
 
-    :param config_file: str - Full filename of config file
-    :param config_spec: list - Config spec to use
-    :return config: ConfigObj
-    :raise SystemExit: exception - If config_spec is not valid
+    Parameters
+    ----------
+    config_file : str
+        Full filename of config file.
+    config_spec : list, default = _CONFIG_SPEC
+        Config spec to use.
+
+    Returns
+    -------
+    ConfigObj
+        Dictionary of config keys and values.
+
+    Raises
+    ------
+    SystemExit
+        If config_spec is not valid.
+
+    Examples
+    --------
+    >>> create_config(config_file='config.ini')
+    ConfigObj({...})
     """
     config = ConfigObj(
         configspec=config_spec,
@@ -116,11 +140,57 @@ def create_config(config_file: str, config_spec: list=_CONFIG_SPEC) -> ConfigObj
     return config
 
 
-def validate_config(config: ConfigObj) -> bool:
-    """Validates ConfigObj dictionary.
+def save_config(config: ConfigObj = CONFIG) -> bool:
+    """
+    Save the config to file.
 
-    :param config: ConfigObj - Config to validate
-    :return: bool - True if validation passes, otherwise False
+    Saves the `ConfigObj` to the specified file.
+
+    Parameters
+    ----------
+    config : ConfigObj, default = CONFIG
+        Config to save.
+
+    Returns
+    -------
+    bool
+        True if save successful, otherwise False.
+
+    Examples
+    --------
+    >>> config_object = create_config(config_file='config.ini')
+    >>> save_config(config=config_object)
+    True
+    """
+    try:
+        config.write()
+    except Exception:
+        return False
+    else:
+        return True
+
+
+def validate_config(config: ConfigObj) -> bool:
+    """
+    Validate ConfigObj dictionary.
+
+    Ensures that the given `ConfigObj` is valid.
+
+    Parameters
+    ----------
+    config : ConfigObj
+        Config to validate.
+
+    Returns
+    -------
+    bool
+        True if validation passes, otherwise False.
+
+    Examples
+    --------
+    >>> config_object = create_config(config_file='config.ini')
+    >>> validate_config(config=config_object)
+    True
     """
     validator = Validator()
     try:

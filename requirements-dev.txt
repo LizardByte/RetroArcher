@@ -1,2 +1,4 @@
 -r requirements.txt
-pyinstaller==4.10
+flake8==4.0.1
+pyinstaller==5.0
+pytest==7.1.1

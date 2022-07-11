@@ -1,13 +1,18 @@
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Open Sans', Arial, sans-serif;
     background-color: #303436;
     color: #eee;
     margin-top: 65px;
-    overflow: hidden;
+    position: absolute;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+  color: #ffffff;
 }
 
 .navbar {
@@ -24,4 +29,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-header .navbar-nav .nav-link.active {
   font-weight: 500;
+}
+
+.container {
+  margin: auto;
+  width: 75%;
+  padding: 10px;
 }
