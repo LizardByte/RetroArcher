@@ -5,14 +5,14 @@
 blank_issues_enabled: false
 contact_links:
   - name: Discord support
-    url: https://retroarcher.github.io/discord
-    about: Ask question about RetroArcher in Discord
+    url: https://docs.lizardbyte.dev/about/support.html#discord
+    about: Ask questions in Discord
   - name: Reddit support
-    url: https://www.reddit.com/r/RetroArcher
-    about: Ask questions about RetroArcher on Reddit
+    url: https://www.reddit.com/r/LizardByte
+    about: Get community support on Reddit
   - name: Facebook support
-    url: https://www.facebook.com/groups/retroracher
-    about: Ask question about RetroArcher on Facebook
+    url: https://www.facebook.com/groups/lizardbyte
+    about: Get community support on Facebook
   - name: Feature request
-    url: https://retroarcher.github.io/featurereq
-    about: Share your suggestions or ideas to make RetroArcher better!
+    url: https://feedback.lizardbyte.dev
+    about: Share your suggestions or ideas to help us improve
