@@ -84,7 +84,7 @@ jobs:
           fi
           
           # read the platforms from `.docker_platforms`
-          PLATFORMS=$(<.docker_platforms)
+          PLATFORMS=$(.docker_platforms)
 
           echo ::set-output name=branch::${BRANCH}
           echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
