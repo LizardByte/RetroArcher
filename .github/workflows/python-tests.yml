@@ -1,3 +1,4 @@
+---
 name: Python Tests
 
 on:
@@ -10,11 +11,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ windows-2019, ubuntu-18.04, macos-10.15 ]
-        architecture: [ x64 ]
-        include: # additional runs
-        - os: windows-2019
-          architecture: x86
+        os: [windows-2019, ubuntu-18.04, macos-10.15]
+        architecture: [x64]
+        include:  # additional runs
+          - os: windows-2019
+            architecture: x86
 
     runs-on: ${{ matrix.os }}
     steps:
