@@ -1,3 +1,4 @@
+---
 name: CI
 
 on:
@@ -13,21 +14,22 @@ jobs:
     name: Check Changelog
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
-      uses: actions/checkout@v3
+      - name: Checkout
+        if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
+        uses: actions/checkout@v3
 
-    - name: Verify Changelog
-      id: verify_changelog
-      if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
-      # base_ref for pull request check, ref for push
-      uses: LizardByte/.github/actions/verify_changelog@master
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify Changelog
+        id: verify_changelog
+        if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
+        # base_ref for pull request check, ref for push
+        uses: LizardByte/.github/actions/verify_changelog@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
     outputs:
       next_version: ${{ steps.verify_changelog.outputs.changelog_parser_version }}
       last_version: ${{ steps.verify_changelog.outputs.latest_release_tag_name }}
-      release_body:  ${{ steps.verify_changelog.outputs.changelog_parser_description }}
+      release_body: ${{ steps.verify_changelog.outputs.changelog_parser_description }}
 
   version_check:
     runs-on: ubuntu-latest
@@ -58,7 +60,7 @@ jobs:
           echo "pyra_version=${OUTPUT}" >> $GITHUB_ENV
 
       - name: Compare versions
-        if: ( env.pyra_version != needs.check_changelog.outputs.next_version ) && ( github.ref == 'refs/heads/master' || github.base_ref == 'master' )
+        if: ( env.pyra_version != needs.check_changelog.outputs.next_version ) && ( github.ref == 'refs/heads/master' || github.base_ref == 'master' )  # yamllint disable-line rule:line-length
         run: |
           echo "Version number in pyra/version.py does not match version in CHANGELOG.md"
           exit 1
@@ -69,9 +71,9 @@ jobs:
       matrix:
         os: [windows-2019, ubuntu-18.04, macos-10.15]
         architecture: [x64]
-        include: # additional runs
-        - os: windows-2019
-          architecture: x86
+        include:  # additional runs
+          - os: windows-2019
+            architecture: x86
 
     runs-on: ${{ matrix.os }}
     needs: [check_changelog, version_check]
