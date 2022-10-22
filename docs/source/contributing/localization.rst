@@ -1,4 +1,4 @@
-:github_url: https://github.com/RetroArcher/RetroArcher/tree/nightly/docs/source/contributing/localization.rst
+:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/docs/source/contributing/localization.rst
 
 Localization
 ============
@@ -21,8 +21,9 @@ The translations occur on
 Only elements of the interface are planned to be translated.
 
 Translations Basics
-   - The brand name `RetroArcher` should never be translated.
-   - Other brand names should never be translated.
+   - The brand name `LizardByte` should never be translated.
+   - The project name `RetroArcher` should never be translated.
+   - Other brand and project names should never be translated.
      Examples:
 
        - CEMU
@@ -31,6 +32,7 @@ Translations Basics
        - MacOS
        - RetroArch
        - RPCS3
+       - Sunshine
        - Windows
 
 CrowdIn Integration
