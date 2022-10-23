@@ -1,27 +1,25 @@
 FROM python:3.9.6-slim-bullseye
 
-LABEL maintainer="RetroArcher"
+LABEL maintainer="LizardByte"
 
 ENV RETROARCHER_DOCKER=True
 ENV TZ=UTC
 
-# setup python requirements
-COPY requirements.txt .
-RUN \
-  python -m pip install --upgrade pip && \
-  python -m pip install --no-cache-dir -r requirements.txt
-
 # setup app directory
 WORKDIR /app
-COPY . /app
+COPY . .
+
+# setup python requirements
+RUN \
+  python -m pip install --no-cache-dir --upgrade pip && \
+  python -m pip install --no-cache-dir -r requirements.txt
 
 # compile locales
 RUN python scripts/_locale.py --compile
 
 # compile docs
-RUN \
-  cd docs && \
-  sphinx-build -M html source build
+WORKDIR /app/docs
+RUN sphinx-build -M html source build
 
 # setup user
 RUN \
