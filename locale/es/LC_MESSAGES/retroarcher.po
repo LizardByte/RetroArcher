@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-05-17 02:31+0000\n"
-"PO-Revision-Date: 2022-05-18 00:11\n"
+"POT-Creation-Date: 2022-10-23 01:56+0000\n"
+"PO-Revision-Date: 2022-10-23 02:35\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -189,31 +189,23 @@ msgstr "Soporte"
 msgid "Docs"
 msgstr "Documentos"
 
-#: web/templates/navbar.html:76
-msgid "Widget"
-msgstr "Widget"
-
-#: web/templates/navbar.html:79
-msgid "Join"
-msgstr "Unirse"
-
-#: web/templates/navbar.html:83
+#: web/templates/navbar.html:80
 msgid "Discussions"
 msgstr "Discusiones"
 
-#: web/templates/navbar.html:89
+#: web/templates/navbar.html:86
 msgid "Home"
 msgstr "Inicio"
 
-#: web/templates/navbar.html:94
+#: web/templates/navbar.html:91
 msgid "Plugins"
 msgstr "Extensiones"
 
-#: web/templates/navbar.html:99
+#: web/templates/navbar.html:96
 msgid "Config"
 msgstr "Configuración"
 
-#: web/templates/navbar.html:104
+#: web/templates/navbar.html:101
 msgid "Users"
 msgstr "Usuarios"
 
