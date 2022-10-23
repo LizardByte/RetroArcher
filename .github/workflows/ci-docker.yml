@@ -14,8 +14,56 @@ on:
   workflow_dispatch:
 
 jobs:
+  check_dockerfile:
+    name: Check Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check
+        id: check
+        run: |
+          if [ -f "./Dockerfile" ]
+          then
+            FOUND=true
+          else
+            FOUND=false
+          fi
+
+          echo "dockerfile=${FOUND}" >> $GITHUB_OUTPUT
+
+    outputs:
+      dockerfile: ${{ steps.check.outputs.dockerfile }}
+
+  lint_dockerfile:
+    name: Lint Dockerfile
+    needs: [check_dockerfile]
+    if: ${{ needs.check_dockerfile.outputs.dockerfile == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Hadolint
+        id: hadolint
+        uses: hadolint/hadolint-action@v2.1.0
+        with:
+          dockerfile: ./Dockerfile
+          ignore: DL3008,DL3013,DL3016,DL3018,DL3028,DL3059
+          output-file: ./hadolint.log
+          verbose: true
+
+      - name: Log
+        if: failure()
+        run: |
+          Hadolint outcome: ${{ steps.hadolint.outcome }} >> $GITHUB_STEP_SUMMARY
+          cat "./hadolint.log" >> $GITHUB_STEP_SUMMARY
+
   check_changelog:
     name: Check Changelog
+    needs: [check_dockerfile]
+    if: ${{ needs.check_dockerfile.outputs.dockerfile == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,15 +81,19 @@ jobs:
       next_version: ${{ steps.verify_changelog.outputs.changelog_parser_version }}
 
   docker:
+    name: Docker
+    needs: [check_dockerfile, check_changelog]
+    if: ${{ needs.check_dockerfile.outputs.dockerfile == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: write
-    needs: [check_changelog]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
       - name: Prepare
         id: prepare
@@ -87,18 +139,18 @@ jobs:
           # read the platforms from `.docker_platforms`
           PLATFORMS=$(<.docker_platforms)
 
-          echo ::set-output name=branch::${BRANCH}
-          echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-          echo ::set-output name=commit::${COMMIT}
-          echo ::set-output name=platforms::${PLATFORMS}
-          echo ::set-output name=push::${PUSH}
-          echo ::set-output name=tags::${TAGS}
+          echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
+          echo "build_date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+          echo "commit=${COMMIT}" >> $GITHUB_OUTPUT
+          echo "platforms=${PLATFORMS}" >> $GITHUB_OUTPUT
+          echo "push=${PUSH}" >> $GITHUB_OUTPUT
+          echo "tags=${TAGS}" >> $GITHUB_OUTPUT
 
       - name: Set Up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
         id: buildx
 
       - name: Cache Docker Layers
@@ -111,21 +163,21 @@ jobs:
 
       - name: Log in to Docker Hub
         if: ${{ steps.prepare.outputs.push == 'true' }}  # PRs do not have access to secrets
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Log in to the Container registry
         if: ${{ steps.prepare.outputs.push == 'true' }}  # PRs do not have access to secrets
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ secrets.GH_BOT_NAME }}
           password: ${{ secrets.GH_BOT_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./
           file: ./Dockerfile
@@ -133,8 +185,9 @@ jobs:
           platforms: ${{ steps.prepare.outputs.platforms }}
           build-args: |
             BRANCH=${{ steps.prepare.outputs.branch }}
-            COMMIT=${{ steps.prepare.outputs.commit }}
             BUILD_DATE=${{ steps.prepare.outputs.build_date }}
+            BUILD_VERSION=${{ needs.check_changelog.outputs.next_version }}
+            COMMIT=${{ steps.prepare.outputs.commit }}
           tags: ${{ steps.prepare.outputs.tags }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache

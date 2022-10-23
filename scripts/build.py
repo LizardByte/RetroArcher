@@ -35,7 +35,7 @@ def build():
             arg_count += 1
     elif sys.platform.lower() == 'darwin':  # macOS
         pyinstaller_args.append('--console')
-        pyinstaller_args.append('--osx-bundle-identifier=com.github.retroarcher.retroarcher')
+        pyinstaller_args.append('--osx-bundle-identifier=dev.lizardbyte.retroarcher')
 
     elif sys.platform.lower() == 'linux':  # linux
         pyinstaller_args.append('--splash=./web/images/logo-circle.png')

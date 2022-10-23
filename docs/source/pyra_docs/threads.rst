@@ -1,4 +1,4 @@
-:github_url: https://github.com/RetroArcher/RetroArcher/tree/nightly/pyra/threads.py
+:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/pyra/threads.py
 
 .. include:: ../global.rst
 
