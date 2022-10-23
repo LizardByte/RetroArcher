@@ -1,4 +1,4 @@
-:github_url: https://github.com/RetroArcher/RetroArcher/tree/nightly/docs/source/about/usage.rst
+:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/docs/source/about/usage.rst
 
 Usage
 =====

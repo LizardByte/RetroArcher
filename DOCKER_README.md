@@ -1,6 +1,6 @@
-# Docker
+### lizardbyte/retroarcher
 
-## Using docker run
+#### Using docker run
 Create and run the container (substitute your `<values>`):
 
 ```bash
@@ -12,7 +12,7 @@ docker run -d \
   -e PGID=<gid> \
   -e TZ=<timezone> \
   -p 9696:9696 \
-  retroarcher/retroarcher
+  lizardbyte/retroarcher
 ```
 
 To update the container it must be removed and recreated:
@@ -23,12 +23,12 @@ docker stop retroarcher
 # Remove the container
 docker rm retroarcher
 # Pull the latest update
-docker pull retroarcher/retroarcher
+docker pull lizardbyte/retroarcher
 # Run the container with the same parameters as before
 docker run -d ...
 ```
 
-## Using docker-compose
+#### Using docker-compose
 
 Create a `docker-compose.yml` file with the following contents (substitute your `<values>`):
 
@@ -36,7 +36,7 @@ Create a `docker-compose.yml` file with the following contents (substitute your 
 version: '3'
 services:
   retroarcher:
-    image: retroarcher/retroarcher
+    image: lizardbyte/retroarcher
     container_name: retroarcher
     restart: unless-stopped
     volumes:
@@ -63,7 +63,7 @@ docker-compose pull
 docker-compose up -d
 ```
 
-## Parameters
+#### Parameters
 You must substitute the `<values>` with your own settings.
 
 Parameters are split into two halves separated by a colon. The left side represents the host and the right side the
@@ -75,15 +75,15 @@ Therefore `-p 9696:9696` would expose port `9696` from inside the container to b
 (e.g. `-p 8080:9696`).
 
 
-| Parameter                   | Function             | Example Value       | Required |
-| --------------------------- | -------------------- | ------------------- | -------- |
-| `-p <port>:9696`            | Web UI Port          | `9696`              | True     |
-| `-v <path to data>:/config` | Volume mapping       | `/home/retroarcher` | True     |
-| `-e PUID=<uid>`             | User ID              | `1001`              | False    |
-| `-e PGID=<gid>`             | Group ID             | `1001`              | False    |
-| `-e TZ=<timezone>`          | Lookup TZ value [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | `America/New_York` | True     |
+| Parameter                   | Function                                                                             | Example Value       | Required |
+|-----------------------------|--------------------------------------------------------------------------------------|---------------------|:--------:|
+| `-p <port>:9696`            | Web UI Port                                                                          | `9696`              |   True   |
+| `-v <path to data>:/config` | Volume mapping                                                                       | `/home/retroarcher` |   True   |
+| `-e PUID=<uid>`             | User ID                                                                              | `1001`              |  False   |
+| `-e PGID=<gid>`             | Group ID                                                                             | `1001`              |  False   |
+| `-e TZ=<timezone>`          | Lookup TZ value [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | `America/New_York`  |   True   |
 
-### User / Group Identifiers:
+#### User / Group Identifiers:
 
 When using data volumes (-v flags) permissions issues can arise between the host OS and the container. To avoid this
 issue you can specify the user PUID and group PGID. Ensure the data volume directory on the host is owned by the same

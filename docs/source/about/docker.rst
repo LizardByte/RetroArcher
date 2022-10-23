@@ -1,3 +1,6 @@
-:github_url: https://github.com/RetroArcher/RetroArcher/tree/nightly/docs/DOCKER_README.md
+:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/DOCKER_README.md
+
+Docker
+------
 
 .. mdinclude:: ../../../DOCKER_README.md

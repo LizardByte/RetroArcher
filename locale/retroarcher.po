@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RetroArcher v0\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-05-17 02:31+0000\n"
+"POT-Creation-Date: 2022-10-23 01:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,31 +189,23 @@ msgstr ""
 msgid "Docs"
 msgstr ""
 
-#: web/templates/navbar.html:76
-msgid "Widget"
-msgstr ""
-
-#: web/templates/navbar.html:79
-msgid "Join"
-msgstr ""
-
-#: web/templates/navbar.html:83
+#: web/templates/navbar.html:80
 msgid "Discussions"
 msgstr ""
 
-#: web/templates/navbar.html:89
+#: web/templates/navbar.html:86
 msgid "Home"
 msgstr ""
 
-#: web/templates/navbar.html:94
+#: web/templates/navbar.html:91
 msgid "Plugins"
 msgstr ""
 
-#: web/templates/navbar.html:99
+#: web/templates/navbar.html:96
 msgid "Config"
 msgstr ""
 
-#: web/templates/navbar.html:104
+#: web/templates/navbar.html:101
 msgid "Users"
 msgstr ""
 

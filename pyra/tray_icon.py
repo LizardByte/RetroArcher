@@ -265,7 +265,7 @@ def github_releases():
     >>> github_releases()
     True
     """
-    url = 'https://github.com/RetroArcher/RetroArcher/releases/latest'
+    url = 'https://github.com/LizardByte/RetroArcher/releases/latest'
     return helpers.open_url_in_browser(url=url)
 
 
@@ -285,7 +285,7 @@ def donate_github():
     >>> donate_github()
     True
     """
-    url = 'https://github.com/sponsors/ReenigneArcher'
+    url = 'https://github.com/sponsors/LizardByte'
     return helpers.open_url_in_browser(url=url)
 
 
@@ -325,7 +325,7 @@ def donate_patreon():
     >>> donate_patreon()
     True
     """
-    url = 'https://www.patreon.com/RetroArcher'
+    url = 'https://www.patreon.com/LizardByte'
     return helpers.open_url_in_browser(url=url)
 
 
