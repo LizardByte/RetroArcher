@@ -1,4 +1,4 @@
-:github_url: https://github.com/RetroArcher/RetroArcher/tree/nightly/retroarcher.py
+:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/retroarcher.py
 
 .. include:: ../global.rst
 

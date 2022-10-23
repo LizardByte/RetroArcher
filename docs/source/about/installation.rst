@@ -1,4 +1,4 @@
-:github_url: https://github.com/RetroArcher/RetroArcher/tree/nightly/docs/source/about/installation.rst
+:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/docs/source/about/installation.rst
 
 Installation
 ============
@@ -26,6 +26,6 @@ Source
 
       python retroarcher.py
 
-.. _latest release: https://github.com/RetroArcher/RetroArcher/releases/latest
-.. _Dockerhub.io: https://hub.docker.com/repository/docker/retroarcher/retroarcher
-.. _ghcr.io: https://github.com/orgs/RetroArcher/packages?repo_name=retroarcher
+.. _latest release: https://github.com/LizardByte/RetroArcher/releases/latest
+.. _Dockerhub.io: https://hub.docker.com/repository/docker/lizardbyte/retroarcher
+.. _ghcr.io: https://github.com/orgs/LizardByte/packages?repo_name=retroarcher

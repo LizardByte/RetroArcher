@@ -1,4 +1,4 @@
-:github_url: https://github.com/RetroArcher/RetroArcher/tree/nightly/docs/source/about/build.rst
+:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/docs/source/about/build.rst
 
 Build
 =====
@@ -13,7 +13,7 @@ Ensure `git <https://git-scm.com/>`_ is installed and run the following:
 
    .. code-block:: bash
 
-      git clone https://github.com/retroarcher/retroarcher.git
+      git clone https://github.com/lizardbyte/retroarcher.git
       cd ./retroarcher
 
 Setup venv
