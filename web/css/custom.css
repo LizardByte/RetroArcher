@@ -1,0 +1,156 @@
+body {
+   padding-top: 80px;
+}
+
+/*Apply to elements that serve as anchors*/
+.offset-anchor {
+    border-top: 80px solid transparent;
+    margin: -80px 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+/*Because offset-anchor causes sections to overlap the bottom of previous ones,*/
+/*we need to put content higher so links aren't blocked by the transparent border.*/
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar {
+    min-height: 80px;
+    border-bottom: 1px solid white;
+}
+
+.navbar-brand {
+    font-size: 1.75rem;
+}
+
+.nav-link {
+    font-size: 1.25rem;
+}
+
+.nav-link-sm {
+    font-size: 1rem;
+}
+
+.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: #151515 !important;
+}
+
+.bg-dark-gray {
+    --bs-bg-opacity: 1;
+    background-color: #303436 !important;
+}
+
+.carousel-overlay-title {
+    position: absolute;
+    top: 20vh;
+    right: 10vw;
+    padding: 1rem;
+    text-shadow: 2px 2px 5px black;
+    user-select: none;
+    z-index: 1;
+}
+
+.carousel-overlay-subtitle {
+    position: absolute;
+    top: 30vh;
+    right: 10vw;
+    padding: 1rem;
+    text-shadow: 2px 2px 5px black;
+    user-select: none;
+    z-index: 1;
+}
+
+.carousel-item.active, .carousel-item .view {
+    height: 50vh !important;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    width:100% !important;
+    height: 100% !important;
+}
+
+.content h1 {
+    font-size: 55px;
+}
+
+@media screen and (max-width: 320px) {
+    .content h1 {
+        font-size: 30px;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+    .content h1 {
+      font-size: 30px;
+    }
+}
+
+.content h5 {
+    font-size: 23px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+@media screen and (max-width: 320px) {
+    .content h5 {
+        font-size: 18px;
+        margin-left: 20px;
+        margin-right: 20px
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+    .content h5 {
+        font-size: 18px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.widgetbot {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.feedback {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+iframe.feedback {
+    width: 100vw;
+    min-height: calc(100vh - 80px - 72px); /* subtract navbar and footer height */
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+    iframe.feedback {
+        min-height: calc(100vh - 80px - 93px); /* subtract navbar and footer height */
+    }
+}
+
+@media screen and (max-width: 320px) {
+    iframe.feedback {
+        min-height: calc(100vh - 80px - 114px); /* subtract navbar and footer height */
+    }
+}
+
+/*card image hover*/
+.hover-zoom {
+    overflow: hidden;
+}
+
+.hover-zoom img {
+    transition: all 1.5s ease;
+}
+
+.hover-zoom:hover img {
+    transform: scale(1.1);
+}

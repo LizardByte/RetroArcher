@@ -1,20 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
         <!-- Plotly JavaScript -->
-        <script type="text/javascript" src="{{ url_for('static', filename='js/plotly-2.11.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='node_modules/plotly.js-dist-min/plotly.min.js') }}"></script>
 
-        <div class="container">
-
-            {% for chart in chart_types %}
-                <div class="card bg-dark" style="min-width: 75vw;">
-                    <div class="card-header">{{ _(translations[chart]['bare']) }}</div>
-                    <div class="card-body">
-                        <div class="chart-plotly" id="chart-{{chart}}"></div>
-                    </div>
+        <section class="py-5 offset-anchor" id="Dashboard">
+            <div class="container px-5 my-5">
+                <div class="row gx-5" id="project-container">
+                    {% for chart in chart_types %}
+                        <div class="card h-100 shadow border-0 rounded-0 bg-dark text-white mb-5">
+                            <div class="card-header">{{ _(translations[chart]['bare']) }}</div>
+                            <div class="card-body">
+                                <div class="chart-plotly" id="chart-{{chart}}"></div>
+                            </div>
+                            {% if translations[chart]['name'] %}
+                                <div class="card-footer">{{ translations[chart]['name'] }}</div>
+                            {% endif %}
+                        </div>
+                        <br>
+                    {% endfor %}
                 </div>
-                <br>
-            {% endfor %}
-        </div>
+            </div>
+        </section>
+
 
         <script>
             // this will run every second to update the charts

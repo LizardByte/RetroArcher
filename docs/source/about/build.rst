@@ -1,5 +1,3 @@
-:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/docs/source/about/build.rst
-
 Build
 =====
 RetroArcher binaries are built using `pyinstaller <https://pypi.org/project/pyinstaller/>`_. Cross compilation is not
@@ -10,7 +8,6 @@ Use Python 3.7+
 Clone
 -----
 Ensure `git <https://git-scm.com/>`_ is installed and run the following:
-
    .. code-block:: bash
 
       git clone https://github.com/lizardbyte/retroarcher.git
@@ -20,14 +17,14 @@ Setup venv
 ----------
 It is recommended to setup and activate a `venv`_ within the `retroarcher` directory.
 
-Install Requirements
---------------------
-Standard Requirements
+Install Python Requirements
+---------------------------
+**Standard Requirements**
    .. code-block:: bash
 
       python -m pip install -r requirements.txt
 
-Advanced Requirements
+**Advanced Requirements**
    Required for:
       - :ref:`Test with flake8 <contributing/testing:flake8>`
       - :ref:`Test with pytest <contributing/testing:pytest>`
@@ -41,24 +38,33 @@ Advanced Requirements
 
 Compile Locales
 ---------------
-   .. code-block:: bash
+.. code-block:: bash
 
-      python ./scripts/_locale.py --compile
+   python ./scripts/_locale.py --compile
+
+Install NPM Requirements
+------------------------
+.. code-block:: bash
+
+      cd web
+      npm install
+      cd ..
 
 Compile Docs
 ------------
 Docs are visible by the webapp and therefore must be compiled.
 
-   .. code-block:: bash
+.. code-block:: bash
 
-      cd docs
-      make html
+   cd docs
+   make html
+   cd ..
 
 Compile Binary
 --------------
-   .. code-block:: bash
+.. code-block:: bash
 
-      python ./scripts/build.py
+   python ./scripts/build.py
 
 Remote Build
 ------------

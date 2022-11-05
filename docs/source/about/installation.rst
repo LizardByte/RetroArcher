@@ -1,5 +1,3 @@
-:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/docs/source/about/installation.rst
-
 Installation
 ============
 The recommended method for running RetroArcher is to use the `binaries`_ bundled with the `latest release`_.
