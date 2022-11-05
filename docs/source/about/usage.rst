@@ -1,5 +1,3 @@
-:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/docs/source/about/usage.rst
-
 Usage
 =====
 
@@ -11,12 +9,12 @@ Arguments
 ---------
 To get a list of available arguments run the following:
 
-   Binary
-      .. code-block:: bash
+**Binary**
+   .. code-block:: bash
 
-         retroarcher --help
+      retroarcher --help
 
-   Python
-      .. code-block:: bash
+**Python**
+   .. code-block:: bash
 
-         python retroarcher.py --help
+      python retroarcher.py --help

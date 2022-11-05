@@ -1,5 +1,3 @@
-:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/pyra/helpers.py
-
 .. include:: ../global.rst
 
 :modname:`pyra.helpers`

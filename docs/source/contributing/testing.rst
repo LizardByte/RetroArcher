@@ -1,5 +1,3 @@
-:github_url: https://github.com/LizardByte/RetroArcher/tree/nightly/docs/source/contributing/testing.rst
-
 Testing
 =======
 
@@ -10,7 +8,7 @@ in the `requirements-dev.txt`.
 
 The config file for flake8 is `.flake8`. This is already included in the root of the repo and should not be modified.
 
-Test with Flake8
+**Test with Flake8**
    .. code-block:: bash
 
       python -m flake8
@@ -26,7 +24,7 @@ docstrings. This will be tested when building the docs.
 The config file for Sphinx is `docs/source/conf.py`. This is already included in the root of the repo and should not
 be modified.
 
-Test with Sphinx
+**Test with Sphinx**
    .. code-block:: bash
 
       cd docs
@@ -48,10 +46,10 @@ No config is required for pytest.
 
 Prior to running pytest you will need to:
 
-   - :ref:`compile docs <contributing/testing:sphinx>`
-   - :ref:`compile translations <about/build:compile locales>`
+- :ref:`compile docs <contributing/testing:sphinx>`
+- :ref:`compile translations <about/build:compile locales>`
 
-Test with pytest
+**Test with pytest**
    .. code-block:: bash
 
       python -m pytest

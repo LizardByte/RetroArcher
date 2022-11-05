@@ -1,108 +1,107 @@
-        <header class="site-header">
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/" title="RetroArcher">
-                            <img src="{{ url_for('static', filename='images/logo-circle.png') }}" height="45"> RetroArcher
-                        </a>
-                    </div>
-                    <div class="navbar-header">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
-                                aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-                    <!-- Navbar Right Side -->
-                    <div class="collapse navbar-collapse" id="navbarToggle">
-                        <ul class="navbar-nav ms-auto">
-                            <li><a class="nav-item nav-link" href="/login">
-                                <i class="fa-solid fa-fw fa-right-to-bracket"></i> {{ _('Login') }}</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_donate" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-fw fa-donate"></i> {{ _('Donate') }}
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="https://github.com/sponsors/LizardByte"
-                                           target="_blank">
-                                        <i class="fa-regular fa-fw fa-heart"></i> {{ _('GitHub Sponsors') }}</a></li>
-                                    <li><a class="dropdown-item" href="https://mee6.xyz/m/804382334370578482"
-                                           target="_blank">
-                                        <i class="fa-solid fa-fw fa-face-surprise"></i> MEE6</a></li>
-                                    <li><a class="dropdown-item" href="https://www.patreon.com/LizardByte"
-                                           target="_blank">
-                                        <i class="fa-brands fa-fw fa-patreon"></i> Patreon</a></li>
-                                    <li><a class="dropdown-item"
-                                           href="https://www.paypal.com/paypalme/ReenigneArcher"
-                                           target="_blank">
-                                        <i class="fa-brands fa-fw fa-paypal"></i> PayPal</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_social" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-fw fa-comment-dots"></i> {{ _('Social') }}
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="https://www.facebook.com/LizardByteDev"
-                                           target="_blank">
-                                        <i class="fa-brands fa-fw fa-facebook"></i> {{ _('Facebook Page') }}</a></li>
-                                    <li><a class="dropdown-item" href="https://www.facebook.com/groups/lizardbyte"
-                                           target="_blank">
-                                        <i class="fa-brands fa-fw fa-facebook"></i> {{ _('Facebook Group') }}</a></li>
-                                    <li><a class="dropdown-item" href="https://www.reddit.com/r/LizardByte"
-                                           target="_blank">
-                                        <i class="fa-brands fa-fw fa-reddit"></i> Reddit</a></li>
-                                    <li><a class="dropdown-item" href="https://twitter.com/LizardByteDev"
-                                           target="_blank">
-                                        <i class="fa-brands fa-fw fa-twitter"></i> Twitter</a></li>
-                                    <li><a class="dropdown-item" href="https://www.youtube.com/c/LizardByteDev"
-                                           target="_blank">
-                                        <i class="fa-brands fa-fw fa-youtube"></i> YouTube</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_support" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-fw fa-exclamation-triangle"></i> {{ _('Support') }}
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/docs/"
-                                           target="_blank">
-                                        <i class="fa-solid fa-fw fa-file-lines"></i> {{ _('Docs') }}</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="https://app.lizardbyte.dev/discord"
-                                           target="_blank">
-                                        <i class="fa-brands fa-fw fa-discord"></i> Discord</a></li>
-                                    <li><a class="dropdown-item"
-                                           href="https://github.com/LizardByte/RetroArcher/discussions"
-                                           target="_blank">
-                                        <i class="fa-brands fa-fw fa-github"></i> {{ _('Discussions') }}</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a class="nav-item nav-link {% if title.lower() == 'home' %}active{% endif %}"
-                                   href="/">
-                                <i class="fa-solid fa-fw fa-house"></i> {{ _('Home') }}
-                            </a></li>
-
-                            <li><a class="nav-item nav-link {% if title.lower() == 'plugins' %}active{% endif %}"
-                                   href="/plugins">
-                                <i class="fa-solid fa-fw fa-project-diagram"></i> {{ _('Plugins') }}
-                            </a></li>
-
-                            <li><a class="nav-item nav-link {% if title.lower() == 'config' %}active{% endif %}"
-                                   href="/config">
-                                <i class="fa-solid fa-fw fa-cog"></i> {{ _('Config') }}
-                            </a></li>
-
-                            <li><a class="nav-item nav-link {% if title.lower() == 'users' %}active{% endif %}"
-                                   href="/users">
-                                <i class="fa-solid fa-fw fa-users"></i> {{ _('Users') }}
-                            </a></li>
-
-                        </ul>
-                    </div>
+        <nav id="nav-container" class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand fw-bold" href="/">
+                        <img src="{{ url_for('static', filename='images/logo-circle.png') }}" height="45"> RetroArcher
+                    </a>
                 </div>
-            </nav>
-        </header>
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
+                            aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <!-- Navbar Right Side -->
+                <div id="navbarToggle" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto fw-bold">
+                        <li><a class="nav-item nav-link" href="/login">
+                            <i class="fa-solid fa-fw fa-right-to-bracket"></i> {{ _('Login') }}</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_donate" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-fw fa-donate"></i> {{ _('Donate') }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="https://github.com/sponsors/LizardByte"
+                                       target="_blank">
+                                    <i class="fa-regular fa-fw fa-heart"></i> {{ _('GitHub Sponsors') }}</a></li>
+                                <li><a class="dropdown-item" href="https://mee6.xyz/m/804382334370578482"
+                                       target="_blank">
+                                    <i class="fa-solid fa-fw fa-face-surprise"></i> MEE6</a></li>
+                                <li><a class="dropdown-item" href="https://www.patreon.com/LizardByte"
+                                       target="_blank">
+                                    <i class="fa-brands fa-fw fa-patreon"></i> Patreon</a></li>
+                                <li><a class="dropdown-item"
+                                       href="https://www.paypal.com/paypalme/ReenigneArcher"
+                                       target="_blank">
+                                    <i class="fa-brands fa-fw fa-paypal"></i> PayPal</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_social" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-fw fa-comment-dots"></i> {{ _('Social') }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="https://www.facebook.com/LizardByteDev"
+                                       target="_blank">
+                                    <i class="fa-brands fa-fw fa-facebook"></i> {{ _('Facebook Page') }}</a></li>
+                                <li><a class="dropdown-item" href="https://www.facebook.com/groups/lizardbyte"
+                                       target="_blank">
+                                    <i class="fa-brands fa-fw fa-facebook"></i> {{ _('Facebook Group') }}</a></li>
+                                <li><a class="dropdown-item" href="https://www.reddit.com/r/LizardByte"
+                                       target="_blank">
+                                    <i class="fa-brands fa-fw fa-reddit"></i> Reddit</a></li>
+                                <li><a class="dropdown-item" href="https://twitter.com/LizardByteDev"
+                                       target="_blank">
+                                    <i class="fa-brands fa-fw fa-twitter"></i> Twitter</a></li>
+                                <li><a class="dropdown-item" href="https://www.youtube.com/c/LizardByteDev"
+                                       target="_blank">
+                                    <i class="fa-brands fa-fw fa-youtube"></i> YouTube</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_support" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-fw fa-exclamation-triangle"></i> {{ _('Support') }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/docs/"
+                                       target="_blank">
+                                    <i class="fa-solid fa-fw fa-file-lines"></i> {{ _('Docs') }}</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="https://app.lizardbyte.dev/discord"
+                                       target="_blank">
+                                    <i class="fa-brands fa-fw fa-discord"></i> Discord</a></li>
+                                <li><a class="dropdown-item"
+                                       href="https://github.com/LizardByte/RetroArcher/discussions"
+                                       target="_blank">
+                                    <i class="fa-brands fa-fw fa-github"></i> {{ _('Discussions') }}</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a class="nav-item nav-link {% if title.lower() == 'home' %}active{% endif %}"
+                               href="/">
+                            <i class="fa-solid fa-fw fa-house"></i> {{ _('Home') }}
+                        </a></li>
+
+                        <li><a class="nav-item nav-link {% if title.lower() == 'plugins' %}active{% endif %}"
+                               href="/plugins">
+                            <i class="fa-solid fa-fw fa-project-diagram"></i> {{ _('Plugins') }}
+                        </a></li>
+
+                        <li><a class="nav-item nav-link {% if title.lower() == 'config' %}active{% endif %}"
+                               href="/config">
+                            <i class="fa-solid fa-fw fa-cog"></i> {{ _('Config') }}
+                        </a></li>
+
+                        <li><a class="nav-item nav-link {% if title.lower() == 'users' %}active{% endif %}"
+                               href="/users">
+                            <i class="fa-solid fa-fw fa-users"></i> {{ _('Users') }}
+                        </a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+

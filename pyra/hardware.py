@@ -8,6 +8,7 @@ Functions related to the dashboard viewer.
 
 # lib imports
 import GPUtil
+from numexpr import cpuinfo
 import psutil
 
 # local imports
@@ -16,11 +17,17 @@ from pyra import helpers
 from pyra import locales
 from pyra import logger
 
+try:
+    cpu_name = cpuinfo.cpu.info[0]['ProcessorNameString'].strip()
+except KeyError:
+    cpu_name = None
+
 _ = locales.get_text()
 chart_translations = dict(
     cpu=dict(
         bare=_('cpu'),
-        usage=_('cpu usage')
+        usage=_('cpu usage'),
+        name=cpu_name
     ),
     gpu=dict(
         bare=_('gpu'),
