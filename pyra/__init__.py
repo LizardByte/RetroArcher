@@ -9,6 +9,7 @@ from __future__ import annotations
 
 # standard imports
 import os
+import subprocess
 import sys
 import threading
 from typing import Union
@@ -143,9 +144,10 @@ def stop(exit_code: Union[int, str] = 0, restart: bool = False):
         if '--nolaunch' not in args:  # don't launch the browser again
             args += ['--nolaunch']  # also os.execv requires at least one argument
 
-        os.execv(sys.executable, args)
-        # alternative to os.execv() ... requires `import subprocess`
-        # subprocess.Popen(args=args, cwd=os.getcwd())
+        # os.execv(sys.executable, args)
+        # `os.execv` is more desirable, but is not working correctly
+        # flask app does not respond to requests after restarting
+        # alternative to os.execv()
+        subprocess.Popen(args=args, cwd=os.getcwd())
 
-    else:
-        sys.exit(exit_code)  # this isn't really needed, the code will terminate just after this moment either way
+    sys.exit(exit_code)

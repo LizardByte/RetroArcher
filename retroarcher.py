@@ -239,8 +239,6 @@ def wait():
                 log.error('Unknown signal. Shutting down...')
                 pyra.stop()
 
-            pyra.SIGNAL = None
-
             break
 
 
