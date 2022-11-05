@@ -190,10 +190,6 @@ def main():
             tray_icon.icon = tray_icon.tray_initialize()
             threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()
 
-    if config.CONFIG['General']['LAUNCH_BROWSER'] and not args.nolaunch:
-        url = f"http://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}"
-        helpers.open_url_in_browser(url=url)
-
     # start the webapp
     if pyra.SPLASH:  # pyinstaller build only, not darwin platforms
         pyi_splash.update_text("Starting the webapp")
@@ -201,6 +197,11 @@ def main():
         pyi_splash.close()  # close the splash screen
     from pyra import webapp  # import at use due to translations
     threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()
+
+    # this should be after starting flask app
+    if config.CONFIG['General']['LAUNCH_BROWSER'] and not args.nolaunch:
+        url = f"http://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}"
+        helpers.open_url_in_browser(url=url)
 
     wait()  # wait for signal
 
