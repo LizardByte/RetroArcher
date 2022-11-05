@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RetroArcher v0\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-11-05 16:23+0000\n"
+"POT-Creation-Date: 2022-11-05 17:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,22 +63,22 @@ msgid "system"
 msgstr ""
 
 #. NOTE: Mbps = megabytes per second
-#: pyra/hardware.py:343
+#: pyra/hardware.py:356
 #, python-format
 msgid "%(numeric_value)s Mbps"
 msgstr ""
 
 #. NOTE: the double percent symbols is rendered as one in this case
-#: pyra/hardware.py:346
+#: pyra/hardware.py:359
 #, python-format
 msgid "%(numeric_value)s %%"
 msgstr ""
 
-#: pyra/hardware.py:430
+#: pyra/hardware.py:445
 msgid "Mbps"
 msgstr ""
 
-#: pyra/hardware.py:430
+#: pyra/hardware.py:445
 msgid "%"
 msgstr ""
 
