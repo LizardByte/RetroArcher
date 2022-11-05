@@ -62,9 +62,16 @@ nvidia_gpus = GPUtil.getGPUs()
 try:
     import pyamdgpuinfo  # linux only
 except ModuleNotFoundError:
-    amd_gpus = range(0)
+    pyamdgpu = False
+    try:
+        from pyadl import ADLManager
+    except Exception:  # cannot import `ADLError` from `pyadl.pyadl`
+        amd_gpus = range(0)  # no amd gpus found
+    else:
+        amd_gpus = ADLManager.getInstance().getDevices()  # list of AMD gpus
 else:
-    amd_gpus = range(pyamdgpuinfo.detect_gpus())  # this will be an integer representing the count of amd gpus
+    pyamdgpu = True
+    amd_gpus = range(pyamdgpuinfo.detect_gpus())  # integer representing amd gpus count
 
 dash_stats = dict(
     time=dict(
@@ -117,7 +124,9 @@ def update_gpu():
     This will create new keys for the ``dash_stats`` dictionary if required, and then append a new value to the
     appropriate list.
 
-    Nvidia GPUs are fully supported. AMD GPUs are currently only supported on Linux.
+    AMD data is provided by `pyamdgpuinfo <https://github.com/mark9064/pyamdgpuinfo>`_ on Linux, and by
+    `pyadl <https://github.com/nicolargo/pyadl>`_ on non Linux systems.
+    Nvidia data is provided by `GPUtil <https://github.com/anderskm/gputil>`_.
 
     Examples
     --------
@@ -136,9 +145,13 @@ def update_gpu():
                 name = f'{gpu.name}-{gpu.id}'
                 gpu_load = min(100, gpu.load * 100)  # convert decimal to percentage, max of 100
             elif gpu_type == amd_gpus:
-                amd_gpu = pyamdgpuinfo.get_gpu(gpu)
-                name = f'{amd_gpu.name}-{amd_gpu.gpu_id}'
-                gpu_load = min(100, gpu.query_load())  # max of 100
+                if pyamdgpu:
+                    amd_gpu = pyamdgpuinfo.get_gpu(gpu)
+                    name = f'{amd_gpu.name}-{amd_gpu.gpu_id}'
+                    gpu_load = min(100, gpu.query_load())  # max of 100
+                else:
+                    name = f'{gpu.adapterName.decode("utf-8")}-{gpu.adapterIndex}'  # adapterName is bytes so decode it
+                    gpu_load = min(100, gpu.getCurrentUsage())  # max of 100
 
             if initialized and name:
                 try:
@@ -389,6 +402,8 @@ def chart_data() -> dict:
                         ),
                         hovermode='x unified',  # show all Y values on hover
                         legend=dict(
+                            entrywidth=0,
+                            entrywidthmode='pixels',
                             orientation='h',
                         ),
                         margin=dict(
