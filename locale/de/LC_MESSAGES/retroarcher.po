@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-10-23 01:56+0000\n"
-"PO-Revision-Date: 2022-10-23 02:35\n"
+"POT-Creation-Date: 2022-11-05 17:18+0000\n"
+"PO-Revision-Date: 2022-11-05 17:30\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: retroarcher\n"
 "X-Crowdin-Project-ID: 503340\n"
@@ -18,67 +18,67 @@ msgstr ""
 "X-Crowdin-File-ID: 16\n"
 "Language: de_DE\n"
 
-#: pyra/hardware.py:22
+#: pyra/hardware.py:28
 msgid "cpu"
 msgstr ""
 
-#: pyra/hardware.py:23
+#: pyra/hardware.py:29
 msgid "cpu usage"
 msgstr ""
 
-#: pyra/hardware.py:26
+#: pyra/hardware.py:33
 msgid "gpu"
 msgstr ""
 
-#: pyra/hardware.py:27
+#: pyra/hardware.py:34
 msgid "gpu usage"
 msgstr ""
 
-#: pyra/hardware.py:30
+#: pyra/hardware.py:37
 msgid "memory"
 msgstr ""
 
-#: pyra/hardware.py:31
+#: pyra/hardware.py:38
 msgid "memory usage"
 msgstr ""
 
-#: pyra/hardware.py:34
+#: pyra/hardware.py:41
 msgid "network"
 msgstr ""
 
-#: pyra/hardware.py:35
+#: pyra/hardware.py:42
 msgid "network usage"
 msgstr ""
 
-#: pyra/hardware.py:38
+#: pyra/hardware.py:45
 msgid "received"
 msgstr ""
 
-#: pyra/hardware.py:39
+#: pyra/hardware.py:46
 msgid "sent"
 msgstr ""
 
-#: pyra/hardware.py:40
+#: pyra/hardware.py:47
 msgid "system"
 msgstr ""
 
 #. NOTE: Mbps = megabytes per second
-#: pyra/hardware.py:336
+#: pyra/hardware.py:356
 #, python-format
 msgid "%(numeric_value)s Mbps"
 msgstr ""
 
 #. NOTE: the double percent symbols is rendered as one in this case
-#: pyra/hardware.py:339
+#: pyra/hardware.py:359
 #, python-format
 msgid "%(numeric_value)s %%"
 msgstr ""
 
-#: pyra/hardware.py:423
+#: pyra/hardware.py:445
 msgid "Mbps"
 msgstr ""
 
-#: pyra/hardware.py:423
+#: pyra/hardware.py:445
 msgid "%"
 msgstr ""
 
@@ -97,11 +97,11 @@ msgid "%(github)s Releases"
 msgstr ""
 
 #. NOTE: Donate to RetroArcher.
-#: pyra/tray_icon.py:85 web/templates/navbar.html:23
+#: pyra/tray_icon.py:85 web/templates/navbar.html:22
 msgid "Donate"
 msgstr ""
 
-#: pyra/tray_icon.py:86 web/templates/navbar.html:28
+#: pyra/tray_icon.py:86 web/templates/navbar.html:27
 msgid "GitHub Sponsors"
 msgstr ""
 
@@ -164,47 +164,47 @@ msgstr ""
 msgid "Print the version details and exit"
 msgstr ""
 
-#: web/templates/navbar.html:19
+#: web/templates/navbar.html:18
 msgid "Login"
 msgstr ""
 
-#: web/templates/navbar.html:44
+#: web/templates/navbar.html:43
 msgid "Social"
 msgstr ""
 
-#: web/templates/navbar.html:49
+#: web/templates/navbar.html:48
 msgid "Facebook Page"
 msgstr ""
 
-#: web/templates/navbar.html:52
+#: web/templates/navbar.html:51
 msgid "Facebook Group"
 msgstr ""
 
-#: web/templates/navbar.html:67
+#: web/templates/navbar.html:66
 msgid "Support"
 msgstr ""
 
-#: web/templates/navbar.html:72
+#: web/templates/navbar.html:71
 msgid "Docs"
 msgstr ""
 
-#: web/templates/navbar.html:80
+#: web/templates/navbar.html:79
 msgid "Discussions"
 msgstr ""
 
-#: web/templates/navbar.html:86
+#: web/templates/navbar.html:85
 msgid "Home"
 msgstr ""
 
-#: web/templates/navbar.html:91
+#: web/templates/navbar.html:90
 msgid "Plugins"
 msgstr ""
 
-#: web/templates/navbar.html:96
+#: web/templates/navbar.html:95
 msgid "Config"
 msgstr ""
 
-#: web/templates/navbar.html:101
+#: web/templates/navbar.html:100
 msgid "Users"
 msgstr ""
 
