@@ -9,9 +9,6 @@ import os
 import platform
 import sys
 
-# local imports
-import pyra
-
 
 class Names:
     """
@@ -19,21 +16,15 @@ class Names:
 
     The purpose of this class is to ensure consistency when using these names.
 
-    Attributes
-    ----------
     name : str
         The application's name. i.e. `RetroArcher`.
 
     Examples
     --------
-    >>> Names()
-    <pyra.definitions.Names object at 0x...>
-
-    >>> Names().name
+    >>> Names.name
     'RetroArcher'
     """
-    def __init__(self):
-        self.name = 'RetroArcher'
+    name = 'RetroArcher'
 
 
 class Platform:
@@ -42,13 +33,11 @@ class Platform:
 
     The purpose of this class is to ensure consistency when there is a need for platform specific functions.
 
-    Attributes
-    ----------
     bits : str
         Operating system bitness. e.g. 64.
     operating_system : str
         Operating system name. e.g. 'Windows'.
-    platform : str
+    os_platform : str
         Operating system platform. e.g. 'win32', 'darwin', 'linux'.
     machine : str
         Machine architecture. e.g. 'AMD64'.
@@ -65,25 +54,51 @@ class Platform:
 
     Examples
     --------
-    >>> Platform()
-    <pyra.definitions.Platform object at 0x...>
-
-    >>> Platform().bits
-    64
+    >>> Platform.os_platform
+    ...
     """
-    def __init__(self):
-        self.bits = 64 if sys.maxsize > 2**32 else 32
-        self.operating_system = platform.system()
-        self.platform = sys.platform.lower()
-        self.processor = platform.processor()
-        self.machine = platform.machine()
-        self.node = platform.node()
-        self.release = platform.release()
-        self.version = platform.version()
+    bits = 64 if sys.maxsize > 2**32 else 32
+    operating_system = platform.system()
+    os_platform = sys.platform.lower()
+    processor = platform.processor()
+    machine = platform.machine()
+    node = platform.node()
+    release = platform.release()
+    version = platform.version()
 
-        # Windows only
-        self.edition = platform.win32_edition() if self.platform == 'win32' else None
-        self.iot = platform.win32_is_iot() if self.platform == 'win32' else False
+    # Windows only
+    edition = platform.win32_edition() if os_platform == 'win32' else None
+    iot = platform.win32_is_iot() if os_platform == 'win32' else False
+
+
+class Modes:
+    """
+    Class representing runtime variables.
+
+    FROZEN : bool
+        ``True`` if running pyinstaller bundle version, otherwise ``False``.
+    DOCKER : bool
+        ``True`` if running Docker version, otherwise ``False``.
+    SPLASH : bool
+        ``True`` if capable of displaying a splash image on start, otherwise, ``False``.
+
+    Examples
+    --------
+    >>> Modes.FROZEN
+    False
+    """
+    FROZEN = False
+    DOCKER = False
+    SPLASH = False
+
+    if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):  # only when using the pyinstaller build
+        FROZEN = True
+
+        if Platform.os_platform != 'darwin':  # pyi_splash is not available on macos
+            SPLASH = True
+
+    if os.getenv('RETROARCHER_DOCKER', False):  # the environment variable is set in the Dockerfile
+        DOCKER = True
 
 
 class Files:
@@ -92,21 +107,15 @@ class Files:
 
     The purpose of this class is to ensure consistency when using these files.
 
-    Attributes
-    ----------
     CONFIG : str
         The default config file name. i.e. `config.ini`.
 
     Examples
     --------
-    >>> Files()
-    <pyra.definitions.Files object at 0x...>
-
-    >>> Files().CONFIG
+    >>> Files.CONFIG
     'config.ini'
     """
-    def __init__(self):
-        self.CONFIG = 'config.ini'
+    CONFIG = 'config.ini'
 
 
 class Paths:
@@ -115,8 +124,6 @@ class Paths:
 
     The purpose of this class is to ensure consistency when using these paths.
 
-    Attributes
-    ----------
     PYRA_DIR : str
         The directory containing the retroarcher python files.
     ROOT_DIR : str
@@ -132,26 +139,22 @@ class Paths:
 
     Examples
     --------
-    >>> Paths()
-    <pyra.definitions.Paths object at 0x...>
-
-    >>> Paths().logs
+    >>> Paths.logs
     '.../logs'
     """
-    def __init__(self):
-        self.PYRA_DIR = os.path.dirname(os.path.abspath(__file__))
-        self.ROOT_DIR = os.path.dirname(self.PYRA_DIR)
+    PYRA_DIR = os.path.dirname(os.path.abspath(__file__))
+    ROOT_DIR = os.path.dirname(PYRA_DIR)
 
-        if pyra.FROZEN:  # pyinstaller build
-            self.DATA_DIR = os.path.dirname(sys.executable)
-            self.BINARY_PATH = os.path.abspath(sys.executable)
-        else:
-            self.DATA_DIR = self.ROOT_DIR
-            self.BINARY_PATH = os.path.abspath(os.path.join(self.DATA_DIR, 'retroarcher.py'))
+    if Modes.FROZEN:  # pyinstaller build
+        DATA_DIR = os.path.dirname(sys.executable)
+        BINARY_PATH = os.path.abspath(sys.executable)
+    else:
+        DATA_DIR = ROOT_DIR
+        BINARY_PATH = os.path.abspath(os.path.join(DATA_DIR, 'retroarcher.py'))
 
-        if pyra.DOCKER:  # docker install
-            self.DATA_DIR = '/config'  # overwrite the value that was already set
+    if Modes.DOCKER:  # docker install
+        DATA_DIR = '/config'  # overwrite the value that was already set
 
-        self.DOCS_DIR = os.path.join(self.ROOT_DIR, 'docs', 'build', 'html')
-        self.LOCALE_DIR = os.path.join(self.ROOT_DIR, 'locale')
-        self.LOG_DIR = os.path.join(self.DATA_DIR, 'logs')
+    DOCS_DIR = os.path.join(ROOT_DIR, 'docs', 'build', 'html')
+    LOCALE_DIR = os.path.join(ROOT_DIR, 'locale')
+    LOG_DIR = os.path.join(DATA_DIR, 'logs')

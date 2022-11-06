@@ -116,13 +116,9 @@ def main():
     ...     main()
     """
     # Fixed paths to RetroArcher
-    if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):  # only when using the pyinstaller build
-        pyra.FROZEN = True
+    if definitions.Modes.FROZEN:  # only when using the pyinstaller build
 
-        if definitions.Platform().platform != 'darwin':  # pyi_splash is not available on macos
-            pyra.SPLASH = True
-
-        if pyra.SPLASH:
+        if definitions.Modes.SPLASH:
             import pyi_splash  # module cannot be installed outside of pyinstaller builds
             pyi_splash.update_text("Attempting to start RetroArcher")
 
@@ -156,7 +152,7 @@ def main():
     if args.config:
         config_file = args.config
     else:
-        config_file = os.path.join(definitions.Paths().DATA_DIR, definitions.Files().CONFIG)
+        config_file = os.path.join(definitions.Paths.DATA_DIR, definitions.Files.CONFIG)
     if args.debug:
         pyra.DEBUG = True
     if args.dev:
@@ -190,17 +186,18 @@ def main():
             tray_icon.icon = tray_icon.tray_initialize()
             threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()
 
-    if config.CONFIG['General']['LAUNCH_BROWSER'] and not args.nolaunch:
-        url = f"http://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}"
-        helpers.open_url_in_browser(url=url)
-
     # start the webapp
-    if pyra.SPLASH:  # pyinstaller build only, not darwin platforms
+    if definitions.Modes.SPLASH:  # pyinstaller build only, not darwin platforms
         pyi_splash.update_text("Starting the webapp")
         time.sleep(3)  # show splash screen for a min of 3 seconds
         pyi_splash.close()  # close the splash screen
     from pyra import webapp  # import at use due to translations
     threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()
+
+    # this should be after starting flask app
+    if config.CONFIG['General']['LAUNCH_BROWSER'] and not args.nolaunch:
+        url = f"http://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}"
+        helpers.open_url_in_browser(url=url)
 
     wait()  # wait for signal
 
