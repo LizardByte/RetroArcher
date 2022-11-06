@@ -21,8 +21,9 @@ WORKDIR /build
 COPY . .
 
 # setup python requirements
-RUN python -m pip install --no-cache-dir --upgrade pip && \
-    python -m pip install --no-cache-dir -r requirements.txt
+# do not use `python -m pip ...` or packages do not get put into venv, since it's not activated like normal
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # compile locales
 RUN python scripts/_locale.py --compile
@@ -41,6 +42,7 @@ FROM retroarcher-base as retroarcher
 COPY --from=retroarcher-build /opt/venv/ /opt/venv/
 # use the venv
 ENV PATH="/opt/venv/bin:$PATH"
+# site-packages are in /opt/venv/lib/python<version>/site-packages/
 
 # copy app from builder
 COPY --from=retroarcher-build /build/ /app/
