@@ -616,7 +616,7 @@ def init_logger(log_name: str) -> logging.Logger:
                                        '%Y-%m-%d %H:%M:%S')
 
     # Setup file logger
-    log_dir = definitions.Paths().LOG_DIR
+    log_dir = definitions.Paths.LOG_DIR
     if os.path.isdir(log_dir):
         filename = os.path.join(log_dir, f'{log_name}.log')
         file_handler = handlers.RotatingFileHandler(filename=filename, maxBytes=MAX_SIZE, backupCount=MAX_FILES,

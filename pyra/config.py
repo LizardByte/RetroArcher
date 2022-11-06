@@ -19,7 +19,7 @@ from pyra import helpers
 log = helpers.get_logger(name=__name__)  # must use helpers.get_log due to circular import
 
 # get the config filename
-FILENAME = definitions.Files().CONFIG
+FILENAME = definitions.Files.CONFIG
 
 # access the config dictionary here
 CONFIG = None
@@ -110,7 +110,7 @@ def create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigO
         # write to stderr and logger
         log_msg = "Invalid 'config.ini' file, attempting to correct.\n"
         log.error(msg=log_msg)
-        sys.stderr.write(s=log_msg)
+        sys.stderr.write(log_msg)
 
     # dictionary comprehension
     if config_valid and user_config_valid:
@@ -202,5 +202,5 @@ def validate_config(config: ConfigObj) -> bool:
     except ValidateError as e:
         log_msg = f"Config validation error: {e}.\n"
         log.error(msg=log_msg)
-        sys.stderr.write(s=log_msg)
+        sys.stderr.write(log_msg)
         return False
