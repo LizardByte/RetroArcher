@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: retroarcher\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2022-11-05 17:18+0000\n"
-"PO-Revision-Date: 2022-11-05 17:30\n"
+"POT-Creation-Date: 2022-11-06 16:08+0000\n"
+"PO-Revision-Date: 2022-11-06 17:17\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -127,40 +127,40 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: retroarcher.py:131
+#: retroarcher.py:127
 msgid "RetroArcher is a Python based game streaming server.\n"
 "Arguments supplied here are meant to be temporary."
 msgstr ""
 
-#: retroarcher.py:134
+#: retroarcher.py:130
 msgid "Specify a config file to use"
 msgstr ""
 
-#: retroarcher.py:135
+#: retroarcher.py:131
 msgid "Use debug logging level"
 msgstr ""
 
-#: retroarcher.py:136
+#: retroarcher.py:132
 msgid "Start RetroArcher in the development environment"
 msgstr ""
 
-#: retroarcher.py:137
+#: retroarcher.py:133
 msgid "Health check the container and exit"
 msgstr ""
 
-#: retroarcher.py:138
+#: retroarcher.py:134
 msgid "Do not open RetroArcher in browser"
 msgstr ""
 
-#: retroarcher.py:140
+#: retroarcher.py:136
 msgid "Force RetroArcher to run on a specified port, default=9696"
 msgstr ""
 
-#: retroarcher.py:142
+#: retroarcher.py:138
 msgid "Turn off console logging"
 msgstr ""
 
-#: retroarcher.py:143
+#: retroarcher.py:139
 msgid "Print the version details and exit"
 msgstr ""
 
