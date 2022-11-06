@@ -116,13 +116,9 @@ def main():
     ...     main()
     """
     # Fixed paths to RetroArcher
-    if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):  # only when using the pyinstaller build
-        pyra.FROZEN = True
+    if definitions.Modes.FROZEN:  # only when using the pyinstaller build
 
-        if definitions.Platform().platform != 'darwin':  # pyi_splash is not available on macos
-            pyra.SPLASH = True
-
-        if pyra.SPLASH:
+        if definitions.Modes.SPLASH:
             import pyi_splash  # module cannot be installed outside of pyinstaller builds
             pyi_splash.update_text("Attempting to start RetroArcher")
 
@@ -156,7 +152,7 @@ def main():
     if args.config:
         config_file = args.config
     else:
-        config_file = os.path.join(definitions.Paths().DATA_DIR, definitions.Files().CONFIG)
+        config_file = os.path.join(definitions.Paths.DATA_DIR, definitions.Files.CONFIG)
     if args.debug:
         pyra.DEBUG = True
     if args.dev:
@@ -191,7 +187,7 @@ def main():
             threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()
 
     # start the webapp
-    if pyra.SPLASH:  # pyinstaller build only, not darwin platforms
+    if definitions.Modes.SPLASH:  # pyinstaller build only, not darwin platforms
         pyi_splash.update_text("Starting the webapp")
         time.sleep(3)  # show splash screen for a min of 3 seconds
         pyi_splash.close()  # close the splash screen

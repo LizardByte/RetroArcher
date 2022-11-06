@@ -123,7 +123,7 @@ def get_text() -> gettext.gettext:
     """
     language = gettext.translation(
         domain=default_domain,
-        localedir=Paths().LOCALE_DIR,
+        localedir=Paths.LOCALE_DIR,
         languages=[get_locale()]
     )
 

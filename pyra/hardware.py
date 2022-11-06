@@ -277,7 +277,7 @@ def update():
 
     for p in processes:
         # set the name
-        proc_name = definitions.Names().name if p.pid == proc_id else p.name()
+        proc_name = definitions.Names.name if p.pid == proc_id else p.name()
 
         # cpu stats per process
         proc_cpu_percent = None

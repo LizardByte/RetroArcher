@@ -27,10 +27,7 @@ CONFIG = None
 CONFIG_FILE = None
 DEBUG = False
 DEV = False
-DOCKER = False  # True if running in docker container (#todo)
-FROZEN = False  # True if running pyinstaller package
 SIGNAL = None  # Signal to watch for
-SPLASH = False  # True if Frozen is True and platform is not darwin
 INIT_LOCK = threading.Lock()
 QUIET = False
 
@@ -66,11 +63,7 @@ def initialize(config_file: str) -> bool:
         global CONFIG
         global CONFIG_FILE
         global DEBUG
-        global DOCKER
         global _INITIALIZED
-
-        if os.getenv('RETROARCHER_DOCKER', False):  # the environment variable is set in the Dockerfile
-            DOCKER = True
 
         try:
             CONFIG = config.create_config(config_file=config_file)
@@ -87,13 +80,13 @@ def initialize(config_file: str) -> bool:
             return False
 
         # create logs folder
-        definitions.Paths().LOG_DIR, log_writable = helpers.check_folder_writable(
-            folder=definitions.Paths().LOG_DIR,
-            fallback=os.path.join(definitions.Paths().DATA_DIR, 'logs'),
+        definitions.Paths.LOG_DIR, log_writable = helpers.check_folder_writable(
+            folder=definitions.Paths.LOG_DIR,
+            fallback=os.path.join(definitions.Paths.DATA_DIR, 'logs'),
             name='logs'
         )
         if not log_writable and not QUIET:
-            sys.stderr.write(s="Unable to create the log directory. Logging to screen only.\n")
+            sys.stderr.write("Unable to create the log directory. Logging to screen only.\n")
 
         # setup loggers... cannot use logging until this is finished
         logger.setup_loggers()
@@ -134,10 +127,10 @@ def stop(exit_code: Union[int, str] = 0, restart: bool = False):
         pass
 
     if restart:
-        if FROZEN:
-            args = [definitions.Paths().BINARY_PATH]
+        if definitions.Modes.FROZEN:
+            args = [definitions.Paths.BINARY_PATH]
         else:
-            args = [sys.executable, definitions.Paths().BINARY_PATH]
+            args = [sys.executable, definitions.Paths.BINARY_PATH]
         args += sys.argv[1:]
 
         if '--nolaunch' not in args:  # don't launch the browser again

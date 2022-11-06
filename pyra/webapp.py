@@ -24,9 +24,9 @@ from pyra import logger
 # setup flask app
 app = Flask(
     import_name=__name__,
-    root_path=os.path.join(Paths().ROOT_DIR, 'web'),
-    static_folder=os.path.join(Paths().ROOT_DIR, 'web'),
-    template_folder=os.path.join(Paths().ROOT_DIR, 'web', 'templates')
+    root_path=os.path.join(Paths.ROOT_DIR, 'web'),
+    static_folder=os.path.join(Paths.ROOT_DIR, 'web'),
+    template_folder=os.path.join(Paths.ROOT_DIR, 'web', 'templates')
     )
 
 
@@ -42,8 +42,8 @@ babel = Babel(
     default_domain=locales.default_domain,
     configure_jinja=True,
 )
-# app.translation_directories(Paths().LOCALE_DIR)
-app.config['BABEL_TRANSLATION_DIRECTORIES'] = Paths().LOCALE_DIR
+# app.translation_directories(Paths.LOCALE_DIR)
+app.config['BABEL_TRANSLATION_DIRECTORIES'] = Paths.LOCALE_DIR
 
 # setup logging for flask
 log_handlers = logger.get_logger(name=__name__).handlers
@@ -165,7 +165,7 @@ def docs(filename) -> flask.send_from_directory:
     >>> docs(filename='index.html')
     """
 
-    return send_from_directory(directory=os.path.join(Paths().DOCS_DIR), path=filename)
+    return send_from_directory(directory=os.path.join(Paths.DOCS_DIR), path=filename)
 
 
 @app.route('/favicon.ico')

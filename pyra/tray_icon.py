@@ -26,7 +26,7 @@ icon_supported = False
 log = logger.get_logger(name=__name__)
 
 # conditional imports
-if definitions.Platform().platform == 'linux':
+if definitions.Platform.os_platform == 'linux':
     try:
         import Xlib
     except Exception:
@@ -65,13 +65,13 @@ def tray_initialize() -> Union[Icon, bool]:
     if not icon_supported:
         return False
     tray_icon = Icon(name='retroarcher')
-    tray_icon.title = definitions.Names().name
+    tray_icon.title = definitions.Names.name
 
-    image = Image.open(os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'retroarcher.ico'))
+    image = Image.open(os.path.join(definitions.Paths.ROOT_DIR, 'web', 'images', 'retroarcher.ico'))
     tray_icon.icon = image
 
     # NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate "%(app_name)s".
-    first_menu_entry = MenuItem(text=_('Open %(app_name)s') % {'app_name': definitions.Names().name},
+    first_menu_entry = MenuItem(text=_('Open %(app_name)s') % {'app_name': definitions.Names.name},
                                 action=open_webapp, default=True if tray_icon.HAS_DEFAULT_ACTION else False)
 
     if tray_icon.HAS_MENU:
@@ -91,7 +91,7 @@ def tray_initialize() -> Union[Icon, bool]:
             ),
             Menu.SEPARATOR,
             # NOTE: Open web browser when application starts. Do not translate "%(app_name)s".
-            MenuItem(text=_('Open browser when %(app_name)s starts') % {'app_name': definitions.Names().name},
+            MenuItem(text=_('Open browser when %(app_name)s starts') % {'app_name': definitions.Names.name},
                      action=tray_browser, checked=lambda item: config.CONFIG['General']['LAUNCH_BROWSER']),
             # NOTE: Disable or turn off icon.
             MenuItem(text=_('Disable icon'), action=tray_disable),
