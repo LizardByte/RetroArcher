@@ -11,6 +11,11 @@ RUN apt-get update -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# python virtualenv
+RUN python -m venv /opt/venv
+# use the virtualenv:
+ENV PATH="/opt/venv/bin:$PATH"
+
 # setup app directory
 WORKDIR /build
 COPY . .
@@ -32,8 +37,10 @@ RUN sphinx-build -M html source build
 
 FROM retroarcher-base as retroarcher
 
-# copy python from builder
-COPY --from=retroarcher-build /usr/lib/python3/ /usr/lib/python3/
+# copy python venv
+COPY --from=retroarcher-build /opt/venv/ /opt/venv/
+# use the venv
+ENV PATH="/opt/venv/bin:$PATH"
 
 # copy app from builder
 COPY --from=retroarcher-build /build/ /app/
