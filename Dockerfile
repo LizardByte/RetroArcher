@@ -32,6 +32,9 @@ RUN sphinx-build -M html source build
 
 FROM retroarcher-base as retroarcher
 
+# copy python from builder
+COPY --from=retroarcher-build /usr/lib/python3/ /usr/lib/python3/
+
 # copy app from builder
 COPY --from=retroarcher-build /build/ /app/
 
