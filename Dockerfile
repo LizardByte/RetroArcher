@@ -23,9 +23,8 @@ WORKDIR /build
 COPY . .
 
 # setup python requirements
-# do not use `python -m pip ...` or packages do not get put into venv, since it's not activated like normal
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install --no-cache-dir --upgrade pip && \
+    python -m pip install --no-cache-dir -r requirements.txt
 
 # compile locales
 RUN python scripts/_locale.py --compile
@@ -40,22 +39,25 @@ RUN sphinx-build -M html source build
 
 FROM retroarcher-base as retroarcher
 
+# copy app from builder
+COPY --from=retroarcher-build /build/ /app/
+
 # copy python venv
 COPY --from=retroarcher-build /opt/venv/ /opt/venv/
 # use the venv
 ENV PATH="/opt/venv/bin:$PATH"
 # site-packages are in /opt/venv/lib/python<version>/site-packages/
 
-# copy app from builder
-COPY --from=retroarcher-build /build/ /app/
+# setup remaining env variables
+ENV RETROARCHER_DOCKER=True
+ENV TZ=UTC
 
 # setup user
 RUN groupadd -g 1000 retroarcher && \
     useradd -u 1000 -g 1000 retroarcher
 
 # create config directory
-RUN mkdir /config && \
-    touch /config/DOCKER
+RUN mkdir -p /config
 VOLUME /config
 
 CMD ["python", "retroarcher.py"]
