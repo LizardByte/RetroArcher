@@ -29,12 +29,16 @@ import pyra
 from pyra import definitions
 from pyra import helpers
 
-from pyra.config import _BLACKLIST_KEYS, _WHITELIST_KEYS
-
 # These settings are for file logging only
 py_name = 'pyra'
 MAX_SIZE = 5000000  # 5 MB
 MAX_FILES = 5
+
+# used for log filters
+_BLACKLIST_KEYS = ['_APITOKEN', '_TOKEN', '_KEY', '_SECRET', '_PASSWORD', '_APIKEY', '_ID', '_HOOK']
+_WHITELIST_KEYS = ['HTTPS_KEY']
+
+LOG_BLACKLIST = []
 
 _BLACKLIST_WORDS = set()
 
@@ -175,7 +179,7 @@ class BlacklistFilter(logging.Filter):
         >>> BlacklistFilter().filter(record=BlacklistFilter())
         True
         """
-        if not pyra.config.LOG_BLACKLIST:
+        if not LOG_BLACKLIST:
             return True
 
         for item in _BLACKLIST_WORDS:
@@ -248,7 +252,7 @@ class RegexFilter(logging.Filter):
         >>> RegexFilter().filter(record=RegexFilter())
         True
         """
-        if not pyra.config.LOG_BLACKLIST:
+        if not LOG_BLACKLIST:
             return True
 
         try:

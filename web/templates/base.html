@@ -21,6 +21,7 @@
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/plotly.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sidebar.css') }}">
 
         <!-- Bootstrap Optional JavaScript -->
         <script type="text/javascript" src="{{ url_for('static', filename='node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
@@ -28,21 +29,25 @@
         <!-- JQuery Javascript -->
         <script type="text/javascript" src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.min.js') }}"></script>
 
-        <!-- JS -->
-        <script type="text/javascript" src="{{ url_for('static', filename='js/discord.js') }}"></script>
+        {% block head %}{% endblock head %}
 
     </head>
 
     <body class="d-flex flex-column h-100 bg-dark-gray">
+        {% block modals %}{% endblock %}
         <main class="flex-shrink-0">
             <!-- Include navbar -->
             {% include 'navbar.html' %}
 
-            <section class="py-5 offset-anchor" id="top"></section>
-
             <!-- The page template -->
-            {% block content %}{% endblock %}
+            {% block content %}{% endblock content %}
         </main>
-    </body>
 
+        <!-- JS -->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/discord.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/show_alert.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+
+        {% block scripts %}{% endblock %}
+    </body>
 </html>

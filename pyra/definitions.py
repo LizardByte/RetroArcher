@@ -144,14 +144,12 @@ class Paths:
     """
     PYRA_DIR = os.path.dirname(os.path.abspath(__file__))
     ROOT_DIR = os.path.dirname(PYRA_DIR)
+    DATA_DIR = ROOT_DIR
+    BINARY_PATH = os.path.abspath(os.path.join(DATA_DIR, 'retroarcher.py'))
 
     if Modes.FROZEN:  # pyinstaller build
         DATA_DIR = os.path.dirname(sys.executable)
         BINARY_PATH = os.path.abspath(sys.executable)
-    else:
-        DATA_DIR = ROOT_DIR
-        BINARY_PATH = os.path.abspath(os.path.join(DATA_DIR, 'retroarcher.py'))
-
     if Modes.DOCKER:  # docker install
         DATA_DIR = '/config'  # overwrite the value that was already set
 

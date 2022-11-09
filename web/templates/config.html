@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block head %}
+        <!-- Bootstrap Optional JavaScript -->
+        <script type="text/javascript" src="{{ url_for('static', filename='node_modules/parsleyjs/dist/parsley.min.js') }}"></script>
+{% endblock head %}
+
+{% block modals %}
+{% endblock modals %}
+
+{% block content %}
+    <div id="wrapper" class="sidebar-expanded">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" class="sidebar-expanded shadow"><!-- d-* hides the Sidebar in smaller devices. Its items can be kept on the Navbar 'Menu' -->
+            <!-- Bootstrap List Group -->
+            <ul class="list-group">
+                <a href="#" data-toggle="sidebar-collapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center no-hover">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <button class="btn btn-outline-light">
+                            <span id="collapse-icon" class="fa fa-fw"></span>
+                        </button>
+                    </div>
+                </a>
+                <!-- Separator with title -->
+                <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center">
+                    <small>{{ title }}</small>
+                </li>
+                <!-- /END Separator -->
+                <!-- Menu -->
+                {% for key in config_spec %}
+                    {% if config_spec[key]['type'] == 'section' %}
+                        <a href="#{{ key.lower() }}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="sidebar-item d-flex w-100 justify-content-start align-items-center">
+                                <span class="fa fa-fw fa-lg fa-{{ config_spec[key]['icon'] }} mx-3"></span>
+                                <span class="invisible">-</span> {# this invisible text keeps the sidebar spacing the same when collapsing/expanding #}
+                                <span class="menu-collapsed">{{ config_spec[key]['name'] }}</span>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </ul><!-- List Group END-->
+        </div><!-- sidebar-container END -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" class="sidebar-expanded">
+            <div class="container px-5 my-5 text-white">
+
+                <form id="configForm" data-parsley-validate enctype="multipart/form-data" method="post">
+                    {%- for key in config_spec -%}
+                        <h3 class="offset-anchor mb-3" id="{{ key.lower() }}">{{ config_spec[key]['name'] }}</h3>
+                        <hr>
+                        {%- for setting in config_spec[key] -%}
+                            {%- set setting_disabled = '' -%}
+                            {%- if config_spec[key][setting]['locked'] == True -%}
+                                {%- set setting_disabled = 'disabled' -%}
+                            {%- endif -%}
+
+                            {%- set setting_tag = '' -%}
+                            {%- if config_spec[key][setting]['beta'] == True -%}
+                                {%- set setting_tag = 'beta-setting' -%}
+                            {%- elif config_spec[key][setting]['advanced'] == True -%}
+                                {%- set setting_tag = 'advanced-setting' -%}
+                            {%- endif -%}
+
+                            {%- set data_parsley_pattern = '' -%}
+                            {%- if config_spec[key][setting]['data_parsley_pattern'] -%}
+                                {%- set data_parsley_pattern = str('data-parsley-pattern="{}"').format(config_spec[key][setting]['data_parsley_pattern'])|safe -%}
+                            {%- endif -%}
+
+                            {%- set data_parsley_type = '' -%}
+                            {%- if config_spec[key][setting]['data_parsley_type'] -%}
+                                {%- set data_parsley_pattern = str('data-parsley-type="{}"').format(config_spec[key][setting]['data_parsley_type'])|safe -%}
+                            {%- endif -%}
+
+                            {%- set extra_class = 'col-md-8' -%}
+                            {%- if config_spec[key][setting]['extra_class'] -%}
+                                {%- set extra_class = config_spec[key][setting]['extra_class'] -%}
+                            {%- endif -%}
+
+                            {%- if config_spec[key][setting]['type'] == 'boolean' -%}
+                                {%- set checkbox_checked = '' -%}
+                                {%- if config_settings[key][setting] == True -%}
+                                    {%- set checkbox_checked = 'checked' -%}
+                                {%- endif -%}
+                                <div class="checkbox {{ setting_tag }}">
+                                    <div class="{{ extra_class }}">
+                                        <input class="form-check-input" type="checkbox" category="{{ key }}" id="{{ setting }}" aria-describedby="{{ setting.lower() }}-help" {{ checkbox_checked }} {{ setting_disabled }}>
+                                    </div>
+                                    <label class="form-check-label" for="{{ setting }}">
+                                        {{ config_spec[key][setting]['name'] }}
+                                    </label>
+                                    <div id="{{ setting.lower() }}-help" class="form-text">{{ config_spec[key][setting]['description'] }}</div>
+                                </div>
+                            {%- endif -%}
+
+                            {%- if config_spec[key][setting]['type'] == 'integer' or config_spec[key][setting]['type'] == 'float' -%}
+                                {%- if config_spec[key][setting]['min'] is number and config_spec[key][setting]['max'] is number -%}
+                                    {%- set data_parsley_number = str('data-parsley-range="[{}, {}]"').format(config_spec[key][setting]['min'], config_spec[key][setting]['max'])|safe -%}
+                                {%- elif config_spec[key][setting]['min'] is number -%}
+                                    {%- set data_parsley_number = str('data-parsley-min="{}"').format(config_spec[key][setting]['min'])|safe -%}
+                                {%- elif config_spec[key][setting]['max'] is number -%}
+                                    {%- set data_parsley_number = str('data-parsley-max="{}"').format(config_spec[key][setting]['max'])|safe -%}
+                                {%- endif -%}
+                                <div class="form-group {{ setting_tag }}">
+                                    <label for="{{ setting }}" class="form-label">{{ config_spec[key][setting]['name'] }}</label>
+                                    <div class="{{ extra_class }}">
+                                        <input class="form-control" id="{{ setting }}" category="{{ key }}" placeholder="{{ config_spec[key][setting]['default'] }}" value="{{ config_settings[key][setting] }}" aria-describedby="{{ setting.lower() }}-help" data-parsley-trigger="change" {{ data_parsley_number }} {{ data_parsley_pattern }} {{ data_parsley_type }} data-parsley-errors-container="#{{ setting.lower() }}-error" {{ setting_disabled }}>
+                                    </div>
+                                    <div id="{{ setting.lower() }}-error" class="alert alert-danger settings-alert" role="alert"></div>
+                                    <div id="{{ setting.lower() }}-help" class="form-text">{{ config_spec[key][setting]['description'] }}</div>
+                                </div>
+                            {%- endif -%}
+
+                            {%- if config_spec[key][setting]['type'] == 'string' -%}
+                                <div class="form-group {{ setting_tag }}">
+                                    <label for="{{ setting }}" class="form-label">
+                                        {{ config_spec[key][setting]['name'] }}
+                                    </label>
+                                    <div class="{{ extra_class }}">
+                                        <input class="form-control" id="{{ setting }}" category="{{ key }}" placeholder="{{ config_spec[key][setting]['default'] }}" value="{{ config_settings[key][setting] }}" aria-describedby="{{ setting.lower() }}-help" data-parsley-trigger="change" {{ data_parsley_pattern }} {{ data_parsley_type }} data-parsley-errors-container="#{{ setting.lower() }}-error" {{ setting_disabled }}>
+
+                                        {%- if config_spec[key][setting]['button_directory'] -%}
+                                            <!-- Todo: Add button to open directory browser -->
+                                        {%- endif -%}
+                                    </div>
+
+                                    <div id="{{ setting.lower() }}-error" class="alert alert-danger settings-alert" role="alert"></div>
+                                    <div id="{{ setting.lower() }}-help" class="form-text">{{ config_spec[key][setting]['description'] }}</div>
+                                </div>
+                            {%- endif -%}
+
+                            {%- if config_spec[key][setting]['type'] == 'option' -%}
+                                <div class="form-group {{ setting_tag }}">
+                                    <label for="{{ setting }}" class="form-label">
+                                        {{ config_spec[key][setting]['name'] }}
+                                    </label>
+                                    <div class="{{ extra_class }}">
+                                        <select class="{{ extra_class }} form-select" id="{{ setting }}" category="{{ key }}" aria-describedby="{{ setting.lower() }}-help" {{ setting_disabled }}>
+                                            {%- for option in config_spec[key][setting]['options'] -%}
+                                                {%- set option_index = config_spec[key][setting]['options'].index(option) -%}
+
+                                                {%- set option_selected = '' -%}
+                                                {%- if config_settings[key][setting] == option -%}
+                                                    {%- set option_selected = 'selected' -%}
+                                                {%- endif -%}
+                                                <option {{ option_selected }} value="{{ config_spec[key][setting]['options'][option_index] }}">{{ config_spec[key][setting]['option_names'][option_index] }}</option>
+                                            {%- endfor -%}
+                                        </select>
+                                    </div>
+                                    <div id="{{ setting.lower() }}-help" class="form-text">{{ config_spec[key][setting]['description'] }}</div>
+                                </div>
+                            {%- endif -%}
+                        {%- endfor -%}
+                    {%- endfor -%}
+
+                    <button id="save-button" type="button" class="btn btn-danger" disabled>{{ _('Save') }}</button>
+                </form>
+            </div>
+        </div><!-- /#page-content-wrapper -->
+
+    </div><!-- /#wrapper -->
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        // Global Variables
+        let configForm = $("#configForm");
+        let saveButton = document.getElementById('save-button');
+        let settingsChanged = false;
+
+        configForm.change(function () {
+            saveButton.disabled = false;
+            settingsChanged = true;
+        });
+
+        function saveSettings() {
+            if (configForm.parsley().validate()) {
+                // create FormData object
+                let data = new FormData();
+
+                // append field and values to FormData object
+                let all = document.querySelectorAll("#configForm input, #configForm textarea, #configForm select");
+                for (let field of all) {
+                    // exclude submit and buttons
+                    if (field.type !== "submit" && field.type !== "button") {
+                        // checkbox fields
+                        if (field.type === "checkbox") {
+                            data.append(`${field.getAttribute('category')}|${field.id}`, field.checked);
+                        }
+                        // radio fields... must be checked
+                        else if (field.type === "radio") {
+                            if (field.checked) {
+                                data.append(`${field.getAttribute('category')}|${field.id}`, field.value);
+                            }
+                        }
+                        // other fields
+                        else {
+                            data.append(`${field.getAttribute('category')}|${field.id}`, field.value);
+                        }
+                    }
+                }
+
+                // send the FormData object to the backend
+                $.ajax({
+                    type: 'POST',
+                    enctype: 'multipart/form-data',
+                    url: '/api/settings',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    success: function(response) {
+                        console.log(response);
+                        showAlert(response['message'], 'alert-success', 'fa-solid fa-2x fa-check', 5000);
+                        saveButton.disabled = true;
+                    },
+                    error: function(response) {
+                        console.log(response);
+                        showAlert(response['message'], 'alert-danger', 'fa-solid fa-2x fa-triangle-exclamation', 5000);
+                    }
+                });
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        $('#save-button').click(function() {
+            saveSettings();
+        });
+    </script>
+{% endblock scripts %}

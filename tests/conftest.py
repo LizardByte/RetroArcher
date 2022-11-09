@@ -17,15 +17,15 @@ from pyra import definitions
 from pyra import webapp
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='function')
 def test_config_file():
     """Set a test config file path"""
-    test_config_file = os.path.join(definitions.Paths().DATA_DIR, 'test_config.ini')  # use a dummy ini file
+    test_config_file = os.path.join(definitions.Paths.DATA_DIR, 'test_config.ini')  # use a dummy ini file
 
     yield test_config_file
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='function')
 def test_config_object(test_config_file):
     """Create a test config object"""
     test_config_object = config.create_config(config_file=test_config_file)
@@ -35,15 +35,18 @@ def test_config_object(test_config_file):
     yield test_config_object
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='function')
 def test_pyra_init(test_config_file):
     test_pyra_init = pyra.initialize(config_file=test_config_file)
 
     yield test_pyra_init
 
+    pyra._INITIALIZED = False
+    pyra.SIGNAL = 'shutdown'
 
-@pytest.fixture(scope='module')
-def test_client():
+
+@pytest.fixture(scope='function')
+def test_client(test_pyra_init):
     """Create a test client for testing webapp endpoints"""
     app = webapp.app
     app.testing = True

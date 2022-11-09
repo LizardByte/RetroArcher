@@ -1,0 +1,106 @@
+/*https://codepen.io/lfrichter/pen/mQJJyB*/
+#wrapper {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.sidebar-expanded {
+    padding-left: 250px;
+}
+
+#wrapper.sidebar-collapsed {
+    padding-left: 80px;
+}
+
+#sidebar-wrapper {
+    top: 80px;
+    position: fixed;
+    height: 100vh;
+    background-color: #151515;
+    /*padding: 0;*/
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper.sidebar-expanded {
+    width: 250px;
+    left: 250px;
+    margin-left: -250px;
+}
+
+#sidebar-wrapper.sidebar-collapsed {
+    width: 80px;
+    left: 80px;
+    margin-left: -80px;
+}
+
+#page-content-wrapper {
+    position: absolute;
+    padding: 10px;
+}
+
+#page-content-wrapper.sidebar-expanded {
+    /*calc method - https://stackoverflow.com/a/14101451/11214013*/
+    width: -moz-calc(100% - 250px);  /* Firefox */
+    width: -webkit-calc(100% - 250px);  /* WebKit */
+    width: -o-calc(100% - 250px);  /* Opera */
+    width: calc(100% - 250px);  /* Standard */
+}
+
+#page-content-wrapper.sidebar-collapsed {
+    /*calc method - https://stackoverflow.com/a/14101451/11214013*/
+    width: -moz-calc(100% - 80px);  /* Firefox */
+    width: -webkit-calc(100% - 80px);  /* WebKit */
+    width: -o-calc(100% - 80px);  /* Opera */
+    width: calc(100% - 80px);  /* Standard */
+}
+
+/* ----------| Menu item*/
+#sidebar-wrapper .list-group a {
+    height: 50px;
+    color: white;
+}
+
+/* ----------| Submenu item*/
+#sidebar-wrapper .list-group li.list-group-item {
+    background-color: #151515;
+}
+
+#sidebar-wrapper .list-group .sidebar-submenu a {
+    height: 45px;
+    padding-left: 30px;
+}
+
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+
+/* ----------| Separators */
+.sidebar-separator-title {
+    background-color: #151515;
+    height: 35px;
+}
+
+.sidebar-separator {
+    background-color: #151515;
+    height: 25px;
+}
+
+.logo-separator {
+    background-color: #151515;
+    height: 60px;
+}
+
+a.bg-dark {
+    background-color: #151515 !important;
+}
+
+a.bg-dark:not(.no-hover):hover {
+    background-color: #303436 !important;
+}

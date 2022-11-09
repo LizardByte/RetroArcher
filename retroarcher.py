@@ -181,9 +181,7 @@ def main():
         from pyra import tray_icon  # submodule requires translations so importing after initialization
         # also do not import if not required by config options
 
-        if tray_icon.icon_supported:
-            tray_icon.icon = tray_icon.tray_initialize()
-            threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()
+        tray_icon.tray_run_threaded()
 
     # start the webapp
     if definitions.Modes.SPLASH:  # pyinstaller build only, not darwin platforms
