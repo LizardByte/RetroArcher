@@ -1,0 +1,231 @@
+---
+# This action is centrally managed in https://github.com/<organization>/.github/
+# Don't make changes to this file in this repo as they will be overwritten with changes made to the same file in
+# the above-mentioned repo.
+
+name: Qodana
+
+on:
+  # pull_request_target will not work unless workflow exists in target already, but required for token access
+  pull_request_target:
+    branches: [master, nightly]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [master, nightly]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check_qodana_files:
+    name: Check Qodana Files
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write  # required to add PR comment
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Prepare
+        id: prepare
+        run: |
+          # get branch... may be blank
+          branch=${GITHUB_HEAD_REF}
+
+          # check the branch variable
+          if [ -z "$branch" ]
+          then
+            echo "This is a PUSH event"
+            # use the branch name
+            destination=${{ github.event.ref_name }}
+            target=${{ github.event.ref_name }}
+          else
+            echo "This is a PR event"
+            # use the PR number
+            destination=${{ github.event.pull_request.number }}
+            target=${{ github.event.pull_request.base.ref }}
+          fi
+
+          echo "destination=$destination" >> $GITHUB_OUTPUT
+          echo "target=$target" >> $GITHUB_OUTPUT
+
+          # prepare urls
+          base=https://${{ github.repository_owner }}.github.io
+          report_url=${base}/qodana-reports/${{ github.event.repository.name }}/${destination}
+          workflow_url_a=https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}
+          workflow_url=${workflow_url_a}/actions/runs/${{ github.run_id }}
+          echo "report_url=$report_url" >> $GITHUB_OUTPUT
+          echo "workflow_url=$workflow_url" >> $GITHUB_OUTPUT
+
+          # build matrix
+          files=$(find . -type f -iname "qodana*.yaml")
+
+          echo "files: ${files}"
+
+          # do not quote to keep this as a single line
+          echo files=${files} >> $GITHUB_OUTPUT
+
+          MATRIX_COMBINATIONS=""
+          REPORTS_MARKDOWN=""
+          for FILE in ${files}; do
+            # extract the language from file name after `qodana-` and before `.yaml`
+              language=$(echo $FILE | sed -r -z -e 's/(\.\/)*.*\/(qodana.yaml)/default/gm')
+            if [[ $language != "default" ]]; then
+              language=$(echo $FILE | sed -r -z -e 's/(\.\/)*.*qodana-(.*).yaml/\2/gm')
+            fi
+            MATRIX_COMBINATIONS="$MATRIX_COMBINATIONS {\"file\": \"$FILE\", \"language\": \"$language\"},"
+            REPORTS_MARKDOWN="$REPORTS_MARKDOWN <br> - [${language}](${report_url}/${language})"
+          done
+
+          # removes the last character (i.e. comma)
+          MATRIX_COMBINATIONS=${MATRIX_COMBINATIONS::-1}
+
+          # setup matrix for later jobs
+          matrix=$((
+            echo "{ \"include\": [$MATRIX_COMBINATIONS] }"
+          ) | jq -c .)
+
+          echo $matrix
+          echo $matrix | jq .
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
+          echo "reports_markdown=$REPORTS_MARKDOWN" >> $GITHUB_OUTPUT
+
+      - name: Setup PR comment
+        if: ${{ github.event_name == 'pull_request' && steps.prepare.outputs.files != '' }}
+        uses: mshick/add-pr-comment@v2
+        with:
+          repo-token: ${{ secrets.GH_BOT_TOKEN }}
+          message: |
+            :warning: **Qodana is checking this PR** :warning:
+            Live results available [here](${{ steps.prepare.outputs.workflow_url }})
+
+    outputs:
+      destination: ${{ steps.prepare.outputs.destination }}
+      files: ${{ steps.prepare.outputs.files }}
+      matrix: ${{ steps.prepare.outputs.matrix }}
+      reports_markdown: ${{ steps.prepare.outputs.reports_markdown }}
+      target: ${{ steps.prepare.outputs.target }}
+      workflow_url: ${{ steps.prepare.outputs.workflow_url }}
+
+  qodana:
+    needs: [check_qodana_files]
+    if: ${{ needs.check_qodana_files.outputs.files }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.check_qodana_files.outputs.matrix) }}
+      max-parallel: 1
+    name: Qodana-${{ matrix.language }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Checkout Qodana/gh-pages repo
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository_owner }}/qodana-reports
+          ref: gh-pages
+          path: gh-pages
+          persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
+          fetch-depth: 0  # otherwise, will fail to push refs to dest repo
+
+      - name: Get baseline
+        id: baseline
+        run: |
+          base_url=https://app.lizardbyte.dev/qodana-reports/${{ github.event.repository.name }}/${{ matrix.language }}
+          baseline_file=qodana.sarif.json
+
+          # download baseline with wget and without failing
+          wget -q ${base_url}/results/${{ needs.check_qodana_files.outputs.target }}/${baseline_file} || true
+
+          # check if file exists
+          if [ -f ${baseline_file} ]
+          then
+              echo "baseline exists"
+              echo "baseline_args=--baseline,qodana.sarif.json" >> $GITHUB_OUTPUT
+          else
+              echo "baseline does not exist"
+              echo "baseline_args=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Rename Qodana config file
+        run: |
+          # rename the file
+          if [ "${{ matrix.file }}" != "./qodana.yaml" ]
+          then
+            mv -f ${{ matrix.file }} ./qodana.yaml
+          fi
+
+      - name: Qodana
+        id: qodana
+        uses: JetBrains/qodana-action@v2022.3.4
+        with:
+          additional-cache-hash: ${{ matrix.language }}
+          args: '--print-problems,${{ steps.baseline.outputs.baseline_args }}'
+          pr-mode: false
+          upload-result: true
+          use-caches: true
+
+      - name: Prepare gh-pages
+        id: pages
+        if: always()
+        run: |
+          # set the output directory
+          output_dir_a=./gh-pages/${{ github.event.repository.name }}/
+          output_dir=${output_dir_a}/${{ needs.check_qodana_files.outputs.destination }}/${{ matrix.language }}
+          mkdir -p $output_dir
+
+          # empty contents
+          rm -f -r $output_dir/*
+
+          # copy qodana results
+          cp -f -r ${{ runner.temp }}/qodana/results/report/. $output_dir/
+
+      - name: Deploy to gh-pages
+        id: deploy
+        if: ${{ steps.pages.conclusion == 'success' }}
+        uses: actions-js/push@v1.3
+        with:
+          github_token: ${{ secrets.GH_BOT_TOKEN }}
+          author_email: ${{ secrets.GH_BOT_EMAIL }}
+          author_name: ${{ secrets.GH_BOT_NAME }}
+          repository: ${{ secrets.GH_ORG_NAME }}/qodana-reports
+          directory: gh-pages
+          branch: gh-pages
+          force: true
+          message: >-
+            update
+            ${{ github.event.repository.name }}
+            ${{ needs.check_qodana_files.outputs.destination }}
+            ${{ matrix.language }}
+
+  notify:
+    name: Notify
+    needs: [check_qodana_files, qodana]
+    if: ${{ github.event_name == 'pull_request' && needs.check_qodana_files.outputs.files && needs.qodana.result }}
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write  # required to add PR comment
+
+    steps:
+      - name: Update PR comment
+        uses: mshick/add-pr-comment@v2
+        with:
+          repo-token: ${{ secrets.GH_BOT_TOKEN }}
+          status: ${{ needs.qodana.result }}
+          message-failure: |
+            :warning: **Qodana: failure**
+
+            [Logs](${{ steps.prepare.outputs.workflow_url }})
+
+            Reports: ${{ needs.check_qodana_files.outputs.reports_markdown }}
+          message-success: |
+            :white_check_mark: **Qodana: success**
+
+            Reports: ${{ needs.check_qodana_files.outputs.reports_markdown }}
