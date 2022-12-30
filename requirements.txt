@@ -14,4 +14,4 @@ pyadl==0.1
 pyamdgpuinfo==2.1.2; sys_platform == 'Linux'
 pystray==0.19.4
 requests==2.28.1
-Sphinx==5.3.0
+Sphinx==6.0.0
