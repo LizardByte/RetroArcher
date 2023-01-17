@@ -3,6 +3,8 @@
 # Don't make changes to this file in this repo as they will be overwritten with changes made to the same file in
 # the above-mentioned repo.
 
+# Manage stale issues and PRs.
+
 name: Stale Issues / PRs
 
 on:
@@ -12,10 +14,11 @@ on:
 jobs:
   stale:
     name: Check Stale Issues / PRs
+    if: startsWith(github.repository, 'LizardByte/')
     runs-on: ubuntu-latest
     steps:
       - name: Stale
-        uses: actions/stale@v6
+        uses: actions/stale@v7
         with:
           close-issue-message: >
             This issue was closed because it has been stalled for 10 days with no activity.
@@ -37,7 +40,7 @@ jobs:
           repo-token: ${{ secrets.GH_BOT_TOKEN }}
 
       - name: Invalid Template
-        uses: actions/stale@v6
+        uses: actions/stale@v7
         with:
           close-issue-message: >
             This issue was closed because the the template was not completed after 5 days.
