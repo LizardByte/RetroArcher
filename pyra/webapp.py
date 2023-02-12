@@ -39,42 +39,17 @@ babel = Babel(
     app=app,
     default_locale=locales.default_locale,
     default_timezone=locales.default_timezone,
+    default_translation_directories=Paths.LOCALE_DIR,
     default_domain=locales.default_domain,
     configure_jinja=True,
+    locale_selector=locales.get_locale
 )
-# app.translation_directories(Paths.LOCALE_DIR)
-app.config['BABEL_TRANSLATION_DIRECTORIES'] = Paths.LOCALE_DIR
 
 # setup logging for flask
 log_handlers = logger.get_logger(name=__name__).handlers
 
 for handler in log_handlers:
     app.logger.addHandler(handler)
-
-
-@babel.localeselector
-def get_locale() -> str:
-    """
-    Get the locale from the config.
-
-    Get the locale specified in the config. This does not need to be called as it is done so automatically by `babel`.
-
-    Returns
-    -------
-    str
-        The locale.
-
-    See Also
-    --------
-    pyra.locales.get_locale : Use this function instead.
-
-    Examples
-    --------
-    >>> get_locale()
-    en
-    """
-    locale = locales.get_locale()
-    return locale
 
 
 @app.route('/')
