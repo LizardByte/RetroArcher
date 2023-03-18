@@ -31,8 +31,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
 RUN python scripts/_locale.py --compile
 
 # setup npm and dependencies
-WORKDIR /build/web
-RUN npm install
+RUN npm install && \
+    mv -f ./node_modules/ ./web/
 
 # compile docs
 WORKDIR /build/docs

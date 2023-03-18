@@ -98,9 +98,13 @@ jobs:
           python ./scripts/_locale.py --compile
 
       - name: Install npm packages
-        working-directory: web
+        shell: bash
         run: |
+          # install node_modules
           npm install
+
+          # move node_modules directory to web directory
+          mv -f ./node_modules/ ./web/
 
       - name: Compile Docs
         working-directory: docs
