@@ -36,8 +36,8 @@ jobs:
           then
             echo "This is a PUSH event"
             # use the branch name
-            destination=${{ github.event.ref_name }}
-            target=${{ github.event.ref_name }}
+            destination=${{ github.ref_name }}
+            target=${{ github.ref_name }}
           else
             echo "This is a PR event"
             # use the PR number
