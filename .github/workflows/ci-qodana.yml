@@ -31,11 +31,8 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          # get branch... may be blank
-          branch=${GITHUB_HEAD_REF}
-
           # check the branch variable
-          if [ -z "$branch" ]
+          if [ "${{ github.event_name }}" == "push" ]
           then
             echo "This is a PUSH event"
             # use the branch name
@@ -94,7 +91,7 @@ jobs:
           echo "reports_markdown=$REPORTS_MARKDOWN" >> $GITHUB_OUTPUT
 
       - name: Setup PR comment
-        if: ${{ github.event_name == 'pull_request' && steps.prepare.outputs.files != '' }}
+        if: ${{ startsWith(github.event_name, 'pull_request') && steps.prepare.outputs.files != '' }}
         uses: mshick/add-pr-comment@v2
         with:
           repo-token: ${{ secrets.GH_BOT_TOKEN }}
@@ -190,7 +187,7 @@ jobs:
       - name: Deploy to gh-pages
         id: deploy
         if: ${{ steps.pages.conclusion == 'success' }}
-        uses: actions-js/push@v1.3
+        uses: actions-js/push@v1.4
         with:
           github_token: ${{ secrets.GH_BOT_TOKEN }}
           author_email: ${{ secrets.GH_BOT_EMAIL }}
@@ -208,7 +205,10 @@ jobs:
   notify:
     name: Notify
     needs: [check_qodana_files, qodana]
-    if: ${{ github.event_name == 'pull_request' && needs.check_qodana_files.outputs.files && needs.qodana.result }}
+    if: >-
+      startsWith(github.event_name, 'pull_request') &&
+      needs.check_qodana_files.outputs.files &&
+      needs.qodana.result
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write  # required to add PR comment
