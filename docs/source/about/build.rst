@@ -46,9 +46,8 @@ Install NPM Requirements
 ------------------------
 .. code-block:: bash
 
-      cd web
       npm install
-      cd ..
+      mv -f ./node_modules/ ./web/
 
 Compile Docs
 ------------
