@@ -195,7 +195,7 @@ jobs:
           repository: ${{ secrets.GH_ORG_NAME }}/qodana-reports
           directory: gh-pages
           branch: gh-pages
-          force: true
+          force: false
           message: >-
             update
             ${{ github.event.repository.name }}
