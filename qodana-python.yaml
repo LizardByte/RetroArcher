@@ -18,6 +18,11 @@ bootstrap: |
   # https://github.com/JetBrains/Qodana/discussions/134#discussioncomment-4329981
   rm -rf .idea
 
+exclude:
+  - name: All
+    paths:
+      - gh-pages
+
 failThreshold: 100
 
 include:
