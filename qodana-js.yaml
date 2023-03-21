@@ -10,7 +10,6 @@ exclude:
   - name: All
     paths:
       - gh-pages
-      - gh-pages-staging
 
 failThreshold: 100
 
