@@ -18,6 +18,9 @@ target market, no matter their language, cultural preferences, or location.
 """
 # standard imports
 import gettext
+import os
+import subprocess
+import sys
 
 # lib imports
 import babel
@@ -121,10 +124,28 @@ def get_text() -> gettext.gettext:
     >>> get_text()
     <bound method GNUTranslations.gettext of <gettext.GNUTranslations object at 0x...>>
     """
+    translation_fallback = False
+    if not os.path.isfile(os.path.join(Paths.LOCALE_DIR, get_locale(), 'LC_MESSAGES', f'{default_domain}.mo')):
+        log.warning(msg='No locale mo translation file found.')
+
+        locale_script = os.path.join(Paths.ROOT_DIR, 'scripts', '_locale.py')
+
+        if os.path.isfile(locale_script):
+            log.info(msg='Running locale compile script.')
+            # run python script in a subprocess
+            subprocess.run(
+                args=[sys.executable, locale_script, '--compile'],
+                cwd=Paths.ROOT_DIR,
+            )
+        else:
+            log.warning(msg='Locale compile script not found. Defaulting to English.')
+            translation_fallback = True
+
     language = gettext.translation(
         domain=default_domain,
         localedir=Paths.LOCALE_DIR,
-        languages=[get_locale()]
+        languages=[get_locale()],
+        fallback=translation_fallback,
     )
 
     language.install()
