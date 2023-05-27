@@ -27,17 +27,31 @@ def test_get_logger():
 
 
 def test_is_public_ip():
-    """Test if ip address is pubic, then tests if ip address is private"""
-    # test public ip
-    address = 'www.google.com'
-    ip = helpers.get_ip(host=address)
-    public_ip = helpers.is_public_ip(host=ip)
-    assert public_ip
+    """Test if ip address is pubic or private"""
+    # test public ips
+    public_addresses = [
+        'www.google.com',
+        '8.8.8.8',
+        '8.8.4.4',
+        '2001:4860:4860::8888',
+        '2001:4860:4860::8844',
+    ]
 
-    # test private ip
-    ip = '192.168.1.1'
-    public_ip = helpers.is_public_ip(host=ip)
-    assert not public_ip
+    private_addresses = [
+        '192.168.1.1'
+    ]
+
+    address_types = [public_addresses, private_addresses]
+
+    for address_type in address_types:
+        for address in address_type:
+            ip = helpers.get_ip(host=address)
+            public_ip = helpers.is_public_ip(host=ip)
+
+            if address_type == public_addresses:
+                assert public_ip
+            else:
+                assert not public_ip
 
 
 def test_get_ip():
