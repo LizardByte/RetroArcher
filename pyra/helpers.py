@@ -9,6 +9,7 @@ from __future__ import annotations
 
 # standard imports
 import datetime
+import ipaddress
 import logging
 import re
 import os
@@ -165,12 +166,16 @@ def is_public_ip(host: str) -> bool:
     False
     """
     ip = is_valid_ip(address=get_ip(host=host))
-    if ip and ip.iptype() == 'PUBLIC':
-        return True
-    return False
+
+    # use built in ipaddress module to check if address is private since IPy does not work IPv6 addresses
+    if ip:
+        ip_obj = ipaddress.ip_address(address=ip)
+        return not ip_obj.is_private
+    else:
+        return False
 
 
-def get_ip(host: str) -> str:
+def get_ip(host: str) -> Optional[str]:
     """
     Get IP address from host name.
 
@@ -184,7 +189,7 @@ def get_ip(host: str) -> str:
     Returns
     -------
     str
-        IP address of host name.
+        IP address of host name if it is a valid ip address, otherwise ``None``.
 
     Examples
     --------
@@ -201,6 +206,7 @@ def get_ip(host: str) -> str:
             ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]
         except Exception:
             log.error(f"IP Checker :: Bad IP or hostname provided: {host}.")
+            return None
         else:
             log.debug(f"IP Checker :: Resolved {host} to {ip_address}.")
             return ip_address
