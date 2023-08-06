@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2023-04-06 01:12+0000\n"
-"PO-Revision-Date: 2023-08-06 01:41\n"
+"PO-Revision-Date: 2023-08-06 15:51\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -20,67 +20,67 @@ msgstr ""
 
 #: pyra/hardware.py:28
 msgid "cpu"
-msgstr ""
+msgstr "cpu"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr ""
+msgstr "utilizzo della cpu"
 
 #: pyra/hardware.py:33
 msgid "gpu"
-msgstr ""
+msgstr "gpu"
 
 #: pyra/hardware.py:34
 msgid "gpu usage"
-msgstr ""
+msgstr "utilizzo della gpu"
 
 #: pyra/hardware.py:37
 msgid "memory"
-msgstr ""
+msgstr "memoria"
 
 #: pyra/hardware.py:38
 msgid "memory usage"
-msgstr ""
+msgstr "memoria utilizzata"
 
 #: pyra/hardware.py:41
 msgid "network"
-msgstr ""
+msgstr "rete"
 
 #: pyra/hardware.py:42
 msgid "network usage"
-msgstr ""
+msgstr "utilizzo della rete"
 
 #: pyra/hardware.py:45
 msgid "received"
-msgstr ""
+msgstr "ricevuto"
 
 #: pyra/hardware.py:46
 msgid "sent"
-msgstr ""
+msgstr "inviato"
 
 #: pyra/hardware.py:47
 msgid "system"
-msgstr ""
+msgstr "sistema"
 
 #. NOTE: Mbps = megabytes per second
 #: pyra/hardware.py:356
 #, python-format
 msgid "%(numeric_value)s Mbps"
-msgstr ""
+msgstr "%(numeric_value)s Mbps"
 
 #. NOTE: the double percent symbols is rendered as one in this case
 #: pyra/hardware.py:359
 #, python-format
 msgid "%(numeric_value)s %%"
-msgstr ""
+msgstr "%(numeric_value)s %%"
 
 #: pyra/hardware.py:445
 msgid "Mbps"
-msgstr ""
+msgstr "Mbps"
 
 #: pyra/hardware.py:445
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
 #. "%(app_name)s".
