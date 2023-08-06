@@ -1,0 +1,210 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lizardbyte\n"
+"Report-Msgid-Bugs-To: github.com/retroarcher\n"
+"POT-Creation-Date: 2023-04-06 01:12+0000\n"
+"PO-Revision-Date: 2023-08-06 14:47\n"
+"Last-Translator: \n"
+"Language-Team: Afar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: lizardbyte\n"
+"X-Crowdin-Project-ID: 606145\n"
+"X-Crowdin-Language: aa\n"
+"X-Crowdin-File: /[LizardByte.RetroArcher] nightly/retroarcher.po\n"
+"X-Crowdin-File-ID: 753\n"
+"Language: aa_ER\n"
+
+#: pyra/hardware.py:28
+msgid "cpu"
+msgstr "crwdns6985:0crwdne6985:0"
+
+#: pyra/hardware.py:29
+msgid "cpu usage"
+msgstr "crwdns6987:0crwdne6987:0"
+
+#: pyra/hardware.py:33
+msgid "gpu"
+msgstr "crwdns6989:0crwdne6989:0"
+
+#: pyra/hardware.py:34
+msgid "gpu usage"
+msgstr "crwdns6991:0crwdne6991:0"
+
+#: pyra/hardware.py:37
+msgid "memory"
+msgstr "crwdns6993:0crwdne6993:0"
+
+#: pyra/hardware.py:38
+msgid "memory usage"
+msgstr "crwdns6995:0crwdne6995:0"
+
+#: pyra/hardware.py:41
+msgid "network"
+msgstr "crwdns6997:0crwdne6997:0"
+
+#: pyra/hardware.py:42
+msgid "network usage"
+msgstr "crwdns6999:0crwdne6999:0"
+
+#: pyra/hardware.py:45
+msgid "received"
+msgstr "crwdns7001:0crwdne7001:0"
+
+#: pyra/hardware.py:46
+msgid "sent"
+msgstr "crwdns7003:0crwdne7003:0"
+
+#: pyra/hardware.py:47
+msgid "system"
+msgstr "crwdns7005:0crwdne7005:0"
+
+#. NOTE: Mbps = megabytes per second
+#: pyra/hardware.py:356
+#, python-format
+msgid "%(numeric_value)s Mbps"
+msgstr "crwdns7007:0%(numeric_value)scrwdne7007:0"
+
+#. NOTE: the double percent symbols is rendered as one in this case
+#: pyra/hardware.py:359
+#, python-format
+msgid "%(numeric_value)s %%"
+msgstr "crwdns7009:0%(numeric_value)scrwdne7009:0"
+
+#: pyra/hardware.py:445
+msgid "Mbps"
+msgstr "crwdns7011:0crwdne7011:0"
+
+#: pyra/hardware.py:445
+msgid "%"
+msgstr "crwdns7013:0crwdne7013:0"
+
+#. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:74
+#, python-format
+msgid "Open %(app_name)s"
+msgstr "crwdns7015:0%(app_name)scrwdne7015:0"
+
+#. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
+#. "%(github)s".
+#: pyra/tray_icon.py:82
+#, python-format
+msgid "%(github)s Releases"
+msgstr "crwdns7017:0%(github)scrwdne7017:0"
+
+#. NOTE: Donate to RetroArcher.
+#: pyra/tray_icon.py:85 web/templates/navbar.html:22
+msgid "Donate"
+msgstr "crwdns7019:0crwdne7019:0"
+
+#: pyra/tray_icon.py:86 web/templates/navbar.html:27
+msgid "GitHub Sponsors"
+msgstr "crwdns7021:0crwdne7021:0"
+
+#. NOTE: Open web browser when application starts. Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:94
+#, python-format
+msgid "Open browser when %(app_name)s starts"
+msgstr "crwdns7023:0%(app_name)scrwdne7023:0"
+
+#. NOTE: Disable or turn off icon.
+#: pyra/tray_icon.py:97
+msgid "Disable icon"
+msgstr "crwdns7025:0crwdne7025:0"
+
+#. NOTE: Restart the program.
+#: pyra/tray_icon.py:100
+msgid "Restart"
+msgstr "crwdns7027:0crwdne7027:0"
+
+#. NOTE: Quit, Stop, End, or Shutdown the program.
+#: pyra/tray_icon.py:102
+msgid "Quit"
+msgstr "crwdns7029:0crwdne7029:0"
+
+#: retroarcher.py:127
+msgid "RetroArcher is a Python based game streaming server.\n"
+"Arguments supplied here are meant to be temporary."
+msgstr "crwdns7031:0crwdne7031:0"
+
+#: retroarcher.py:130
+msgid "Specify a config file to use"
+msgstr "crwdns7033:0crwdne7033:0"
+
+#: retroarcher.py:131
+msgid "Use debug logging level"
+msgstr "crwdns7035:0crwdne7035:0"
+
+#: retroarcher.py:132
+msgid "Start RetroArcher in the development environment"
+msgstr "crwdns7037:0crwdne7037:0"
+
+#: retroarcher.py:133
+msgid "Health check the container and exit"
+msgstr "crwdns7039:0crwdne7039:0"
+
+#: retroarcher.py:134
+msgid "Do not open RetroArcher in browser"
+msgstr "crwdns7041:0crwdne7041:0"
+
+#: retroarcher.py:136
+msgid "Force RetroArcher to run on a specified port, default=9696"
+msgstr "crwdns7043:0crwdne7043:0"
+
+#: retroarcher.py:138
+msgid "Turn off console logging"
+msgstr "crwdns7045:0crwdne7045:0"
+
+#: retroarcher.py:139
+msgid "Print the version details and exit"
+msgstr "crwdns7047:0crwdne7047:0"
+
+#: web/templates/navbar.html:18
+msgid "Login"
+msgstr "crwdns7049:0crwdne7049:0"
+
+#: web/templates/navbar.html:43
+msgid "Social"
+msgstr "crwdns7051:0crwdne7051:0"
+
+#: web/templates/navbar.html:48
+msgid "Facebook Page"
+msgstr "crwdns7053:0crwdne7053:0"
+
+#: web/templates/navbar.html:51
+msgid "Facebook Group"
+msgstr "crwdns7055:0crwdne7055:0"
+
+#: web/templates/navbar.html:66
+msgid "Support"
+msgstr "crwdns7057:0crwdne7057:0"
+
+#: web/templates/navbar.html:71
+msgid "Docs"
+msgstr "crwdns7059:0crwdne7059:0"
+
+#: web/templates/navbar.html:79
+msgid "Discussions"
+msgstr "crwdns7061:0crwdne7061:0"
+
+#: web/templates/navbar.html:85
+msgid "Home"
+msgstr "crwdns7063:0crwdne7063:0"
+
+#: web/templates/navbar.html:90
+msgid "Plugins"
+msgstr "crwdns7065:0crwdne7065:0"
+
+#: web/templates/navbar.html:95
+msgid "Config"
+msgstr "crwdns7067:0crwdne7067:0"
+
+#: web/templates/navbar.html:100
+msgid "Users"
+msgstr "crwdns7069:0crwdne7069:0"
+
