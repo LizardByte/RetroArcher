@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2023-04-06 01:12+0000\n"
-"PO-Revision-Date: 2023-08-06 01:41\n"
+"PO-Revision-Date: 2023-08-06 02:44\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -66,21 +66,21 @@ msgstr "sistema"
 #: pyra/hardware.py:356
 #, python-format
 msgid "%(numeric_value)s Mbps"
-msgstr ""
+msgstr "%(numeric_value)s Mbps"
 
 #. NOTE: the double percent symbols is rendered as one in this case
 #: pyra/hardware.py:359
 #, python-format
 msgid "%(numeric_value)s %%"
-msgstr ""
+msgstr "%(numeric_value)s %%"
 
 #: pyra/hardware.py:445
 msgid "Mbps"
-msgstr ""
+msgstr "Mbps"
 
 #: pyra/hardware.py:445
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
 #. "%(app_name)s".
@@ -171,7 +171,7 @@ msgstr "Iniciar sesión"
 
 #: web/templates/navbar.html:43
 msgid "Social"
-msgstr ""
+msgstr "Social"
 
 #: web/templates/navbar.html:48
 msgid "Facebook Page"
