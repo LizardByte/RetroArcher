@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2023-04-06 01:12+0000\n"
-"PO-Revision-Date: 2023-08-18 20:47\n"
+"PO-Revision-Date: 2023-08-18 22:36\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -20,35 +20,35 @@ msgstr ""
 
 #: pyra/hardware.py:28
 msgid "cpu"
-msgstr ""
+msgstr "цп"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr ""
+msgstr "исполльзование цп"
 
 #: pyra/hardware.py:33
 msgid "gpu"
-msgstr ""
+msgstr "гпу"
 
 #: pyra/hardware.py:34
 msgid "gpu usage"
-msgstr ""
+msgstr "использование гпу"
 
 #: pyra/hardware.py:37
 msgid "memory"
-msgstr ""
+msgstr "память"
 
 #: pyra/hardware.py:38
 msgid "memory usage"
-msgstr ""
+msgstr "использование памяти"
 
 #: pyra/hardware.py:41
 msgid "network"
-msgstr ""
+msgstr "сеть"
 
 #: pyra/hardware.py:42
 msgid "network usage"
-msgstr ""
+msgstr "использование сети"
 
 #: pyra/hardware.py:45
 msgid "received"
@@ -56,7 +56,7 @@ msgstr "получено"
 
 #: pyra/hardware.py:46
 msgid "sent"
-msgstr ""
+msgstr "отправлено"
 
 #: pyra/hardware.py:47
 msgid "system"
@@ -115,7 +115,7 @@ msgstr "Откройте браузер при запуске %(app_name)s"
 #. NOTE: Disable or turn off icon.
 #: pyra/tray_icon.py:97
 msgid "Disable icon"
-msgstr "Значок отключения"
+msgstr "Отключить значок"
 
 #. NOTE: Restart the program.
 #: pyra/tray_icon.py:100
@@ -125,7 +125,7 @@ msgstr "Перезапустить"
 #. NOTE: Quit, Stop, End, or Shutdown the program.
 #: pyra/tray_icon.py:102
 msgid "Quit"
-msgstr ""
+msgstr "Завершить"
 
 #: retroarcher.py:127
 msgid "RetroArcher is a Python based game streaming server.\n"
