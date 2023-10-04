@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@fontsource/open-sans": "4.5.13",
+    "@fontsource/open-sans": "5.0.14",
     "@fortawesome/fontawesome-free": "6.2.0",
     "bootstrap": "5.2.2",
     "jquery": "3.6.1",
