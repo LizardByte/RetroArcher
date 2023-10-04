@@ -14,6 +14,9 @@ build:
   jobs:
     pre_build:
       - python ./scripts/_locale.py --compile
+    post_build:
+      - rstcheck -r .  # lint rst files
+      # - rstfmt --check --diff -w 120 .  # check rst formatting
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
@@ -27,4 +30,3 @@ formats: all
 python:
   install:
     - requirements: requirements-dev.txt
-  system_packages: true
