@@ -1,13 +1,13 @@
 Build
 =====
-RetroArcher binaries are built using `pyinstaller <https://pypi.org/project/pyinstaller/>`_. Cross compilation is not
+RetroArcher binaries are built using `pyinstaller <https://pypi.org/project/pyinstaller/>`__. Cross compilation is not
 supported. That means the binaries must be built on the target operating system and architecture.
 
 Use Python 3.7+
 
 Clone
 -----
-Ensure `git <https://git-scm.com/>`_ is installed and run the following:
+Ensure `git <https://git-scm.com/>`__ is installed and run the following:
    .. code-block:: bash
 
       git clone https://github.com/lizardbyte/retroarcher.git
