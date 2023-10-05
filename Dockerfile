@@ -10,6 +10,8 @@ RUN apt-get update -y \
         build-essential \
         nodejs \
         npm \
+        pkg-config \
+        libopenblas-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -23,7 +25,7 @@ WORKDIR /build
 COPY . .
 
 # setup python requirements
-RUN python -m pip install --no-cache-dir --upgrade pip && \
+RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel && \
     python -m pip install --no-cache-dir -r requirements.txt
 
 # compile locales
