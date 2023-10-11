@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2023-04-06 01:12+0000\n"
-"PO-Revision-Date: 2023-09-07 15:56\n"
+"PO-Revision-Date: 2023-10-11 13:23\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "cpu"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr "utilisation du processeur"
+msgstr "utilisation du cpu"
 
 #: pyra/hardware.py:33
 msgid "gpu"
@@ -94,7 +94,7 @@ msgstr "Ouvrir %(app_name)s"
 #: pyra/tray_icon.py:82
 #, python-format
 msgid "%(github)s Releases"
-msgstr "%(github)s Communiqués"
+msgstr "Sorties %(github)s"
 
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:85 web/templates/navbar.html:22
@@ -115,22 +115,22 @@ msgstr "Ouvrir le navigateur au démarrage de %(app_name)s"
 #. NOTE: Disable or turn off icon.
 #: pyra/tray_icon.py:97
 msgid "Disable icon"
-msgstr "Icône de désactivation"
+msgstr "Désactiver l'icône"
 
 #. NOTE: Restart the program.
 #: pyra/tray_icon.py:100
 msgid "Restart"
-msgstr "Redémarrage"
+msgstr "Redémarrer"
 
 #. NOTE: Quit, Stop, End, or Shutdown the program.
 #: pyra/tray_icon.py:102
 msgid "Quit"
-msgstr "Démissionner"
+msgstr "Quitter"
 
 #: retroarcher.py:127
 msgid "RetroArcher is a Python based game streaming server.\n"
 "Arguments supplied here are meant to be temporary."
-msgstr "RetroArcher est un serveur de streaming de jeux vidéo basé sur Python.\n"
+msgstr "RetroArcher est un serveur de diffusion de jeux basé sur Python.\n"
 "Les arguments fournis ici sont censés être temporaires."
 
 #: retroarcher.py:130
@@ -147,7 +147,7 @@ msgstr "Démarrer RetroArcher dans l'environnement de développement"
 
 #: retroarcher.py:133
 msgid "Health check the container and exit"
-msgstr "Bilan de santé du conteneur et de la sortie"
+msgstr "Vérifier la santé du conteneur et quitter"
 
 #: retroarcher.py:134
 msgid "Do not open RetroArcher in browser"
@@ -163,7 +163,7 @@ msgstr "Désactiver la journalisation de la console"
 
 #: retroarcher.py:139
 msgid "Print the version details and exit"
-msgstr "Imprimer les détails de la version et quitter"
+msgstr "Afficher les détails de la version et quitter"
 
 #: web/templates/navbar.html:18
 msgid "Login"
