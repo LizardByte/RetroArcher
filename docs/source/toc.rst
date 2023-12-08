@@ -7,6 +7,7 @@
    about/usage
    about/docker
    about/build
+   about/changelog
 
 .. toctree::
    :maxdepth: 2
@@ -31,5 +32,4 @@
    pyra_docs/logger
    pyra_docs/threads
    pyra_docs/tray_icon
-   pyra_docs/version
    pyra_docs/webapp
