@@ -1,0 +1,210 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lizardbyte\n"
+"Report-Msgid-Bugs-To: github.com/retroarcher\n"
+"POT-Creation-Date: 2023-04-06 01:12+0000\n"
+"PO-Revision-Date: 2023-12-08 03:33\n"
+"Last-Translator: \n"
+"Language-Team: Swedish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: lizardbyte\n"
+"X-Crowdin-Project-ID: 606145\n"
+"X-Crowdin-Language: sv-SE\n"
+"X-Crowdin-File: /[LizardByte.RetroArcher] master/retroarcher.po\n"
+"X-Crowdin-File-ID: 5788\n"
+"Language: sv_SE\n"
+
+#: pyra/hardware.py:28
+msgid "cpu"
+msgstr ""
+
+#: pyra/hardware.py:29
+msgid "cpu usage"
+msgstr ""
+
+#: pyra/hardware.py:33
+msgid "gpu"
+msgstr ""
+
+#: pyra/hardware.py:34
+msgid "gpu usage"
+msgstr ""
+
+#: pyra/hardware.py:37
+msgid "memory"
+msgstr ""
+
+#: pyra/hardware.py:38
+msgid "memory usage"
+msgstr ""
+
+#: pyra/hardware.py:41
+msgid "network"
+msgstr ""
+
+#: pyra/hardware.py:42
+msgid "network usage"
+msgstr ""
+
+#: pyra/hardware.py:45
+msgid "received"
+msgstr ""
+
+#: pyra/hardware.py:46
+msgid "sent"
+msgstr ""
+
+#: pyra/hardware.py:47
+msgid "system"
+msgstr ""
+
+#. NOTE: Mbps = megabytes per second
+#: pyra/hardware.py:356
+#, python-format
+msgid "%(numeric_value)s Mbps"
+msgstr ""
+
+#. NOTE: the double percent symbols is rendered as one in this case
+#: pyra/hardware.py:359
+#, python-format
+msgid "%(numeric_value)s %%"
+msgstr ""
+
+#: pyra/hardware.py:445
+msgid "Mbps"
+msgstr ""
+
+#: pyra/hardware.py:445
+msgid "%"
+msgstr ""
+
+#. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:74
+#, python-format
+msgid "Open %(app_name)s"
+msgstr ""
+
+#. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
+#. "%(github)s".
+#: pyra/tray_icon.py:82
+#, python-format
+msgid "%(github)s Releases"
+msgstr ""
+
+#. NOTE: Donate to RetroArcher.
+#: pyra/tray_icon.py:85 web/templates/navbar.html:22
+msgid "Donate"
+msgstr ""
+
+#: pyra/tray_icon.py:86 web/templates/navbar.html:27
+msgid "GitHub Sponsors"
+msgstr ""
+
+#. NOTE: Open web browser when application starts. Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:94
+#, python-format
+msgid "Open browser when %(app_name)s starts"
+msgstr ""
+
+#. NOTE: Disable or turn off icon.
+#: pyra/tray_icon.py:97
+msgid "Disable icon"
+msgstr ""
+
+#. NOTE: Restart the program.
+#: pyra/tray_icon.py:100
+msgid "Restart"
+msgstr ""
+
+#. NOTE: Quit, Stop, End, or Shutdown the program.
+#: pyra/tray_icon.py:102
+msgid "Quit"
+msgstr ""
+
+#: retroarcher.py:127
+msgid "RetroArcher is a Python based game streaming server.\n"
+"Arguments supplied here are meant to be temporary."
+msgstr ""
+
+#: retroarcher.py:130
+msgid "Specify a config file to use"
+msgstr ""
+
+#: retroarcher.py:131
+msgid "Use debug logging level"
+msgstr ""
+
+#: retroarcher.py:132
+msgid "Start RetroArcher in the development environment"
+msgstr ""
+
+#: retroarcher.py:133
+msgid "Health check the container and exit"
+msgstr ""
+
+#: retroarcher.py:134
+msgid "Do not open RetroArcher in browser"
+msgstr ""
+
+#: retroarcher.py:136
+msgid "Force RetroArcher to run on a specified port, default=9696"
+msgstr ""
+
+#: retroarcher.py:138
+msgid "Turn off console logging"
+msgstr ""
+
+#: retroarcher.py:139
+msgid "Print the version details and exit"
+msgstr ""
+
+#: web/templates/navbar.html:18
+msgid "Login"
+msgstr ""
+
+#: web/templates/navbar.html:43
+msgid "Social"
+msgstr ""
+
+#: web/templates/navbar.html:48
+msgid "Facebook Page"
+msgstr ""
+
+#: web/templates/navbar.html:51
+msgid "Facebook Group"
+msgstr ""
+
+#: web/templates/navbar.html:66
+msgid "Support"
+msgstr ""
+
+#: web/templates/navbar.html:71
+msgid "Docs"
+msgstr ""
+
+#: web/templates/navbar.html:79
+msgid "Discussions"
+msgstr ""
+
+#: web/templates/navbar.html:85
+msgid "Home"
+msgstr ""
+
+#: web/templates/navbar.html:90
+msgid "Plugins"
+msgstr ""
+
+#: web/templates/navbar.html:95
+msgid "Config"
+msgstr ""
+
+#: web/templates/navbar.html:100
+msgid "Users"
+msgstr ""
+
