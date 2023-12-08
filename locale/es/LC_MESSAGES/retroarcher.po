@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: retroarcher\n"
+"Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2023-04-06 01:12+0000\n"
-"PO-Revision-Date: 2023-04-06 01:59\n"
+"PO-Revision-Date: 2023-12-08 03:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -11,11 +11,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: retroarcher\n"
-"X-Crowdin-Project-ID: 503340\n"
+"X-Crowdin-Project: lizardbyte\n"
+"X-Crowdin-Project-ID: 606145\n"
 "X-Crowdin-Language: es-ES\n"
-"X-Crowdin-File: /nightly/retroarcher.po\n"
-"X-Crowdin-File-ID: 16\n"
+"X-Crowdin-File: /[LizardByte.RetroArcher] master/retroarcher.po\n"
+"X-Crowdin-File-ID: 5788\n"
 "Language: es_ES\n"
 
 #: pyra/hardware.py:28
@@ -66,21 +66,21 @@ msgstr "sistema"
 #: pyra/hardware.py:356
 #, python-format
 msgid "%(numeric_value)s Mbps"
-msgstr "%(numeric_value)s Mbps"
+msgstr ""
 
 #. NOTE: the double percent symbols is rendered as one in this case
 #: pyra/hardware.py:359
 #, python-format
 msgid "%(numeric_value)s %%"
-msgstr "%(numeric_value)s %%"
+msgstr ""
 
 #: pyra/hardware.py:445
 msgid "Mbps"
-msgstr "Mbps"
+msgstr ""
 
 #: pyra/hardware.py:445
 msgid "%"
-msgstr "%"
+msgstr ""
 
 #. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
 #. "%(app_name)s".
@@ -171,7 +171,7 @@ msgstr "Iniciar sesión"
 
 #: web/templates/navbar.html:43
 msgid "Social"
-msgstr "Social"
+msgstr ""
 
 #: web/templates/navbar.html:48
 msgid "Facebook Page"
