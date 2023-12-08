@@ -23,17 +23,17 @@ root_dir = os.path.dirname(source_dir)  # the root folder directory
 try:
     sys.path.insert(0, root_dir)
     from pyra import definitions  # put this in a try/except to prevent flake8 warning
-    from pyra import version
 except Exception:
     sys.exit(1)
 
 # -- Project information -----------------------------------------------------
 project = definitions.Names().name
-copyright = f'{datetime.now ().year}, {project}'
+project_copyright = f'{datetime.now ().year}, {project}'
 author = 'ReenigneArcher'
 
 # The full version, including alpha/beta/rc tags
-version = version.version
+# https://docs.readthedocs.io/en/stable/reference/environment-variables.html#envvar-READTHEDOCS_VERSION
+version = os.getenv('READTHEDOCS_VERSION', 'dirty')
 
 
 # -- General configuration ---------------------------------------------------
@@ -64,12 +64,23 @@ source_suffix = ['.rst', '.md']
 
 # -- Options for HTML output -------------------------------------------------
 
+# images
+html_favicon = os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'retroarcher.ico')
+html_logo = os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'logo-circle.png')
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 # html_static_path = ['_static']
 
-html_logo = os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'logo-circle.png')
+# These paths are either relative to html_static_path
+# or fully qualified paths (eg. https://...)
+# html_css_files = [
+#     'css/custom.css',
+# ]
+# html_js_files = [
+#     'js/custom.js',
+# ]
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -77,7 +88,7 @@ html_theme = 'furo'
 
 html_theme_options = {
     "top_of_page_button": "edit",
-    "source_edit_link": "https://github.com/lizardbyte/retroarcher/tree/nightly/docs/source/{filename}",
+    "source_edit_link": "https://github.com/lizardbyte/retroarcher/blob/master/docs/source/{filename}",
 }
 
 # extension config options

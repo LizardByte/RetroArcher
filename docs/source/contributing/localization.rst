@@ -31,8 +31,8 @@ Translations Basics
    When a change is made to retroarcher python source or web templates, a workflow generates new translation templates
    that get pushed to CrowdIn automatically.
 
-   When translations are updated on CrowdIn, a push gets made to the `l10n_nightly` branch and a PR is made against the
-   `nightly` branch. Once PR is merged, all updated translations are part of the project and will be included in the
+   When translations are updated on CrowdIn, a push gets made to the `l10n_master` branch and a PR is made against the
+   `master` branch. Once PR is merged, all updated translations are part of the project and will be included in the
    next release.
 
 Extraction
@@ -71,7 +71,7 @@ extraction method from html templates is very similar to extracting from python 
 
 Strings are automatically extracted from the code to the `locale/retroarcher.po` template file. The generated file is
 used by CrowdIn to generate language specific template files. The file is generated using the
-`.github/workflows/localize.yml` workflow and is run on any push event into the `nightly` branch. Jobs are only run if
+`.github/workflows/localize.yml` workflow and is run on any push event into the `master` branch. Jobs are only run if
 any of the following paths are modified.
 
 .. code-block:: yaml

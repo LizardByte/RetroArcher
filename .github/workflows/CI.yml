@@ -3,69 +3,50 @@ name: CI
 
 on:
   pull_request:
-    branches: [master, nightly]
+    branches: [master]
     types: [opened, synchronize, reopened]
   push:
-    branches: [master, nightly]
+    branches: [master]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  check_changelog:
-    name: Check Changelog
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
-        uses: actions/checkout@v4
-
-      - name: Verify Changelog
-        id: verify_changelog
-        if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
-        # base_ref for pull request check, ref for push
-        uses: LizardByte/.github/actions/verify_changelog@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
+  setup_release:
+    name: Setup Release
     outputs:
-      next_version: ${{ steps.verify_changelog.outputs.changelog_parser_version }}
-      last_version: ${{ steps.verify_changelog.outputs.latest_release_tag_name }}
-      release_body: ${{ steps.verify_changelog.outputs.changelog_parser_description }}
-
-  version_check:
+      changelog_changes: ${{ steps.setup_release.outputs.changelog_changes }}
+      changelog_date: ${{ steps.setup_release.outputs.changelog_date }}
+      changelog_exists: ${{ steps.setup_release.outputs.changelog_exists }}
+      changelog_release_exists: ${{ steps.setup_release.outputs.changelog_release_exists }}
+      changelog_url: ${{ steps.setup_release.outputs.changelog_url }}
+      changelog_version: ${{ steps.setup_release.outputs.changelog_version }}
+      publish_pre_release: ${{ steps.setup_release.outputs.publish_pre_release }}
+      publish_release: ${{ steps.setup_release.outputs.publish_release }}
+      publish_stable_release: ${{ steps.setup_release.outputs.publish_stable_release }}
+      release_body: ${{ steps.setup_release.outputs.release_body }}
+      release_build: ${{ steps.setup_release.outputs.release_build }}
+      release_commit: ${{ steps.setup_release.outputs.release_commit }}
+      release_generate_release_notes: ${{ steps.setup_release.outputs.release_generate_release_notes }}
+      release_tag: ${{ steps.setup_release.outputs.release_tag }}
+      release_version: ${{ steps.setup_release.outputs.release_version }}
     runs-on: ubuntu-latest
-    needs: check_changelog
-
     steps:
       - name: Checkout
-        if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
         uses: actions/checkout@v4
 
-      - name: Install Python
-        if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
-        uses: actions/setup-python@v5
+      - name: Setup Release
+        id: setup_release
+        uses: LizardByte/setup-release-action@v2023.1207.150459
         with:
-          python-version: '3.9'
-
-      - name: Set up Python Dependencies
-        if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
-        run: |
-          echo "Installing RetroArcher Requirements"
-          python -m pip install --upgrade pip setuptools
-          python -m pip install -r requirements.txt --no-warn-script-location
-
-      - name: Get version
-        if: ${{ github.ref == 'refs/heads/master' || github.base_ref == 'master' }}
-        run: |
-          OUTPUT=$(python ./retroarcher.py --version)
-          echo "pyra_version=${OUTPUT}" >> $GITHUB_ENV
-
-      - name: Compare versions
-        if: ( env.pyra_version != needs.check_changelog.outputs.next_version ) && ( github.ref == 'refs/heads/master' || github.base_ref == 'master' )  # yamllint disable-line rule:line-length
-        run: |
-          echo "Version number in pyra/version.py does not match version in CHANGELOG.md"
-          exit 1
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   build:
+    needs:
+      - setup_release
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
@@ -74,9 +55,6 @@ jobs:
         include:  # additional runs
           - os: windows-2019
             architecture: x86
-
-    runs-on: ${{ matrix.os }}
-    needs: [check_changelog, version_check]
 
     steps:
       - name: Checkout
@@ -115,28 +93,31 @@ jobs:
         run: |
           python ./scripts/build.py
 
+      - name: Package Release
+        run: |
+          7z a "./RetroArcher_${{ runner.os }}_${{ matrix.architecture }}.zip" "dist"
+
+          mkdir artifacts
+          mv "./RetroArcher_${{ runner.os }}_${{ matrix.architecture }}.zip" ./artifacts/
+
       - name: Upload Artifacts
-        if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v3  # https://github.com/actions/upload-artifact
         with:
           name: RetroArcher_${{ runner.os }}_${{ matrix.architecture }}
           if-no-files-found: error  # 'warn' or 'ignore' are also available, defaults to `warn`
           path: |
-            ${{ github.workspace }}/dist
-
-      - name: Package Release
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        run: |
-          7z a "./RetroArcher_${{ runner.os }}_${{ matrix.architecture }}.zip" "dist"
+            ${{ github.workspace }}/artifacts
 
       - name: Create/Update GitHub Release
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        uses: ncipollo/release-action@v1  # https://github.com/ncipollo/release-action
+        if: ${{ needs.setup_release.outputs.publish_release == 'true' }}
+        uses: LizardByte/create-release-action@v2023.1128.2625
         with:
-          name: ${{ needs.check_changelog.outputs.next_version }}
-          tag: ${{ needs.check_changelog.outputs.next_version }}
-          artifacts: "*.zip"
-          token: ${{ secrets.GH_PAT }}
           allowUpdates: true
-          body: ${{ needs.check_changelog.outputs.release_body }}
-          discussionCategory: Announcements
+          body: ''
+          discussionCategory: announcements
+          generateReleaseNotes: true
+          name: ${{ needs.setup_release.outputs.release_tag }}
+          # use pre-release for now
+          prerelease: true  # ${{ needs.setup_release.outputs.publish_pre_release }}
+          tag: ${{ needs.setup_release.outputs.release_tag }}
+          token: ${{ secrets.GH_BOT_TOKEN }}

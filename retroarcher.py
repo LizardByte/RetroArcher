@@ -23,7 +23,6 @@ from pyra import helpers
 from pyra import locales
 from pyra import logger
 from pyra import threads
-from pyra import version
 
 py_name = 'pyra'
 
@@ -146,7 +145,7 @@ def main():
         sys.exit(exit_code)
 
     if args.version:
-        print(f'v{version.version}')
+        print('version arg is not yet implemented')
         sys.exit()
 
     if args.config:
