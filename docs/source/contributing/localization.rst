@@ -2,7 +2,7 @@ Localization
 ============
 RetroArcher is being localized into various languages. The default language is `en` (English).
 
-.. image:: https://badges.awesome-crowdin.com/translation-15178612-606145.png
+.. image:: https://app.lizardbyte.dev/uno/crowdin/LizardByte_graph.svg
 
 CrowdIn
 -------
