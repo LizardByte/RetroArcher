@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2023-04-06 01:12+0000\n"
-"PO-Revision-Date: 2023-12-08 03:33\n"
+"POT-Creation-Date: 2023-12-08 03:24+0000\n"
+"PO-Revision-Date: 2023-12-10 23:52\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -20,191 +20,192 @@ msgstr ""
 
 #: pyra/hardware.py:28
 msgid "cpu"
-msgstr ""
+msgstr "цп"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr ""
+msgstr "исполльзование цп"
 
 #: pyra/hardware.py:33
 msgid "gpu"
-msgstr ""
+msgstr "гп"
 
 #: pyra/hardware.py:34
 msgid "gpu usage"
-msgstr ""
+msgstr "использование гп"
 
 #: pyra/hardware.py:37
 msgid "memory"
-msgstr ""
+msgstr "память"
 
 #: pyra/hardware.py:38
 msgid "memory usage"
-msgstr ""
+msgstr "использование памяти"
 
 #: pyra/hardware.py:41
 msgid "network"
-msgstr ""
+msgstr "сеть"
 
 #: pyra/hardware.py:42
 msgid "network usage"
-msgstr ""
+msgstr "использование сети"
 
 #: pyra/hardware.py:45
 msgid "received"
-msgstr ""
+msgstr "получено"
 
 #: pyra/hardware.py:46
 msgid "sent"
-msgstr ""
+msgstr "отправлено"
 
 #: pyra/hardware.py:47
 msgid "system"
-msgstr ""
+msgstr "система"
 
 #. NOTE: Mbps = megabytes per second
 #: pyra/hardware.py:356
 #, python-format
 msgid "%(numeric_value)s Mbps"
-msgstr ""
+msgstr "%(numeric_value)s Мбит/с"
 
 #. NOTE: the double percent symbols is rendered as one in this case
 #: pyra/hardware.py:359
 #, python-format
 msgid "%(numeric_value)s %%"
-msgstr ""
+msgstr "%(numeric_value)s %%"
 
 #: pyra/hardware.py:445
 msgid "Mbps"
-msgstr ""
+msgstr "Мбит/с"
 
 #: pyra/hardware.py:445
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
 #. "%(app_name)s".
 #: pyra/tray_icon.py:74
 #, python-format
 msgid "Open %(app_name)s"
-msgstr ""
+msgstr "Открыть %(app_name)s"
 
 #. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
 #. "%(github)s".
 #: pyra/tray_icon.py:82
 #, python-format
 msgid "%(github)s Releases"
-msgstr ""
+msgstr "Релизы %(github)s"
 
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:85 web/templates/navbar.html:22
 msgid "Donate"
-msgstr ""
+msgstr "Пожертвовать"
 
 #: pyra/tray_icon.py:86 web/templates/navbar.html:27
 msgid "GitHub Sponsors"
-msgstr ""
+msgstr "Спонсоры на GitHub"
 
 #. NOTE: Open web browser when application starts. Do not translate
 #. "%(app_name)s".
 #: pyra/tray_icon.py:94
 #, python-format
 msgid "Open browser when %(app_name)s starts"
-msgstr ""
+msgstr "Откройте браузер при запуске %(app_name)s"
 
 #. NOTE: Disable or turn off icon.
 #: pyra/tray_icon.py:97
 msgid "Disable icon"
-msgstr ""
+msgstr "Отключить значок"
 
 #. NOTE: Restart the program.
 #: pyra/tray_icon.py:100
 msgid "Restart"
-msgstr ""
+msgstr "Перезапустить"
 
 #. NOTE: Quit, Stop, End, or Shutdown the program.
 #: pyra/tray_icon.py:102
 msgid "Quit"
-msgstr ""
+msgstr "Завершить"
 
-#: retroarcher.py:127
+#: retroarcher.py:126
 msgid "RetroArcher is a Python based game streaming server.\n"
 "Arguments supplied here are meant to be temporary."
-msgstr ""
+msgstr "RetroArcher - это сервер потоковой передачи игр, основанный на языке Python.\n"
+"Аргументы, передаваемые здесь, носят временный характер."
+
+#: retroarcher.py:129
+msgid "Specify a config file to use"
+msgstr "Укажите файл конфигурации для использования"
 
 #: retroarcher.py:130
-msgid "Specify a config file to use"
-msgstr ""
+msgid "Use debug logging level"
+msgstr "Использовать журнал откладки"
 
 #: retroarcher.py:131
-msgid "Use debug logging level"
-msgstr ""
+msgid "Start RetroArcher in the development environment"
+msgstr "Запустите RetroArcher в среде разработки"
 
 #: retroarcher.py:132
-msgid "Start RetroArcher in the development environment"
-msgstr ""
+msgid "Health check the container and exit"
+msgstr "Проверка состояния контейнера и выход из него"
 
 #: retroarcher.py:133
-msgid "Health check the container and exit"
-msgstr ""
-
-#: retroarcher.py:134
 msgid "Do not open RetroArcher in browser"
-msgstr ""
+msgstr "Не открывайте RetroArcher в браузере"
 
-#: retroarcher.py:136
+#: retroarcher.py:135
 msgid "Force RetroArcher to run on a specified port, default=9696"
-msgstr ""
+msgstr "Заставить RetroArcher работать по указанному порту, по умолчанию = 9696"
+
+#: retroarcher.py:137
+msgid "Turn off console logging"
+msgstr "Выключить журналирование консоли"
 
 #: retroarcher.py:138
-msgid "Turn off console logging"
-msgstr ""
-
-#: retroarcher.py:139
 msgid "Print the version details and exit"
-msgstr ""
+msgstr "Вывести информацию о версии и выйти"
 
 #: web/templates/navbar.html:18
 msgid "Login"
-msgstr ""
+msgstr "Авторизация"
 
 #: web/templates/navbar.html:43
 msgid "Social"
-msgstr ""
+msgstr "Социальные сети"
 
 #: web/templates/navbar.html:48
 msgid "Facebook Page"
-msgstr ""
+msgstr "Страница в Facebook"
 
 #: web/templates/navbar.html:51
 msgid "Facebook Group"
-msgstr ""
+msgstr "Группа в Facebook"
 
 #: web/templates/navbar.html:66
 msgid "Support"
-msgstr ""
+msgstr "Поддержка"
 
 #: web/templates/navbar.html:71
 msgid "Docs"
-msgstr ""
+msgstr "Документация"
 
 #: web/templates/navbar.html:79
 msgid "Discussions"
-msgstr ""
+msgstr "Обсуждения"
 
 #: web/templates/navbar.html:85
 msgid "Home"
-msgstr ""
+msgstr "Главная"
 
 #: web/templates/navbar.html:90
 msgid "Plugins"
-msgstr ""
+msgstr "Плагины"
 
 #: web/templates/navbar.html:95
 msgid "Config"
-msgstr ""
+msgstr "Конфигурация"
 
 #: web/templates/navbar.html:100
 msgid "Users"
-msgstr ""
+msgstr "Пользователи"
 
