@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2023-12-08 03:24+0000\n"
-"PO-Revision-Date: 2023-12-10 22:29\n"
+"PO-Revision-Date: 2023-12-10 23:52\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -20,19 +20,19 @@ msgstr ""
 
 #: pyra/hardware.py:28
 msgid "cpu"
-msgstr "ucp"
+msgstr "cpu"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr "uso de la ucp"
+msgstr "Uso de la CPU"
 
 #: pyra/hardware.py:33
 msgid "gpu"
-msgstr "upg"
+msgstr "gpu"
 
 #: pyra/hardware.py:34
 msgid "gpu usage"
-msgstr "uso de la upg"
+msgstr "uso de la gpu"
 
 #: pyra/hardware.py:37
 msgid "memory"
@@ -94,7 +94,7 @@ msgstr "Abrir %(app_name)s"
 #: pyra/tray_icon.py:82
 #, python-format
 msgid "%(github)s Releases"
-msgstr "Lanzamientos de %(github)s"
+msgstr "Versiones %(github)s"
 
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:85 web/templates/navbar.html:22
@@ -187,7 +187,7 @@ msgstr "Soporte"
 
 #: web/templates/navbar.html:71
 msgid "Docs"
-msgstr "Documentos"
+msgstr "Docs"
 
 #: web/templates/navbar.html:79
 msgid "Discussions"
@@ -199,7 +199,7 @@ msgstr "Inicio"
 
 #: web/templates/navbar.html:90
 msgid "Plugins"
-msgstr "Extensiones"
+msgstr "Plugins"
 
 #: web/templates/navbar.html:95
 msgid "Config"
