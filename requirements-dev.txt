@@ -1,5 +1,5 @@
 -r requirements.txt
 flake8==6.0.0
-pyinstaller==5.11.0
+pyinstaller==6.3.0
 pytest==7.3.1
 rstcheck[sphinx]==6.2.0
