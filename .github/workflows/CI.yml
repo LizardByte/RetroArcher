@@ -101,7 +101,7 @@ jobs:
           mv "./RetroArcher_${{ runner.os }}_${{ matrix.architecture }}.zip" ./artifacts/
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3  # https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@v4  # https://github.com/actions/upload-artifact
         with:
           name: RetroArcher_${{ runner.os }}_${{ matrix.architecture }}
           if-no-files-found: error  # 'warn' or 'ignore' are also available, defaults to `warn`
