@@ -108,6 +108,27 @@ jobs:
           path: |
             ${{ github.workspace }}/artifacts
 
+      - name: Test with pytest
+        id: test
+        shell: bash
+        run: |
+          python -m pytest \
+            -rxXs \
+            --tb=native \
+            --verbose \
+            --cov=pyra \
+            tests
+
+      - name: Upload coverage to Codecov
+        uses: Wandalen/wretry.action@v1
+        with:
+          action: codecov/codecov-action@v3
+          attempt_delay: 10000
+          attempt_limit: 10
+          with: |
+            fail_ci_if_error: true
+            flags: ${{ runner.os }}-${{ matrix.architecture }}
+
       - name: Create/Update GitHub Release
         if: ${{ needs.setup_release.outputs.publish_release == 'true' }}
         uses: LizardByte/create-release-action@v2023.1210.832

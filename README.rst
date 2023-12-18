@@ -20,9 +20,15 @@ Integrations
    :alt: Read the Docs
    :target: http://retroarcher.readthedocs.io/
 
-.. image:: https://img.shields.io/badge/dynamic/json?color=blue&label=localized&style=for-the-badge&query=%24.progress..data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-15178612-503340.json&logo=crowdin
-   :alt: CrowdIn
-   :target: https://crowdin.com/project/retroarcher
+.. image:: https://img.shields.io/codecov/c/gh/LizardByte/RetroArcher?token=5C47NYBSBV&style=for-the-badge&logo=codecov&label=codecov
+   :alt: Codecov
+   :target: https://codecov.io/gh/LizardByte/RetroArcher
+
+CrowdIn Localization
+^^^^^^^^^^^^^^^^^^^^
+.. image:: https://app.lizardbyte.dev/uno/crowdin/LizardByte_graph.svg
+   :alt: CrowdIn graph
+   :target: https://translate.lizardbyte.dev
 
 Support
 ---------
