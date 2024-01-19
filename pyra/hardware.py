@@ -64,7 +64,7 @@ try:
 except ModuleNotFoundError:
     pyamdgpu = False
     try:
-        from pyadl import ADLManager
+        from pyadl import ADLManager, ADLError
     except Exception:  # cannot import `ADLError` from `pyadl.pyadl`
         amd_gpus = range(0)  # no amd gpus found
     else:
@@ -151,7 +151,10 @@ def update_gpu():
                     gpu_load = min(100, gpu.query_load())  # max of 100
                 else:
                     name = f'{gpu.adapterName.decode("utf-8")}-{gpu.adapterIndex}'  # adapterName is bytes so decode it
-                    gpu_load = min(100, gpu.getCurrentUsage())  # max of 100
+                    try:
+                        gpu_load = min(100, gpu.getCurrentUsage())  # max of 100
+                    except ADLError:
+                        gpu_load = None
 
             if initialized and name:
                 try:
