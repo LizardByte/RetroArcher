@@ -193,6 +193,18 @@ _CONFIG_SPEC_DICT = dict(
             extra_class='col-lg-6',
         ),
     ),
+    User_Interface=dict(
+        type='section',
+        name=_('User Interface'),
+        description=_('User interface settings.'),
+        icon='display',
+        BACKGROUND_VIDEO=dict(
+            type='boolean',
+            name=_('Background video'),
+            description=_('Enable background video.'),
+            default=True,
+        ),
+    ),
     Updater=dict(
         type='section',
         name=_('Updater'),

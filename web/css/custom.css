@@ -253,3 +253,25 @@ li.beta-setting {
 .form-check-input:not(:checked):enabled {
     background-color: #151515;
 }
+
+/* Style the background video */
+#backgroundVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1000;
+}
+
+/* transparent background video overlay */
+.backgroundVideoOverlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.8;
+    z-index: -999;
+}
