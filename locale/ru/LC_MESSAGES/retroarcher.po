@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2023-12-08 03:24+0000\n"
-"PO-Revision-Date: 2023-12-10 23:52\n"
+"POT-Creation-Date: 2024-01-21 00:20+0000\n"
+"PO-Revision-Date: 2024-01-21 03:39\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,122 @@ msgstr ""
 "X-Crowdin-File: /[LizardByte.RetroArcher] master/retroarcher.po\n"
 "X-Crowdin-File-ID: 5788\n"
 "Language: ru_RU\n"
+
+#: pyra/config.py:78
+msgid "Info"
+msgstr ""
+
+#: pyra/config.py:79
+msgid "For information purposes only."
+msgstr ""
+
+#: pyra/config.py:83
+msgid "Config version"
+msgstr ""
+
+#: pyra/config.py:84
+msgid "The configuration version."
+msgstr ""
+
+#: pyra/config.py:94
+msgid "First run complete"
+msgstr ""
+
+#: pyra/config.py:95
+msgid "Todo: Indicates if the user has completed the initial setup."
+msgstr ""
+
+#: pyra/config.py:102
+msgid "General"
+msgstr ""
+
+#: pyra/config.py:103
+msgid "General settings."
+msgstr ""
+
+#: pyra/config.py:107
+msgid "Locale"
+msgstr ""
+
+#: pyra/config.py:108
+msgid "The localization setting to use."
+msgstr ""
+
+#: pyra/config.py:123
+msgid "Launch Browser on Startup "
+msgstr ""
+
+#: pyra/config.py:129
+msgid "Enable System Tray Icon"
+msgstr ""
+
+#: pyra/config.py:138
+msgid "Logging"
+msgstr ""
+
+#: pyra/config.py:139
+msgid "Logging settings."
+msgstr ""
+
+#: pyra/config.py:143
+msgid "Log directory"
+msgstr ""
+
+#: pyra/config.py:145
+msgid "The directory where to store the log files."
+msgstr ""
+
+#: pyra/config.py:155
+msgid "Debug logging"
+msgstr ""
+
+#: pyra/config.py:157
+msgid "Enable debug logging."
+msgstr ""
+
+#: pyra/config.py:163
+msgid "Network"
+msgstr ""
+
+#: pyra/config.py:164
+msgid "Network settings."
+msgstr ""
+
+#: pyra/config.py:168
+msgid "HTTP host address"
+msgstr ""
+
+#: pyra/config.py:170
+msgid "The HTTP address to bind to."
+msgstr ""
+
+#: pyra/config.py:179
+msgid "HTTP port"
+msgstr ""
+
+#: pyra/config.py:181
+msgid "Port to bind web server to. Note that ports below 1024 may require root."
+msgstr ""
+
+#: pyra/config.py:190
+msgid "HTTP root"
+msgstr ""
+
+#: pyra/config.py:192
+msgid "Todo: The base URL of the web server. Used for reverse proxies."
+msgstr ""
+
+#: pyra/config.py:198
+msgid "Updater"
+msgstr ""
+
+#: pyra/config.py:199
+msgid "Updater settings."
+msgstr ""
+
+#: pyra/config.py:203
+msgid "Auto update"
+msgstr ""
 
 #: pyra/hardware.py:28
 msgid "cpu"
@@ -63,69 +179,77 @@ msgid "system"
 msgstr "система"
 
 #. NOTE: Mbps = megabytes per second
-#: pyra/hardware.py:356
+#: pyra/hardware.py:359
 #, python-format
 msgid "%(numeric_value)s Mbps"
 msgstr "%(numeric_value)s Мбит/с"
 
 #. NOTE: the double percent symbols is rendered as one in this case
-#: pyra/hardware.py:359
+#: pyra/hardware.py:362
 #, python-format
 msgid "%(numeric_value)s %%"
 msgstr "%(numeric_value)s %%"
 
-#: pyra/hardware.py:445
+#: pyra/hardware.py:448
 msgid "Mbps"
 msgstr "Мбит/с"
 
-#: pyra/hardware.py:445
+#: pyra/hardware.py:448
 msgid "%"
 msgstr "%"
 
 #. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
 #. "%(app_name)s".
-#: pyra/tray_icon.py:74
+#: pyra/tray_icon.py:75
 #, python-format
 msgid "Open %(app_name)s"
 msgstr "Открыть %(app_name)s"
 
 #. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
 #. "%(github)s".
-#: pyra/tray_icon.py:82
+#: pyra/tray_icon.py:83
 #, python-format
 msgid "%(github)s Releases"
 msgstr "Релизы %(github)s"
 
 #. NOTE: Donate to RetroArcher.
-#: pyra/tray_icon.py:85 web/templates/navbar.html:22
+#: pyra/tray_icon.py:86 web/templates/navbar.html:23
 msgid "Donate"
 msgstr "Пожертвовать"
 
-#: pyra/tray_icon.py:86 web/templates/navbar.html:27
+#: pyra/tray_icon.py:87 web/templates/navbar.html:28
 msgid "GitHub Sponsors"
 msgstr "Спонсоры на GitHub"
 
 #. NOTE: Open web browser when application starts. Do not translate
 #. "%(app_name)s".
-#: pyra/tray_icon.py:94
+#: pyra/tray_icon.py:95
 #, python-format
 msgid "Open browser when %(app_name)s starts"
 msgstr "Откройте браузер при запуске %(app_name)s"
 
 #. NOTE: Disable or turn off icon.
-#: pyra/tray_icon.py:97
+#: pyra/tray_icon.py:98
 msgid "Disable icon"
 msgstr "Отключить значок"
 
 #. NOTE: Restart the program.
-#: pyra/tray_icon.py:100
+#: pyra/tray_icon.py:101
 msgid "Restart"
 msgstr "Перезапустить"
 
 #. NOTE: Quit, Stop, End, or Shutdown the program.
-#: pyra/tray_icon.py:102
+#: pyra/tray_icon.py:103
 msgid "Quit"
 msgstr "Завершить"
+
+#: pyra/webapp.py:91 web/templates/navbar.html:84 web/templates/navbar.html:86
+msgid "Home"
+msgstr "Главная"
+
+#: pyra/webapp.py:159 web/templates/navbar.html:94 web/templates/navbar.html:96
+msgid "Settings"
+msgstr ""
 
 #: retroarcher.py:126
 msgid "RetroArcher is a Python based game streaming server.\n"
@@ -165,47 +289,43 @@ msgstr "Выключить журналирование консоли"
 msgid "Print the version details and exit"
 msgstr "Вывести информацию о версии и выйти"
 
-#: web/templates/navbar.html:18
+#: web/templates/config.html:156
+msgid "Save"
+msgstr ""
+
+#: web/templates/navbar.html:19
 msgid "Login"
 msgstr "Авторизация"
 
-#: web/templates/navbar.html:43
+#: web/templates/navbar.html:44
 msgid "Social"
 msgstr "Социальные сети"
 
-#: web/templates/navbar.html:48
+#: web/templates/navbar.html:49
 msgid "Facebook Page"
 msgstr "Страница в Facebook"
 
-#: web/templates/navbar.html:51
+#: web/templates/navbar.html:52
 msgid "Facebook Group"
 msgstr "Группа в Facebook"
 
-#: web/templates/navbar.html:66
+#: web/templates/navbar.html:67
 msgid "Support"
 msgstr "Поддержка"
 
-#: web/templates/navbar.html:71
+#: web/templates/navbar.html:72
 msgid "Docs"
 msgstr "Документация"
 
-#: web/templates/navbar.html:79
+#: web/templates/navbar.html:80
 msgid "Discussions"
 msgstr "Обсуждения"
 
-#: web/templates/navbar.html:85
-msgid "Home"
-msgstr "Главная"
-
-#: web/templates/navbar.html:90
+#: web/templates/navbar.html:89 web/templates/navbar.html:91
 msgid "Plugins"
 msgstr "Плагины"
 
-#: web/templates/navbar.html:95
-msgid "Config"
-msgstr "Конфигурация"
-
-#: web/templates/navbar.html:100
+#: web/templates/navbar.html:99 web/templates/navbar.html:101
 msgid "Users"
 msgstr "Пользователи"
 
