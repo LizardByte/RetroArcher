@@ -1,4 +1,4 @@
-Babel==2.12.1
+Babel==2.14.0
 configobj==5.0.8
 Flask==2.3.2
 Flask-Babel==3.1.0
