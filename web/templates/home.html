@@ -10,13 +10,13 @@
             <div class="container px-5 my-5">
                 <div class="row gx-5">
                     {% for chart in chart_types %}
-                        <div class="card h-100 shadow border-0 rounded-0 bg-dark text-white mb-5">
-                            <div class="card-header">{{ _(translations[chart]['bare']) }}</div>
+                        <div class="card h-100 shadow border-0 rounded-0 bg-dark mb-5">
+                            <div class="card-header bg-dark">{{ _(translations[chart]['bare']) }}</div>
                             <div class="card-body">
                                 <div class="chart-plotly" id="chart-{{chart}}"></div>
                             </div>
                             {% if translations[chart]['name'] %}
-                                <div class="card-footer">{{ translations[chart]['name'] }}</div>
+                                <div class="card-footer bg-dark">{{ translations[chart]['name'] }}</div>
                             {% endif %}
                         </div>
                         <br>
