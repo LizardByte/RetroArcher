@@ -59,6 +59,33 @@ def test_docs(test_client):
     assert response.status_code == 200
 
 
+def test_settings(test_client):
+    """
+    WHEN the '/settings/' page is requested (GET)
+    THEN check that the response is valid
+    """
+    response = test_client.get('/settings/')
+    assert response.status_code == 200
+
+
+def test_api_settings(test_client):
+    """
+    WHEN the '/api/settings' page is requested (GET or POST)
+    THEN check that the response is valid
+    """
+    get_response = test_client.get('/api/settings')
+    assert get_response.status_code == 200
+    assert get_response.content_type == 'application/json'
+
+    post_response = test_client.post('/api/settings')
+    assert post_response.status_code == 200
+    assert post_response.content_type == 'application/json'
+    assert post_response.json['status'] == 'OK'
+    assert post_response.json['message'] == 'Selected settings are valid.'
+
+    # todo, test posting data (valid and invalid)
+
+
 def test_status(test_client):
     """
     WHEN the '/status' page is requested (GET)

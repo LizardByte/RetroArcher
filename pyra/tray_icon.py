@@ -18,6 +18,7 @@ from pyra import definitions
 from pyra import helpers
 from pyra import locales
 from pyra import logger
+from pyra import threads
 
 # setup
 _ = locales.get_text()
@@ -40,7 +41,7 @@ else:
     icon_supported = True
 
 # additional setup
-icon: Union[Icon, bool] = False
+icon_object: Union[Icon, bool] = False
 
 
 def tray_initialize() -> Union[Icon, bool]:
@@ -143,11 +144,16 @@ def tray_disable():
     config.save_config(config.CONFIG)
 
 
-def tray_end():
+def tray_end() -> bool:
     """
     End the system tray icon.
 
     Hide and then stop the system tray icon.
+
+    Returns
+    -------
+    bool
+        ``True`` if successful, otherwise ``False``.
 
     Examples
     --------
@@ -156,16 +162,16 @@ def tray_end():
     try:
         icon_class
     except NameError:
-        pass
+        return False
     else:
-        if isinstance(icon, icon_class):
+        if isinstance(icon_object, icon_class):
             try:  # this shouldn't be possible to call, other than through pytest
-                icon.visible = False
+                icon_object.visible = False
             except AttributeError:
                 pass
 
             try:
-                icon.stop()
+                icon_object.stop()
             except AttributeError:
                 pass
             except Exception as e:
@@ -173,6 +179,64 @@ def tray_end():
             else:
                 global icon_running
                 icon_running = False
+                return True
+
+
+def tray_run_threaded() -> bool:
+    """
+    Run the system tray in a thread.
+
+    This function exectues various other functions to simplify starting the tray icon.
+
+    Returns
+    -------
+    bool
+        ``True`` if successful, otherwise ``False``.
+
+    See Also
+    --------
+    tray_initialize : This function first, initializes the tray icon using ``tray_initialize()``.
+    tray_run : Then, ``tray_run`` is executed in a thread.
+    pyra.threads.run_in_thread : Run a method within a thread.
+
+    Examples
+    --------
+    >>> tray_run_threaded()
+    True
+    """
+    if icon_supported:
+        global icon_object
+        icon_object = tray_initialize()
+        threads.run_in_thread(target=tray_run, name='pystray', daemon=True).start()
+        return True
+    else:
+        return False
+
+
+def tray_toggle() -> bool:
+    """
+    Toggle the system tray icon.
+
+    Hide/unhide the system tray icon.
+
+    Returns
+    -------
+    bool
+        ``True`` if successful, otherwise ``False``.
+
+    Examples
+    --------
+    >>> tray_toggle()
+    """
+    if icon_supported:
+        if icon_running:
+            result = tray_end()
+        else:
+            result = tray_run_threaded()
+    else:
+        result = False
+
+    return result
 
 
 def tray_quit():
@@ -218,9 +282,9 @@ def tray_run():
     else:
         global icon_running
 
-        if isinstance(icon, icon_class):
+        if isinstance(icon_object, icon_class):
             try:
-                icon.run_detached()
+                icon_object.run_detached()
             except AttributeError:
                 pass
             except NotImplementedError as e:

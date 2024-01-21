@@ -154,3 +154,102 @@ iframe.feedback {
 .hover-zoom:hover img {
     transform: scale(1.1);
 }
+
+/*settings page*/
+
+.advanced-setting {
+    /*display: none;*/
+}
+
+div.advanced-setting {
+    border-left: 1px solid #cc7b19;
+}
+
+li.advanced-setting {
+    border-left: 1px solid #cc7b19;
+}
+
+.beta-setting {
+    /*display: none;*/
+}
+
+div.beta-setting {
+    border-left: 1px solid #b30016;
+}
+
+li.beta-setting {
+    border-left: 1px solid #b30016;
+}
+
+.form-group,
+.checkbox {
+    padding-left: 10px;
+    margin-left: -10px;
+    margin-bottom: 15px;
+}
+
+.settings-alert {
+    /*float: left;*/
+    padding: 0;
+    margin: 5px 0;
+    border: 0;
+    position: relative;
+}
+
+.settings-alert ul {
+    padding: 0;
+}
+
+.settings-alert ul li {
+    list-style: none;
+    padding: 5px 12px;
+    margin: 0;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+}
+
+.settings-alert ul li:before {
+    content: "\f071";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 5px;
+}
+
+.form-control,
+.form-select,
+.form-select option {
+    border-radius: 4px;
+    background-color: #151515;
+    border-width: 0;
+    color: white;
+}
+
+.alert_placeholder {
+    /* borrowed from widgetbot */
+    display: flex;
+    flex-direction: column-reverse;
+    position: fixed;
+    z-index: 3147482999;  /* display above widgetbot */
+    padding: 7px 0px 20px;
+    width: 350px;
+    max-height: calc(70% - 100px);
+    right: 20px;
+    bottom: 76px;
+}
+
+.form-control:disabled {
+    background-color: dimgray;
+}
+
+.form-control:focus {
+    background-color: #151515;
+    color: white;
+}
+
+.form-check-input:not(:checked):disabled {
+    background-color: dimgray;
+}
+
+.form-check-input:not(:checked):enabled {
+    background-color: #151515;
+}

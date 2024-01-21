@@ -4,8 +4,12 @@
 
 Unit tests for pyra.config.
 """
+# standard imports
+import time
+
 # lib imports
 from configobj import ConfigObj
+import pytest
 
 # local imports
 from pyra import config
@@ -31,3 +35,25 @@ def test_validate_config(test_config_object):
     assert config_valid
 
     # todo test invalid config
+
+
+def test_convert_config():
+    result = config.convert_config()
+
+    assert isinstance(result, list)
+
+
+def test_on_change_tray_toggle():
+    """Tests the on_change_tray_toggle function"""
+    from pyra import tray_icon
+
+    if not tray_icon.icon_supported:
+        pytest.skip("tray icon not supported")
+
+    original_value = tray_icon.icon_running
+
+    result = config.on_change_tray_toggle()
+    assert result is True
+
+    time.sleep(1)
+    assert tray_icon.icon_running is not original_value
