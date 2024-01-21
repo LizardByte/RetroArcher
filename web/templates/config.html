@@ -13,8 +13,8 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper" class="sidebar-expanded shadow"><!-- d-* hides the Sidebar in smaller devices. Its items can be kept on the Navbar 'Menu' -->
             <!-- Bootstrap List Group -->
-            <ul class="list-group">
-                <a href="#" data-toggle="sidebar-collapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center no-hover">
+            <ul class="list-group list-group-flush">
+                <a href="#" data-toggle="sidebar-collapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center no-hover border-0">
                     <div class="d-flex w-100 justify-content-start align-items-center">
                         <button class="btn btn-outline-light">
                             <span id="collapse-icon" class="fa fa-fw"></span>
@@ -22,14 +22,14 @@
                     </div>
                 </a>
                 <!-- Separator with title -->
-                <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center">
+                <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center border-0">
                     <small>{{ title }}</small>
                 </li>
                 <!-- /END Separator -->
                 <!-- Menu -->
                 {% for key in config_spec %}
                     {% if config_spec[key]['type'] == 'section' %}
-                        <a href="#{{ key.lower() }}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <a href="#{{ key.lower() }}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start border-0">
                             <div class="sidebar-item d-flex w-100 justify-content-start align-items-center">
                                 <span class="fa fa-fw fa-lg fa-{{ config_spec[key]['icon'] }} mx-3"></span>
                                 <span class="invisible">-</span> {# this invisible text keeps the sidebar spacing the same when collapsing/expanding #}
@@ -43,7 +43,7 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper" class="sidebar-expanded">
-            <div class="container px-5 my-5 text-white">
+            <div class="container px-5 my-5">
 
                 <form id="configForm" data-parsley-validate enctype="multipart/form-data" method="post">
                     {%- for key in config_spec -%}
