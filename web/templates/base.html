@@ -39,6 +39,16 @@
             <!-- Include navbar -->
             {% include 'navbar.html' %}
 
+            {% if ui_config['BACKGROUND_VIDEO'] %}
+                <div class="backgroundVideoContainer">
+                    <video autoplay muted loop id="backgroundVideo" disablePictureInPicture="true" controlsList="nodownload">
+                        <source src="{{ url_for('static', filename='videos/Retro Delorean.mp4') }}" type="video/mp4">
+                    </video>
+
+                    <div class="backgroundVideoOverlay"></div>
+                </div>
+            {% endif %}
+
             <!-- The page template -->
             {% block content %}{% endblock content %}
         </main>

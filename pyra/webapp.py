@@ -10,7 +10,7 @@ from typing import Optional
 
 # lib imports
 from flask import Flask, Response
-from flask import jsonify, render_template, request, send_from_directory
+from flask import jsonify, render_template as flask_render_template, request, send_from_directory
 from flask_babel import Babel
 
 # local imports
@@ -59,6 +59,35 @@ log_handlers = logger.get_logger(name=__name__).handlers
 
 for handler in log_handlers:
     app.logger.addHandler(handler)
+
+
+def render_template(template_name_or_list, **context):
+    """
+    Render a template, while providing our default context.
+
+    This function is a wrapper around ``flask.render_template``.
+    Our UI config is added to the template context.
+    In the future, this function may be used to add other default contexts to templates.
+
+    Parameters
+    ----------
+    template_name_or_list : str
+        The name of the template to render.
+    **context
+        The context to pass to the template.
+
+    Returns
+    -------
+    render_template
+        The rendered template.
+
+    Examples
+    --------
+    >>> render_template(template_name_or_list='home.html', title=_('Home'))
+    """
+    context['ui_config'] = pyra.CONFIG['User_Interface'].copy()
+
+    return flask_render_template(template_name_or_list=template_name_or_list, **context)
 
 
 @app.route('/')
