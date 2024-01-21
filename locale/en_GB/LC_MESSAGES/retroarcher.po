@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: retroarcher\n"
+"Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2023-04-06 01:12+0000\n"
-"PO-Revision-Date: 2023-04-06 02:00\n"
+"POT-Creation-Date: 2023-12-08 03:24+0000\n"
+"PO-Revision-Date: 2023-12-10 23:52\n"
 "Last-Translator: \n"
 "Language-Team: English, United Kingdom\n"
 "MIME-Version: 1.0\n"
@@ -11,11 +11,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: retroarcher\n"
-"X-Crowdin-Project-ID: 503340\n"
+"X-Crowdin-Project: lizardbyte\n"
+"X-Crowdin-Project-ID: 606145\n"
 "X-Crowdin-Language: en-GB\n"
-"X-Crowdin-File: /nightly/retroarcher.po\n"
-"X-Crowdin-File-ID: 16\n"
+"X-Crowdin-File: /[LizardByte.RetroArcher] master/retroarcher.po\n"
+"X-Crowdin-File-ID: 5788\n"
 "Language: en_GB\n"
 
 #: pyra/hardware.py:28
@@ -127,41 +127,41 @@ msgstr "Restart"
 msgid "Quit"
 msgstr "Quit"
 
-#: retroarcher.py:127
+#: retroarcher.py:126
 msgid "RetroArcher is a Python based game streaming server.\n"
 "Arguments supplied here are meant to be temporary."
 msgstr "RetroArcher is a Python based game streaming server.\n"
 "Arguments supplied here are meant to be temporary."
 
-#: retroarcher.py:130
+#: retroarcher.py:129
 msgid "Specify a config file to use"
 msgstr "Specify a config file to use"
 
-#: retroarcher.py:131
+#: retroarcher.py:130
 msgid "Use debug logging level"
 msgstr "Use debug logging level"
 
-#: retroarcher.py:132
+#: retroarcher.py:131
 msgid "Start RetroArcher in the development environment"
 msgstr "Start RetroArcher in the development environment"
 
-#: retroarcher.py:133
+#: retroarcher.py:132
 msgid "Health check the container and exit"
 msgstr "Health check the container and exit"
 
-#: retroarcher.py:134
+#: retroarcher.py:133
 msgid "Do not open RetroArcher in browser"
 msgstr "Do not open RetroArcher in browser"
 
-#: retroarcher.py:136
+#: retroarcher.py:135
 msgid "Force RetroArcher to run on a specified port, default=9696"
 msgstr "Force RetroArcher to run on a specified port, default=9696"
 
-#: retroarcher.py:138
+#: retroarcher.py:137
 msgid "Turn off console logging"
 msgstr "Turn off console logging"
 
-#: retroarcher.py:139
+#: retroarcher.py:138
 msgid "Print the version details and exit"
 msgstr "Print the version details and exit"
 
