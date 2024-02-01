@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RetroArcher v0\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
-"POT-Creation-Date: 2024-01-21 03:30+0000\n"
+"POT-Creation-Date: 2024-02-01 15:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,14 +123,30 @@ msgid "Todo: The base URL of the web server. Used for reverse proxies."
 msgstr ""
 
 #: pyra/config.py:198
-msgid "Updater"
+msgid "User Interface"
 msgstr ""
 
 #: pyra/config.py:199
-msgid "Updater settings."
+msgid "User interface settings."
 msgstr ""
 
 #: pyra/config.py:203
+msgid "Background video"
+msgstr ""
+
+#: pyra/config.py:204
+msgid "Enable background video."
+msgstr ""
+
+#: pyra/config.py:210
+msgid "Updater"
+msgstr ""
+
+#: pyra/config.py:211
+msgid "Updater settings."
+msgstr ""
+
+#: pyra/config.py:215
 msgid "Auto update"
 msgstr ""
 
@@ -243,11 +259,11 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: pyra/webapp.py:91 web/templates/navbar.html:84 web/templates/navbar.html:86
+#: pyra/webapp.py:120 web/templates/navbar.html:84 web/templates/navbar.html:86
 msgid "Home"
 msgstr ""
 
-#: pyra/webapp.py:159 web/templates/navbar.html:94 web/templates/navbar.html:96
+#: pyra/webapp.py:188 web/templates/navbar.html:94 web/templates/navbar.html:96
 msgid "Settings"
 msgstr ""
 
