@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-02-01 16:46\n"
+"PO-Revision-Date: 2024-02-09 00:14\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -20,35 +20,35 @@ msgstr ""
 
 #: pyra/config.py:78
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: pyra/config.py:79
 msgid "For information purposes only."
-msgstr ""
+msgstr "Solo a scopo informativo."
 
 #: pyra/config.py:83
 msgid "Config version"
-msgstr ""
+msgstr "Versione di configurazione"
 
 #: pyra/config.py:84
 msgid "The configuration version."
-msgstr ""
+msgstr "La versione di configurazione."
 
 #: pyra/config.py:94
 msgid "First run complete"
-msgstr ""
+msgstr "Prima esecuzione completata"
 
 #: pyra/config.py:95
 msgid "Todo: Indicates if the user has completed the initial setup."
-msgstr ""
+msgstr "Todo: Indica se l'utente ha completato la configurazione iniziale."
 
 #: pyra/config.py:102
 msgid "General"
-msgstr ""
+msgstr "Generale"
 
 #: pyra/config.py:103
 msgid "General settings."
-msgstr ""
+msgstr "Impostazioni generali."
 
 #: pyra/config.py:107
 msgid "Locale"
@@ -56,15 +56,15 @@ msgstr ""
 
 #: pyra/config.py:108
 msgid "The localization setting to use."
-msgstr ""
+msgstr "L'impostazione di localizzazione da utilizzare."
 
 #: pyra/config.py:123
 msgid "Launch Browser on Startup "
-msgstr ""
+msgstr "Avvio del browser all'avvio "
 
 #: pyra/config.py:129
 msgid "Enable System Tray Icon"
-msgstr ""
+msgstr "Abilita l'icona nell'area di notifica"
 
 #: pyra/config.py:138
 msgid "Logging"
@@ -72,15 +72,15 @@ msgstr ""
 
 #: pyra/config.py:139
 msgid "Logging settings."
-msgstr ""
+msgstr "Impostazioni di log."
 
 #: pyra/config.py:143
 msgid "Log directory"
-msgstr ""
+msgstr "Directory di log"
 
 #: pyra/config.py:145
 msgid "The directory where to store the log files."
-msgstr ""
+msgstr "La directory in cui memorizzare i file di log."
 
 #: pyra/config.py:155
 msgid "Debug logging"
