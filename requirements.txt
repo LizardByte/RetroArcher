@@ -1,6 +1,6 @@
 Babel==2.14.0
 configobj==5.0.8
-Flask==3.0.1
+Flask==3.0.2
 Flask-Babel==4.0.0
 furo==2024.1.29
 GPUtil==1.4.0
