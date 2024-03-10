@@ -1,0 +1,346 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lizardbyte\n"
+"Report-Msgid-Bugs-To: github.com/retroarcher\n"
+"POT-Creation-Date: 2024-02-01 15:19+0000\n"
+"PO-Revision-Date: 2024-03-10 15:55\n"
+"Last-Translator: \n"
+"Language-Team: Chinese Simplified\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: lizardbyte\n"
+"X-Crowdin-Project-ID: 606145\n"
+"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-File: /[LizardByte.RetroArcher] master/retroarcher.po\n"
+"X-Crowdin-File-ID: 5788\n"
+"Language: zh_CN\n"
+
+#: pyra/config.py:78
+msgid "Info"
+msgstr ""
+
+#: pyra/config.py:79
+msgid "For information purposes only."
+msgstr ""
+
+#: pyra/config.py:83
+msgid "Config version"
+msgstr ""
+
+#: pyra/config.py:84
+msgid "The configuration version."
+msgstr ""
+
+#: pyra/config.py:94
+msgid "First run complete"
+msgstr ""
+
+#: pyra/config.py:95
+msgid "Todo: Indicates if the user has completed the initial setup."
+msgstr ""
+
+#: pyra/config.py:102
+msgid "General"
+msgstr ""
+
+#: pyra/config.py:103
+msgid "General settings."
+msgstr ""
+
+#: pyra/config.py:107
+msgid "Locale"
+msgstr ""
+
+#: pyra/config.py:108
+msgid "The localization setting to use."
+msgstr ""
+
+#: pyra/config.py:123
+msgid "Launch Browser on Startup "
+msgstr ""
+
+#: pyra/config.py:129
+msgid "Enable System Tray Icon"
+msgstr ""
+
+#: pyra/config.py:138
+msgid "Logging"
+msgstr ""
+
+#: pyra/config.py:139
+msgid "Logging settings."
+msgstr ""
+
+#: pyra/config.py:143
+msgid "Log directory"
+msgstr ""
+
+#: pyra/config.py:145
+msgid "The directory where to store the log files."
+msgstr ""
+
+#: pyra/config.py:155
+msgid "Debug logging"
+msgstr ""
+
+#: pyra/config.py:157
+msgid "Enable debug logging."
+msgstr ""
+
+#: pyra/config.py:163
+msgid "Network"
+msgstr ""
+
+#: pyra/config.py:164
+msgid "Network settings."
+msgstr ""
+
+#: pyra/config.py:168
+msgid "HTTP host address"
+msgstr ""
+
+#: pyra/config.py:170
+msgid "The HTTP address to bind to."
+msgstr ""
+
+#: pyra/config.py:179
+msgid "HTTP port"
+msgstr ""
+
+#: pyra/config.py:181
+msgid "Port to bind web server to. Note that ports below 1024 may require root."
+msgstr ""
+
+#: pyra/config.py:190
+msgid "HTTP root"
+msgstr ""
+
+#: pyra/config.py:192
+msgid "Todo: The base URL of the web server. Used for reverse proxies."
+msgstr ""
+
+#: pyra/config.py:198
+msgid "User Interface"
+msgstr ""
+
+#: pyra/config.py:199
+msgid "User interface settings."
+msgstr ""
+
+#: pyra/config.py:203
+msgid "Background video"
+msgstr ""
+
+#: pyra/config.py:204
+msgid "Enable background video."
+msgstr ""
+
+#: pyra/config.py:210
+msgid "Updater"
+msgstr ""
+
+#: pyra/config.py:211
+msgid "Updater settings."
+msgstr ""
+
+#: pyra/config.py:215
+msgid "Auto update"
+msgstr ""
+
+#: pyra/hardware.py:28
+msgid "cpu"
+msgstr ""
+
+#: pyra/hardware.py:29
+msgid "cpu usage"
+msgstr ""
+
+#: pyra/hardware.py:33
+msgid "gpu"
+msgstr ""
+
+#: pyra/hardware.py:34
+msgid "gpu usage"
+msgstr ""
+
+#: pyra/hardware.py:37
+msgid "memory"
+msgstr ""
+
+#: pyra/hardware.py:38
+msgid "memory usage"
+msgstr ""
+
+#: pyra/hardware.py:41
+msgid "network"
+msgstr ""
+
+#: pyra/hardware.py:42
+msgid "network usage"
+msgstr ""
+
+#: pyra/hardware.py:45
+msgid "received"
+msgstr ""
+
+#: pyra/hardware.py:46
+msgid "sent"
+msgstr ""
+
+#: pyra/hardware.py:47
+msgid "system"
+msgstr ""
+
+#. NOTE: Mbps = megabytes per second
+#: pyra/hardware.py:359
+#, python-format
+msgid "%(numeric_value)s Mbps"
+msgstr ""
+
+#. NOTE: the double percent symbols is rendered as one in this case
+#: pyra/hardware.py:362
+#, python-format
+msgid "%(numeric_value)s %%"
+msgstr ""
+
+#: pyra/hardware.py:448
+msgid "Mbps"
+msgstr ""
+
+#: pyra/hardware.py:448
+msgid "%"
+msgstr ""
+
+#. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:75
+#, python-format
+msgid "Open %(app_name)s"
+msgstr ""
+
+#. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
+#. "%(github)s".
+#: pyra/tray_icon.py:83
+#, python-format
+msgid "%(github)s Releases"
+msgstr ""
+
+#. NOTE: Donate to RetroArcher.
+#: pyra/tray_icon.py:86 web/templates/navbar.html:23
+msgid "Donate"
+msgstr ""
+
+#: pyra/tray_icon.py:87 web/templates/navbar.html:28
+msgid "GitHub Sponsors"
+msgstr ""
+
+#. NOTE: Open web browser when application starts. Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:95
+#, python-format
+msgid "Open browser when %(app_name)s starts"
+msgstr ""
+
+#. NOTE: Disable or turn off icon.
+#: pyra/tray_icon.py:98
+msgid "Disable icon"
+msgstr ""
+
+#. NOTE: Restart the program.
+#: pyra/tray_icon.py:101
+msgid "Restart"
+msgstr ""
+
+#. NOTE: Quit, Stop, End, or Shutdown the program.
+#: pyra/tray_icon.py:103
+msgid "Quit"
+msgstr ""
+
+#: pyra/webapp.py:120 web/templates/navbar.html:84 web/templates/navbar.html:86
+msgid "Home"
+msgstr ""
+
+#: pyra/webapp.py:188 web/templates/navbar.html:94 web/templates/navbar.html:96
+msgid "Settings"
+msgstr ""
+
+#: retroarcher.py:126
+msgid "RetroArcher is a Python based game streaming server.\n"
+"Arguments supplied here are meant to be temporary."
+msgstr ""
+
+#: retroarcher.py:129
+msgid "Specify a config file to use"
+msgstr ""
+
+#: retroarcher.py:130
+msgid "Use debug logging level"
+msgstr ""
+
+#: retroarcher.py:131
+msgid "Start RetroArcher in the development environment"
+msgstr ""
+
+#: retroarcher.py:132
+msgid "Health check the container and exit"
+msgstr ""
+
+#: retroarcher.py:133
+msgid "Do not open RetroArcher in browser"
+msgstr ""
+
+#: retroarcher.py:135
+msgid "Force RetroArcher to run on a specified port, default=9696"
+msgstr ""
+
+#: retroarcher.py:137
+msgid "Turn off console logging"
+msgstr ""
+
+#: retroarcher.py:138
+msgid "Print the version details and exit"
+msgstr ""
+
+#: web/templates/config.html:156
+msgid "Save"
+msgstr ""
+
+#: web/templates/navbar.html:19
+msgid "Login"
+msgstr ""
+
+#: web/templates/navbar.html:44
+msgid "Social"
+msgstr ""
+
+#: web/templates/navbar.html:49
+msgid "Facebook Page"
+msgstr ""
+
+#: web/templates/navbar.html:52
+msgid "Facebook Group"
+msgstr ""
+
+#: web/templates/navbar.html:67
+msgid "Support"
+msgstr ""
+
+#: web/templates/navbar.html:72
+msgid "Docs"
+msgstr ""
+
+#: web/templates/navbar.html:80
+msgid "Discussions"
+msgstr ""
+
+#: web/templates/navbar.html:89 web/templates/navbar.html:91
+msgid "Plugins"
+msgstr ""
+
+#: web/templates/navbar.html:99 web/templates/navbar.html:101
+msgid "Users"
+msgstr ""
+
