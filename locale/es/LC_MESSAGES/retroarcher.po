@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-03-10 15:00\n"
+"PO-Revision-Date: 2024-03-11 02:49\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "La versión de configuración."
 
 #: pyra/config.py:94
 msgid "First run complete"
-msgstr "Primera carrera completa"
+msgstr "Primera operación completa"
 
 #: pyra/config.py:95
 msgid "Todo: Indicates if the user has completed the initial setup."
@@ -136,7 +136,7 @@ msgstr "Vídeo de fondo"
 
 #: pyra/config.py:204
 msgid "Enable background video."
-msgstr "Activa el vídeo de fondo."
+msgstr "Activar vídeo de fondo."
 
 #: pyra/config.py:210
 msgid "Updater"
