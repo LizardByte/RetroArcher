@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-03-15 20:48\n"
+"PO-Revision-Date: 2024-03-16 06:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -152,11 +152,11 @@ msgstr "自动更新"
 
 #: pyra/hardware.py:28
 msgid "cpu"
-msgstr "奇普文"
+msgstr "cpu"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr "cpu 使用"
+msgstr "cpu 使用率"
 
 #: pyra/hardware.py:33
 msgid "gpu"
@@ -164,7 +164,7 @@ msgstr "gpu"
 
 #: pyra/hardware.py:34
 msgid "gpu usage"
-msgstr "gpu 使用"
+msgstr "gpu 使用率"
 
 #: pyra/hardware.py:37
 msgid "memory"
@@ -172,7 +172,7 @@ msgstr "内存"
 
 #: pyra/hardware.py:38
 msgid "memory usage"
-msgstr "内存使用情况"
+msgstr "内存使用率"
 
 #: pyra/hardware.py:41
 msgid "network"
@@ -180,7 +180,7 @@ msgstr "网络"
 
 #: pyra/hardware.py:42
 msgid "network usage"
-msgstr "网络使用情况"
+msgstr "网络使用率"
 
 #: pyra/hardware.py:45
 msgid "received"
@@ -198,13 +198,13 @@ msgstr "系统"
 #: pyra/hardware.py:359
 #, python-format
 msgid "%(numeric_value)s Mbps"
-msgstr ""
+msgstr "%(numeric_value)s Mbps"
 
 #. NOTE: the double percent symbols is rendered as one in this case
 #: pyra/hardware.py:362
 #, python-format
 msgid "%(numeric_value)s %%"
-msgstr ""
+msgstr "%(numeric_value)s %%"
 
 #: pyra/hardware.py:448
 msgid "Mbps"
@@ -219,14 +219,14 @@ msgstr "%"
 #: pyra/tray_icon.py:75
 #, python-format
 msgid "Open %(app_name)s"
-msgstr ""
+msgstr "打开 %(app_name)s"
 
 #. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
 #. "%(github)s".
 #: pyra/tray_icon.py:83
 #, python-format
 msgid "%(github)s Releases"
-msgstr ""
+msgstr "%(github)s Releases"
 
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:86 web/templates/navbar.html:23
@@ -242,7 +242,7 @@ msgstr "GitHub Sponsors"
 #: pyra/tray_icon.py:95
 #, python-format
 msgid "Open browser when %(app_name)s starts"
-msgstr ""
+msgstr "%(app_name)s启动时打开浏览器"
 
 #. NOTE: Disable or turn off icon.
 #: pyra/tray_icon.py:98
