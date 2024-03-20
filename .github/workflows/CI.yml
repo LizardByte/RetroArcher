@@ -120,7 +120,7 @@ jobs:
             tests
 
       - name: Upload coverage to Codecov
-        uses: Wandalen/wretry.action@v1
+        uses: Wandalen/wretry.action@v2
         with:
           action: codecov/codecov-action@v3
           attempt_delay: 10000
