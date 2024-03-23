@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-02-01 16:46\n"
+"PO-Revision-Date: 2024-03-10 15:00\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -20,135 +20,135 @@ msgstr ""
 
 #: pyra/config.py:78
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: pyra/config.py:79
 msgid "For information purposes only."
-msgstr ""
+msgstr "A titre d'information uniquement."
 
 #: pyra/config.py:83
 msgid "Config version"
-msgstr ""
+msgstr "Version de configuration"
 
 #: pyra/config.py:84
 msgid "The configuration version."
-msgstr ""
+msgstr "La version de la configuration."
 
 #: pyra/config.py:94
 msgid "First run complete"
-msgstr ""
+msgstr "Premier passage terminé"
 
 #: pyra/config.py:95
 msgid "Todo: Indicates if the user has completed the initial setup."
-msgstr ""
+msgstr "Todo : Indique si l'utilisateur a terminé la configuration initiale."
 
 #: pyra/config.py:102
 msgid "General"
-msgstr ""
+msgstr "Général"
 
 #: pyra/config.py:103
 msgid "General settings."
-msgstr ""
+msgstr "Paramètres généraux."
 
 #: pyra/config.py:107
 msgid "Locale"
-msgstr ""
+msgstr "Localité"
 
 #: pyra/config.py:108
 msgid "The localization setting to use."
-msgstr ""
+msgstr "Le paramètre de localisation à utiliser."
 
 #: pyra/config.py:123
 msgid "Launch Browser on Startup "
-msgstr ""
+msgstr "Lancer le navigateur au démarrage "
 
 #: pyra/config.py:129
 msgid "Enable System Tray Icon"
-msgstr ""
+msgstr "Activer l'icône de la barre d'état système"
 
 #: pyra/config.py:138
 msgid "Logging"
-msgstr ""
+msgstr "Enregistrement"
 
 #: pyra/config.py:139
 msgid "Logging settings."
-msgstr ""
+msgstr "Paramètres de journalisation."
 
 #: pyra/config.py:143
 msgid "Log directory"
-msgstr ""
+msgstr "Répertoire du journal"
 
 #: pyra/config.py:145
 msgid "The directory where to store the log files."
-msgstr ""
+msgstr "Le répertoire dans lequel sont stockés les fichiers journaux."
 
 #: pyra/config.py:155
 msgid "Debug logging"
-msgstr ""
+msgstr "Journalisation de débogage"
 
 #: pyra/config.py:157
 msgid "Enable debug logging."
-msgstr ""
+msgstr "Activer la journalisation de débogage."
 
 #: pyra/config.py:163
 msgid "Network"
-msgstr ""
+msgstr "Réseau"
 
 #: pyra/config.py:164
 msgid "Network settings."
-msgstr ""
+msgstr "Paramètres du réseau."
 
 #: pyra/config.py:168
 msgid "HTTP host address"
-msgstr ""
+msgstr "Adresse de l'hôte HTTP"
 
 #: pyra/config.py:170
 msgid "The HTTP address to bind to."
-msgstr ""
+msgstr "L'adresse HTTP à laquelle se rattacher."
 
 #: pyra/config.py:179
 msgid "HTTP port"
-msgstr ""
+msgstr "Port HTTP"
 
 #: pyra/config.py:181
 msgid "Port to bind web server to. Note that ports below 1024 may require root."
-msgstr ""
+msgstr "Port sur lequel lier le serveur web. Notez que les ports inférieurs à 1024 peuvent nécessiter l'utilisation de la fonction \"root\"."
 
 #: pyra/config.py:190
 msgid "HTTP root"
-msgstr ""
+msgstr "Racine HTTP"
 
 #: pyra/config.py:192
 msgid "Todo: The base URL of the web server. Used for reverse proxies."
-msgstr ""
+msgstr "Todo : URL de base du serveur web. Utilisée pour les proxys inversés."
 
 #: pyra/config.py:198
 msgid "User Interface"
-msgstr ""
+msgstr "Interface utilisateur"
 
 #: pyra/config.py:199
 msgid "User interface settings."
-msgstr ""
+msgstr "Paramètres de l'interface utilisateur."
 
 #: pyra/config.py:203
 msgid "Background video"
-msgstr ""
+msgstr "Vidéo de fond"
 
 #: pyra/config.py:204
 msgid "Enable background video."
-msgstr ""
+msgstr "Activer la vidéo en arrière-plan."
 
 #: pyra/config.py:210
 msgid "Updater"
-msgstr ""
+msgstr "Mise à jour"
 
 #: pyra/config.py:211
 msgid "Updater settings."
-msgstr ""
+msgstr "Paramètres de l'Updater."
 
 #: pyra/config.py:215
 msgid "Auto update"
-msgstr ""
+msgstr "Mise à jour automatique"
 
 #: pyra/hardware.py:28
 msgid "cpu"
@@ -265,7 +265,7 @@ msgstr "Accueil"
 
 #: pyra/webapp.py:188 web/templates/navbar.html:94 web/templates/navbar.html:96
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: retroarcher.py:126
 msgid "RetroArcher is a Python based game streaming server.\n"
@@ -307,7 +307,7 @@ msgstr "Afficher les informations de version et quitter"
 
 #: web/templates/config.html:156
 msgid "Save"
-msgstr ""
+msgstr "Économiser"
 
 #: web/templates/navbar.html:19
 msgid "Login"
