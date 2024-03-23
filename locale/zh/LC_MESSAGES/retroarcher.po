@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-03-16 06:25\n"
+"PO-Revision-Date: 2024-03-23 04:07\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "待办事项：指示用户是否完成了初始设置。"
 
 #: pyra/config.py:102
 msgid "General"
-msgstr "A. 概况"
+msgstr "常规"
 
 #: pyra/config.py:103
 msgid "General settings."
@@ -231,7 +231,7 @@ msgstr "%(github)s Releases"
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:86 web/templates/navbar.html:23
 msgid "Donate"
-msgstr "捐助"
+msgstr "捐赠"
 
 #: pyra/tray_icon.py:87 web/templates/navbar.html:28
 msgid "GitHub Sponsors"
