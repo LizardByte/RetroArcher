@@ -1,0 +1,347 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lizardbyte\n"
+"Report-Msgid-Bugs-To: github.com/retroarcher\n"
+"POT-Creation-Date: 2024-02-01 15:19+0000\n"
+"PO-Revision-Date: 2024-04-05 17:47\n"
+"Last-Translator: \n"
+"Language-Team: Japanese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: lizardbyte\n"
+"X-Crowdin-Project-ID: 606145\n"
+"X-Crowdin-Language: ja\n"
+"X-Crowdin-File: /[LizardByte.RetroArcher] master/retroarcher.po\n"
+"X-Crowdin-File-ID: 5788\n"
+"Language: ja_JP\n"
+
+#: pyra/config.py:78
+msgid "Info"
+msgstr "情報"
+
+#: pyra/config.py:79
+msgid "For information purposes only."
+msgstr "情報提供のみ。"
+
+#: pyra/config.py:83
+msgid "Config version"
+msgstr "設定のバージョン"
+
+#: pyra/config.py:84
+msgid "The configuration version."
+msgstr "設定のバージョン"
+
+#: pyra/config.py:94
+msgid "First run complete"
+msgstr "最初の実行完了"
+
+#: pyra/config.py:95
+msgid "Todo: Indicates if the user has completed the initial setup."
+msgstr "Todo: ユーザーが初期設定を完了したかどうかを示します。"
+
+#: pyra/config.py:102
+msgid "General"
+msgstr "全般"
+
+#: pyra/config.py:103
+msgid "General settings."
+msgstr "全般設定"
+
+#: pyra/config.py:107
+msgid "Locale"
+msgstr "ロケール"
+
+#: pyra/config.py:108
+msgid "The localization setting to use."
+msgstr "使用するローカライゼーションの設定"
+
+#: pyra/config.py:123
+msgid "Launch Browser on Startup "
+msgstr "起動時にブラウザを起動 "
+
+#: pyra/config.py:129
+msgid "Enable System Tray Icon"
+msgstr "システムトレイアイコンを有効にする"
+
+#: pyra/config.py:138
+msgid "Logging"
+msgstr "ログ"
+
+#: pyra/config.py:139
+msgid "Logging settings."
+msgstr "ログの設定"
+
+#: pyra/config.py:143
+msgid "Log directory"
+msgstr "ログディレクトリ"
+
+#: pyra/config.py:145
+msgid "The directory where to store the log files."
+msgstr "ログファイルを保存するディレクトリ。"
+
+#: pyra/config.py:155
+msgid "Debug logging"
+msgstr "デバッグログ"
+
+#: pyra/config.py:157
+msgid "Enable debug logging."
+msgstr "デバッグログを有効にします。"
+
+#: pyra/config.py:163
+msgid "Network"
+msgstr "ネットワーク"
+
+#: pyra/config.py:164
+msgid "Network settings."
+msgstr "ネットワーク設定。"
+
+#: pyra/config.py:168
+msgid "HTTP host address"
+msgstr "HTTP ホスト アドレス"
+
+#: pyra/config.py:170
+msgid "The HTTP address to bind to."
+msgstr "バインドする HTTP アドレス。"
+
+#: pyra/config.py:179
+msgid "HTTP port"
+msgstr "HTTP ポート"
+
+#: pyra/config.py:181
+msgid "Port to bind web server to. Note that ports below 1024 may require root."
+msgstr "ウェブサーバーをバインドするポート。1024以下のポートにはルートが必要になることに注意してください。"
+
+#: pyra/config.py:190
+msgid "HTTP root"
+msgstr "HTTP ルート"
+
+#: pyra/config.py:192
+msgid "Todo: The base URL of the web server. Used for reverse proxies."
+msgstr "Todo: Web サーバのベース URL です。リバースプロキシに使用します。"
+
+#: pyra/config.py:198
+msgid "User Interface"
+msgstr "ユーザー インターフェイス"
+
+#: pyra/config.py:199
+msgid "User interface settings."
+msgstr "ユーザーインターフェイスの設定"
+
+#: pyra/config.py:203
+msgid "Background video"
+msgstr "背景ビデオ"
+
+#: pyra/config.py:204
+msgid "Enable background video."
+msgstr "背景ビデオを有効にする"
+
+#: pyra/config.py:210
+msgid "Updater"
+msgstr "アップデータ"
+
+#: pyra/config.py:211
+msgid "Updater settings."
+msgstr "アップデータの設定"
+
+#: pyra/config.py:215
+msgid "Auto update"
+msgstr "自動アップデート"
+
+#: pyra/hardware.py:28
+msgid "cpu"
+msgstr "cpu"
+
+#: pyra/hardware.py:29
+msgid "cpu usage"
+msgstr "cpuの使用"
+
+#: pyra/hardware.py:33
+msgid "gpu"
+msgstr "gpu"
+
+#: pyra/hardware.py:34
+msgid "gpu usage"
+msgstr "GPUの使用"
+
+#: pyra/hardware.py:37
+msgid "memory"
+msgstr "メモリ"
+
+#: pyra/hardware.py:38
+msgid "memory usage"
+msgstr "メモリ使用量"
+
+#: pyra/hardware.py:41
+msgid "network"
+msgstr "ネットワーク"
+
+#: pyra/hardware.py:42
+msgid "network usage"
+msgstr "ネットワーク使用量"
+
+#: pyra/hardware.py:45
+msgid "received"
+msgstr "受信済み"
+
+#: pyra/hardware.py:46
+msgid "sent"
+msgstr "送信済み"
+
+#: pyra/hardware.py:47
+msgid "system"
+msgstr "システム"
+
+#. NOTE: Mbps = megabytes per second
+#: pyra/hardware.py:359
+#, python-format
+msgid "%(numeric_value)s Mbps"
+msgstr "%(numeric_value)s Mbps"
+
+#. NOTE: the double percent symbols is rendered as one in this case
+#: pyra/hardware.py:362
+#, python-format
+msgid "%(numeric_value)s %%"
+msgstr "%(numeric_value)s %%"
+
+#: pyra/hardware.py:448
+msgid "Mbps"
+msgstr "Mbps"
+
+#: pyra/hardware.py:448
+msgid "%"
+msgstr "%"
+
+#. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:75
+#, python-format
+msgid "Open %(app_name)s"
+msgstr "%(app_name)s を開く"
+
+#. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
+#. "%(github)s".
+#: pyra/tray_icon.py:83
+#, python-format
+msgid "%(github)s Releases"
+msgstr "%(github)s リリース"
+
+#. NOTE: Donate to RetroArcher.
+#: pyra/tray_icon.py:86 web/templates/navbar.html:23
+msgid "Donate"
+msgstr "寄付"
+
+#: pyra/tray_icon.py:87 web/templates/navbar.html:28
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
+
+#. NOTE: Open web browser when application starts. Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:95
+#, python-format
+msgid "Open browser when %(app_name)s starts"
+msgstr "%(app_name)s 起動時にブラウザを開く"
+
+#. NOTE: Disable or turn off icon.
+#: pyra/tray_icon.py:98
+msgid "Disable icon"
+msgstr "アイコンを無効化"
+
+#. NOTE: Restart the program.
+#: pyra/tray_icon.py:101
+msgid "Restart"
+msgstr "再起動"
+
+#. NOTE: Quit, Stop, End, or Shutdown the program.
+#: pyra/tray_icon.py:103
+msgid "Quit"
+msgstr "終了"
+
+#: pyra/webapp.py:120 web/templates/navbar.html:84 web/templates/navbar.html:86
+msgid "Home"
+msgstr "ホーム"
+
+#: pyra/webapp.py:188 web/templates/navbar.html:94 web/templates/navbar.html:96
+msgid "Settings"
+msgstr "設定"
+
+#: retroarcher.py:126
+msgid "RetroArcher is a Python based game streaming server.\n"
+"Arguments supplied here are meant to be temporary."
+msgstr "RetroArcherはPythonベースのゲームストリーミングサーバーです。\n"
+"ここで提供される引数は一時的なものです。"
+
+#: retroarcher.py:129
+msgid "Specify a config file to use"
+msgstr "使用する設定ファイルを指定してください"
+
+#: retroarcher.py:130
+msgid "Use debug logging level"
+msgstr "デバッグログレベルを使用"
+
+#: retroarcher.py:131
+msgid "Start RetroArcher in the development environment"
+msgstr "開発環境でRetroArcherを起動します"
+
+#: retroarcher.py:132
+msgid "Health check the container and exit"
+msgstr "コンテナの状態を確認し、終了します"
+
+#: retroarcher.py:133
+msgid "Do not open RetroArcher in browser"
+msgstr "ブラウザでRetroArcherを開かない"
+
+#: retroarcher.py:135
+msgid "Force RetroArcher to run on a specified port, default=9696"
+msgstr "RetroArcherを指定されたポートで強制的に実行する default=9696"
+
+#: retroarcher.py:137
+msgid "Turn off console logging"
+msgstr "コンソールログをオフにする"
+
+#: retroarcher.py:138
+msgid "Print the version details and exit"
+msgstr "バージョンの詳細を印刷して終了"
+
+#: web/templates/config.html:156
+msgid "Save"
+msgstr "保存"
+
+#: web/templates/navbar.html:19
+msgid "Login"
+msgstr "ログイン"
+
+#: web/templates/navbar.html:44
+msgid "Social"
+msgstr "ソーシャル"
+
+#: web/templates/navbar.html:49
+msgid "Facebook Page"
+msgstr "Facebookページ"
+
+#: web/templates/navbar.html:52
+msgid "Facebook Group"
+msgstr "Facebook グループ"
+
+#: web/templates/navbar.html:67
+msgid "Support"
+msgstr "サポート"
+
+#: web/templates/navbar.html:72
+msgid "Docs"
+msgstr "ドキュメント"
+
+#: web/templates/navbar.html:80
+msgid "Discussions"
+msgstr "ディスカッション"
+
+#: web/templates/navbar.html:89 web/templates/navbar.html:91
+msgid "Plugins"
+msgstr "プラグイン"
+
+#: web/templates/navbar.html:99 web/templates/navbar.html:101
+msgid "Users"
+msgstr "ユーザー"
+
