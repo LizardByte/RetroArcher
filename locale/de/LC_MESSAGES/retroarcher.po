@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-03-10 15:00\n"
+"PO-Revision-Date: 2024-04-08 13:51\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -36,11 +36,11 @@ msgstr "Die Konfigurationsversion."
 
 #: pyra/config.py:94
 msgid "First run complete"
-msgstr "Erster Lauf abgeschlossen"
+msgstr "Erster Start abgeschlossen"
 
 #: pyra/config.py:95
 msgid "Todo: Indicates if the user has completed the initial setup."
-msgstr "Erledigt: Zeigt an, ob der Benutzer die Ersteinrichtung abgeschlossen hat."
+msgstr "Zu erledigen: Zeigt an, ob der Benutzer die Ersteinrichtung abgeschlossen hat."
 
 #: pyra/config.py:102
 msgid "General"
@@ -52,11 +52,11 @@ msgstr "Allgemeine Einstellungen."
 
 #: pyra/config.py:107
 msgid "Locale"
-msgstr "Schauplatz"
+msgstr "Lokalisierungseinstellung"
 
 #: pyra/config.py:108
 msgid "The localization setting to use."
-msgstr "Die zu verwendende Lokalisierungseinstellung."
+msgstr "Aktuelle Lokalisierungseinstellung."
 
 #: pyra/config.py:123
 msgid "Launch Browser on Startup "
@@ -64,7 +64,7 @@ msgstr "Browser beim Hochfahren starten "
 
 #: pyra/config.py:129
 msgid "Enable System Tray Icon"
-msgstr "Systemablage-Symbol aktivieren"
+msgstr "Taskleisten-Symbol aktivieren"
 
 #: pyra/config.py:138
 msgid "Logging"
@@ -80,7 +80,7 @@ msgstr "Log-Verzeichnis"
 
 #: pyra/config.py:145
 msgid "The directory where to store the log files."
-msgstr "Das Verzeichnis, in dem die Protokolldateien gespeichert werden sollen."
+msgstr "Das Verzeichnis, in dem die Logdateien gespeichert werden sollen."
 
 #: pyra/config.py:155
 msgid "Debug logging"
@@ -112,15 +112,15 @@ msgstr "HTTP-Port"
 
 #: pyra/config.py:181
 msgid "Port to bind web server to. Note that ports below 1024 may require root."
-msgstr "Port, an den der Webserver gebunden werden soll. Beachten Sie, dass für Ports unter 1024 möglicherweise root erforderlich ist."
+msgstr "Port, an den der Webserver gebunden werden soll. Beachten Sie, dass für Ports unter 1024 möglicherweise administrative Rechte erforderlich sind."
 
 #: pyra/config.py:190
 msgid "HTTP root"
-msgstr "HTTP-Wurzel"
+msgstr "HTTP-Verzeichnis"
 
 #: pyra/config.py:192
 msgid "Todo: The base URL of the web server. Used for reverse proxies."
-msgstr "Todo: Die Basis-URL des Webservers. Wird für Reverse Proxies verwendet."
+msgstr "Zu Erledigen: Die Basis-URL des Webservers. Die für Reverse Proxies verwendet wird."
 
 #: pyra/config.py:198
 msgid "User Interface"
@@ -144,7 +144,7 @@ msgstr "Aktualisierer"
 
 #: pyra/config.py:211
 msgid "Updater settings."
-msgstr "Updater-Einstellungen."
+msgstr "Automatische Aktualisiereungseinstellungen."
 
 #: pyra/config.py:215
 msgid "Auto update"
@@ -226,7 +226,7 @@ msgstr "%(app_name)s öffnen"
 #: pyra/tray_icon.py:83
 #, python-format
 msgid "%(github)s Releases"
-msgstr "%(github)s Versionen"
+msgstr "%(github)s Releases"
 
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:86 web/templates/navbar.html:23
@@ -271,7 +271,7 @@ msgstr "Einstellungen"
 msgid "RetroArcher is a Python based game streaming server.\n"
 "Arguments supplied here are meant to be temporary."
 msgstr "RetroArcher ist ein Python-basierter Game-Streaming-Server.\n"
-"Hier angeführte Argumente sind als temporär gedacht."
+"Hier angeführte Argumente sind temporär."
 
 #: retroarcher.py:129
 msgid "Specify a config file to use"
@@ -287,7 +287,7 @@ msgstr "Starte RetroArcher in der Entwicklungsumgebung"
 
 #: retroarcher.py:132
 msgid "Health check the container and exit"
-msgstr "Gesundheit überprüfe den Container und beende ihn"
+msgstr "Überprüft den Container und beendet ihn"
 
 #: retroarcher.py:133
 msgid "Do not open RetroArcher in browser"
@@ -303,11 +303,11 @@ msgstr "Konsolen-Protokollierung ausschalten"
 
 #: retroarcher.py:138
 msgid "Print the version details and exit"
-msgstr "Die Versionsdetails ausdrucken und beenden"
+msgstr "Die Versionsdetails anzeigen und beenden"
 
 #: web/templates/config.html:156
 msgid "Save"
-msgstr "Speichern Sie"
+msgstr "Speichern"
 
 #: web/templates/navbar.html:19
 msgid "Login"
@@ -331,7 +331,7 @@ msgstr "Hilfe"
 
 #: web/templates/navbar.html:72
 msgid "Docs"
-msgstr "Dokumente"
+msgstr "Dokumentation"
 
 #: web/templates/navbar.html:80
 msgid "Discussions"
