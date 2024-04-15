@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-03-23 04:07\n"
+"PO-Revision-Date: 2024-04-15 01:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr "启用系统托盘图标"
 
 #: pyra/config.py:138
 msgid "Logging"
-msgstr "日志记录"
+msgstr "日志"
 
 #: pyra/config.py:139
 msgid "Logging settings."
@@ -112,7 +112,7 @@ msgstr "HTTP 端口"
 
 #: pyra/config.py:181
 msgid "Port to bind web server to. Note that ports below 1024 may require root."
-msgstr "要绑定网络服务器的端口。请注意低于1024的端口可能需要root。"
+msgstr "要将 Web 服务器绑定到的端口。请注意，低于 1024 的端口可能需要 root 权限。"
 
 #: pyra/config.py:190
 msgid "HTTP root"
@@ -156,7 +156,7 @@ msgstr "cpu"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr "cpu 使用率"
+msgstr "cpu 使用"
 
 #: pyra/hardware.py:33
 msgid "gpu"
