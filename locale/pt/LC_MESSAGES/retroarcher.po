@@ -1,0 +1,347 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lizardbyte\n"
+"Report-Msgid-Bugs-To: github.com/retroarcher\n"
+"POT-Creation-Date: 2024-02-01 15:19+0000\n"
+"PO-Revision-Date: 2024-04-18 23:11\n"
+"Last-Translator: \n"
+"Language-Team: Portuguese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: lizardbyte\n"
+"X-Crowdin-Project-ID: 606145\n"
+"X-Crowdin-Language: pt-PT\n"
+"X-Crowdin-File: /[LizardByte.RetroArcher] master/retroarcher.po\n"
+"X-Crowdin-File-ID: 5788\n"
+"Language: pt_PT\n"
+
+#: pyra/config.py:78
+msgid "Info"
+msgstr "Informações"
+
+#: pyra/config.py:79
+msgid "For information purposes only."
+msgstr "Para fins informativos apenas."
+
+#: pyra/config.py:83
+msgid "Config version"
+msgstr "Configurar versão"
+
+#: pyra/config.py:84
+msgid "The configuration version."
+msgstr "A versão de configuração."
+
+#: pyra/config.py:94
+msgid "First run complete"
+msgstr "Primeira execução completa"
+
+#: pyra/config.py:95
+msgid "Todo: Indicates if the user has completed the initial setup."
+msgstr "Todo: Indica se o usuário completou a configuração inicial."
+
+#: pyra/config.py:102
+msgid "General"
+msgstr "Gerais"
+
+#: pyra/config.py:103
+msgid "General settings."
+msgstr "Configurações gerais."
+
+#: pyra/config.py:107
+msgid "Locale"
+msgstr "Localidade"
+
+#: pyra/config.py:108
+msgid "The localization setting to use."
+msgstr "A configuração de localização para usar."
+
+#: pyra/config.py:123
+msgid "Launch Browser on Startup "
+msgstr "Iniciar o navegador na inicialização "
+
+#: pyra/config.py:129
+msgid "Enable System Tray Icon"
+msgstr "Habilitar ícone de bandeja do sistema"
+
+#: pyra/config.py:138
+msgid "Logging"
+msgstr "Registro"
+
+#: pyra/config.py:139
+msgid "Logging settings."
+msgstr "Configurações de registro."
+
+#: pyra/config.py:143
+msgid "Log directory"
+msgstr "Diretório de log"
+
+#: pyra/config.py:145
+msgid "The directory where to store the log files."
+msgstr "O diretório onde armazenar os arquivos de log."
+
+#: pyra/config.py:155
+msgid "Debug logging"
+msgstr "Debug log"
+
+#: pyra/config.py:157
+msgid "Enable debug logging."
+msgstr "Ativar log de depuração."
+
+#: pyra/config.py:163
+msgid "Network"
+msgstr "Rede"
+
+#: pyra/config.py:164
+msgid "Network settings."
+msgstr "Configurações de rede."
+
+#: pyra/config.py:168
+msgid "HTTP host address"
+msgstr "Endereço do host HTTP"
+
+#: pyra/config.py:170
+msgid "The HTTP address to bind to."
+msgstr "O endereço HTTP a ser vinculado."
+
+#: pyra/config.py:179
+msgid "HTTP port"
+msgstr "Porta HTTP"
+
+#: pyra/config.py:181
+msgid "Port to bind web server to. Note that ports below 1024 may require root."
+msgstr "Porta para vincular o servidor web. Observe que portas abaixo de 1024 podem exigir root."
+
+#: pyra/config.py:190
+msgid "HTTP root"
+msgstr "Raiz HTTP"
+
+#: pyra/config.py:192
+msgid "Todo: The base URL of the web server. Used for reverse proxies."
+msgstr "Todo: O URL base do servidor web. Usado para proxy reverso."
+
+#: pyra/config.py:198
+msgid "User Interface"
+msgstr "Interface do usuário"
+
+#: pyra/config.py:199
+msgid "User interface settings."
+msgstr "Configurações de interface do usuário."
+
+#: pyra/config.py:203
+msgid "Background video"
+msgstr "Vídeo de fundo"
+
+#: pyra/config.py:204
+msgid "Enable background video."
+msgstr "Habilitar vídeo em segundo plano."
+
+#: pyra/config.py:210
+msgid "Updater"
+msgstr "Atualizações"
+
+#: pyra/config.py:211
+msgid "Updater settings."
+msgstr "Configurações de atualização."
+
+#: pyra/config.py:215
+msgid "Auto update"
+msgstr "Atualização automática"
+
+#: pyra/hardware.py:28
+msgid "cpu"
+msgstr "CPF"
+
+#: pyra/hardware.py:29
+msgid "cpu usage"
+msgstr "Uso de CPU"
+
+#: pyra/hardware.py:33
+msgid "gpu"
+msgstr "gpu"
+
+#: pyra/hardware.py:34
+msgid "gpu usage"
+msgstr "uso da GPU"
+
+#: pyra/hardware.py:37
+msgid "memory"
+msgstr "memória"
+
+#: pyra/hardware.py:38
+msgid "memory usage"
+msgstr "Uso de memória"
+
+#: pyra/hardware.py:41
+msgid "network"
+msgstr "Rede"
+
+#: pyra/hardware.py:42
+msgid "network usage"
+msgstr "uso de rede"
+
+#: pyra/hardware.py:45
+msgid "received"
+msgstr "recebido"
+
+#: pyra/hardware.py:46
+msgid "sent"
+msgstr "enviado"
+
+#: pyra/hardware.py:47
+msgid "system"
+msgstr "Sistema"
+
+#. NOTE: Mbps = megabytes per second
+#: pyra/hardware.py:359
+#, python-format
+msgid "%(numeric_value)s Mbps"
+msgstr "%(numeric_value)s Mbps"
+
+#. NOTE: the double percent symbols is rendered as one in this case
+#: pyra/hardware.py:362
+#, python-format
+msgid "%(numeric_value)s %%"
+msgstr "%(numeric_value)s %%"
+
+#: pyra/hardware.py:448
+msgid "Mbps"
+msgstr "Mbps"
+
+#: pyra/hardware.py:448
+msgid "%"
+msgstr "%"
+
+#. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:75
+#, python-format
+msgid "Open %(app_name)s"
+msgstr "Abrir %(app_name)s"
+
+#. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
+#. "%(github)s".
+#: pyra/tray_icon.py:83
+#, python-format
+msgid "%(github)s Releases"
+msgstr "Lançamentos %(github)s"
+
+#. NOTE: Donate to RetroArcher.
+#: pyra/tray_icon.py:86 web/templates/navbar.html:23
+msgid "Donate"
+msgstr "Doar"
+
+#: pyra/tray_icon.py:87 web/templates/navbar.html:28
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
+
+#. NOTE: Open web browser when application starts. Do not translate
+#. "%(app_name)s".
+#: pyra/tray_icon.py:95
+#, python-format
+msgid "Open browser when %(app_name)s starts"
+msgstr "Abrir o navegador quando %(app_name)s iniciar"
+
+#. NOTE: Disable or turn off icon.
+#: pyra/tray_icon.py:98
+msgid "Disable icon"
+msgstr "Desativar ícone"
+
+#. NOTE: Restart the program.
+#: pyra/tray_icon.py:101
+msgid "Restart"
+msgstr "Reiniciar"
+
+#. NOTE: Quit, Stop, End, or Shutdown the program.
+#: pyra/tray_icon.py:103
+msgid "Quit"
+msgstr "Encerrar"
+
+#: pyra/webapp.py:120 web/templates/navbar.html:84 web/templates/navbar.html:86
+msgid "Home"
+msgstr "Residencial"
+
+#: pyra/webapp.py:188 web/templates/navbar.html:94 web/templates/navbar.html:96
+msgid "Settings"
+msgstr "Confirgurações"
+
+#: retroarcher.py:126
+msgid "RetroArcher is a Python based game streaming server.\n"
+"Arguments supplied here are meant to be temporary."
+msgstr "RetroArcher é um servidor de streaming de jogos baseado em Python.\n"
+"Argumentos fornecidos aqui são destinados a serem temporários."
+
+#: retroarcher.py:129
+msgid "Specify a config file to use"
+msgstr "Especifique um arquivo de configuração para usar"
+
+#: retroarcher.py:130
+msgid "Use debug logging level"
+msgstr "Usar nível de log de depuração"
+
+#: retroarcher.py:131
+msgid "Start RetroArcher in the development environment"
+msgstr "Iniciar RetroArcher no ambiente de desenvolvimento"
+
+#: retroarcher.py:132
+msgid "Health check the container and exit"
+msgstr "O exame de saúde do recipiente e a saída"
+
+#: retroarcher.py:133
+msgid "Do not open RetroArcher in browser"
+msgstr "Não abrir RetroArcher no navegador"
+
+#: retroarcher.py:135
+msgid "Force RetroArcher to run on a specified port, default=9696"
+msgstr "Força RetroArcher a funcionar em uma porta especificada, default=9696"
+
+#: retroarcher.py:137
+msgid "Turn off console logging"
+msgstr "Desativar registro do console"
+
+#: retroarcher.py:138
+msgid "Print the version details and exit"
+msgstr "Imprima os detalhes da versão e saia"
+
+#: web/templates/config.html:156
+msgid "Save"
+msgstr "Guardar"
+
+#: web/templates/navbar.html:19
+msgid "Login"
+msgstr "Conectar-se"
+
+#: web/templates/navbar.html:44
+msgid "Social"
+msgstr "Sócio"
+
+#: web/templates/navbar.html:49
+msgid "Facebook Page"
+msgstr "Página do Facebook"
+
+#: web/templates/navbar.html:52
+msgid "Facebook Group"
+msgstr "Grupo do Facebook"
+
+#: web/templates/navbar.html:67
+msgid "Support"
+msgstr "SUPORTE"
+
+#: web/templates/navbar.html:72
+msgid "Docs"
+msgstr "Documentação"
+
+#: web/templates/navbar.html:80
+msgid "Discussions"
+msgstr "Discussões"
+
+#: web/templates/navbar.html:89 web/templates/navbar.html:91
+msgid "Plugins"
+msgstr "Complementos"
+
+#: web/templates/navbar.html:99 web/templates/navbar.html:101
+msgid "Users"
+msgstr "Utilizadores"
+
