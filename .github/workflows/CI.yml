@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: true
 
 jobs:
@@ -119,15 +119,13 @@ jobs:
             --cov=pyra \
             tests
 
-      - name: Upload coverage to Codecov
-        uses: Wandalen/wretry.action@v1
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
         with:
-          action: codecov/codecov-action@v3
-          attempt_delay: 10000
-          attempt_limit: 10
-          with: |
-            fail_ci_if_error: true
-            flags: ${{ runner.os }}-${{ matrix.architecture }}
+          fail_ci_if_error: true
+          flags: "${{ runner.os }}-${{ matrix.architecture }}"
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
 
       - name: Create/Update GitHub Release
         if: ${{ needs.setup_release.outputs.publish_release == 'true' }}
