@@ -13,5 +13,5 @@ psutil==5.9.8
 pyadl==0.1
 pyamdgpuinfo==2.1.6; sys_platform == 'Linux'
 pystray==0.19.5
-requests==2.31.0
+requests==2.32.2
 Sphinx==7.2.6
