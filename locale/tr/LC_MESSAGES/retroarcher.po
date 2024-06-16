@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-06-16 15:13\n"
+"PO-Revision-Date: 2024-06-16 18:02\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -20,327 +20,328 @@ msgstr ""
 
 #: pyra/config.py:78
 msgid "Info"
-msgstr ""
+msgstr "Bilgi"
 
 #: pyra/config.py:79
 msgid "For information purposes only."
-msgstr ""
+msgstr "Sadece bilgilendirme amaçlıdır."
 
 #: pyra/config.py:83
 msgid "Config version"
-msgstr ""
+msgstr "Yapılandırma sürümü"
 
 #: pyra/config.py:84
 msgid "The configuration version."
-msgstr ""
+msgstr "Yapılandırma sürümü."
 
 #: pyra/config.py:94
 msgid "First run complete"
-msgstr ""
+msgstr "İlk çalıştırma tamamlandı"
 
 #: pyra/config.py:95
 msgid "Todo: Indicates if the user has completed the initial setup."
-msgstr ""
+msgstr "Yapılacaklar: Kullanıcının ilk kurulumu tamamlayıp tamamlamadığını gösterir."
 
 #: pyra/config.py:102
 msgid "General"
-msgstr ""
+msgstr "Genel"
 
 #: pyra/config.py:103
 msgid "General settings."
-msgstr ""
+msgstr "Genel ayarlar."
 
 #: pyra/config.py:107
 msgid "Locale"
-msgstr ""
+msgstr "Yerel"
 
 #: pyra/config.py:108
 msgid "The localization setting to use."
-msgstr ""
+msgstr "Kullanılacak yerelleştirme ayarı."
 
 #: pyra/config.py:123
 msgid "Launch Browser on Startup "
-msgstr ""
+msgstr "Tarayıcıyı Başlangıçta Başlat "
 
 #: pyra/config.py:129
 msgid "Enable System Tray Icon"
-msgstr ""
+msgstr "Sistem Tepsisi Simgesini Etkinleştir"
 
 #: pyra/config.py:138
 msgid "Logging"
-msgstr ""
+msgstr "Günlük kaydı"
 
 #: pyra/config.py:139
 msgid "Logging settings."
-msgstr ""
+msgstr "Günlük ayarları."
 
 #: pyra/config.py:143
 msgid "Log directory"
-msgstr ""
+msgstr "Günlük dizini"
 
 #: pyra/config.py:145
 msgid "The directory where to store the log files."
-msgstr ""
+msgstr "Günlük dosyalarının saklanacağı dizin."
 
 #: pyra/config.py:155
 msgid "Debug logging"
-msgstr ""
+msgstr "Hata ayıklama günlüğü"
 
 #: pyra/config.py:157
 msgid "Enable debug logging."
-msgstr ""
+msgstr "Hata ayıklama günlüğünü etkinleştirin."
 
 #: pyra/config.py:163
 msgid "Network"
-msgstr ""
+msgstr "Şebeke"
 
 #: pyra/config.py:164
 msgid "Network settings."
-msgstr ""
+msgstr "Ağ ayarları."
 
 #: pyra/config.py:168
 msgid "HTTP host address"
-msgstr ""
+msgstr "HTTP ana bilgisayar adresi"
 
 #: pyra/config.py:170
 msgid "The HTTP address to bind to."
-msgstr ""
+msgstr "Bağlanılacak HTTP adresi."
 
 #: pyra/config.py:179
 msgid "HTTP port"
-msgstr ""
+msgstr "HTTP bağlantı noktası"
 
 #: pyra/config.py:181
 msgid "Port to bind web server to. Note that ports below 1024 may require root."
-msgstr ""
+msgstr "Web sunucusunun bağlanacağı bağlantı noktası. 1024'ün altındaki portların root gerektirebileceğini unutmayın."
 
 #: pyra/config.py:190
 msgid "HTTP root"
-msgstr ""
+msgstr "HTTP kökü"
 
 #: pyra/config.py:192
 msgid "Todo: The base URL of the web server. Used for reverse proxies."
-msgstr ""
+msgstr "Todo: Web sunucusunun temel URL'si. Ters proxy'ler için kullanılır."
 
 #: pyra/config.py:198
 msgid "User Interface"
-msgstr ""
+msgstr "Kullanıcı Arayüzü"
 
 #: pyra/config.py:199
 msgid "User interface settings."
-msgstr ""
+msgstr "Kullanıcı arayüzü ayarları."
 
 #: pyra/config.py:203
 msgid "Background video"
-msgstr ""
+msgstr "Arka plan videosu"
 
 #: pyra/config.py:204
 msgid "Enable background video."
-msgstr ""
+msgstr "Arka plan videosunu etkinleştirin."
 
 #: pyra/config.py:210
 msgid "Updater"
-msgstr ""
+msgstr "Güncelleyici"
 
 #: pyra/config.py:211
 msgid "Updater settings."
-msgstr ""
+msgstr "Güncelleyici ayarları."
 
 #: pyra/config.py:215
 msgid "Auto update"
-msgstr ""
+msgstr "Otomatik güncelleme"
 
 #: pyra/hardware.py:28
 msgid "cpu"
-msgstr ""
+msgstr "cpu"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr ""
+msgstr "cpu kullanımı"
 
 #: pyra/hardware.py:33
 msgid "gpu"
-msgstr ""
+msgstr "gpu"
 
 #: pyra/hardware.py:34
 msgid "gpu usage"
-msgstr ""
+msgstr "gpu kullanımı"
 
 #: pyra/hardware.py:37
 msgid "memory"
-msgstr ""
+msgstr "bellek"
 
 #: pyra/hardware.py:38
 msgid "memory usage"
-msgstr ""
+msgstr "bellek kullanımı"
 
 #: pyra/hardware.py:41
 msgid "network"
-msgstr ""
+msgstr "ağ"
 
 #: pyra/hardware.py:42
 msgid "network usage"
-msgstr ""
+msgstr "ağ kullanımı"
 
 #: pyra/hardware.py:45
 msgid "received"
-msgstr ""
+msgstr "alındı"
 
 #: pyra/hardware.py:46
 msgid "sent"
-msgstr ""
+msgstr "gönderildi"
 
 #: pyra/hardware.py:47
 msgid "system"
-msgstr ""
+msgstr "sistem"
 
 #. NOTE: Mbps = megabytes per second
 #: pyra/hardware.py:359
 #, python-format
 msgid "%(numeric_value)s Mbps"
-msgstr ""
+msgstr "%(numeric_value)s Mbps"
 
 #. NOTE: the double percent symbols is rendered as one in this case
 #: pyra/hardware.py:362
 #, python-format
 msgid "%(numeric_value)s %%"
-msgstr ""
+msgstr "%(numeric_value)s %%"
 
 #: pyra/hardware.py:448
 msgid "Mbps"
-msgstr ""
+msgstr "Mbps"
 
 #: pyra/hardware.py:448
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #. NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate
 #. "%(app_name)s".
 #: pyra/tray_icon.py:75
 #, python-format
 msgid "Open %(app_name)s"
-msgstr ""
+msgstr "Açık %(app_name)s"
 
 #. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
 #. "%(github)s".
 #: pyra/tray_icon.py:83
 #, python-format
 msgid "%(github)s Releases"
-msgstr ""
+msgstr "%(github)s Bültenler"
 
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:86 web/templates/navbar.html:23
 msgid "Donate"
-msgstr ""
+msgstr "Bağış"
 
 #: pyra/tray_icon.py:87 web/templates/navbar.html:28
 msgid "GitHub Sponsors"
-msgstr ""
+msgstr "GitHub Sponsorları"
 
 #. NOTE: Open web browser when application starts. Do not translate
 #. "%(app_name)s".
 #: pyra/tray_icon.py:95
 #, python-format
 msgid "Open browser when %(app_name)s starts"
-msgstr ""
+msgstr "%(app_name)s başladığında tarayıcıyı aç"
 
 #. NOTE: Disable or turn off icon.
 #: pyra/tray_icon.py:98
 msgid "Disable icon"
-msgstr ""
+msgstr "Simgeyi devre dışı bırak"
 
 #. NOTE: Restart the program.
 #: pyra/tray_icon.py:101
 msgid "Restart"
-msgstr ""
+msgstr "Yeniden Başlat"
 
 #. NOTE: Quit, Stop, End, or Shutdown the program.
 #: pyra/tray_icon.py:103
 msgid "Quit"
-msgstr ""
+msgstr "Bırak"
 
 #: pyra/webapp.py:120 web/templates/navbar.html:84 web/templates/navbar.html:86
 msgid "Home"
-msgstr ""
+msgstr "Ana Sayfa"
 
 #: pyra/webapp.py:188 web/templates/navbar.html:94 web/templates/navbar.html:96
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: retroarcher.py:126
 msgid "RetroArcher is a Python based game streaming server.\n"
 "Arguments supplied here are meant to be temporary."
-msgstr ""
+msgstr "RetroArcher Python tabanlı bir oyun akış sunucusudur.\n"
+"Burada verilen argümanların geçici olması amaçlanmıştır."
 
 #: retroarcher.py:129
 msgid "Specify a config file to use"
-msgstr ""
+msgstr "Kullanılacak bir yapılandırma dosyası belirtin"
 
 #: retroarcher.py:130
 msgid "Use debug logging level"
-msgstr ""
+msgstr "Hata ayıklama günlüğü düzeyini kullanma"
 
 #: retroarcher.py:131
 msgid "Start RetroArcher in the development environment"
-msgstr ""
+msgstr "RetroArcher'ı geliştirme ortamında başlatın"
 
 #: retroarcher.py:132
 msgid "Health check the container and exit"
-msgstr ""
+msgstr "Konteynerin sağlık kontrolünü yapın ve çıkın"
 
 #: retroarcher.py:133
 msgid "Do not open RetroArcher in browser"
-msgstr ""
+msgstr "RetroArcher'ı tarayıcıda açmayın"
 
 #: retroarcher.py:135
 msgid "Force RetroArcher to run on a specified port, default=9696"
-msgstr ""
+msgstr "RetroArcher'ı belirtilen bir bağlantı noktasında çalışmaya zorla, varsayılan=9696"
 
 #: retroarcher.py:137
 msgid "Turn off console logging"
-msgstr ""
+msgstr "Konsol günlüğünü kapatma"
 
 #: retroarcher.py:138
 msgid "Print the version details and exit"
-msgstr ""
+msgstr "Sürüm ayrıntılarını yazdırın ve çıkın"
 
 #: web/templates/config.html:156
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 #: web/templates/navbar.html:19
 msgid "Login"
-msgstr ""
+msgstr "Giriş"
 
 #: web/templates/navbar.html:44
 msgid "Social"
-msgstr ""
+msgstr "Sosyal"
 
 #: web/templates/navbar.html:49
 msgid "Facebook Page"
-msgstr ""
+msgstr "Facebook Sayfası"
 
 #: web/templates/navbar.html:52
 msgid "Facebook Group"
-msgstr ""
+msgstr "Facebook Grubu"
 
 #: web/templates/navbar.html:67
 msgid "Support"
-msgstr ""
+msgstr "Destek"
 
 #: web/templates/navbar.html:72
 msgid "Docs"
-msgstr ""
+msgstr "Dokümanlar"
 
 #: web/templates/navbar.html:80
 msgid "Discussions"
-msgstr ""
+msgstr "Tartışmalar"
 
 #: web/templates/navbar.html:89 web/templates/navbar.html:91
 msgid "Plugins"
-msgstr ""
+msgstr "Eklentiler"
 
 #: web/templates/navbar.html:99 web/templates/navbar.html:101
 msgid "Users"
-msgstr ""
+msgstr "Kullanıcılar"
 
