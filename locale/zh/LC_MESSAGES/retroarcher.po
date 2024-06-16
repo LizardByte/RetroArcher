@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-04-15 01:06\n"
+"PO-Revision-Date: 2024-06-16 00:35\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgstr "cpu"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr "cpu 使用"
+msgstr "cpu 使用率"
 
 #: pyra/hardware.py:33
 msgid "gpu"
