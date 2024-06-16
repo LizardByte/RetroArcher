@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-02-01 16:46\n"
+"PO-Revision-Date: 2024-03-10 15:00\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -20,135 +20,135 @@ msgstr ""
 
 #: pyra/config.py:78
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: pyra/config.py:79
 msgid "For information purposes only."
-msgstr ""
+msgstr "Endast i informationssyfte."
 
 #: pyra/config.py:83
 msgid "Config version"
-msgstr ""
+msgstr "Konfig version"
 
 #: pyra/config.py:84
 msgid "The configuration version."
-msgstr ""
+msgstr "Version av konfigurationen."
 
 #: pyra/config.py:94
 msgid "First run complete"
-msgstr ""
+msgstr "Första körningen klar"
 
 #: pyra/config.py:95
 msgid "Todo: Indicates if the user has completed the initial setup."
-msgstr ""
+msgstr "Todo: Visar om användaren har slutfört den inledande installationen."
 
 #: pyra/config.py:102
 msgid "General"
-msgstr ""
+msgstr "Allmänt"
 
 #: pyra/config.py:103
 msgid "General settings."
-msgstr ""
+msgstr "Allmänna inställningar."
 
 #: pyra/config.py:107
 msgid "Locale"
-msgstr ""
+msgstr "Lokal"
 
 #: pyra/config.py:108
 msgid "The localization setting to use."
-msgstr ""
+msgstr "Den lokaliseringsinställning som ska användas."
 
 #: pyra/config.py:123
 msgid "Launch Browser on Startup "
-msgstr ""
+msgstr "Starta webbläsare vid uppstart "
 
 #: pyra/config.py:129
 msgid "Enable System Tray Icon"
-msgstr ""
+msgstr "Aktivera ikonen i systemfältet"
 
 #: pyra/config.py:138
 msgid "Logging"
-msgstr ""
+msgstr "Loggning"
 
 #: pyra/config.py:139
 msgid "Logging settings."
-msgstr ""
+msgstr "Inställningar för loggning."
 
 #: pyra/config.py:143
 msgid "Log directory"
-msgstr ""
+msgstr "Loggkatalog"
 
 #: pyra/config.py:145
 msgid "The directory where to store the log files."
-msgstr ""
+msgstr "Den katalog där loggfilerna ska lagras."
 
 #: pyra/config.py:155
 msgid "Debug logging"
-msgstr ""
+msgstr "Felsökningsloggning"
 
 #: pyra/config.py:157
 msgid "Enable debug logging."
-msgstr ""
+msgstr "Aktivera felsökningsloggning."
 
 #: pyra/config.py:163
 msgid "Network"
-msgstr ""
+msgstr "Nätverk"
 
 #: pyra/config.py:164
 msgid "Network settings."
-msgstr ""
+msgstr "Inställningar för nätverk."
 
 #: pyra/config.py:168
 msgid "HTTP host address"
-msgstr ""
+msgstr "HTTP-värdadress"
 
 #: pyra/config.py:170
 msgid "The HTTP address to bind to."
-msgstr ""
+msgstr "HTTP-adressen att binda till."
 
 #: pyra/config.py:179
 msgid "HTTP port"
-msgstr ""
+msgstr "HTTP-port"
 
 #: pyra/config.py:181
 msgid "Port to bind web server to. Note that ports below 1024 may require root."
-msgstr ""
+msgstr "Port att binda webbservern till. Observera att portar under 1024 kan kräva root."
 
 #: pyra/config.py:190
 msgid "HTTP root"
-msgstr ""
+msgstr "HTTP-rot"
 
 #: pyra/config.py:192
 msgid "Todo: The base URL of the web server. Used for reverse proxies."
-msgstr ""
+msgstr "Todo: Webbserverns bas-URL. Används för omvända proxies."
 
 #: pyra/config.py:198
 msgid "User Interface"
-msgstr ""
+msgstr "Användargränssnitt"
 
 #: pyra/config.py:199
 msgid "User interface settings."
-msgstr ""
+msgstr "Inställningar för användargränssnitt."
 
 #: pyra/config.py:203
 msgid "Background video"
-msgstr ""
+msgstr "Bakgrundsvideo"
 
 #: pyra/config.py:204
 msgid "Enable background video."
-msgstr ""
+msgstr "Aktivera bakgrundsvideo."
 
 #: pyra/config.py:210
 msgid "Updater"
-msgstr ""
+msgstr "Uppdatering"
 
 #: pyra/config.py:211
 msgid "Updater settings."
-msgstr ""
+msgstr "Inställningar för uppdaterare."
 
 #: pyra/config.py:215
 msgid "Auto update"
-msgstr ""
+msgstr "Auto uppdatering"
 
 #: pyra/hardware.py:28
 msgid "cpu"
@@ -265,7 +265,7 @@ msgstr "Hem"
 
 #: pyra/webapp.py:188 web/templates/navbar.html:94 web/templates/navbar.html:96
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: retroarcher.py:126
 msgid "RetroArcher is a Python based game streaming server.\n"
@@ -307,7 +307,7 @@ msgstr "Skriv ut versionsuppgifterna och avsluta"
 
 #: web/templates/config.html:156
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: web/templates/navbar.html:19
 msgid "Login"
