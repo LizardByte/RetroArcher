@@ -107,6 +107,7 @@ jobs:
             -rxXs \
             --tb=native \
             --verbose \
+            --color=yes \
             --cov=pyra \
             tests
 
