@@ -1,12 +1,8 @@
 """
-..
-   __init__.py
+src/common/__init__.py
 
 Responsible for initialization of RetroArcher.
 """
-# future imports
-from __future__ import annotations
-
 # standard imports
 import os
 import subprocess
@@ -15,10 +11,10 @@ import threading
 from typing import Union
 
 # local imports
-from pyra import config
-from pyra import definitions
-from pyra import helpers
-from pyra import logger
+from common import config
+from common import definitions
+from common import helpers
+from common import logger
 
 # get logger
 log = logger.get_logger(name=__name__)
@@ -121,7 +117,7 @@ def stop(exit_code: Union[int, str] = 0, restart: bool = False):
     >>> stop(exit_code=0, restart=False)
     """
     # stop the tray icon
-    from pyra.tray_icon import tray_end
+    from common.tray_icon import tray_end
     try:
         tray_end()
     except AttributeError:

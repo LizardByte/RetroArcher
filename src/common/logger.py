@@ -1,12 +1,8 @@
 """
-..
-   logger.py
+src/common/logger.py
 
 Responsible for logging related functions.
 """
-# future imports
-from __future__ import annotations
-
 # standard imports
 import contextlib
 import errno
@@ -25,12 +21,12 @@ from logging.handlers import QueueHandler, QueueListener
 from configobj import ConfigObj
 
 # local imports
-import pyra
-from pyra import definitions
-from pyra import helpers
+import common
+from common import definitions
+from common import helpers
 
 # These settings are for file logging only
-py_name = 'pyra'
+py_name = 'common'
 MAX_SIZE = 5000000  # 5 MB
 MAX_FILES = 5
 
@@ -67,7 +63,7 @@ def blacklist_config(config: ConfigObj):
 
     Examples
     --------
-    >>> config_object = pyra.config.create_config(config_file='config.ini')
+    >>> config_object = common.config.create_config(config_file='config.ini')
     >>> blacklist_config(config=config_object)
     """
     blacklist = set()
@@ -102,7 +98,7 @@ class NoThreadFilter(logging.Filter):
     Examples
     --------
     >>> NoThreadFilter('main')
-    <pyra.logger.NoThreadFilter object at 0x...>
+    <common.logger.NoThreadFilter object at 0x...>
     """
 
     def __init__(self, threadName):
@@ -134,7 +130,7 @@ class NoThreadFilter(logging.Filter):
         >>> NoThreadFilter('main').filter(record=NoThreadFilter('main'))
         False
         """
-        return not record.threadName == self.threadName
+        return record.threadName != self.threadName
 
 
 # Taken from Hellowlol/HTPC-Manager
@@ -152,7 +148,7 @@ class BlacklistFilter(logging.Filter):
     Examples
     --------
     >>> BlacklistFilter()
-    <pyra.logger.BlacklistFilter object at 0x...>
+    <common.logger.BlacklistFilter object at 0x...>
     """
 
     def __init__(self):
@@ -223,7 +219,7 @@ class RegexFilter(logging.Filter):
     Examples
     --------
     >>> RegexFilter()
-    <pyra.logger.RegexFilter object at 0x...>
+    <common.logger.RegexFilter object at 0x...>
     """
 
     def __init__(self):
@@ -301,7 +297,7 @@ class PublicIPFilter(RegexFilter):
     Examples
     --------
     >>> PublicIPFilter()
-    <pyra.logger.PublicIPFilter object at 0x...>
+    <common.logger.PublicIPFilter object at 0x...>
     """
 
     def __init__(self):
@@ -358,7 +354,7 @@ class EmailFilter(RegexFilter):
     Examples
     --------
     >>> EmailFilter()
-    <pyra.logger.EmailFilter object at 0x...>
+    <common.logger.EmailFilter object at 0x...>
     """
 
     def __init__(self):
@@ -414,7 +410,7 @@ class PlexTokenFilter(RegexFilter):
     Examples
     --------
     >>> PlexTokenFilter()
-    <pyra.logger.PlexTokenFilter object at 0x...>
+    <common.logger.PlexTokenFilter object at 0x...>
     """
 
     def __init__(self):
@@ -453,13 +449,17 @@ def listener(logger: logging.Logger):
     """
     Create a QueueListener.
 
-    Wrapper that create a QueueListener, starts it and automatically stops it.
+    Wrapper that creates a QueueListener, starts it and automatically stops it.
     To be used in a with statement in the main process, for multiprocessing.
 
     Parameters
     ----------
     logger : logging.Logger
         The logger object.
+
+    Yields
+    ------
+    None
 
     Examples
     --------
@@ -568,7 +568,7 @@ def setup_loggers():
     """
     loggers_list = [py_name, 'werkzeug']
 
-    submodules = pkgutil.iter_modules(pyra.__path__)
+    submodules = pkgutil.iter_modules(common.__path__)
 
     for submodule in submodules:
         loggers_list.append(f'{py_name}.{submodule[1]}')
@@ -613,7 +613,7 @@ def init_logger(log_name: str) -> logging.Logger:
 
     # Configure the logger to accept all messages
     logger.propagate = False
-    logger.setLevel(logging.DEBUG if pyra.DEBUG else logging.INFO)
+    logger.setLevel(logging.DEBUG if common.DEBUG else logging.INFO)
 
     # Setup file logger
     file_formatter = logging.Formatter('%(asctime)s - %(levelname)-7s :: %(threadName)s : %(message)s',
@@ -631,7 +631,7 @@ def init_logger(log_name: str) -> logging.Logger:
         logger.addHandler(file_handler)
 
     # Setup console logger
-    if not pyra.QUIET:
+    if not common.QUIET:
         console_formatter = logging.Formatter('%(asctime)s - %(levelname)s :: %(threadName)s : %(message)s',
                                               '%Y-%m-%d %H:%M:%S')
         console_handler = logging.StreamHandler()
@@ -643,7 +643,7 @@ def init_logger(log_name: str) -> logging.Logger:
     # Add filters to log handlers
     # Only add filters after the config file has been initialized
     # Nothing prior to initialization should contain sensitive information
-    if not pyra.DEV and pyra.CONFIG:
+    if not common.DEV and common.CONFIG:
         log_handlers = logger.handlers
         for handler in log_handlers:
             handler.addFilter(BlacklistFilter())
@@ -652,7 +652,7 @@ def init_logger(log_name: str) -> logging.Logger:
             handler.addFilter(PlexTokenFilter())
 
     # Install exception hooks
-    if log_name == py_name:  # all tracebacks go to 'pyra.log'
+    if log_name == py_name:  # all tracebacks go to 'common.log'
         _init_hooks(logger)
 
     # replace warn

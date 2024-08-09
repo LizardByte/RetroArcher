@@ -2,10 +2,10 @@
 ..
    test_definitions.py
 
-Unit tests for pyra.definitions.py.
+Unit tests for common.definitions.py.
 """
 # local imports
-from pyra import definitions
+from common import definitions
 
 
 def test_names():
@@ -52,7 +52,8 @@ def test_paths():
     """Tests Paths class"""
     paths = definitions.Paths
 
-    assert paths.PYRA_DIR
+    assert paths.COMMON_DIR
+    assert paths.SRC_DIR
     assert paths.ROOT_DIR
     assert paths.DATA_DIR
     assert paths.BINARY_PATH

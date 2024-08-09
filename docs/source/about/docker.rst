@@ -1,4 +1,2 @@
-Docker
-------
-
-.. mdinclude:: ../../../DOCKER_README.md
+.. include:: ../../../DOCKER_README.md
+   :parser: myst_parser.docutils_

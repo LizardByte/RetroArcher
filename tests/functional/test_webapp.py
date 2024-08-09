@@ -2,7 +2,7 @@
 ..
    test_webapp.py
 
-Functional tests for pyra.webapp.
+Functional tests for common.webapp.
 """
 # standard imports
 import json

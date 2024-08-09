@@ -2,7 +2,7 @@
 ..
    test_config.py
 
-Unit tests for pyra.config.
+Unit tests for common.config.
 """
 # standard imports
 import time
@@ -12,7 +12,7 @@ from configobj import ConfigObj
 import pytest
 
 # local imports
-from pyra import config
+from common import config
 
 
 def test_create_config(test_config_file):
@@ -45,7 +45,7 @@ def test_convert_config():
 
 def test_on_change_tray_toggle():
     """Tests the on_change_tray_toggle function"""
-    from pyra import tray_icon
+    from common import tray_icon
 
     if not tray_icon.icon_supported:
         pytest.skip("tray icon not supported")

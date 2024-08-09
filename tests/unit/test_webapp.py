@@ -2,14 +2,14 @@
 ..
    test_webapp.py
 
-Unit tests for pyra.webapp.
+Unit tests for common.webapp.
 """
 # standard imports
 import sys
 
 # local imports
-from pyra import threads
-from pyra import webapp
+from common import threads
+from common import webapp
 
 
 def test_start_webapp():

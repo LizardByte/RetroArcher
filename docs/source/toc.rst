@@ -19,17 +19,17 @@
 
 .. toctree::
    :maxdepth: 0
-   :caption: Code
+   :caption: Source Code
    :titlesonly:
 
-   main/retroarcher
-   pyra_docs/pyra
-   pyra_docs/config
-   pyra_docs/definitions
-   pyra_docs/hardware
-   pyra_docs/helpers
-   pyra_docs/locales
-   pyra_docs/logger
-   pyra_docs/threads
-   pyra_docs/tray_icon
-   pyra_docs/webapp
+   src/retroarcher
+   src/common/common
+   src/common/config
+   src/common/definitions
+   src/common/hardware
+   src/common/helpers
+   src/common/locales
+   src/common/logger
+   src/common/threads
+   src/common/tray_icon
+   src/common/webapp

@@ -2,10 +2,10 @@
 ..
    test_threads.py
 
-Unit tests for pyra.threads.
+Unit tests for common.threads.
 """
 # local imports
-from pyra import threads
+from common import threads
 
 
 def test_run_in_thread():

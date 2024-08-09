@@ -2,7 +2,7 @@ Localization
 ============
 RetroArcher is being localized into various languages. The default language is `en` (English).
 
-.. image:: https://app.lizardbyte.dev/uno/crowdin/LizardByte_graph.svg
+.. image:: https://app.lizardbyte.dev/dashboard/crowdin/LizardByte_graph.svg
 
 CrowdIn
 -------
@@ -43,7 +43,7 @@ situations. For example the system tray icon is user interfacing and therefore s
 - In order for strings to be extracted from python code, the following lines must be added.
    .. code-block:: python
 
-      from pyra import locales
+      from common import locales
       _ = locales.get_text()
 
 - Wrap the string to be extracted in a function as shown.
@@ -76,8 +76,7 @@ any of the following paths are modified.
 
 .. code-block:: yaml
 
-   - 'retroarcher.py'
-   - 'pyra/**.py'
+   - 'src/**.py'
    - 'web/templates/**'
 
 When testing locally it may be desirable to manually extract, initialize, update, and compile strings.

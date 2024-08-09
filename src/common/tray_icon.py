@@ -1,6 +1,5 @@
 """
-..
-   tray_icon.py
+src/common/tray_icon.py
 
 Responsible for system tray icon and related functions.
 """
@@ -12,13 +11,14 @@ from typing import Union
 from PIL import Image
 
 # local imports
-import pyra
-from pyra import config
-from pyra import definitions
-from pyra import helpers
-from pyra import locales
-from pyra import logger
-from pyra import threads
+import common
+from common import config
+from common import definitions
+from common import helpers
+from common import locales
+from common import logger
+from common import threads
+from common import webapp
 
 # setup
 _ = locales.get_text()
@@ -68,7 +68,7 @@ def tray_initialize() -> Union[Icon, bool]:
     tray_icon = Icon(name='retroarcher')
     tray_icon.title = definitions.Names.name
 
-    image = Image.open(os.path.join(definitions.Paths.ROOT_DIR, 'web', 'images', 'retroarcher.ico'))
+    image = Image.open(os.path.join(definitions.Paths.ROOT_DIR, 'web', 'images', 'favicon.ico'))
     tray_icon.icon = image
 
     # NOTE: Open the application. "%(app_name)s" = "RetroArcher". Do not translate "%(app_name)s".
@@ -197,7 +197,7 @@ def tray_run_threaded() -> bool:
     --------
     tray_initialize : This function first, initializes the tray icon using ``tray_initialize()``.
     tray_run : Then, ``tray_run`` is executed in a thread.
-    pyra.threads.run_in_thread : Run a method within a thread.
+    common.threads.run_in_thread : Run a method within a thread.
 
     Examples
     --------
@@ -243,26 +243,26 @@ def tray_quit():
     """
     Shutdown RetroArcher.
 
-    Set the 'pyra.SIGNAL' variable to 'shutdown'.
+    Set the 'common.SIGNAL' variable to 'shutdown'.
 
     Examples
     --------
     >>> tray_quit()
     """
-    pyra.SIGNAL = 'shutdown'
+    common.SIGNAL = 'shutdown'
 
 
 def tray_restart():
     """
     Restart RetroArcher.
 
-    Set the 'pyra.SIGNAL' variable to 'restart'.
+    Set the 'common.SIGNAL' variable to 'restart'.
 
     Examples
     --------
     >>> tray_restart()
     """
-    pyra.SIGNAL = 'restart'
+    common.SIGNAL = 'restart'
 
 
 def tray_run():
@@ -309,8 +309,7 @@ def open_webapp() -> bool:
     >>> open_webapp()
     True
     """
-    url = f"http://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}"
-    return helpers.open_url_in_browser(url=url)
+    return helpers.open_url_in_browser(url=webapp.URL)
 
 
 def github_releases():

@@ -1,7 +1,7 @@
 .. include:: ../global.rst
 
-:modname:`pyra.tray_icon`
+:modname:`common.helpers`
 -------------------------
-.. automodule:: pyra.tray_icon
+.. automodule:: common.helpers
     :members:
     :show-inheritance:

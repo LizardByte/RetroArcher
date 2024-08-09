@@ -155,8 +155,5 @@ cython_debug/
 node_modules/
 *package-lock.json
 
-# RetroArcher directories
-logs/
-
-# RetroArcher files
-*config.ini
+# project files and directories
+config/

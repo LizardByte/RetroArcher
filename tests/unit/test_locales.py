@@ -2,13 +2,13 @@
 ..
    test_locales.py
 
-Unit tests for pyra.locales.py.
+Unit tests for common.locales.py.
 """
 # standard imports
 import inspect
 
 # local imports
-from pyra import locales
+from common import locales
 
 
 def test_get_all_locales():

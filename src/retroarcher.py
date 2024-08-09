@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 """
-..
-   retroarcher.py
+src/retroarcher.py
 
 Responsible for starting RetroArcher.
 """
-# future imports
-from __future__ import annotations
-
 # standard imports
 import argparse
 import os
@@ -16,21 +12,21 @@ import time
 from typing import Union
 
 # local imports
-import pyra
-from pyra import config
-from pyra import definitions
-from pyra import helpers
-from pyra import locales
-from pyra import logger
-from pyra import threads
+import common
+from common import config
+from common import definitions
+from common import helpers
+from common import locales
+from common import logger
+from common import threads
 
-py_name = 'pyra'
+app_name = 'common'
 
 # locales
 _ = locales.get_text()
 
 # get logger
-log = logger.get_logger(name=py_name)
+log = logger.get_logger(name=app_name)
 
 
 class IntRange(object):
@@ -151,18 +147,18 @@ def main():
     if args.config:
         config_file = args.config
     else:
-        config_file = os.path.join(definitions.Paths.DATA_DIR, definitions.Files.CONFIG)
+        config_file = os.path.join(definitions.Paths.CONFIG_DIR, definitions.Files.CONFIG)
     if args.debug:
-        pyra.DEBUG = True
+        common.DEBUG = True
     if args.dev:
-        pyra.DEV = True
+        common.DEV = True
     if args.quiet:
-        pyra.QUIET = True
+        common.QUIET = True
 
     # initialize retroarcher
     # logging should not occur until after initialize
     # any submodules that require translations need to be imported after config is initialize
-    pyra.initialize(config_file=config_file)
+    common.initialize(config_file=config_file)
 
     if args.config:
         log.info(msg=f"RetroArcher is using custom config file: {config_file}.")
@@ -178,7 +174,7 @@ def main():
         config.CONFIG.write()
 
     if config.CONFIG['General']['SYSTEM_TRAY']:
-        from pyra import tray_icon  # submodule requires translations so importing after initialization
+        from common import tray_icon  # submodule requires translations so importing after initialization
         # also do not import if not required by config options
 
         tray_icon.tray_run_threaded()
@@ -188,13 +184,12 @@ def main():
         pyi_splash.update_text("Starting the webapp")
         time.sleep(3)  # show splash screen for a min of 3 seconds
         pyi_splash.close()  # close the splash screen
-    from pyra import webapp  # import at use due to translations
+    from common import webapp  # import at use due to translations
     threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()
 
     # this should be after starting flask app
     if config.CONFIG['General']['LAUNCH_BROWSER'] and not args.nolaunch:
-        url = f"http://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}"
-        helpers.open_url_in_browser(url=url)
+        helpers.open_url_in_browser(url=webapp.URL)
 
     wait()  # wait for signal
 
@@ -203,38 +198,38 @@ def wait():
     """
     Wait for signal.
 
-    Endlessly loop while `pyra.SIGNAL = None`.
-    If `pyra.SIGNAL` is changed to `shutdown` or `restart` `pyra.stop()` will be executed.
-    If KeyboardInterrupt signal is detected `pyra.stop()` will be executed.
+    Endlessly loop while `common.SIGNAL = None`.
+    If `common.SIGNAL` is changed to `shutdown` or `restart` `common.stop()` will be executed.
+    If KeyboardInterrupt signal is detected `common.stop()` will be executed.
 
     Examples
     --------
     >>> wait()
     """
-    from pyra import hardware  # submodule requires translations so importing after initialization
+    from common import hardware  # submodule requires translations so importing after initialization
 
     log.info("RetroArcher is ready!")
 
     while True:  # wait endlessly for a signal
-        if not pyra.SIGNAL:
+        if not common.SIGNAL:
             hardware.update()  # update dashboard resource values
             try:
                 time.sleep(1)
             except KeyboardInterrupt:
-                pyra.SIGNAL = 'shutdown'
+                common.SIGNAL = 'shutdown'
         else:
-            log.info(f'Received signal: {pyra.SIGNAL}')
+            log.info(f'Received signal: {common.SIGNAL}')
 
-            if pyra.SIGNAL == 'shutdown':
-                pyra.stop()
-            elif pyra.SIGNAL == 'restart':
-                pyra.stop(restart=True)
+            if common.SIGNAL == 'shutdown':
+                common.stop()
+            elif common.SIGNAL == 'restart':
+                common.stop(restart=True)
             else:
                 log.error('Unknown signal. Shutting down...')
-                pyra.stop()
+                common.stop()
 
             break
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

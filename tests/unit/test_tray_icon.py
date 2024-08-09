@@ -2,7 +2,7 @@
 ..
    test_tray_icon.py
 
-Unit tests for pyra.tray_icon.
+Unit tests for common.tray_icon.
 """
 # standard imports
 import time
@@ -11,8 +11,8 @@ import time
 import pytest
 
 # local imports
-import pyra
-from pyra import tray_icon
+import common
+from common import tray_icon
 
 
 @pytest.fixture(scope='function')
@@ -118,7 +118,7 @@ def test_tray_quit():
     """Test tray_quit function"""
     tray_icon.tray_quit()
 
-    signal = pyra.SIGNAL
+    signal = common.SIGNAL
 
     assert signal == 'shutdown'
 
@@ -127,7 +127,7 @@ def test_tray_restart():
     """Test tray_restart function"""
     tray_icon.tray_restart()
 
-    signal = pyra.SIGNAL
+    signal = common.SIGNAL
 
     assert signal == 'restart'
 

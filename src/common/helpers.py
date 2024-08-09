@@ -1,12 +1,8 @@
 """
-..
-   helpers.py
+src/common/helpers.py
 
 Many reusable helper functions.
 """
-# future imports
-from __future__ import annotations
-
 # standard imports
 import datetime
 import ipaddress
@@ -61,16 +57,15 @@ def check_folder_writable(fallback: str, name: str, folder: Optional[str] = None
     if not folder:
         folder = fallback
 
-    if not os.path.isdir(s=folder):  # if directory doesn't exist
-        try:
-            os.makedirs(name=folder)  # try to make the directory
-        except OSError as e:
-            log.error(msg=f"Could not create {name} dir '{folder}': {e}")
-            if fallback and folder != fallback:
-                log.warning(msg=f"Falling back to {name} dir '{fallback}'")
-                return check_folder_writable(folder=None, fallback=fallback, name=name)
-            else:
-                return folder, None
+    try:
+        os.makedirs(name=folder)  # try to make the directory
+    except OSError as e:
+        log.error(msg=f"Could not create {name} dir '{folder}': {e}")
+        if fallback and folder != fallback:
+            log.warning(msg=f"Falling back to {name} dir '{fallback}'")
+            return check_folder_writable(folder=None, fallback=fallback, name=name)
+        else:
+            return folder, None
 
     if not os.access(path=folder, mode=os.W_OK):
         log.error(msg=f"Cannot write to {name} dir '{folder}'")
