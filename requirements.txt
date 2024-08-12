@@ -7,7 +7,7 @@ GPUtil==1.4.0
 IPy==1.01
 m2r2==0.3.3.post2
 numexpr==2.10.1
-numpydoc==1.7.0
+numpydoc==1.8.0
 Pillow==9.5.0
 psutil==6.0.0
 pyadl==0.1
