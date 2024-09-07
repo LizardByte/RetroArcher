@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-05-23 18:13\n"
+"PO-Revision-Date: 2024-09-07 08:38\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -295,7 +295,7 @@ msgstr "RetroArcher nicht im Browser öffnen"
 
 #: retroarcher.py:135
 msgid "Force RetroArcher to run on a specified port, default=9696"
-msgstr "Erzwinge RetroArcher auf einem bestimmten Port auszuführen, Standard=9696"
+msgstr "Erzwinge RetroArcher auf einem bestimmten zu Port laufen, Standard=9696"
 
 #: retroarcher.py:137
 msgid "Turn off console logging"
