@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-08-16 16:41\n"
+"PO-Revision-Date: 2024-09-15 09:50\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -172,7 +172,7 @@ msgstr "内存"
 
 #: pyra/hardware.py:38
 msgid "memory usage"
-msgstr "内存使用率"
+msgstr "内存使用情况"
 
 #: pyra/hardware.py:41
 msgid "network"
@@ -315,7 +315,7 @@ msgstr "登录"
 
 #: web/templates/navbar.html:44
 msgid "Social"
-msgstr "社交活动"
+msgstr "?"
 
 #: web/templates/navbar.html:49
 msgid "Facebook Page"
