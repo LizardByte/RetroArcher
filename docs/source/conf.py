@@ -28,7 +28,7 @@ except Exception:
 
 # -- Project information -----------------------------------------------------
 project = definitions.Names().name
-project_copyright = f'{datetime.now ().year}, {project}'
+project_copyright = f'{datetime.now().year}, {project}'
 author = 'ReenigneArcher'
 
 # The full version, including alpha/beta/rc tags
