@@ -1,5 +1,5 @@
 Babel==2.15.0
-configobj==5.0.8
+configobj==5.0.9
 Flask==3.0.3
 Flask-Babel==4.0.0
 furo==2024.7.18
