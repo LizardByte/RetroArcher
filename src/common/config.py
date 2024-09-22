@@ -1,10 +1,11 @@
 """
-..
-   config.py
+src/common/config.py
 
 Responsible for config related functions.
 """
 # standard imports
+import base64
+import copy
 import sys
 from typing import Optional, List
 
@@ -13,9 +14,9 @@ from configobj import ConfigObj
 from validate import Validator, ValidateError
 
 # local imports
-from pyra import definitions
-from pyra import logger
-from pyra import locales
+from common import definitions
+from common import logger
+from common import locales
 
 # get log
 log = logger.get_logger(name=__name__)
@@ -47,14 +48,14 @@ def on_change_tray_toggle() -> bool:
 
     See Also
     --------
-    pyra.tray_icon.tray_toggle : ``on_change_tray_toggle`` is an alias of this function.
+    common.tray_icon.tray_toggle : ``on_change_tray_toggle`` is an alias of this function.
 
     Examples
     --------
     >>> on_change_tray_toggle()
     True
     """
-    from pyra import tray_icon
+    from common import tray_icon
     return tray_icon.tray_toggle()
 
 
@@ -108,12 +109,34 @@ _CONFIG_SPEC_DICT = dict(
             description=_('The localization setting to use.'),
             default='en',
             options=[
+                'de',
                 'en',
+                'en_GB',
+                'en_US',
                 'es',
+                'fr',
+                'it',
+                'ja',
+                'pt',
+                'ru',
+                'sv',
+                'tr',
+                'zh',
             ],
             option_names=[
+                f'German ({_("German")})',
                 f'English ({_("English")})',
-                f'Español ({_("Spanish")})',
+                f'English (Great Britain) ({_("English (Great Britain)")})',
+                f'English (United States) ({_("English (United States)")})',
+                f'Spanish ({_("Spanish")})',
+                f'French ({_("French")})',
+                f'Italian ({_("Italian")})',
+                f'Japanese ({_("Japanese")})',
+                f'Portuguese ({_("Portuguese")})',
+                f'Russian ({_("Russian")})',
+                f'Swedish ({_("Swedish")})',
+                f'Turkish ({_("Turkish")})',
+                f'Chinese (Simplified) ({_("Chinese (Simplified)")})',
             ],
             refresh=True,
             extra_class='col-lg-6',
@@ -192,6 +215,13 @@ _CONFIG_SPEC_DICT = dict(
             description=_('Todo: The base URL of the web server. Used for reverse proxies.'),
             extra_class='col-lg-6',
         ),
+        SSL=dict(
+            type='boolean',
+            name=_('SSL'),
+            default=True,
+            description=_('Run the web server with HTTPS. '
+                          'Disabling this can be a security risk, do so at your own risk.'),
+        ),
     ),
     User_Interface=dict(
         type='section',
@@ -219,6 +249,115 @@ _CONFIG_SPEC_DICT = dict(
         ),
     ),
 )
+
+
+def is_masked_field(section: str, key: str) -> bool:
+    """
+    Check if a field is masked.
+
+    This function will check if a field is masked in the config spec dictionary.
+
+    Parameters
+    ----------
+    section : str
+        The section of the config.
+    key : str
+        The key of the config field.
+
+    Returns
+    -------
+    bool
+        True if the field is masked, otherwise False.
+
+    Examples
+    --------
+    >>> is_masked_field(section='General', key='API_KEY')
+    True
+    """
+    return _CONFIG_SPEC_DICT.get(section, {}).get(key, {}).get('mask', False)
+
+
+def encode_value(value: str) -> str:
+    """
+    Encode a value using base64.
+
+    This function will encode a value using base64.
+
+    Parameters
+    ----------
+    value : str
+        The value to encode.
+
+    Returns
+    -------
+    str
+        The encoded value.
+
+    Examples
+    --------
+    >>> encode_value('some text')
+    'c29tZSB0ZXh0'
+    """
+    return base64.b64encode(value.encode('utf-8')).decode('utf-8')
+
+
+def decode_value(value: str) -> str:
+    """
+    Decode a base64 encoded value.
+
+    This function will decode a base64 encoded value.
+
+    Parameters
+    ----------
+    value : str
+        The value to decode.
+
+    Returns
+    -------
+    str
+        The decoded value. If the value cannot be decoded, an empty string is returned.
+
+    Examples
+    --------
+    >>> decode_value('c29tZSB0ZXh0')
+    'some text'
+    """
+    try:
+        return base64.b64decode(value.encode('utf-8')).decode('utf-8')
+    except Exception as e:
+        log.error(msg=f"Unable to decode value: {e}")
+        return ''
+
+
+def decode_config(config: ConfigObj) -> dict:
+    """
+    Decode masked fields in the config.
+
+    This function will create a decoded copy of the config object, and decode any masked fields.
+
+    Parameters
+    ----------
+    config : ConfigObj
+        The config object to decode.
+
+    Returns
+    -------
+    dict
+        A decoded copy of the config object.
+
+    Examples
+    --------
+    >>> config_object = create_config(config_file='config.ini')
+    >>> decode_config(config=config_object)
+    {...}
+    """
+    _config = copy.deepcopy(config)  # we need to do a deepcopy to avoid modifying the original config
+
+    for section, options in _config.items():
+        for key, value in options.items():
+            if is_masked_field(section=section, key=key):
+                _config[section][key] = decode_value(value)
+    return _config
 
 
 def convert_config(d: dict = _CONFIG_SPEC_DICT, _config_spec: Optional[List] = None) -> List:
@@ -255,6 +394,10 @@ def convert_config(d: dict = _CONFIG_SPEC_DICT, _config_spec: Optional[List] = N
         except TypeError:
             pass
         else:
+            # if a default value is not set, then set it to None
+            if 'default' not in v:
+                v['default'] = None
+
             checks = ['min', 'max', 'options', 'default']
             check_value = ''
 
@@ -332,7 +475,7 @@ def create_config(config_file: str, config_spec: dict = _CONFIG_SPEC_DICT) -> Co
         encoding='UTF-8',
         list_values=True,
         stringify=True,
-        write_empty_values=False
+        write_empty_values=False,
     )
     config_valid = validate_config(config=config)
 
@@ -348,7 +491,7 @@ def create_config(config_file: str, config_spec: dict = _CONFIG_SPEC_DICT) -> Co
         encoding='UTF-8',
         list_values=True,
         stringify=True,
-        write_empty_values=False
+        write_empty_values=False,
     )
     user_config_valid = validate_config(config=user_config)
     if not user_config_valid:
@@ -376,7 +519,7 @@ def create_config(config_file: str, config_spec: dict = _CONFIG_SPEC_DICT) -> Co
         validate_config(config=config)
 
     config.filename = config_file
-    config.write()  # write the config file
+    save_config(config=config)
 
     if config_spec == _CONFIG_SPEC_DICT:  # set CONFIG dictionary
         global CONFIG

@@ -2,13 +2,13 @@
 ..
    test_hardware.py
 
-Unit tests for pyra.hardware.py.
+Unit tests for common.hardware.py.
 """
 # lib imports
 import pytest
 
 # local imports
-from pyra import hardware
+from common import hardware
 
 
 def test_update():

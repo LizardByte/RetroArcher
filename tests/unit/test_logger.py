@@ -2,13 +2,13 @@
 ..
    test_logger.py
 
-Unit tests for pyra.logger.py.
+Unit tests for common.logger.py.
 """
 # standard imports
 import logging
 
 # local imports
-from pyra import logger
+from common import logger
 
 
 def test_blacklist_config():
@@ -33,7 +33,7 @@ def test_init_multiprocessing():
 
 def test_get_logger():
     """Test that logger object can be created"""
-    log = logger.get_logger(name='pyra')
+    log = logger.get_logger(name='common')
     assert isinstance(log, logging.Logger)
 
 
@@ -44,7 +44,7 @@ def test_setup_loggers():
 
 def test_init_logger():
     """Test that logger can be initialized"""
-    log = logger.init_logger(log_name='pyra')
+    log = logger.init_logger(log_name='common')
     assert isinstance(log, logging.Logger)
 
 

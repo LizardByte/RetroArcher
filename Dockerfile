@@ -1,19 +1,29 @@
 # artifacts: false
-# platforms: linux/386,linux/amd64
-FROM python:3.9.6-slim-bullseye as retroarcher-base
+# platforms: linux/amd64,linux/arm64/v8
+FROM python:3.12-slim-bookworm AS base
 
-FROM retroarcher-base as retroarcher-build
+FROM base AS build
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # install build dependencies
-RUN apt-get update -y \
-     && apt-get install -y --no-install-recommends \
-        build-essential \
-        nodejs \
-        npm \
-        pkg-config \
-        libopenblas-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN <<_DEPS
+#!/bin/bash
+set -e
+
+dependencies=(
+  "build-essential"
+  "libjpeg-dev"  # pillow
+  "npm"  # web dependencies
+  "pkg-config"
+  "libopenblas-dev"
+  "zlib1g-dev"  # pillow
+)
+apt-get update -y
+apt-get install -y --no-install-recommends "${dependencies[@]}"
+apt-get clean
+rm -rf /var/lib/apt/lists/*
+_DEPS
 
 # python virtualenv
 RUN python -m venv /opt/venv
@@ -25,44 +35,72 @@ WORKDIR /build
 COPY . .
 
 # setup python requirements
-RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel && \
-    python -m pip install --no-cache-dir -r requirements.txt
+RUN <<_REQUIREMENTS
+#!/bin/bash
+set -e
+python -m pip install --no-cache-dir --upgrade pip setuptools wheel
+python -m pip install --no-cache-dir -r requirements.txt
+_REQUIREMENTS
 
 # compile locales
 RUN python scripts/_locale.py --compile
 
 # setup npm and dependencies
-RUN npm install && \
-    mv -f ./node_modules/ ./web/
+RUN <<_NPM
+#!/bin/bash
+set -e
+npm install
+mv -f ./node_modules/ ./web/
+_NPM
 
 # compile docs
 WORKDIR /build/docs
 RUN sphinx-build -M html source build
 
-FROM retroarcher-base as retroarcher
+FROM base AS app
 
 # copy app from builder
-COPY --from=retroarcher-build /build/ /app/
+COPY --from=build /build/ /app/
 
 # copy python venv
-COPY --from=retroarcher-build /opt/venv/ /opt/venv/
+COPY --from=build /opt/venv/ /opt/venv/
 # use the venv
 ENV PATH="/opt/venv/bin:$PATH"
 # site-packages are in /opt/venv/lib/python<version>/site-packages/
 
 # setup remaining env variables
 ENV RETROARCHER_DOCKER=True
-ENV TZ=UTC
+
+# network setup
+EXPOSE 9696
 
 # setup user
-RUN groupadd -g 1000 retroarcher && \
-    useradd -u 1000 -g 1000 retroarcher
+ARG PGID=1000
+ENV PGID=${PGID}
+ARG PUID=1000
+ENV PUID=${PUID}
+ENV TZ="UTC"
+ARG UNAME=lizard
+ENV UNAME=${UNAME}
 
-# create config directory
-RUN mkdir -p /config
+ENV HOME=/home/$UNAME
+
+# setup user
+RUN <<_SETUP_USER
+#!/bin/bash
+set -e
+groupadd -f -g "${PGID}" "${UNAME}"
+useradd -lm -d ${HOME} -s /bin/bash -g "${PGID}" -u "${PUID}" "${UNAME}"
+mkdir -p ${HOME}/.config/retroarcher
+ln -s ${HOME}/.config/retroarcher /config
+chown -R ${UNAME} ${HOME}
+_SETUP_USER
+
+# mounts
 VOLUME /config
 
-CMD ["python", "retroarcher.py"]
+USER ${UNAME}
+WORKDIR ${HOME}
 
-EXPOSE 9696
-HEALTHCHECK --start-period=90s CMD python retroarcher.py --docker_healthcheck || exit 1
+ENTRYPOINT ["python", "./src/retroarcher.py"]
+HEALTHCHECK --start-period=90s CMD python ./src/retroarcher.py --docker_healthcheck || exit 1

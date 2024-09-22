@@ -1,10 +1,10 @@
 """
-..
-   webapp.py
+src/common/webapp.py
 
 Responsible for serving the webapp.
 """
 # standard imports
+import json
 import os
 from typing import Optional
 
@@ -12,25 +12,47 @@ from typing import Optional
 from flask import Flask, Response
 from flask import jsonify, render_template as flask_render_template, request, send_from_directory
 from flask_babel import Babel
+from flask_wtf import CSRFProtect
+import polib
+from werkzeug.utils import secure_filename
 
 # local imports
-import pyra
-from pyra import config
-from pyra import hardware
-from pyra.definitions import Paths
-from pyra import locales
-from pyra import logger
+import common
+from common import config
+from common import crypto
+from common import hardware
+from common.definitions import Paths
+from common import locales
+from common import logger
+
+# variables
+URL_SCHEME = None
+URL = None
 
 # localization
 _ = locales.get_text()
+
+responses = {
+    500: Response(response='Internal Server Error', status=500, mimetype='text/plain')
+}
+
+# mime type map
+mime_type_map = {
+    'gif': 'image/gif',
+    'ico': 'image/vnd.microsoft.icon',
+    'jpg': 'image/jpeg',
+    'jpeg': 'image/jpeg',
+    'png': 'image/png',
+    'svg': 'image/svg+xml',
+}
 
 # setup flask app
 app = Flask(
     import_name=__name__,
     root_path=os.path.join(Paths.ROOT_DIR, 'web'),
     static_folder=os.path.join(Paths.ROOT_DIR, 'web'),
-    template_folder=os.path.join(Paths.ROOT_DIR, 'web', 'templates')
-    )
+    template_folder=os.path.join(Paths.ROOT_DIR, 'web', 'templates'),
+)
 
 # remove extra lines rendered jinja templates
 app.jinja_env.trim_blocks = True
@@ -60,6 +82,9 @@ log_handlers = logger.get_logger(name=__name__).handlers
 for handler in log_handlers:
     app.logger.addHandler(handler)
 
+csrf = CSRFProtect()
+csrf.init_app(app)
+
 
 def render_template(template_name_or_list, **context):
     """
@@ -85,7 +110,7 @@ def render_template(template_name_or_list, **context):
     --------
     >>> render_template(template_name_or_list='home.html', title=_('Home'))
     """
-    context['ui_config'] = pyra.CONFIG['User_Interface'].copy()
+    context['ui_config'] = common.CONFIG['User_Interface'].copy()
 
     return flask_render_template(template_name_or_list=template_name_or_list, **context)
 
@@ -134,7 +159,7 @@ def callback_dashboard() -> Response:
 
     See Also
     --------
-    pyra.hardware.chart_data : This function sets up the data in the proper format.
+    common.hardware.chart_data : This function sets up the data in the proper format.
 
     Examples
     --------
@@ -177,7 +202,7 @@ def settings(configuration_spec: Optional[str]) -> render_template:
     --------
     >>> settings()
     """
-    config_settings = pyra.CONFIG
+    config_settings = config.decode_config(common.CONFIG)
 
     if not configuration_spec:
         config_spec = config._CONFIG_SPEC_DICT
@@ -221,30 +246,50 @@ def docs(filename) -> send_from_directory:
     return send_from_directory(directory=os.path.join(Paths.DOCS_DIR), path=filename)
 
 
-@app.route('/favicon.ico')
-def favicon() -> send_from_directory:
+@app.route(
+    '/favicon.ico',
+    defaults={'img': 'favicon.ico'},
+    methods=['GET'],
+)
+@app.route("/images/<path:img>", methods=["GET"])
+def image(img: str) -> send_from_directory:
     """
-    Serve the favicon.ico file.
+    Get image from static/images directory.
 
-    .. todo:: This documentation needs to be improved.
+    Serve images from the static/images directory.
+
+    Parameters
+    ----------
+    img : str
+        The image to return.
 
     Returns
     -------
     flask.send_from_directory
-        The ico file.
+        The image.
 
     Notes
     -----
     The following routes trigger this function.
 
-        `/favicon.ico`
+        - `/favicon.ico`
+        - `/images/<img>`
 
     Examples
     --------
-    >>> favicon()
+    >>> image('favicon.ico')
     """
-    return send_from_directory(directory=os.path.join(app.static_folder, 'images'),
-                               path='retroarcher.ico', mimetype='image/vnd.microsoft.icon')
+    directory = os.path.join(app.static_folder, 'images')
+    filename = os.path.basename(secure_filename(filename=img))  # sanitize the input
+
+    if os.path.isfile(os.path.join(directory, filename)):
+        file_extension = filename.rsplit('.', 1)[-1]
+        if file_extension in mime_type_map:
+            return send_from_directory(directory=directory, path=filename, mimetype=mime_type_map[file_extension])
+        else:
+            return Response(response='Invalid file type', status=400, mimetype='text/plain')
+    else:
+        return Response(response='Image not found', status=404, mimetype='text/plain')
 
 
 @app.route('/status')
@@ -273,7 +318,7 @@ def test_logger() -> str:
     """
     Test logging functions.
 
-    Check `./logs/pyra.webapp.log` for output.
+    Check `./logs/common.webapp.log` for output.
 
     Returns
     -------
@@ -302,7 +347,7 @@ def test_logger() -> str:
 @app.route('/api/settings/<path:configuration_spec>')
 def api_settings(configuration_spec: Optional[str]) -> Response:
     """
-    Get current settings or save changes to settings from web ui.
+    Get current settings or save changes to settings from the web ui.
 
     This endpoint accepts a `GET` or `POST` request. A `GET` request will return the current settings.
     A `POST` request will process the data passed in and return the results of processing.
@@ -320,7 +365,7 @@ def api_settings(configuration_spec: Optional[str]) -> Response:
 
     Examples
     --------
-    >>> callback_dashboard()
+    >>> api_settings()
     <Response ... bytes [200 OK]>
     """
     if not configuration_spec:
@@ -342,6 +387,7 @@ def api_settings(configuration_spec: Optional[str]) -> Response:
         }
 
         data = request.form
+        _config = config.decode_config(common.CONFIG)
         for option, value in data.items():
             split_option = option.split('|', 1)
             key = split_option[0]
@@ -351,7 +397,7 @@ def api_settings(configuration_spec: Optional[str]) -> Response:
 
             # get the original value
             try:
-                og_value = config.CONFIG[key][setting]
+                og_value = _config[key][setting]
             except KeyError:
                 og_value = ''
             finally:
@@ -361,6 +407,8 @@ def api_settings(configuration_spec: Optional[str]) -> Response:
                     value = float(value)
                 if setting_type == 'integer':
                     value = int(value)
+                if config.is_masked_field(section=key, key=setting):
+                    value = config.encode_value(value)
 
             if og_value != value:
                 # setting changed, get the on change command
@@ -395,19 +443,68 @@ def start_webapp():
     Examples
     --------
     >>> start_webapp()
-     * Serving Flask app 'pyra.webapp' (lazy loading)
+     * Serving Flask app 'common.webapp' (lazy loading)
     ...
-     * Running on http://.../ (Press CTRL+C to quit)
+     * Running on https://.../ (Press CTRL+C to quit)
 
-    >>> from pyra import webapp, threads
+    >>> from common import webapp, threads
     >>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()
-     * Serving Flask app 'pyra.webapp' (lazy loading)
+     * Serving Flask app 'common.webapp' (lazy loading)
     ...
-     * Running on http://.../ (Press CTRL+C to quit)
+     * Running on https://.../ (Press CTRL+C to quit)
     """
+    global URL, URL_SCHEME
+    URL_SCHEME = 'https' if config.CONFIG['Network']['SSL'] else 'http'
+    URL = f"{URL_SCHEME}://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}"
+
+    if config.CONFIG['Network']['SSL']:
+        cert_file, key_file = crypto.initialize_certificate()
+    else:
+        cert_file = key_file = None
+
     app.run(
         host=config.CONFIG['Network']['HTTP_HOST'],
         port=config.CONFIG['Network']['HTTP_PORT'],
-        debug=pyra.DEV,
+        debug=common.DEV,
+        ssl_context=(cert_file, key_file) if config.CONFIG['Network']['SSL'] else None,
         use_reloader=False  # reloader doesn't work when running in a separate thread
     )
+
+
+@app.route("/translations", methods=["GET"])
+def translations() -> Response:
+    """
+    Serve the translations.
+
+    Gets the user's locale and serves the translations for the webapp.
+
+    Returns
+    -------
+    Response
+        The translations.
+
+    Examples
+    --------
+    >>> translations()
+    """
+    locale = locales.get_locale()
+
+    po_files = [
+        f'{Paths.LOCALE_DIR}/{locale}/LC_MESSAGES/retroarcher.po',  # selected locale
+        f'{Paths.LOCALE_DIR}/retroarcher.po',  # fallback to default domain
+    ]
+
+    for po_file in po_files:
+        if os.path.isfile(po_file):
+            po = polib.pofile(po_file)
+
+            # convert the po to json
+            data = dict()
+            for entry in po:
+                if entry.msgid:
+                    data[entry.msgid] = entry.msgstr
+                    app.logger.debug(f'Translation: {entry.msgid} -> {entry.msgstr}')
+
+            return Response(response=json.dumps(data),
+                            status=200,
+                            mimetype='application/json')

@@ -1,6 +1,8 @@
-### lizardbyte/retroarcher
+# Docker
 
-#### Using docker run
+## lizardbyte/retroarcher
+
+### Using docker run
 Create and run the container (substitute your `<values>`):
 
 ```bash
@@ -28,7 +30,7 @@ docker pull lizardbyte/retroarcher
 docker run -d ...
 ```
 
-#### Using docker-compose
+### Using docker-compose
 
 Create a `docker-compose.yml` file with the following contents (substitute your `<values>`):
 
@@ -63,7 +65,7 @@ docker-compose pull
 docker-compose up -d
 ```
 
-#### Parameters
+### Parameters
 You must substitute the `<values>` with your own settings.
 
 Parameters are split into two halves separated by a colon. The left side represents the host and the right side the
@@ -83,7 +85,7 @@ Therefore `-p 9696:9696` would expose port `9696` from inside the container to b
 | `-e PGID=<gid>`             | Group ID                                                                             | `1001`              |  False   |
 | `-e TZ=<timezone>`          | Lookup TZ value [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) | `America/New_York`  |   True   |
 
-#### User / Group Identifiers:
+### User / Group Identifiers:
 
 When using data volumes (-v flags) permissions issues can arise between the host OS and the container. To avoid this
 issue you can specify the user PUID and group PGID. Ensure the data volume directory on the host is owned by the same

@@ -2,14 +2,14 @@
 ..
    test_helpers.py
 
-Unit tests for pyra.helpers.py.
+Unit tests for common.helpers.py.
 """
 # standard imports
 import datetime
 import logging
 
 # local imports
-from pyra import helpers
+from common import helpers
 
 
 def test_check_folder_writeable():
@@ -22,7 +22,7 @@ def test_check_folder_writeable():
 
 def test_get_logger():
     """Test that logger object can be created"""
-    test_logger = helpers.get_logger(name='pyra')
+    test_logger = helpers.get_logger(name='common')
     assert isinstance(test_logger, logging.Logger)
 
 

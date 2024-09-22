@@ -1,7 +1,7 @@
 .. include:: ../global.rst
 
-:modname:`pyra.__init__`
+:modname:`common.config`
 ------------------------
-.. automodule:: pyra
+.. automodule:: common.config
     :members:
     :show-inheritance:

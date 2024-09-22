@@ -1,6 +1,5 @@
 """
-..
-   definitions.py
+src/common/definitions.py
 
 Contains classes with attributes to common definitions (paths and filenames).
 """
@@ -124,8 +123,10 @@ class Paths:
 
     The purpose of this class is to ensure consistency when using these paths.
 
-    PYRA_DIR : str
-        The directory containing the retroarcher python files.
+    COMMON_DIR : str
+        The directory containing the common python files.
+    SRC_DIR : str
+        The directory containing the application python files
     ROOT_DIR : str
         The root directory of the application. This is where the source files exist.
     DATA_DIR : str
@@ -139,20 +140,24 @@ class Paths:
 
     Examples
     --------
-    >>> Paths.logs
+    >>> Paths.LOG_DIR
     '.../logs'
     """
-    PYRA_DIR = os.path.dirname(os.path.abspath(__file__))
-    ROOT_DIR = os.path.dirname(PYRA_DIR)
+    COMMON_DIR = os.path.dirname(os.path.abspath(__file__))
+    SRC_DIR = os.path.dirname(COMMON_DIR)
+    ROOT_DIR = os.path.dirname(SRC_DIR)
     DATA_DIR = ROOT_DIR
-    BINARY_PATH = os.path.abspath(os.path.join(DATA_DIR, 'retroarcher.py'))
+    BINARY_PATH = os.path.abspath(os.path.join(SRC_DIR, 'retroarcher.py'))
 
     if Modes.FROZEN:  # pyinstaller build
         DATA_DIR = os.path.dirname(sys.executable)
         BINARY_PATH = os.path.abspath(sys.executable)
     if Modes.DOCKER:  # docker install
         DATA_DIR = '/config'  # overwrite the value that was already set
+        CONFIG_DIR = DATA_DIR
+    else:
+        CONFIG_DIR = os.path.join(DATA_DIR, 'config')
 
     DOCS_DIR = os.path.join(ROOT_DIR, 'docs', 'build', 'html')
     LOCALE_DIR = os.path.join(ROOT_DIR, 'locale')
-    LOG_DIR = os.path.join(DATA_DIR, 'logs')
+    LOG_DIR = os.path.join(CONFIG_DIR, 'logs')

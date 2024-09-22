@@ -1,26 +1,32 @@
 """
-..
-   conftest.py
+tests/conftest.py
 
 Fixtures for pytest.
 """
 # standard imports
 import os
+import sys
 
 # lib imports
 import pytest
 
-# local imports
-import pyra
-from pyra import config
-from pyra import definitions
-from pyra import webapp
+pytest.root_dir = root_dir = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+pytest.src_dir = src_dir = os.path.join(root_dir, 'src')
+
+if os.path.isdir(src_dir):  # avoid flake8 E402 warning
+    sys.path.insert(0, src_dir)
+
+    # local imports
+    import common
+    from common import config
+    from common import definitions
+    from common import webapp
 
 
 @pytest.fixture(scope='function')
 def test_config_file():
     """Set a test config file path"""
-    test_config_file = os.path.join(definitions.Paths.DATA_DIR, 'test_config.ini')  # use a dummy ini file
+    test_config_file = os.path.join(definitions.Paths.CONFIG_DIR, 'test_config.ini')  # use a dummy ini file
 
     yield test_config_file
 
@@ -36,17 +42,17 @@ def test_config_object(test_config_file):
 
 
 @pytest.fixture(scope='function')
-def test_pyra_init(test_config_file):
-    test_pyra_init = pyra.initialize(config_file=test_config_file)
+def test_common_init(test_config_file):
+    test_common_init = common.initialize(config_file=test_config_file)
 
-    yield test_pyra_init
+    yield test_common_init
 
-    pyra._INITIALIZED = False
-    pyra.SIGNAL = 'shutdown'
+    common._INITIALIZED = False
+    common.SIGNAL = 'shutdown'
 
 
 @pytest.fixture(scope='function')
-def test_client(test_pyra_init):
+def test_client(test_common_init):
     """Create a test client for testing webapp endpoints"""
     app = webapp.app
     app.testing = True

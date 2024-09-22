@@ -1,6 +1,5 @@
 """
-..
-   locales.py
+src/common/locales.py
 
 Functions related to localization.
 
@@ -27,9 +26,9 @@ import babel
 from babel import localedata
 
 # local imports
-from pyra import config
-from pyra.definitions import Paths
-from pyra import logger
+from common import config
+from common.definitions import Paths
+from common import logger
 
 default_domain = 'retroarcher'
 default_locale = 'en'

@@ -1,6 +1,5 @@
 """
-..
-   _locale.py
+scripts/_locale.py
 
 Functions related to building, initializing, updating, and compiling localization translations.
 """
@@ -15,16 +14,21 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(script_dir)
 locale_dir = os.path.join(root_dir, 'locale')
 
-# retroarcher target locales
+# target locales
 target_locales = [
-    'de',  # Deutsch
+    'de',  # German
     'en',  # English
     'en_GB',  # English (United Kingdom)
     'en_US',  # English (United States)
-    'es',  # español
-    'fr',  # français
-    'it',  # italiano
-    'ru',  # русский
+    'es',  # Spanish
+    'fr',  # French
+    'it',  # Italian
+    'ja',  # Japanese
+    'pt',  # Portuguese
+    'ru',  # Russian
+    'sv',  # Swedish
+    'tr',  # Turkish
+    'zh',  # Chinese (Simplified)
 ]
 
 
@@ -41,9 +45,8 @@ def babel_extract():
         f'--project={project_name}',
         '--version=v0',
         '--add-comments=NOTE',
-        './retroarcher.py',
-        './pyra',
-        './web'
+        './src',
+        './web',
     ]
 
     print(commands)

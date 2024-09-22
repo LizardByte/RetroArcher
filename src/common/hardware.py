@@ -1,6 +1,5 @@
 """
-..
-   hardware.py
+src/common/hardware.py
 
 Functions related to the dashboard viewer.
 """
@@ -12,10 +11,10 @@ from numexpr import cpuinfo
 import psutil
 
 # local imports
-from pyra import definitions
-from pyra import helpers
-from pyra import locales
-from pyra import logger
+from common import definitions
+from common import helpers
+from common import locales
+from common import logger
 
 try:
     cpu_name = cpuinfo.cpu.info[0]['ProcessorNameString'].strip()
@@ -335,7 +334,7 @@ def chart_data() -> dict:
 
     See Also
     --------
-    pyra.webapp.callback_dashboard : A callback called by javascript to get this data.
+    common.webapp.callback_dashboard : A callback called by javascript to get this data.
 
     Examples
     --------

@@ -1,6 +1,5 @@
 """
-..
-   build.py
+scripts/build.py
 
 Creates spec and builds binaries for RetroArcher.
 """
@@ -14,14 +13,14 @@ import PyInstaller.__main__
 def build():
     """Sets arguments for pyinstaller, creates spec, and builds binaries."""
     pyinstaller_args = [
-        'retroarcher.py',
+        './src/retroarcher.py',
         '--onefile',
         '--noconfirm',
         '--paths=./',
         '--add-data=docs:docs',
         '--add-data=web:web',
         '--add-data=locale:locale',
-        '--icon=./web/images/retroarcher.ico'
+        '--icon=./web/images/favicon.ico'
     ]
 
     if sys.platform.lower() == 'win32':  # windows
@@ -29,10 +28,8 @@ def build():
         pyinstaller_args.append('--splash=./web/images/logo-circle.png')
 
         # fix args for windows
-        arg_count = 0
-        for arg in pyinstaller_args:
-            pyinstaller_args[arg_count] = arg.replace(':', ';')
-            arg_count += 1
+        for index, arg in enumerate(pyinstaller_args):
+            pyinstaller_args[index] = arg.replace(':', ';')
     elif sys.platform.lower() == 'darwin':  # macOS
         pyinstaller_args.append('--console')
         pyinstaller_args.append('--osx-bundle-identifier=dev.lizardbyte.retroarcher')

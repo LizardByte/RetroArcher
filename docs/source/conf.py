@@ -6,6 +6,8 @@
 
 # standard imports
 from datetime import datetime
+import os
+import sys
 
 
 # -- Path setup --------------------------------------------------------------
@@ -13,17 +15,17 @@ from datetime import datetime
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-import os
-import sys
 
 script_dir = os.path.dirname(os.path.abspath(__file__))  # the directory of this file
 source_dir = os.path.dirname(script_dir)  # the source folder directory
 root_dir = os.path.dirname(source_dir)  # the root folder directory
+src_dir = os.path.join(root_dir, 'src')  # the src folder directory
 
 try:
-    sys.path.insert(0, root_dir)
-    from pyra import definitions  # put this in a try/except to prevent flake8 warning
-except Exception:
+    sys.path.insert(0, src_dir)
+    from common import definitions  # put this in a try/except to prevent flake8 warning
+except Exception as e:
+    print(f"Unable to import definitions from {root_dir}: {e}")
     sys.exit(1)
 
 # -- Project information -----------------------------------------------------
@@ -42,10 +44,11 @@ version = os.getenv('READTHEDOCS_VERSION', 'dirty')
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'm2r2',  # enable markdown files
+    'myst_parser',  # enable markdown files
     'numpydoc',  # this automatically loads `sphinx.ext.autosummary` as well
     'sphinx.ext.autodoc',  # autodocument modules
     'sphinx.ext.autosectionlabel',
+    'sphinx.ext.intersphinx',  # link to other projects' documentation
     'sphinx.ext.todo',  # enable to-do sections
     'sphinx.ext.viewcode'  # add links to view source code
 ]
@@ -59,13 +62,16 @@ extensions = [
 exclude_patterns = ['toc.rst']
 
 # Extensions to include.
-source_suffix = ['.rst', '.md']
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 
 # -- Options for HTML output -------------------------------------------------
 
 # images
-html_favicon = os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'retroarcher.ico')
+html_favicon = os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'favicon.ico')
 html_logo = os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'logo-circle.png')
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -102,3 +108,13 @@ numpydoc_validation_checks = {'all', 'SA01'}  # Report warnings for all checks *
 # disable epub mimetype warnings
 # https://github.com/readthedocs/readthedocs.org/blob/eadf6ac6dc6abc760a91e1cb147cc3c5f37d1ea8/docs/conf.py#L235-L236
 suppress_warnings = ["epub.unknown_project_files"]
+
+python_version = f'{sys.version_info.major}.{sys.version_info.minor}'
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/{}/'.format(python_version), None),
+}
+
+numpydoc_show_class_members = True
+numpydoc_show_inherited_class_members = False
+numpydoc_xref_param_type = True
