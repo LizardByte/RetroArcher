@@ -3,152 +3,152 @@ msgstr ""
 "Project-Id-Version: lizardbyte\n"
 "Report-Msgid-Bugs-To: github.com/retroarcher\n"
 "POT-Creation-Date: 2024-02-01 15:19+0000\n"
-"PO-Revision-Date: 2024-03-11 02:49\n"
+"PO-Revision-Date: 2024-09-15 09:50\n"
 "Last-Translator: \n"
-"Language-Team: Spanish\n"
+"Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: lizardbyte\n"
 "X-Crowdin-Project-ID: 606145\n"
-"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-Language: zh-CN\n"
 "X-Crowdin-File: /[LizardByte.RetroArcher] master/retroarcher.po\n"
 "X-Crowdin-File-ID: 5788\n"
-"Language: es_ES\n"
+"Language: zh_CN\n"
 
 #: pyra/config.py:78
 msgid "Info"
-msgstr "Información"
+msgstr "信息"
 
 #: pyra/config.py:79
 msgid "For information purposes only."
-msgstr "Sólo con fines informativos."
+msgstr "仅供参考。"
 
 #: pyra/config.py:83
 msgid "Config version"
-msgstr "Versión de configuración"
+msgstr "配置版本"
 
 #: pyra/config.py:84
 msgid "The configuration version."
-msgstr "La versión de configuración."
+msgstr "配置版本。"
 
 #: pyra/config.py:94
 msgid "First run complete"
-msgstr "Primera operación completa"
+msgstr "第一次运行完成"
 
 #: pyra/config.py:95
 msgid "Todo: Indicates if the user has completed the initial setup."
-msgstr "Todo: Indica si el usuario ha completado la configuración inicial."
+msgstr "待办事项：指示用户是否完成了初始设置。"
 
 #: pyra/config.py:102
 msgid "General"
-msgstr "General"
+msgstr "常规"
 
 #: pyra/config.py:103
 msgid "General settings."
-msgstr "Ajustes generales."
+msgstr "常规设置。"
 
 #: pyra/config.py:107
 msgid "Locale"
-msgstr "Local"
+msgstr "区域设置"
 
 #: pyra/config.py:108
 msgid "The localization setting to use."
-msgstr "La configuración de localización a utilizar."
+msgstr "要使用的本地化设置。"
 
 #: pyra/config.py:123
 msgid "Launch Browser on Startup "
-msgstr "Iniciar el navegador al arrancar "
+msgstr "启动时启动浏览器 "
 
 #: pyra/config.py:129
 msgid "Enable System Tray Icon"
-msgstr "Activar el icono de la bandeja del sistema"
+msgstr "启用系统托盘图标"
 
 #: pyra/config.py:138
 msgid "Logging"
-msgstr "Registro"
+msgstr "日志"
 
 #: pyra/config.py:139
 msgid "Logging settings."
-msgstr "Configuración de registro."
+msgstr "日志设置。"
 
 #: pyra/config.py:143
 msgid "Log directory"
-msgstr "Directorio de registros"
+msgstr "日志目录"
 
 #: pyra/config.py:145
 msgid "The directory where to store the log files."
-msgstr "El directorio donde almacenar los archivos de registro."
+msgstr "存储日志文件的目录。"
 
 #: pyra/config.py:155
 msgid "Debug logging"
-msgstr "Registro de depuración"
+msgstr "调试日志"
 
 #: pyra/config.py:157
 msgid "Enable debug logging."
-msgstr "Activar el registro de depuración."
+msgstr "启用调试记录。"
 
 #: pyra/config.py:163
 msgid "Network"
-msgstr "Red"
+msgstr "网络"
 
 #: pyra/config.py:164
 msgid "Network settings."
-msgstr "Configuración de red."
+msgstr "网络设置。"
 
 #: pyra/config.py:168
 msgid "HTTP host address"
-msgstr "Dirección de host HTTP"
+msgstr "HTTP 主机地址"
 
 #: pyra/config.py:170
 msgid "The HTTP address to bind to."
-msgstr "La dirección HTTP a la que enlazar."
+msgstr "要绑定的 HTTP 地址。"
 
 #: pyra/config.py:179
 msgid "HTTP port"
-msgstr "Puerto HTTP"
+msgstr "HTTP 端口"
 
 #: pyra/config.py:181
 msgid "Port to bind web server to. Note that ports below 1024 may require root."
-msgstr "Puerto para enlazar el servidor web. Tenga en cuenta que los puertos por debajo de 1024 pueden requerir root."
+msgstr "要将 Web 服务器绑定到的端口。请注意，低于 1024 的端口可能需要 root 权限。"
 
 #: pyra/config.py:190
 msgid "HTTP root"
-msgstr "Raíz HTTP"
+msgstr "HTTP 根目录"
 
 #: pyra/config.py:192
 msgid "Todo: The base URL of the web server. Used for reverse proxies."
-msgstr "Todo: La URL base del servidor web. Se utiliza para proxies inversos."
+msgstr "待办事项：Web 服务器的基础URL。用于反向代理。"
 
 #: pyra/config.py:198
 msgid "User Interface"
-msgstr "Interfaz de usuario"
+msgstr "用户界面"
 
 #: pyra/config.py:199
 msgid "User interface settings."
-msgstr "Configuración de la interfaz de usuario."
+msgstr "用户界面设置。"
 
 #: pyra/config.py:203
 msgid "Background video"
-msgstr "Vídeo de fondo"
+msgstr "背景视频"
 
 #: pyra/config.py:204
 msgid "Enable background video."
-msgstr "Activar vídeo de fondo."
+msgstr "启用后台视频。"
 
 #: pyra/config.py:210
 msgid "Updater"
-msgstr "Actualizador"
+msgstr "更新器"
 
 #: pyra/config.py:211
 msgid "Updater settings."
-msgstr "Configuración del actualizador."
+msgstr "更新程序设置。"
 
 #: pyra/config.py:215
 msgid "Auto update"
-msgstr "Actualización automática"
+msgstr "自动更新"
 
 #: pyra/hardware.py:28
 msgid "cpu"
@@ -156,7 +156,7 @@ msgstr "cpu"
 
 #: pyra/hardware.py:29
 msgid "cpu usage"
-msgstr "Uso de la CPU"
+msgstr "cpu 使用率"
 
 #: pyra/hardware.py:33
 msgid "gpu"
@@ -164,35 +164,35 @@ msgstr "gpu"
 
 #: pyra/hardware.py:34
 msgid "gpu usage"
-msgstr "uso de la gpu"
+msgstr "gpu 使用率"
 
 #: pyra/hardware.py:37
 msgid "memory"
-msgstr "memoria"
+msgstr "内存"
 
 #: pyra/hardware.py:38
 msgid "memory usage"
-msgstr "uso de la memoria"
+msgstr "内存使用情况"
 
 #: pyra/hardware.py:41
 msgid "network"
-msgstr "red"
+msgstr "网络"
 
 #: pyra/hardware.py:42
 msgid "network usage"
-msgstr "uso de la red"
+msgstr "网络使用率"
 
 #: pyra/hardware.py:45
 msgid "received"
-msgstr "recibido"
+msgstr "已接收"
 
 #: pyra/hardware.py:46
 msgid "sent"
-msgstr "enviado"
+msgstr "已发送"
 
 #: pyra/hardware.py:47
 msgid "system"
-msgstr "sistema"
+msgstr "系统"
 
 #. NOTE: Mbps = megabytes per second
 #: pyra/hardware.py:359
@@ -219,129 +219,129 @@ msgstr "%"
 #: pyra/tray_icon.py:75
 #, python-format
 msgid "Open %(app_name)s"
-msgstr "Abrir %(app_name)s"
+msgstr "打开 %(app_name)s"
 
 #. NOTE: Open GitHub Releases. "%(github)s" = "GitHub". Do not translate
 #. "%(github)s".
 #: pyra/tray_icon.py:83
 #, python-format
 msgid "%(github)s Releases"
-msgstr "Versiones %(github)s"
+msgstr "%(github)s Releases"
 
 #. NOTE: Donate to RetroArcher.
 #: pyra/tray_icon.py:86 web/templates/navbar.html:23
 msgid "Donate"
-msgstr "Donar"
+msgstr "捐赠"
 
 #: pyra/tray_icon.py:87 web/templates/navbar.html:28
 msgid "GitHub Sponsors"
-msgstr "Patrocinadores de GitHub"
+msgstr "GitHub Sponsors"
 
 #. NOTE: Open web browser when application starts. Do not translate
 #. "%(app_name)s".
 #: pyra/tray_icon.py:95
 #, python-format
 msgid "Open browser when %(app_name)s starts"
-msgstr "Abrir navegador cuando %(app_name)s inicie"
+msgstr "%(app_name)s启动时打开浏览器"
 
 #. NOTE: Disable or turn off icon.
 #: pyra/tray_icon.py:98
 msgid "Disable icon"
-msgstr "Deshabilitar icono"
+msgstr "禁用图标"
 
 #. NOTE: Restart the program.
 #: pyra/tray_icon.py:101
 msgid "Restart"
-msgstr "Reiniciar"
+msgstr "重新启动"
 
 #. NOTE: Quit, Stop, End, or Shutdown the program.
 #: pyra/tray_icon.py:103
 msgid "Quit"
-msgstr "Salir"
+msgstr "退出"
 
 #: pyra/webapp.py:120 web/templates/navbar.html:84 web/templates/navbar.html:86
 msgid "Home"
-msgstr "Inicio"
+msgstr "首页"
 
 #: pyra/webapp.py:188 web/templates/navbar.html:94 web/templates/navbar.html:96
 msgid "Settings"
-msgstr "Ajustes"
+msgstr "设置"
 
 #: retroarcher.py:126
 msgid "RetroArcher is a Python based game streaming server.\n"
 "Arguments supplied here are meant to be temporary."
-msgstr "RetroArcher es un servidor de transmisión de juegos basado en Python.\n"
-"Los argumentos proporcionados aquí están destinados a ser temporales."
+msgstr "RetroArcher 是基于 Python 的游戏流媒体服务器。\n"
+"此处提供的参数是临时的。"
 
 #: retroarcher.py:129
 msgid "Specify a config file to use"
-msgstr "Especificar un archivo de configuración a usar"
+msgstr "指定要使用的配置文件"
 
 #: retroarcher.py:130
 msgid "Use debug logging level"
-msgstr "Usar el nivel de registro de depuración"
+msgstr "使用调试日志级别"
 
 #: retroarcher.py:131
 msgid "Start RetroArcher in the development environment"
-msgstr "Iniciar RetroArcher en el entorno de desarrollo"
+msgstr "在开发环境中启动反射器"
 
 #: retroarcher.py:132
 msgid "Health check the container and exit"
-msgstr "Verificar el contenedor y salir"
+msgstr "健康检查容器并退出"
 
 #: retroarcher.py:133
 msgid "Do not open RetroArcher in browser"
-msgstr "No abrir RetroArcher en el navegador"
+msgstr "不要在浏览器中打开反射器"
 
 #: retroarcher.py:135
 msgid "Force RetroArcher to run on a specified port, default=9696"
-msgstr "Forzar RetroArcher a ejecutarse en un puerto especificado, por defecto = 9696"
+msgstr "强制返回者在指定端口运行，默认值=9696"
 
 #: retroarcher.py:137
 msgid "Turn off console logging"
-msgstr "Desactivar el registro de la consola"
+msgstr "关闭控制台日志"
 
 #: retroarcher.py:138
 msgid "Print the version details and exit"
-msgstr "Imprimir los detalles de la versión y salir"
+msgstr "打印版本详细信息并退出"
 
 #: web/templates/config.html:156
 msgid "Save"
-msgstr "Guardar"
+msgstr "保存"
 
 #: web/templates/navbar.html:19
 msgid "Login"
-msgstr "Iniciar sesión"
+msgstr "登录"
 
 #: web/templates/navbar.html:44
 msgid "Social"
-msgstr "Social"
+msgstr "?"
 
 #: web/templates/navbar.html:49
 msgid "Facebook Page"
-msgstr "Página de Facebook"
+msgstr "Facebook 页面"
 
 #: web/templates/navbar.html:52
 msgid "Facebook Group"
-msgstr "Grupo de Facebook"
+msgstr "Facebook 组"
 
 #: web/templates/navbar.html:67
 msgid "Support"
-msgstr "Soporte"
+msgstr "支持"
 
 #: web/templates/navbar.html:72
 msgid "Docs"
-msgstr "Docs"
+msgstr "文档"
 
 #: web/templates/navbar.html:80
 msgid "Discussions"
-msgstr "Discusiones"
+msgstr "讨论"
 
 #: web/templates/navbar.html:89 web/templates/navbar.html:91
 msgid "Plugins"
-msgstr "Plugins"
+msgstr "插件"
 
 #: web/templates/navbar.html:99 web/templates/navbar.html:101
 msgid "Users"
-msgstr "Usuarios"
+msgstr "用户"
 
