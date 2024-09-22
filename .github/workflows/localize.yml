@@ -66,7 +66,7 @@ jobs:
           branch: localize/update
           delete-branch: true
           base: master
-          title: New Babel Updates
+          title: "chore(l10n): new babel updates"
           body: |
             Update report
             - Updated ${{ steps.date.outputs.date }}
