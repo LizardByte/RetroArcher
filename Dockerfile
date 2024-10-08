@@ -1,6 +1,6 @@
 # artifacts: false
 # platforms: linux/386,linux/amd64
-FROM python:3.9.6-slim-bullseye as retroarcher-base
+FROM python:3.13.0-slim-bullseye as retroarcher-base
 
 FROM retroarcher-base as retroarcher-build
 
